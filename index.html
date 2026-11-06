@@ -648,42 +648,28 @@ footer{padding-block:var(--s4) var(--s5);display:flex;justify-content:space-betw
         <div class="p-head">
           <div>
             <h3>MegaMind <span>· a sovereign AI system, built from scratch</span></h3>
-            <span class="ver">v0.5.1 · in progress</span>
+            <span class="ver">in active development</span>
           </div>
           <a class="gh" href="https://github.com/JosephSbeiti/MegaMind">View on GitHub</a>
         </div>
-        <p>What started as a curious Python experiment has become a first reasoning core. The goal: <b>own the intelligence stack</b> instead of relying on external AI models or APIs. It is still primitive, but it is becoming a real learning system rather than a chatbot.</p>
+        <p>MegaMind is a sovereign AI brain I am building from scratch, without relying on external AI models or APIs. Today it drives a small robot: specialised neural networks for sight, hearing, language, movement and smell feed one shared core that decides what to do. The robot learns in a <b>digital twin</b>, a virtual building seen through a model of its real camera, before it ever moves in the physical world.</p>
 
         <span class="sub-h">What it can do today</span>
         <div class="caps">
-          <div>Store knowledge that persists between sessions</div>
-          <div>Learn from its own experiences</div>
-          <div>Discover simple mathematical relationships</div>
-          <div>Compare strategies and remember which ones work</div>
-          <div>Form basic concepts and reinforce them over time</div>
-          <div>Keep its intelligence core separate from the interface</div>
+          <div>Recognise what is ahead, people, faces and hand gestures from a low-cost camera</div>
+          <div>Understand commands in English, French and Arabic with its own small language model</div>
+          <div>Drive and explore on its own, building a map of where it has been</div>
+          <div>Know when it is unsure, and stay within safety rules that no learning can change</div>
+          <div>Learn across many robots without sharing their raw data (federated learning)</div>
+          <div>Run on a microcontroller the size of a coin once compressed</div>
         </div>
-
-        <span class="sub-h">The next challenge: generalisation</span>
-        <div class="gen" id="gen">
-          <div class="gen-top">
-            <p>Same idea, written four ways. Does MegaMind see that they mean the same thing?</p>
-            <div class="toggle" role="group" aria-label="Switch view">
-              <span class="knob" aria-hidden="true"></span>
-              <button type="button" id="gToday" aria-pressed="true">Today</button>
-              <button type="button" id="gGoal" aria-pressed="false">Goal</button>
-            </div>
-          </div>
-          <div class="rows" id="rows"></div>
-        </div>
-        <p>Today, MegaMind recognises multiplication when it sees the <b>*</b> sign, but not when the same idea is expressed differently. The next step is to move its first "neuron" from recognising surface patterns to extracting concepts it can reuse in new situations.</p>
 
         <span class="sub-h">Roadmap</span>
         <ol class="road">
-          <li class="done"><b>Python experiment</b>First prototype</li>
-          <li class="done cur"><b>Reasoning core</b>v0.5.1, now</li>
-          <li><b>Generalisation</b>Concepts, not patterns</li>
-          <li><b>A first complete neuron</b>Learns, abstracts, reuses</li>
+          <li class="done"><b>Reasoning core</b>First prototype</li>
+          <li class="done cur"><b>Multi-sense robot brain</b>Trained in a digital twin, now</li>
+          <li><b>Real world</b>Real camera images and sensors</li>
+          <li><b>Many robots, one brain</b>Learning together across industries</li>
         </ol>
 
         <span class="sub-h">The long-term vision</span>
@@ -843,26 +829,11 @@ if(document.fonts)document.fonts.ready.then(wires);
   addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);upd();
 })();
 
-/* MegaMind generalisation demo (illustration) */
-(function(){
-  const R=[["3 * 4",true],["3 times 4",false],["three groups of four",false],["4 + 4 + 4",false]];
-  const gen=document.getElementById("gen"),rows=document.getElementById("rows");let goal=false;
-  function render(){
-    gen.classList.toggle("goal",goal);
-    document.getElementById("gToday").setAttribute("aria-pressed",!goal);
-    document.getElementById("gGoal").setAttribute("aria-pressed",goal);
-    rows.innerHTML=R.map(([e,t])=>{const ok=goal||t;return `<div class="row"><code>${e}</code><span class="res ${ok?"ok":"no"}">${ok?"✓ multiplication · 12":"not recognised"}</span></div>`}).join("");
-  }
-  document.getElementById("gToday").addEventListener("click",()=>{goal=false;render()});
-  document.getElementById("gGoal").addEventListener("click",()=>{goal=true;render()});
-  render();
-})();
-
 /* MegaMind architecture mock-up */
 (function(){
   const N=[
     {id:"C",x:450,y:235,r:36,ph:3,kind:"core",label:"Central brain",k:"Phase 3 · Horizontal",d:"Pools anonymised patterns and strategies that worked in every industry, and turns them into collective intelligence shared back with all."},
-    {id:"S",x:450,y:440,r:18,ph:1,kind:"seed",label:"Primitive seed",k:"Phase 1 · Origin",d:"The foundation: a system of verifiable logic and mathematical axioms. Today's MegaMind reasoning core is this seed."},
+    {id:"S",x:450,y:440,r:18,ph:1,kind:"seed",label:"Primitive seed",k:"Phase 1 · Origin",d:"The foundation: a system of verifiable logic and mathematical axioms. Today's MegaMind robot brain is this seed."},
     {id:"V1",x:250,y:140,r:26,ph:2,kind:"v",label:"Manufacturing",k:"Phase 2 · Industry brain",d:"Optimises supply chains, robotics and resource allocation."},
     {id:"V2",x:650,y:140,r:26,ph:2,kind:"v",label:"Finance",k:"Phase 2 · Industry brain",d:"Optimises risk assessment, market dynamics and capital flows."},
     {id:"V3",x:690,y:330,r:26,ph:2,kind:"v",label:"Energy",k:"Phase 2 · Industry brain",d:"Optimises grid management, distribution and sustainability."},
@@ -909,7 +880,7 @@ if(document.fonts)document.fonts.ready.then(wires);
   function say(k,title,text){info.style.opacity=0;setTimeout(()=>{info.innerHTML=`<span class="k">${k}</span>${title?`<strong>${title}</strong>`:""}<span>${text}</span>`;info.style.opacity=1},160)}
   function focus(id){const n=by[id];if(!visible(n)){phase=0;syncButtons()}focusId=id;paint();say(n.k,n.label,n.d)}
   function unfocus(){focusId=null;paint();phaseText()}
-  const TXT=["The full system: a seed of verifiable logic, industry brains, and one central brain connecting them all. Hover any node.","Phase 1 · The seed. Verifiable logic and axioms: the reasoning core MegaMind is building today.","Phase 2 · Industry brains. Each specialises in one sector and learns from organisations that keep their data at home.","Phase 3 · The central brain. It connects every industry, so progress in one becomes progress for all."];
+  const TXT=["The full system: a seed of verifiable logic, industry brains, and one central brain connecting them all. Hover any node.","Phase 1 · The seed. Verifiable logic and axioms: the brain MegaMind is building today, starting with one robot.","Phase 2 · Industry brains. Each specialises in one sector and learns from organisations that keep their data at home.","Phase 3 · The central brain. It connects every industry, so progress in one becomes progress for all."];
   function phaseText(){say(phase?"Phase "+phase:"Overview",null,TXT[phase])}
   function syncButtons(){document.querySelectorAll(".phases [data-p]").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.p===phase))}
   function setPhase(p){phase=p;focusId=null;syncButtons();paint();phaseText()}
