@@ -132,6 +132,11 @@ p{margin:0}
 .scrollhint i::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--a);animation:wheel 1.6s infinite}
 @keyframes wheel{0%{transform:translateY(0);opacity:1}80%{transform:translateY(10px);opacity:0}100%{opacity:0}}
 
+.seg{display:flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:99px;background:rgba(0,0,0,.18);border:1px solid var(--edge);width:max-content;max-width:100%}
+.seg button{all:unset;cursor:pointer;font-weight:600;font-size:.86rem;padding:8px 14px;border-radius:99px;color:var(--fg3);transition:background .25s,color .25s}
+.seg button:hover{color:var(--fg)}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
+.seg button:focus-visible{outline:2px solid var(--a)}
 /* ── generic layouts ── */
 .col{max-width:600px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
@@ -347,14 +352,42 @@ p{margin:0}
 .note{font-family:var(--mono);font-size:11px;color:var(--fg3);margin-top:12px;line-height:1.6}
 
 /* lab */
-.quad{position:relative;width:100%;aspect-ratio:1.5;border-radius:16px;background:rgba(0,0,0,.2);border:1px solid var(--edge);margin-top:14px}
-.quad svg{position:absolute;inset:0;width:100%;height:100%}
-.quad text{font-family:var(--mono);font-size:10.5px;fill:var(--fg3)}
-.quad .bub{cursor:pointer}
-.quad .bub circle{transition:stroke-width .2s,fill-opacity .2s}
-.quad .bub:hover circle,.quad .bub.on circle{stroke-width:3;fill-opacity:.5}
-.qinfo{margin-top:12px;font-size:.93rem;color:var(--fg2);min-height:3em}
-.qinfo b{color:var(--fg)}
+.edp-head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.edp-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.edp-pick{position:relative;width:240px;max-width:100%}
+.edp-find{width:100%;font:500 .92rem var(--body);padding:10px 34px 10px 14px;border-radius:99px;border:1px solid var(--edge);background:rgba(0,0,0,.2);color:var(--fg)}
+.edp-find::placeholder{color:var(--fg3)}
+.edp-find:focus{outline:2px solid var(--a);outline-offset:1px}
+.edp-opts{position:absolute;right:0;top:calc(100% + 6px);width:100%;max-height:280px;overflow-y:auto;background:color-mix(in srgb,var(--d) 92%,#fff);border:1px solid var(--edge);border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,.4);z-index:20;list-style:none;margin:0;padding:6px;overscroll-behavior:contain}
+.edp-opts li{padding:8px 10px;border-radius:9px;cursor:pointer;display:flex;gap:10px;align-items:center;font-size:.92rem}
+.edp-opts li i{width:9px;height:9px;border-radius:50%;flex:none}
+.edp-opts li.act,.edp-opts li:hover{background:rgba(255,255,255,.08)}
+.edp-opts li.none{color:var(--fg3);cursor:default;background:none}
+.edp-chart{margin-top:14px;border:1px solid var(--edge);border-radius:18px;background:rgba(0,0,0,.22);padding:10px}
+.edp-scroll{overflow-x:auto}
+.edp-chart svg{display:block;width:100%;min-width:560px;height:auto}
+.edp-chart .ax line{stroke:rgba(255,255,255,.08)}
+.edp-chart .ax text{font:12px var(--body);fill:var(--fg3)}
+.edp-chart .ttl{font:600 12.5px var(--body);fill:var(--fg2)}
+.edp-chart .pt{cursor:pointer;transition:transform .8s cubic-bezier(.5,0,.2,1),opacity .3s;stroke:rgba(0,0,0,.35);stroke-width:1}
+.edp-chart .pt.dim{opacity:.12}
+.edp-chart .pt.hit{stroke:#fff;stroke-width:2.5}
+.edp-chart .reg{stroke:var(--a);stroke-width:2.5;stroke-dasharray:6 6;transition:opacity .4s}
+.edp-chart .lbl{font:600 12px var(--body);fill:var(--fg);pointer-events:none;transition:opacity .4s}
+.edp-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.edp-legend button{font:600 .82rem var(--body);display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:99px;border:1px solid var(--edge);background:rgba(255,255,255,.05);color:var(--fg);cursor:pointer}
+.edp-legend button[aria-pressed=false]{opacity:.4}
+.edp-legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.edp-info{margin-top:12px;padding:14px 16px;border-radius:14px;background:rgba(0,0,0,.2);min-height:76px;display:grid;gap:4px}
+.edp-info strong{font-family:var(--display);font-weight:600}
+.edp-info span{font-size:.93rem;color:var(--fg2)}
+.edp-info b{color:var(--a)}
+.finds{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.finds div{border-radius:14px;border:1px solid var(--edge);padding:14px;display:grid;gap:4px}
+.finds b{font-family:var(--display);font-weight:600;font-size:1.4rem;color:var(--a)}
+.finds span{font-size:.86rem;color:var(--fg2)}
+@media(max-width:760px){.finds{grid-template-columns:1fr}.edp-pick{width:100%}}
+svg :focus{outline:none}
 .browser{border:1px solid var(--edge);border-radius:14px;overflow:hidden;margin-top:14px}
 .browser .bb{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--edge);background:rgba(0,0,0,.2)}
 .browser .bb i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
@@ -759,17 +792,27 @@ body.gl-open .dock{transform:translateY(150%)}
 <section class="sec" id="lab" data-shape="globe" data-pal="lab" data-ch="Lab">
   <div class="wrap">
     <div class="col"><span class="kick rv">Lab</span><h2 class="words rv" style="margin-top:16px">Where I build things to understand them.</h2></div>
-    <div class="two">
-      <div class="glass pad rv">
-        <span class="kick">Data analysis · Python · 164 countries</span>
+    <div class="glass pad rv edp" style="margin-top:30px">
+      <div class="edp-head"><div><span class="kick">k-means clustering &amp; linear regression · Python · 164 countries · 2022</span>
         <h3 style="margin-top:8px">Energy development profiles</h3>
-        <p class="muted" style="margin-top:8px">Energy is one of the first conditions for development, and a question of sovereignty. Which countries share the same energy profile, and how closely does electricity follow wealth? Hover a profile.</p>
-        <div class="quad"><svg id="quad" viewBox="0 0 420 280" role="img" aria-label="Four energy profiles by low-carbon share and electricity per person"></svg></div>
-        <p class="qinfo" id="qinfo" aria-live="polite"></p>
-        <div class="stats"><div><b>R² 0.83</b><span>income explains 83% of the differences in electricity per person</span></div><div><b>×1.25</b><span>1% more GDP goes with about 1.25% more electricity</span></div></div>
-        <a class="lnk" href="https://github.com/JosephSbeiti/energy-development-profiles" target="_blank" rel="noopener">Read the analysis ↗</a>
+        <p class="muted" style="margin-top:8px;max-width:62ch">Energy is one of the first conditions for development, and a question of sovereignty. Which countries share the same energy profile, and how closely does electricity follow wealth?</p></div>
+        <a class="lnk" href="https://github.com/JosephSbeiti/energy-development-profiles" target="_blank" rel="noopener" style="margin-top:0">Read the analysis ↗</a></div>
+      <div class="edp-top">
+        <div class="seg" role="group" aria-label="View"><button type="button" id="vProf" aria-pressed="true">Energy profiles</button><button type="button" id="vReg" aria-pressed="false">Electricity vs wealth</button></div>
+        <div class="edp-pick" id="edpPick"><input class="edp-find" id="edpFind" placeholder="Find a country" role="combobox" aria-expanded="false" aria-controls="edpOpts" aria-autocomplete="list" autocomplete="off" aria-label="Find a country"><ul class="edp-opts" id="edpOpts" role="listbox" hidden></ul></div>
       </div>
-      <div class="glass pad rv">
+      <div class="edp-chart"><div class="edp-scroll"><svg id="edpSvg" viewBox="0 0 760 420" aria-label="Scatter plot of countries"></svg></div></div>
+      <div class="edp-legend" id="edpLegend"></div>
+      <div class="edp-info" id="edpInfo" aria-live="polite"></div>
+      <div class="finds">
+        <div><b>4 profiles</b><span>k-means finds four families of countries, from abundant and fossil-based to scarce and low-carbon.</span></div>
+        <div><b>22 countries</b><span>have clean electricity but very little of it. A green mix is not the same as access.</span></div>
+        <div><b>R² 0.83</b><span>Income explains 83% of the differences in electricity per person. 1% more GDP goes with about 1.25% more.</span></div>
+      </div>
+      <p class="note">Method: electricity generated per person and low-carbon share (renewables + nuclear), standardised, then k-means for k = 2 to 7; k = 4 has the best silhouette score. Data: Our World in Data (Ember, Energy Institute, Maddison Project). Countries far above the line, like Paraguay or Laos, export electricity.</p>
+    </div>
+    <div class="two">
+      <div class="glass pad rv" style="grid-column:1/-1">
         <span class="kick">Web build</span>
         <h3 style="margin-top:8px">International Signature</h3>
         <p class="muted" style="margin-top:8px">I designed and built the website of a luxury private concierge service, and the back-office where its team manages client requests.</p>
@@ -886,14 +929,25 @@ SH.brain=make3d(function(k){var side=k%2?1:-1,u=Math.random()*6.283,v=Math.acos(
   var fold=1+.07*Math.sin(9*u+5*v)+.05*Math.sin(14*v);if(k%9===0){return [ (Math.random()-.5)*.25, .35+Math.random()*.25,-.55+Math.random()*.2]}
   return [side*(.06+Math.abs(x)*.42*fold),-y*.52*fold+.02,z*.78*fold]});
 SH.grid=make3d(function(k){var g=Math.floor(Math.sqrt(N)),i=k%g,j=Math.floor(k/g)%g;return [(i/(g-1)*2-1)*.9,(j/(g-1)*2-1)*.9,Math.sin(i*.3)*Math.cos(j*.3)*.18]});
-SH.cedar=sampleCanvas(function(x,S){x.fillRect(S*.47,S*.62,S*.06,S*.25);var tiers=[[.86,.62,.34],[.75,.5,.28],[.64,.4,.22],[.53,.3,.15],[.42,.2,.09]];
-  tiers.forEach(function(t){x.beginPath();x.ellipse(S*.5,S*t[0]-S*.02,S*t[2]*1.18,S*.045,0,0,6.283);x.fill();x.beginPath();x.moveTo(S*(.5-t[2]*1.15),S*t[0]-S*.02);x.quadraticCurveTo(S*.5,S*(t[0]-.12),S*(.5+t[2]*1.15),S*t[0]-S*.02);x.fill()});
-  x.fillRect(S*.1,S*.88,S*.8,S*.012)});
+SH.cedar=sampleCanvas(function(x,S){
+  x.beginPath();x.moveTo(S*.465,S*.66);x.lineTo(S*.535,S*.66);x.lineTo(S*.545,S*.86);x.quadraticCurveTo(S*.6,S*.9,S*.64,S*.92);x.lineTo(S*.36,S*.92);x.quadraticCurveTo(S*.4,S*.9,S*.455,S*.86);x.closePath();x.fill();
+  var T=[[.70,.47],[.59,.4],[.48,.32],[.37,.23],[.27,.14]];
+  T.forEach(function(t){var y=S*t[0],w=S*t[1];x.beginPath();x.moveTo(S*.5-w,y);
+    for(var k=0;k<=8;k++){var xx=S*.5-w+k*(w*2/8);x.lineTo(xx,y+(k%2?S*.018:0))}
+    x.lineTo(S*.5+w*.6,y-S*.045);x.lineTo(S*.5,y-S*.095);x.lineTo(S*.5-w*.6,y-S*.045);x.closePath();x.fill()});
+  x.beginPath();x.moveTo(S*.5,S*.06);x.lineTo(S*.56,S*.17);x.lineTo(S*.44,S*.17);x.closePath();x.fill()});
 SH.eiffel=sampleCanvas(function(x,S){x.beginPath();x.moveTo(S*.5,S*.05);x.lineTo(S*.53,S*.3);x.lineTo(S*.58,S*.52);x.lineTo(S*.7,S*.92);x.lineTo(S*.62,S*.92);x.quadraticCurveTo(S*.5,S*.72,S*.38,S*.92);x.lineTo(S*.3,S*.92);x.lineTo(S*.42,S*.52);x.lineTo(S*.47,S*.3);x.closePath();x.fill();
   x.globalCompositeOperation='destination-out';x.beginPath();x.moveTo(S*.5,S*.36);x.lineTo(S*.535,S*.5);x.lineTo(S*.465,S*.5);x.fill();x.globalCompositeOperation='source-over';x.fillRect(S*.39,S*.5,S*.22,S*.025);x.fillRect(S*.45,S*.28,S*.1,S*.02)});
-SH.train=sampleCanvas(function(x,S){x.beginPath();x.moveTo(S*.08,S*.62);x.lineTo(S*.08,S*.42);x.lineTo(S*.62,S*.42);x.quadraticCurveTo(S*.9,S*.45,S*.95,S*.62);x.closePath();x.fill();
-  x.globalCompositeOperation='destination-out';for(var i=0;i<5;i++)x.fillRect(S*(.12+i*.09),S*.46,S*.06,S*.05);x.beginPath();x.moveTo(S*.66,S*.46);x.quadraticCurveTo(S*.82,S*.48,S*.86,S*.54);x.lineTo(S*.66,S*.54);x.fill();x.globalCompositeOperation='source-over';
-  x.fillRect(S*.02,S*.7,S*.96,S*.015);x.fillRect(S*.02,S*.76,S*.96,S*.012);for(var j=0;j<12;j++)x.fillRect(S*(.04+j*.08),S*.7,S*.012,S*.075)});
+SH.train=sampleCanvas(function(x,S){
+  x.beginPath();x.moveTo(S*.04,S*.66);x.lineTo(S*.04,S*.44);x.quadraticCurveTo(S*.04,S*.4,S*.08,S*.4);x.lineTo(S*.6,S*.4);x.bezierCurveTo(S*.78,S*.4,S*.93,S*.5,S*.97,S*.62);x.lineTo(S*.97,S*.66);x.closePath();x.fill();
+  x.globalCompositeOperation='destination-out';
+  for(var i=0;i<6;i++)x.fillRect(S*(.08+i*.085),S*.455,S*.055,S*.06);
+  x.beginPath();x.moveTo(S*.66,S*.45);x.bezierCurveTo(S*.76,S*.45,S*.84,S*.49,S*.88,S*.54);x.lineTo(S*.66,S*.54);x.closePath();x.fill();
+  x.fillRect(S*.04,S*.565,S*.86,S*.012);
+  x.globalCompositeOperation='source-over';
+  x.lineWidth=S*.01;x.beginPath();x.moveTo(S*.3,S*.4);x.lineTo(S*.34,S*.33);x.lineTo(S*.42,S*.33);x.stroke();
+  [.12,.2,.62,.7,.84].forEach(function(c){x.beginPath();x.arc(S*c,S*.69,S*.03,0,6.283);x.fill()});
+  x.fillRect(S*.0,S*.735,S*1,S*.014);for(var j=0;j<14;j++)x.fillRect(S*(.02+j*.072),S*.75,S*.03,S*.012)});
 SH.plane=sampleCanvas(function(x,S){x.translate(S/2,S/2);x.rotate(-.5);x.beginPath();x.ellipse(0,0,S*.42,S*.05,0,0,6.283);x.fill();x.beginPath();x.moveTo(-S*.05,0);x.lineTo(S*.1,-S*.36);x.lineTo(S*.17,-S*.36);x.lineTo(S*.1,0);x.lineTo(S*.17,S*.36);x.lineTo(S*.1,S*.36);x.closePath();x.fill();
   x.beginPath();x.moveTo(-S*.3,0);x.lineTo(-S*.37,-S*.14);x.lineTo(-S*.32,-S*.14);x.lineTo(-S*.24,0);x.lineTo(-S*.32,S*.14);x.lineTo(-S*.37,S*.14);x.closePath();x.fill()});
 SH.radar=sampleCanvas(function(x,S){x.lineWidth=S*.018;[.12,.24,.36,.46].forEach(function(r){x.beginPath();x.arc(S*.5,S*.55,S*r,Math.PI*1.05,Math.PI*1.95);x.stroke()});x.beginPath();x.moveTo(S*.5,S*.55);x.lineTo(S*.78,S*.2);x.stroke();
@@ -1114,17 +1168,78 @@ new IntersectionObserver(function(es,o){if(es[0].isIntersecting){setTimeout(func
     if(mode==='wall'){truth[y][x]=truth[y][x]?0:1;if(known[y][x]!==-1)known[y][x]=-1;if(state==='Map complete'){state='';playing=true;setPlay();loop()}}else if(truth[y][x]===0){goal=[x,y];state='Driving to the goal';if(!playing){playing=true;setPlay();loop()}}sense();draw();stats()});
   reset();setPlay();new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)loop();else clearTimeout(timer)},{threshold:.2}).observe(cvt)})();
 
-/* ── energy quadrant ── */
-(function(){var P=[['Scarce & low-carbon',22,262,87.1,2119,'#58C8FF'],['Abundant & fossil-based',60,4432,15.2,19041,'#FF8A5B'],['Abundant & low-carbon',49,3755,76.1,22929,'#A6F15B'],['Scarce & fossil-based',33,193,24.7,3063,'#FFD166']];
-  var s=$('#quad'),X=function(v){return 50+v/100*340},Y=function(k){return 240-(Math.log10(k)-2)/2*210},stroke='rgba(255,255,255,.25)';
-  el('line',{x1:50,y1:240,x2:395,y2:240,stroke:stroke},s);el('line',{x1:50,y1:20,x2:50,y2:240,stroke:stroke},s);
-  [[0,'0%'],[50,'50%'],[100,'100%']].forEach(function(t){el('text',{x:X(t[0]),y:256,'text-anchor':'middle'},s).textContent=t[1]});[[100,'100'],[1000,'1k'],[10000,'10k']].forEach(function(t){el('text',{x:44,y:Y(t[0])+3,'text-anchor':'end'},s).textContent=t[1]});
-  el('text',{x:222,y:274,'text-anchor':'middle'},s).textContent='low-carbon share of electricity';el('text',{x:12,y:130,'text-anchor':'middle',transform:'rotate(-90 12 130)'},s).textContent='kWh per person';
-  var gs=[];P.forEach(function(p){var g=el('g',{'class':'bub',tabindex:0,role:'button','aria-label':p[0]},s),r=8+Math.sqrt(p[1])*2.6;el('circle',{cx:X(p[3]),cy:Y(p[2]),r:r,fill:p[5],'fill-opacity':.25,stroke:p[5],'stroke-width':1.5},g);
-    var t=el('text',{x:X(p[3]),y:Y(p[2])+4,'text-anchor':'middle',style:'fill:#fff;font-weight:500'},g);t.textContent=p[1];el('text',{x:X(p[3]),y:Y(p[2])+(p[2]>1000?r+14:-r-6),'text-anchor':'middle'},g).textContent=p[0];
-    function pick(){gs.forEach(function(x){x.classList.toggle('on',x===g)});$('#qinfo').innerHTML='<b>'+p[0]+'</b> · '+p[1]+' countries. Median '+fmt(p[2])+' kWh per person, '+p[3]+'% low-carbon, $'+fmt(p[4])+' GDP per person.'}
-    g.addEventListener('mouseenter',pick);g.addEventListener('click',pick);g.addEventListener('focus',pick);gs.push(g)});
-  $('#qinfo').innerHTML='<b>22 countries</b> have clean electricity but very little of it. A green mix is not the same as access.'})();
+/* energy development profiles */
+(function(){
+  const D=[["Afghanistan",24,86.5,1314,3,-0.689],["Albania",2465,100.0,12792,1,0.094],["Algeria",2011,0.9,13101,0,-0.007],["Angola",486,75.6,4444,3,-0.037],["Argentina",3207,34.2,18827,0,-0.001],["Armenia",3430,60.7,13788,1,0.197],["Australia",10416,32.0,51305,0,-0.033],["Austria",7112,78.2,43997,1,-0.116],["Azerbaijan",2811,6.4,17034,0,-0.004],["Bahrain",23268,0.2,38325,0,0.474],["Bangladesh",604,1.6,5066,2,-0.014],["Barbados",3861,7.3,12071,0,0.321],["Belarus",4053,16.0,19162,0,0.091],["Belgium",8103,72.4,42062,1,-0.035],["Benin",72,2.0,2419,2,-0.537],["Bolivia",966,35.7,6472,2,0.057],["Bosnia and Herzegovina",5102,32.0,14687,0,0.335],["Botswana",1049,0.4,16105,0,-0.402],["Brazil",3220,89.9,15156,1,0.118],["Bulgaria",7366,51.9,20274,1,0.32],["Burkina Faso",75,15.4,1658,2,-0.314],["Burundi",29,69.2,689,3,-0.246],["Cambodia",587,65.4,3787,3,0.132],["Cameroon",295,64.9,2994,3,-0.04],["Canada",17106,81.2,45369,1,0.249],["Cape Verde",962,28.0,8179,2,-0.072],["Central African Republic",27,100.0,736,3,-0.31],["Chad",21,5.1,1307,2,-0.735],["Chile",4656,55.3,22929,1,0.054],["China",6209,34.9,18921,0,0.283],["Colombia",1602,74.4,14355,1,-0.156],["Comoros",168,0.0,2016,2,-0.07],["Congo",820,21.8,3924,2,0.258],["Costa Rica",2448,100.0,15811,1,-0.024],["Cote d'Ivoire",415,27.4,3996,2,-0.048],["Croatia",3609,63.5,26180,1,-0.129],["Cuba",1415,4.3,7609,0,0.135],["Cyprus",3951,16.7,25729,0,-0.08],["Czechia",7845,49.9,32133,1,0.097],["Democratic Republic of Congo",150,100.0,892,3,0.322],["Denmark",5956,80.9,50726,1,-0.27],["Djibouti",176,35.0,2986,2,-0.263],["Dominica",2244,13.3,10099,0,0.182],["Dominican Republic",1974,18.4,17023,0,-0.157],["Ecuador",1855,76.0,9820,1,0.114],["Egypt",1924,11.8,12968,0,-0.021],["El Salvador",1056,90.8,9438,1,-0.109],["Equatorial Guinea",837,31.8,11195,2,-0.302],["Estonia",6622,32.0,29627,0,0.068],["Eswatini",451,96.4,7872,3,-0.38],["Ethiopia",139,100.0,2153,3,-0.188],["Finland",12959,88.7,40607,1,0.188],["France",7068,87.1,40309,1,-0.071],["Gabon",1312,48.0,14825,1,-0.26],["Gambia",193,0.0,1766,2,0.063],["Georgia",3755,76.2,18586,1,0.074],["Germany",6742,50.5,46495,1,-0.169],["Ghana",700,36.0,4387,2,0.128],["Greece",4962,43.4,25344,0,0.027],["Guatemala",755,84.6,8193,3,-0.178],["Guinea",285,74.5,1685,3,0.257],["Guinea-Bissau",38,0.0,1548,2,-0.572],["Haiti",88,18.8,1526,2,-0.2],["Honduras",1083,59.7,4753,1,0.274],["Hong Kong",4835,0.9,47776,0,-0.328],["Hungary",3695,65.6,29469,1,-0.183],["Iceland",52239,100.0,42116,1,0.774],["India",1266,22.8,7350,0,0.106],["Indonesia",1196,19.6,12553,0,-0.209],["Iran",4100,6.1,17562,0,0.143],["Iraq",3037,2.3,11973,0,0.221],["Ireland",6613,39.2,60350,0,-0.319],["Italy",4699,35.9,35828,0,-0.184],["Jamaica",1581,12.9,7051,0,0.225],["Japan",8325,25.5,38197,0,0.029],["Jordan",2005,23.1,8820,0,0.206],["Kazakhstan",5662,11.7,25138,0,0.089],["Kenya",239,87.8,3509,3,-0.218],["Kuwait",18584,2.2,47709,0,0.257],["Kyrgyzstan",1987,86.1,4558,1,0.56],["Laos",6752,76.1,7270,1,0.838],["Latvia",2674,75.9,27244,1,-0.281],["Lebanon",761,45.5,8485,2,-0.194],["Lesotho",210,100.0,2083,3,0.009],["Liberia",73,33.3,788,2,0.076],["Libya",4860,0.0,12659,0,0.395],["Lithuania",1434,74.8,30109,1,-0.605],["Luxembourg",1852,86.0,55300,1,-0.824],["Madagascar",87,35.2,1268,2,-0.105],["Malawi",89,95.6,1287,3,-0.102],["Malaysia",5293,19.5,25294,0,0.056],["Mali",188,42.9,1324,2,0.207],["Malta",4354,13.0,34637,0,-0.199],["Mauritania",336,27.4,3215,2,-0.021],["Mauritius",2445,19.6,21149,0,-0.182],["Mexico",2645,27.6,15810,0,0.01],["Moldova",1753,9.6,7838,0,0.212],["Mongolia",2289,9.8,13234,0,0.044],["Montenegro",5385,53.2,20783,1,0.17],["Morocco",1109,18.2,8349,0,-0.021],["Mozambique",599,83.7,963,3,0.883],["Myanmar",433,40.9,5414,2,-0.195],["Namibia",457,98.5,7564,3,-0.353],["Nepal",360,100.0,3229,3,0.006],["Netherlands",6700,43.6,49128,0,-0.201],["New Zealand",8428,86.9,39091,1,0.022],["Nicaragua",642,64.1,4868,3,0.034],["Niger",31,2.5,979,2,-0.409],["Nigeria",170,24.7,5084,2,-0.566],["North Korea",1008,63.1,1538,1,0.855],["North Macedonia",3228,27.1,15634,0,0.103],["Norway",26649,98.6,88390,1,0.079],["Oman",8964,4.5,37494,0,0.072],["Pakistan",722,41.4,5412,2,0.028],["Palestine",192,33.3,4538,2,-0.451],["Panama",2784,77.2,21533,1,-0.135],["Paraguay",6525,100.0,9634,1,0.671],["Peru",1789,55.2,10207,1,0.078],["Philippines",979,22.2,8905,2,-0.11],["Poland",4653,21.1,32070,0,-0.128],["Portugal",4448,59.6,28387,1,-0.082],["Puerto Rico",6140,5.4,35142,0,-0.058],["Qatar",18928,1.3,131991,0,-0.287],["Romania",2856,63.4,26334,1,-0.234],["Russia",8016,36.7,25632,0,0.229],["Rwanda",76,57.7,2085,3,-0.432],["Saint Lucia",2237,2.5,9783,0,0.198],["Sao Tome and Principe",398,11.1,3646,2,-0.017],["Saudi Arabia",12738,0.5,56686,0,-0.0],["Senegal",406,19.7,2941,2,0.108],["Serbia",5130,28.2,17204,0,0.252],["Seychelles",4939,14.5,24323,0,0.047],["Sierra Leone",24,95.0,1411,3,-0.718],["Singapore",10075,4.1,81736,0,-0.301],["Slovakia",4849,81.9,27472,1,-0.027],["Slovenia",6316,72.5,32803,1,-0.008],["South Africa",3834,14.1,11600,0,0.339],["South Korea",12023,37.2,41280,0,0.147],["Spain",6004,63.2,33979,1,-0.049],["Sri Lanka",734,50.3,11156,2,-0.358],["Sweden",16501,98.3,47125,1,0.213],["Switzerland",7020,97.4,63623,1,-0.322],["Syria",894,4.4,2331,2,0.577],["Taiwan",12305,15.9,53282,0,0.018],["Tajikistan",2111,92.7,4964,1,0.54],["Tanzania",149,30.4,3063,2,-0.35],["Thailand",2514,15.8,15671,0,-0.007],["Togo",112,20.0,1768,2,-0.176],["Trinidad and Tobago",6351,0.1,25077,0,0.14],["Tunisia",1767,3.0,10682,0,0.047],["Turkey",3682,41.9,27407,0,-0.145],["Turkmenistan",4509,0.0,13486,0,0.328],["Uganda",122,97.4,2156,3,-0.247],["Ukraine",2717,72.2,7532,1,0.424],["United Arab Emirates",15175,17.9,76127,0,-0.084],["United Kingdom",4761,56.2,38358,1,-0.216],["United States",12552,40.3,57075,0,-0.01],["Uruguay",4382,90.8,20368,1,0.092],["Uzbekistan",2149,9.2,11265,0,0.104],["Venezuela",2919,78.4,5305,1,0.645],["Vietnam",2660,49.5,8365,1,0.358],["Yemen",79,16.8,1592,2,-0.268],["Zambia",966,88.9,3398,1,0.407],["Zimbabwe",556,67.3,1612,3,0.572]];
+  const P=[["Abundant & fossil-based","#FF8A5B"],["Abundant & low-carbon","#6EF2D2"],["Scarce & fossil-based","#FFD166"],["Scarce & low-carbon","#58C8FF"]];
+  const R={a:-1.833,b:1.249};
+  const svg=document.getElementById("edpSvg"),NS="http://www.w3.org/2000/svg",info=document.getElementById("edpInfo");
+  const W=760,H=420,m={l:64,r:20,t:20,b:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e};
+  const lg=Math.log10,yMin=1,yMax=5;
+  const Y=v=>m.t+ih-(lg(v)-yMin)/(yMax-yMin)*ih;
+  const XP=v=>m.l+v/100*iw;
+  const xg0=2.6,xg1=5.3,XG=v=>m.l+(lg(v)-xg0)/(xg1-xg0)*iw;
+  const gAx=mk("g",{class:"ax"});svg.appendChild(gAx);
+  const reg=mk("line",{class:"reg",x1:XG(10**xg0),y1:Y(10**(R.a+R.b*xg0)),x2:XG(10**xg1),y2:Y(10**(R.a+R.b*xg1))});svg.appendChild(reg);
+  const gP=mk("g",{});svg.appendChild(gP);const gL=mk("g",{});svg.appendChild(gL);
+  let view="prof",on=[1,1,1,1],sel=null;
+  function axes(){
+    gAx.innerHTML="";
+    [10,100,1000,10000,100000].forEach((v,i)=>{const y=Y(v);gAx.appendChild(mk("line",{x1:m.l,x2:W-m.r,y1:y,y2:y}));const t=mk("text",{x:m.l-8,y:y+4,"text-anchor":"end"});t.textContent=["10","100","1k","10k","100k"][i];gAx.appendChild(t)});
+    const yt=mk("text",{x:16,y:m.t+ih/2,transform:`rotate(-90 16 ${m.t+ih/2})`,"text-anchor":"middle",class:"ttl"});yt.textContent="Electricity generated per person (kWh)";gAx.appendChild(yt);
+    const ticks=view==="prof"?[[0,"0%"],[25,"25%"],[50,"50%"],[75,"75%"],[100,"100%"]]:[[1000,"$1k"],[10000,"$10k"],[100000,"$100k"]];
+    ticks.forEach(([v,l])=>{const x=view==="prof"?XP(v):XG(v);gAx.appendChild(mk("line",{x1:x,x2:x,y1:m.t,y2:m.t+ih}));const t=mk("text",{x,y:H-m.b+18,"text-anchor":"middle"});t.textContent=l;gAx.appendChild(t)});
+    const xt=mk("text",{x:m.l+iw/2,y:H-10,"text-anchor":"middle",class:"ttl"});xt.textContent=view==="prof"?"Low-carbon share of electricity (renewables + nuclear)":"GDP per person (log scale)";gAx.appendChild(xt);
+    reg.style.opacity=view==="reg"?1:0;
+  }
+  const pts=D.map((d,i)=>{const c=mk("circle",{r:5.5,class:"pt",fill:P[d[4]][1]});c._d=d;c.addEventListener("mouseenter",()=>pick(i));c.addEventListener("click",()=>pick(i));gP.appendChild(c);return c});
+  const SHOW=["Paraguay","Laos","Mozambique","Luxembourg","Chad","France","Kenya","Norway"];
+  const labels=D.map((d,i)=>{if(!SHOW.includes(d[0]))return null;const t=mk("text",{class:"lbl"});t.textContent=d[0];gL.appendChild(t);return t});
+  function place(){
+    pts.forEach((c,i)=>{const d=c._d;const x=view==="prof"?XP(d[2]):XG(d[3]),y=Y(d[1]);c.style.transform=`translate(${x}px,${y}px)`;c._x=x;c._y=y;c.classList.toggle("dim",!on[d[4]])});
+    labels.forEach((t,i)=>{if(!t)return;const c=pts[i];t.setAttribute("x",c._x+8);t.setAttribute("y",c._y-8);t.style.opacity=(view==="reg"||sel===i)&&on[c._d[4]]?1:0});
+  }
+  function pick(i){
+    sel=i;pts.forEach((c,j)=>c.classList.toggle("hit",j===i));
+    const d=D[i],pred=Math.round((10**d[5]-1)*100);
+    const vs=Math.abs(pred)<5?"in line with what its income predicts":`<b>${Math.abs(pred)}% ${pred>0?"above":"below"}</b> what its income predicts`;
+    info.innerHTML=`<strong>${d[0]}</strong><span><b>${P[d[4]][0]}</b> · ${d[1].toLocaleString("en")} kWh per person · ${d[2]}% low-carbon · GDP $${d[3].toLocaleString("en")} per person</span><span>Electricity generation is ${vs}.</span>`;
+    place();
+  }
+  function setView(v){view=v;document.getElementById("vProf").setAttribute("aria-pressed",v==="prof");document.getElementById("vReg").setAttribute("aria-pressed",v==="reg");axes();place();
+    if(sel===null)info.innerHTML=v==="prof"?"<strong>Energy profiles</strong><span>Each dot is a country, coloured by the profile k-means assigned it. Hover or tap a dot, or find a country above.</span>":"<strong>Electricity vs wealth</strong><span>The line is the regression: slope 1.25, R² 0.83. Countries above it generate more electricity than their income predicts, often because they export it.</span>";}
+  document.getElementById("vProf").addEventListener("click",()=>setView("prof"));
+  document.getElementById("vReg").addEventListener("click",()=>setView("reg"));
+  const leg=document.getElementById("edpLegend");
+  P.forEach(([n,c],k)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-pressed","true");b.innerHTML=`<i style="background:${c}"></i>${n}`;b.addEventListener("click",()=>{on[k]=on[k]?0:1;b.setAttribute("aria-pressed",!!on[k]);place()});leg.appendChild(b)});
+  /* searchable country list */
+  const inp=document.getElementById("edpFind"),opts=document.getElementById("edpOpts"),order=D.map((d,i)=>i).sort((a,b)=>D[a][0].localeCompare(D[b][0]));
+  let shown=[],act=-1;
+  function render(){
+    const q=inp.value.trim().toLowerCase();
+    shown=q?order.filter(i=>D[i][0].toLowerCase().includes(q)).sort((a,b)=>(D[b][0].toLowerCase().startsWith(q))-(D[a][0].toLowerCase().startsWith(q))):order.slice();
+    act=shown.length?0:-1;
+    opts.innerHTML=shown.length?shown.map((i,k)=>`<li role="option" data-i="${i}" class="${k===act?"act":""}"><i style="background:${P[D[i][4]][1]}"></i>${D[i][0]}</li>`).join(""):'<li class="none">No country found</li>';
+  }
+  function open(){render();opts.hidden=false;inp.setAttribute("aria-expanded","true")}
+  function close(){opts.hidden=true;inp.setAttribute("aria-expanded","false")}
+  function choose(i){inp.value=D[i][0];close();if(!on[D[i][4]]){on[D[i][4]]=1;leg.children[D[i][4]].setAttribute("aria-pressed","true")}pick(i)}
+  function mark(){[...opts.children].forEach((li,k)=>li.classList.toggle("act",k===act));const li=opts.children[act];if(li&&li.scrollIntoView)li.scrollIntoView({block:"nearest"})}
+  inp.addEventListener("focus",()=>{inp.select();open()});
+  inp.addEventListener("click",open);
+  inp.addEventListener("input",()=>{opts.hidden?open():render()});
+  inp.addEventListener("keydown",e=>{
+    if(e.key==="ArrowDown"){e.preventDefault();if(opts.hidden)open();act=Math.min(act+1,shown.length-1);mark()}
+    else if(e.key==="ArrowUp"){e.preventDefault();act=Math.max(act-1,0);mark()}
+    else if(e.key==="Enter"){e.preventDefault();if(act>=0&&shown[act]!==undefined)choose(shown[act])}
+    else if(e.key==="Escape"){close()}
+  });
+  opts.addEventListener("mousedown",e=>{const li=e.target.closest("li[data-i]");if(li){e.preventDefault();choose(+li.dataset.i)}});
+  document.addEventListener("click",e=>{if(!document.getElementById("edpPick").contains(e.target))close()});
+  setView("prof");
+})();
+
 
 /* copy + toast */
 var toast=$('#toast'),tt;function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2400)}
