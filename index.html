@@ -725,10 +725,10 @@ main{overflow-x:clip}
 .op .pillar .scene{height:118px}
 .op .conviction{margin-top:clamp(40px,6vw,64px)}
 .op .jgo{margin-top:clamp(60px,8vw,96px)}
-#swarm{transition:opacity .7s}#swarm.dim{opacity:.32}
+#swarm{transition:opacity .7s}#swarm.dim{opacity:.6}
 /* liquid glass: thicker blur, refraction rim, specular highlight, soft caustic */
-.glass{background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.05) 40%,rgba(255,255,255,.03) 60%,rgba(255,255,255,.09));
-  -webkit-backdrop-filter:blur(22px) saturate(190%) brightness(1.08);backdrop-filter:blur(22px) saturate(190%) brightness(1.08);
+.glass{background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 40%,rgba(255,255,255,.02) 60%,rgba(255,255,255,.07)),rgba(6,8,20,.22);
+  -webkit-backdrop-filter:blur(7px) saturate(170%) brightness(.92);backdrop-filter:blur(7px) saturate(170%) brightness(.92);
   border:1px solid rgba(255,255,255,.18);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(255,255,255,.12),inset 1px 0 0 rgba(255,255,255,.14),inset -1px 0 0 rgba(255,255,255,.08),inset 0 0 24px rgba(255,255,255,.05),inset 0 -18px 30px -18px color-mix(in srgb,var(--a) 30%,transparent),0 30px 60px -28px rgba(0,0,0,.65),0 2px 6px rgba(0,0,0,.18)}
 .glass::after{background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.04) 18%,transparent 34%),radial-gradient(120% 60% at 100% 110%,color-mix(in srgb,var(--a) 16%,transparent),transparent 60%);mix-blend-mode:screen}
@@ -1521,7 +1521,7 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   var A=SH[state.A],B=SH[state.B],raw=clamp(state.t,0,1),t=ease(raw),O=override?SH[override]:null;overT=clamp(overT+(override?dt*2.2:-dt*2.2),0,1);var ot=ease(overT);
   var V=state.via&&state.A!==state.B?SH[state.via]:null,mode=0,e1=0,vx=0,vy=0;
   if(V){if(raw<.35){mode=1;e1=ease(raw/.35)}else if(raw<.65){mode=2}else{mode=3;e1=ease((raw-.65)/.35)}}
-  var burst=(!V&&state.A!==state.B)?Math.sin(Math.PI*raw)*.5:0;
+  var burst=(!V&&state.A!==state.B)?Math.sin(Math.PI*raw)*.14:0;
   var flat=V||(FLAT[state.A]&&t<.5)||(FLAT[state.B]&&t>=.5)||(O&&ot>.5&&FLAT[override]);
   var soft=(SOFT[state.A]&&t<.5)||(SOFT[state.B]&&t>=.5);var rotY=flat?Math.sin(time*.4)*.14+mouse.nx*.35:(soft?-.55+Math.sin(time*.3)*.25+mouse.nx*.5:time*.25+mouse.nx*.8),rotX=flat?-mouse.ny*.15:(soft?.42-mouse.ny*.3:-mouse.ny*.4+.15),cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
   var wide=VW>900,CX=wide?VW*.72:VW*.5,CY=VH*.52+(wide?0:VH*.02),SC=wide?Math.min(VW*.27,VH*.4):Math.min(VW*.42,VH*.3);
@@ -1823,7 +1823,7 @@ function onScroll(){var vh=W.innerHeight,y=W.scrollY,vc=y+vh*.5;
     if(ai!==lastPanel&&r.top<vh*.3&&r.bottom>vh*.7){lastPanel=ai;$$('.decode',panels[ai]).forEach(decode)}
     state.jp=p*n1;kmUpdate(p*n1);state.jv=clamp((vh*.5-r.top)/(vh*.5),0,1)*clamp((r.bottom-vh*.5)/(vh*.5),0,1);hzP=p;parallax()}else state.jv=0;
   var cs=anchors.map(function(a){return a.c()}),k=0;for(var i=0;i<cs.length;i++)if(cs[i]<=vc)k=i;
-  var a=anchors[k],b=anchors[Math.min(k+1,anchors.length-1)],win=vh*(b.via?.55:.38);
+  var a=anchors[k],b=anchors[Math.min(k+1,anchors.length-1)],win=vh*(b.via?.4:.24);
   var tt=b===a?0:clamp((vc-(cs[k+1]-win))/win,0,1);/* hold each world, morph just before the next one arrives */
   state.A=a.shape;state.B=b.shape;state.t=tt;state.via=(b.via&&b!==a)?b.via:null;
   var pa=PAL[a.pal],pb=PAL[b.pal];applyCols({d:mixHex(pa[0],pb[0],tt),m:mixHex(pa[1],pb[1],tt),a:mixHex(pa[2],pb[2],tt)});
