@@ -1744,7 +1744,7 @@ function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddy
   var blink=(t%3.6)<.12;A.lid.forEach(function(l){l.style.transform='scaleY('+(blink?.1:1)+')'});
   var search=p>.28&&p<.5,pass=p>=.5&&p<.85,plane=p>.62&&p<.8,bye=p>=.8&&p<.89;
   A.pass.classList.toggle('on',p>.5);A.el.classList.toggle('pass-on',p>.5);
-  A.bub.classList.toggle('on',search||bye);var bt=bye?'I’m going to shape the future, bye!':'?';if(A.bubT.textContent!==bt)A.bubT.textContent=bt;A.bub.classList.toggle('bye',bye);
+  var call=p>.07&&p<.23;A.bub.classList.toggle('on',search||bye||call);var bt=bye?'I’m going to shape the future, bye!':call?'I just got to the airport, I’ll call you later!':'?';if(A.bubT.textContent!==bt)A.bubT.textContent=bt;A.bub.classList.toggle('bye',bye||call);
   A.csh.style.display=front?'none':'';
   if(!front){
     /* profile: walking or standing, reading the boarding pass on the way in */
