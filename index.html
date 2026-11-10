@@ -643,14 +643,8 @@ main{overflow-x:clip}
 .fl i.f{animation:flap .09s linear}
 @keyframes flap{50%{transform:scaleY(.2)}}
 .fl.s i{color:#6EF2D2}.fl.s.hot i{color:#FF6B8B}
-.pax{position:absolute;left:0;bottom:6vh;height:min(50vh,420px);aspect-ratio:230/340;will-change:transform;z-index:2}
+.pax{position:absolute;left:0;bottom:6vh;height:min(52vh,440px);aspect-ratio:270/364;will-change:transform;z-index:2}
 .pax svg{width:100%;height:100%;overflow:visible;display:block}
-.pax #pxHead{transform-box:view-box;transform-origin:60px 92px}
-.pax #pxArmB{transform-box:view-box;transform-origin:36px 106px}
-.pax #pxArmF{transform-box:view-box;transform-origin:84px 106px}
-.pax #pxLegB{transform-box:view-box;transform-origin:52px 188px}
-.pax #pxLegF{transform-box:view-box;transform-origin:69px 188px}
-.pax #pxCase{transform-box:view-box;transform-origin:-43px 303px}
 .pax .plid{transform-box:fill-box;transform-origin:center}
 .pbub{position:absolute;left:58%;top:-6%;width:62px;height:52px;border-radius:50%;background:#fff;color:#15171f;display:grid;place-items:center;font-family:var(--display);font-size:1.7rem;opacity:0;transform:scale(.4);transition:opacity .3s,transform .4s cubic-bezier(.2,1.4,.4,1)}
 .pbub::before,.pbub::after{content:"";position:absolute;background:#fff;border-radius:50%}
@@ -1043,38 +1037,67 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="brow"><span class="fl d" data-w="12">THE WORLD</span><span class="fl t">2027</span><span class="fl s" data-w="9">ON TIME</span></div></div>
         <div class="pax" id="pax" aria-hidden="true">
           <div class="pbub" id="pbub"><b>?</b></div>
-          <svg viewBox="-80 -10 230 340">
-            <ellipse cx="45" cy="318" rx="70" ry="8" fill="rgba(0,0,0,.35)"/>
-            <g id="pxCase"><path d="M-27 214L-3 162" stroke="#9aa3b8" stroke-width="4" stroke-linecap="round"/><path d="M-37 214L-11 160" stroke="#9aa3b8" stroke-width="3" stroke-linecap="round" opacity=".6"/>
-              <rect x="-72" y="212" width="58" height="88" rx="10" style="fill:var(--facc,#6EF2D2)"/><rect x="-72" y="212" width="58" height="88" rx="10" fill="url(#pxSh)"/>
-              <path d="M-58 220v72M-28 220v72" stroke="rgba(0,0,0,.18)" stroke-width="3"/>
-              <circle cx="-43" cy="248" r="11" fill="#fff" opacity=".92"/><text x="-43" y="253" text-anchor="middle" font-size="14" font-weight="700" fill="#15171f" font-family="system-ui,sans-serif">?</text>
-              <rect x="-66" y="270" width="18" height="11" rx="2" fill="#fff" opacity=".7" transform="rotate(-8 -57 275)"/>
-              <circle class="whl" cx="-60" cy="303" r="6" fill="#0d0f16"/><circle class="whl" cx="-26" cy="303" r="6" fill="#0d0f16"/></g>
-            <defs><linearGradient id="pxSh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient></defs>
+          <svg viewBox="-110 -14 270 364">
+            <defs>
+              <linearGradient id="pxSuit" x1="0" x2="1"><stop offset="0" stop-color="#2a3a66"/><stop offset=".55" stop-color="#1e2b50"/><stop offset="1" stop-color="#141d39"/></linearGradient>
+              <linearGradient id="pxSuitL" x1="0" x2="1"><stop offset="0" stop-color="#22305a"/><stop offset="1" stop-color="#18223f"/></linearGradient>
+              <linearGradient id="pxSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDC6A2"/><stop offset="1" stop-color="#DCAB85"/></linearGradient>
+              <linearGradient id="pxSh" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
+              <radialGradient id="pxCheek" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E59A84" stop-opacity=".45"/><stop offset="1" stop-color="#E59A84" stop-opacity="0"/></radialGradient>
+            </defs>
+            <ellipse id="pxShadow" cx="58" cy="337" rx="52" ry="6" fill="rgba(0,0,0,.38)"/>
+            <ellipse id="pxCaseSh" cx="0" cy="337" rx="34" ry="5" fill="rgba(0,0,0,.3)"/>
+            <g id="pxCase"><g transform="scale(1 -1)">
+              <path id="pxRods" d="M98 2 L150 2 M98 9 L150 9" stroke="#AEB6C6" stroke-width="3.2" stroke-linecap="round"/>
+              <rect id="pxGrip" x="144" y="-3" width="13" height="17" rx="5" fill="#1b1f2b"/>
+              <rect x="6" y="0" width="96" height="60" rx="12" style="fill:var(--facc,#6EF2D2)"/>
+              <rect x="6" y="0" width="96" height="60" rx="12" fill="url(#pxSh)"/>
+              <path d="M18 14H92M18 30H92M18 46H92" stroke="rgba(0,0,0,.16)" stroke-width="3" stroke-linecap="round"/>
+              <path d="M6 12a12 12 0 0 1 12-12h4v6h-4a6 6 0 0 0-6 6v4H6z M102 12a12 12 0 0 0-12-12h-4v6h4a6 6 0 0 1 6 6v4h6z" fill="#1b1f2b" opacity=".55"/>
+              
+              <circle cx="80" cy="44" r="7" fill="#fff" opacity=".6"/></g>
+              <rect x="34" y="-38" width="30" height="20" rx="4" fill="#fff" opacity=".92" transform="rotate(6 49 -28)"/><text x="49" y="-23" text-anchor="middle" font-size="15" font-weight="800" fill="#15171f" font-family="system-ui,sans-serif" transform="rotate(6 49 -28)">?</text>
+              <g id="pxWheel"><circle r="7" fill="#0d0f16"/><circle r="2.6" fill="#5c6478"/><path d="M0-5V5M-5 0H5" stroke="#3a4152" stroke-width="1.4"/></g>
+            </g>
             <g id="pxBody">
-              <g id="pxLegB"><rect x="44" y="184" width="16" height="96" rx="8" fill="#1a2038"/><ellipse cx="56" cy="284" rx="14" ry="7" fill="#0d0f16"/></g>
-              <g id="pxArmB"><rect x="29" y="102" width="14" height="66" rx="7" fill="#11131a"/><circle cx="36" cy="168" r="7.5" fill="#E6BD98"/></g>
-              <g id="pxLegF"><rect x="61" y="184" width="16" height="96" rx="8" fill="#232a48"/><ellipse cx="73" cy="284" rx="14" ry="7" fill="#0d0f16"/></g>
-              <path d="M30 104Q60 92 90 104L95 194Q60 200 25 194Z" fill="#15171f"/>
-              <path d="M49 97L60 124L71 97Z" fill="#F4F4F2"/><path d="M60 124V190" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
-              <path d="M51 80h18v16l-9 6-9-6z" fill="#D9AE88"/>
+              <g id="pxLegB"><rect x="51.5" y="196" width="17" height="70" rx="8.5" fill="#151e38"/>
+                <g id="pxShinB"><rect x="52.5" y="256" width="15" height="70" rx="7.5" fill="#151e38"/>
+                  <g id="pxFootB"><path d="M51 324q0-7 8-7h5q15 2 19 12v6H51z" fill="#0b0c10"/><path d="M51 333h32" stroke="#3b2a20" stroke-width="2.4"/></g></g></g>
+              <g id="pxArmB"><rect x="32.5" y="104" width="15" height="62" rx="7.5" fill="#18223f"/>
+                <g id="pxForeB"><rect x="33" y="156" width="14" height="48" rx="7" fill="#18223f"/><rect x="33.5" y="199" width="13" height="5" rx="2" fill="#E9ECF2"/><circle cx="40" cy="210" r="7.5" fill="#D9A882"/></g></g>
+              <path d="M53 78h14v20q-7 6-14 0z" fill="#D29C77"/>
+              <path d="M34 110Q38 100 60 98Q82 100 86 110L91 152L87 216Q60 224 33 216L29 152Z" fill="url(#pxSuit)"/>
+              <path d="M49 99L60 134L71 99Z" fill="#F5F6F8"/>
+              <path d="M57.2 104h5.6l1.6 5-2.8 3 3.4 34-5 6-5-6 3.4-34-2.8-3z" fill="#7d1f35"/>
+              <path d="M49 99l-3.5 7 7 6z M71 99l3.5 7-7 6z" fill="#fff"/>
+              <path d="M48 100L60 140L55 147L40 118L45 104Z" fill="#131b35"/>
+              <path d="M72 100L60 140L65 147L80 118L75 104Z" fill="#131b35"/>
+              <path d="M60 147V214" stroke="rgba(0,0,0,.35)" stroke-width="1.4"/>
+              <circle cx="61.5" cy="168" r="2.2" fill="#0b1022"/><circle cx="61.5" cy="184" r="2.2" fill="#0b1022"/>
+              <path d="M67 124l9-3 2 5h-11z" style="fill:var(--facc,#6EF2D2)"/>
+              <path d="M36 196h14M70 196h14" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+              <g id="pxLegF"><rect x="51.5" y="196" width="17" height="70" rx="8.5" fill="url(#pxSuitL)"/>
+                <g id="pxShinF"><rect x="52.5" y="256" width="15" height="70" rx="7.5" fill="url(#pxSuitL)"/>
+                  <g id="pxFootF"><path d="M51 324q0-7 8-7h5q15 2 19 12v6H51z" fill="#121318"/><path d="M51 333h32" stroke="#4a3528" stroke-width="2.4"/><path d="M60 319q8 0 14 4" stroke="rgba(255,255,255,.18)" stroke-width="1.6" fill="none"/></g></g></g>
               <g id="pxHead">
-                <ellipse cx="33" cy="60" rx="5" ry="7.5" fill="#D9AE88"/><ellipse cx="87" cy="60" rx="5" ry="7.5" fill="#D9AE88"/>
-                <ellipse cx="60" cy="58" rx="26.5" ry="31" fill="#E6BD98"/>
-                <path d="M35 63c1 17 12 28 25 28s24-11 25-28c-4 11-12 18-25 18s-21-7-25-18z" fill="#2a1c16" opacity=".28"/>
-                <path d="M51 79q9 13 18 0q-9 4-18 0z" fill="#241712"/>
-                <path d="M49 71.5q11-6 22 0q-11-2.5-22 0z" fill="#241712"/>
-                <path d="M60 56q-3 7 0 10q3 0 4.5-2" fill="none" stroke="#B88763" stroke-width="1.6" stroke-linecap="round"/>
-                <path id="pxMouth" d="M51 75q9 7 18 0" fill="none" stroke="#5B2A22" stroke-width="2.4" stroke-linecap="round"/>
-                <g transform="translate(49 54)"><g class="plid"><ellipse rx="5.6" ry="4.2" fill="#fff"/><circle class="ppu" r="2.7" fill="#1b1412"/></g></g>
-                <g transform="translate(71 54)"><g class="plid"><ellipse rx="5.6" ry="4.2" fill="#fff"/><circle class="ppu" r="2.7" fill="#1b1412"/></g></g>
-                <path class="pbr" d="M42 46q7-4 13 0" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
-                <path class="pbr" d="M65 46q6-4 13 0" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+                <ellipse cx="35.5" cy="52" rx="4.6" ry="7.4" fill="#D9A882"/><ellipse cx="84.5" cy="52" rx="4.6" ry="7.4" fill="#D9A882"/>
+                <path d="M35.5 46Q35.5 18 60 18Q84.5 18 84.5 46Q84.5 68 75 78Q67 85 60 85Q53 85 45 78Q35.5 68 35.5 46Z" fill="url(#pxSkin)"/>
+                <path d="M38 60Q40 76 50 82Q55 85 60 85Q65 85 70 82Q80 76 82 60Q79 74 70 78Q65 80 60 80Q55 80 50 78Q41 74 38 60Z" fill="#3a2a22" opacity=".14"/>
+                <ellipse cx="44" cy="61" rx="6" ry="4" fill="url(#pxCheek)"/><ellipse cx="76" cy="61" rx="6" ry="4" fill="url(#pxCheek)"/>
+                <path d="M60 49q-2.6 8-1.2 11.2q2.2 1.6 5-.4" fill="none" stroke="#B57D58" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M50.5 65.6q4.6-3.6 9.5-1.3q4.9-2.3 9.5 1.3q-4.7 1.7-9.5.5q-4.8 1.2-9.5-.5z" fill="#21150f"/>
+                <path d="M51 66q-1.4 4.4 1.6 7.2M69 66q1.4 4.4-1.6 7.2" fill="none" stroke="#21150f" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M53 72.5q7 3 14 0q.6 8.6-7 12.6q-7.6-4-7-12.6z" fill="#21150f"/>
+                <path id="pxMouth" d="M54 69.5q6 4 12 0" fill="none" stroke="#6b2c24" stroke-width="2" stroke-linecap="round"/>
+                <g transform="translate(50.5 49)"><g class="plid"><path d="M-5.6 0q5.6-5 11.2 0q-5.6 4.4-11.2 0z" fill="#fff"/><circle class="ppu" r="2.7" fill="#4a2c1c"/><circle cx=".9" cy="-.9" r=".9" fill="#fff"/><path d="M-5.8 -.2q5.8-5.4 11.6 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
+                <g transform="translate(69.5 49)"><g class="plid"><path d="M-5.6 0q5.6-5 11.2 0q-5.6 4.4-11.2 0z" fill="#fff"/><circle class="ppu" r="2.7" fill="#4a2c1c"/><circle cx=".9" cy="-.9" r=".9" fill="#fff"/><path d="M-5.8 -.2q5.8-5.4 11.6 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
+                <path class="pbr" d="M43.5 41q6-3.6 12.5-.6" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+                <path class="pbr" d="M64 40.4q6.5-3 12.5.6" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
                 <g id="pxHair" fill="#1b1412"></g>
               </g>
-              <g id="pxArmF"><rect x="77" y="102" width="14" height="66" rx="7" fill="#1b1e28"/><circle cx="84" cy="168" r="7.5" fill="#E6BD98"/>
-                <g id="pxTicket" opacity="0"><rect x="70" y="160" width="34" height="22" rx="3" fill="#fff" transform="rotate(-10 87 171)"/><rect x="74" y="166" width="16" height="3" fill="#15171f" opacity=".5" transform="rotate(-10 87 171)"/></g></g>
+              <g id="pxArmF"><rect x="72.5" y="104" width="15" height="62" rx="7.5" fill="url(#pxSuit)"/>
+                <g id="pxForeF"><rect x="73" y="156" width="14" height="48" rx="7" fill="#1e2b50"/><rect x="73.5" y="199" width="13" height="5" rx="2" fill="#F5F6F8"/><circle cx="80" cy="210" r="7.5" fill="#E3B590"/>
+                  <g id="pxTicket" opacity="0"><rect x="70" y="200" width="36" height="22" rx="3" fill="#fff" transform="rotate(-12 88 211)"/><rect x="75" y="206" width="17" height="3" fill="#15171f" opacity=".5" transform="rotate(-12 88 211)"/><rect x="75" y="212" width="11" height="2.4" style="fill:var(--facc,#6EF2D2)" transform="rotate(-12 88 211)"/></g></g></g>
             </g>
           </svg>
         </div>
@@ -1591,13 +1614,13 @@ function drawTrain(x,w,h,p,ac,bg,km){
 
 /* ── the airport: mini Joseph waits for his next flight ── */
 var AIR=(function(){var el=$('.flight.air');if(!el)return null;var pax=$('#pax',el),q=function(s){return $(s,pax)};
-  var hairH='';[[34,40,8],[40,31,8.5],[49,26,9],[59,24,9.5],[69,25,9],[78,30,8.5],[85,38,8],[38,48,5.5],[83,47,5.5],[45,36,6],[55,32,6.5],[65,32,6.5],[75,36,6],[31,50,4.5],[88,52,4.5],[52,22,6],[66,21,6]].forEach(function(c){hairH+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>'});q('#pxHair').innerHTML=hairH;
-  var A={el:el,pax:pax,head:q('#pxHead'),body:q('#pxBody'),armB:q('#pxArmB'),armF:q('#pxArmF'),legB:q('#pxLegB'),legF:q('#pxLegF'),cas:q('#pxCase'),whl:$$('.whl',pax),mouth:q('#pxMouth'),pu:$$('.ppu',pax),lid:$$('.plid',pax),brows:$$('.pbr',pax),ticket:q('#pxTicket'),bub:$('#pbub',el),pass:$('#bpass',el),rows:$$('.brow',el),last:{},mouthK:''};
+  var hairH='';[[36,34,7.5],[41,25,8.5],[50,20,9],[60,18,9.5],[70,19,9],[79,24,8.5],[84,32,7.5],[38.5,42,5],[82,41,5],[46,30,6],[56,26,6.5],[65,26,6.5],[74,30,6],[35.5,46,3.8],[84.5,46,3.8],[53,15,6],[67,15,6],[45,18,5.5],[76,17,5]].forEach(function(c){hairH+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>'});q('#pxHair').innerHTML=hairH;
+  var A={el:el,pax:pax,head:q('#pxHead'),body:q('#pxBody'),armB:q('#pxArmB'),foreB:q('#pxForeB'),armF:q('#pxArmF'),foreF:q('#pxForeF'),legB:q('#pxLegB'),shinB:q('#pxShinB'),footB:q('#pxFootB'),legF:q('#pxLegF'),shinF:q('#pxShinF'),footF:q('#pxFootF'),cas:q('#pxCase'),rods:q('#pxRods'),grip:q('#pxGrip'),wk:0,wheel:q('#pxWheel'),csh:q('#pxCaseSh'),shadow:q('#pxShadow'),mouth:q('#pxMouth'),pu:$$('.ppu',pax),lid:$$('.plid',pax),brows:$$('.pbr',pax),ticket:q('#pxTicket'),bub:$('#pbub',el),pass:$('#bpass',el),rows:$$('.brow',el),last:{},mouthK:''};
   /* split-flap cells */
   $$('.fl',el).forEach(function(f){var t=f.textContent,n=+f.dataset.w||t.length;f.textContent='';f._c=[];for(var i=0;i<n;i++){var c=D.createElement('i');c.textContent=t[i]||' ';f.appendChild(c);f._c.push(c)}f._t=t});
   A.setFlap=function(f,t,scr){var n=f._c.length;if(!scr&&f._t===t)return;f._t=t;for(var i=0;i<n;i++){var ch=scr?(Math.random()<.7?'ABCDEFGHIJKLMNOPQRSTUVWXYZ?'[Math.floor(Math.random()*27)]:'?'):(t[i]||' ');if(f._c[i].textContent!==ch){f._c[i].textContent=ch;f._c[i].classList.remove('f');void f._c[i].offsetWidth;f._c[i].classList.add('f')}}};
   return A})();
-var MOUTHS={smile:['M51 75q9 7 18 0','none'],big:['M50 74q10 12 20 0z','#5B2A22'],wow:['M56 77a4 5 0 1 0 8 0a4 5 0 1 0-8 0','#5B2A22'],hmm:['M53 77q7-3 14 1','none']};
+var MOUTHS={smile:['M54 69.5q6 4 12 0','none'],big:['M53.5 68.6q6.5 8 13 0z','#6b2c24'],wow:['M57.4 70.6a2.6 3.2 0 1 0 5.2 0a2.6 3.2 0 1 0-5.2 0','#6b2c24'],hmm:['M55 70.6q5-2 10 .8','none']};
 function easeIO(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
 function drawAir(F,p,e,now,w,h,x,bg,mid,ac){var t=now/1000,bgc=hex(bg),acs='rgba('+ac+',1)',sm=w<700;
   /* hall */
@@ -1642,21 +1665,31 @@ var A_planeX=null,A_planeY=0;
 function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddyQuip){A.said=1;W.buddyQuip('Hey, that’s me down there! Where am I flying next?')}var cw=A.pax.offsetWidth||200,sm=w<700;
   var xs=sm?w*.06:w*.22,X,walking=false;
   if(p<.2){var u=p/.2;X=lerp(-cw*1.2,xs,1-Math.pow(1-u,2));walking=u<.97}else if(p>.84){var u2=(p-.84)/.16;X=lerp(xs,w*1.05,u2*u2);walking=u2>.02}else X=xs;
-  var ph=X*.045,sw=walking?Math.sin(ph):0,bob=walking?-Math.abs(Math.cos(ph))*5:Math.sin(t*2)*1.2;
+  var sc=(A.pax.offsetHeight||400)/364,ph=X/(176*sc)*6.2832;
   /* mood by moment */
   var search=p>.22&&p<.5,pass=p>=.48&&p<.86,plane=p>.6&&p<.84,wave=p>=.8;
-  var headR=0,lx=1.4,ly=0,mouth='smile',armF=walking?-20*sw:4,armB=34+(walking?5*sw:0),browY=0;
-  if(search){headR=-7;lx=1.8;ly=-1.8;mouth='hmm';browY=-2}
-  if(pass&&!plane){headR=6;lx=1.8;ly=1.4;mouth='smile';armF=-70+Math.sin(t*2)*3}
-  if(plane){mouth='wow';browY=-3;armF=-70;if(A_planeX!==null){var r=A.pax.getBoundingClientRect(),stk=A.el.querySelector('.stick').getBoundingClientRect(),hx=r.left-stk.left+r.width*.6,hy=r.top-stk.top+r.height*.2;var dx=A_planeX-hx,dy=A_planeY-hy,dd=Math.hypot(dx,dy)||1;lx=dx/dd*2;ly=dy/dd*2;headR=clamp(Math.atan2(dy,Math.abs(dx))*20,-10,6)}}
-  if(wave){mouth='big';armF=-150+Math.sin(t*9)*16;headR=0;lx=-1.2;ly=0}
-  if(walking&&p>.84){armF=-150+Math.sin(t*9)*16}
-  A.pax.style.transform='translate3d('+X.toFixed(1)+'px,'+bob.toFixed(1)+'px,0)';
-  A.legB.style.transform='rotate('+(24*sw).toFixed(1)+'deg)';A.legF.style.transform='rotate('+(-24*sw).toFixed(1)+'deg)';
-  A.armF.style.transform='rotate('+armF.toFixed(1)+'deg)';A.armB.style.transform='rotate('+armB.toFixed(1)+'deg)';
-  A.cas.style.transform='translate('+(walking?0:4)+'px,'+(walking?Math.abs(Math.sin(ph))*-1.5:0).toFixed(1)+'px) rotate('+(walking?-5:0)+'deg)';
-  A.whl.forEach(function(c){c.setAttribute('r',walking?5.5+Math.abs(Math.sin(ph*2))*.6:6)});
-  A.head.style.transform='rotate('+headR.toFixed(1)+'deg)';
+  var headR=0,lx=1.2,ly=0,mouth='smile',browY=0,fu,ff,bu=walking?30+3*Math.sin(ph):14,bf=walking?8:6;
+  if(walking){fu=20*Math.sin(ph);ff=-14-8*Math.max(0,-Math.sin(ph))}else{fu=4+Math.sin(t*1.6)*1.5;ff=-6}
+  if(search){headR=-7;lx=1.6;ly=-1.6;mouth='hmm';browY=-2}
+  if(pass&&!plane){headR=5;lx=1.6;ly=1.2;mouth='smile';fu=-50+Math.sin(t*2)*3;ff=-62}
+  if(plane){mouth='wow';browY=-3;fu=-42;ff=-48;if(A_planeX!==null){var r=A.pax.getBoundingClientRect(),stk=A.el.querySelector('.stick').getBoundingClientRect(),hx=r.left-stk.left+r.width*.62,hy=r.top-stk.top+r.height*.16;var dx=A_planeX-hx,dy=A_planeY-hy,dd=Math.hypot(dx,dy)||1;lx=dx/dd*1.8;ly=dy/dd*1.8;headR=clamp(Math.atan2(dy,Math.abs(dx))*20,-10,6)}}
+  if(wave||(walking&&p>.84)){mouth='big';fu=-160+Math.sin(t*4)*6;ff=-22+Math.sin(t*9)*22;headR=walking?0:-3;lx=walking?1.4:-1;ly=0}
+  /* legs: thigh swing, knee bend in the swing phase, flat foot; hips sit on the lower foot */
+  function leg(q){if(!walking)return [0,2,-2];var th=-22*Math.sin(q),c=Math.cos(q),k=c>0?44*Math.pow(c,1.4):3;return [th,k,-(th+k)*.75+(c<0?Math.max(0,-Math.sin(q))*-12:0)]}
+  var LF=leg(ph),LB=leg(ph+Math.PI),R2=Math.PI/180;function fy(L){return 58*Math.cos(L[0]*R2)+60*Math.cos((L[0]+L[1])*R2)}
+  var bob=walking?(118-Math.max(fy(LF),fy(LB))):Math.sin(t*2)*.8;
+  function rot(el,a,cx,cy){el.setAttribute('transform','rotate('+a.toFixed(2)+' '+cx+' '+cy+')')}
+  A.body.setAttribute('transform','translate(0 '+bob.toFixed(2)+')');
+  rot(A.legF,LF[0],60,204);rot(A.shinF,LF[1],60,262);rot(A.footF,LF[2],60,322);
+  rot(A.legB,LB[0],60,204);rot(A.shinB,LB[1],60,262);rot(A.footB,LB[2],60,322);
+  rot(A.armF,fu,80,112);rot(A.foreF,ff,80,160);rot(A.armB,bu,40,112);rot(A.foreB,bf,40,160);
+  /* the suitcase handle stays in the hand: solve its tilt from where the hand is */
+  var u=bu*R2,f2=(bu+bf)*R2,hX=40-48*Math.sin(u)-50*Math.sin(f2),hY=112+bob+48*Math.cos(u)+50*Math.cos(f2),wk=A.wk=A.wk+((walking?1:0)-A.wk)*(RM?1:.12),Lc=lerp(330-hY+.5,150,wk),v=Math.min(Lc-.5,330-hY),dX=Math.sqrt(Lc*Lc-v*v),wX=hX-dX,ang=Math.atan2(hY-330,hX-wX)/R2;
+  A.cas.setAttribute('transform','translate('+wX.toFixed(2)+' 330) rotate('+ang.toFixed(2)+')');
+  A.wheel.setAttribute('transform','rotate('+(-ang+X/(7*sc)/R2).toFixed(1)+')');
+  A.csh.setAttribute('cx',(wX+30).toFixed(1));A.rods.setAttribute('d','M98 2L'+(Lc).toFixed(1)+' 2M98 9L'+(Lc).toFixed(1)+' 9');A.grip.setAttribute('x',(Lc-6).toFixed(1));
+  A.pax.style.transform='translate3d('+X.toFixed(1)+'px,0,0)';
+  A.head.setAttribute('transform','rotate('+headR.toFixed(1)+' 60 84)');
   A.pu.forEach(function(c){c.setAttribute('cx',lx.toFixed(2));c.setAttribute('cy',ly.toFixed(2))});
   A.brows.forEach(function(b){b.style.transform='translateY('+browY+'px)'});
   var blink=(t%3.6)<.12;A.lid.forEach(function(l){l.style.transform='scaleY('+(blink?.1:1)+')'});
