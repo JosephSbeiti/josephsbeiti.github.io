@@ -202,6 +202,7 @@ p{margin:0}
 .tube .t{position:relative;height:180px;border-radius:22px;border:1px solid var(--edge);background:rgba(0,0,0,.18);overflow:hidden;box-shadow:inset 0 1px 0 var(--edge-2)}
 .tube .lqc{position:absolute;inset:0;width:100%;height:100%;display:block}
 .tube .ref{z-index:2}
+.tube .ref.low span{top:4px}
 .tube .lq{position:absolute;left:0;right:0;bottom:0;height:0;transition:height 1.2s cubic-bezier(.2,.7,.2,1);background:linear-gradient(180deg,color-mix(in srgb,var(--tc) 85%,#fff),var(--tc))}
 .tube .lq svg{position:absolute;left:0;top:-9px;width:200%;height:10px;animation:wave 3s linear infinite}
 .tube .lq svg path{fill:color-mix(in srgb,var(--tc) 85%,#fff)}
@@ -547,7 +548,7 @@ main{overflow-x:clip}
 .bchips button:focus-visible{outline:2px solid var(--a)}
 .typing{display:inline-flex;gap:3px}.typing i{width:6px;height:6px;border-radius:50%;background:var(--fg2);animation:tp 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
 @keyframes tp{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
-@media(max-width:600px){.buddy{bottom:calc(82px + env(safe-area-inset-bottom,0px))}.bface{width:58px;height:58px}}
+@media(max-width:600px){.buddy{left:auto;right:max(12px,env(safe-area-inset-right,0px));align-items:flex-end;bottom:calc(78px + env(safe-area-inset-bottom,0px))}.bface{width:46px;height:46px}.bhint{font-size:.8rem;padding:8px 11px;border-radius:14px 14px 4px 14px;max-width:70vw}}
 body.gl-open .buddy{display:none}
 /* dock */
 .dock{position:fixed;z-index:70;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:4px;padding:5px;border-radius:99px;transform:translateY(150%);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
@@ -1299,7 +1300,7 @@ $('#tubes').innerHTML=TUBES.map(function(t){return '<div class="tube" style="--t
   if(RM){vis=false;setTimeout(function(){tubes.forEach(function(tb){var o=tb.__lq;o.lv=o.tg;o.sl=0;o.draw(0,.016)})},50)}})();
 
 function eqSet(c){$$('#eqSeg button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.c===c)});var d=EQ[c],F=EQ.fra;
-  $$('#tubes .tube').forEach(function(tb,i){var T=TUBES[i],v=d[T[0]][0];tb.__lq&&tb.__lq.set(T[4](v)/100);var ref=tb.querySelector('.ref');ref.style.bottom=Math.min(T[4](F[T[0]][0]),95)+'%';ref.style.opacity=c==='fra'?0:1;
+  $$('#tubes .tube').forEach(function(tb,i){var T=TUBES[i],v=d[T[0]][0];tb.__lq&&tb.__lq.set(T[4](v)/100);var ref=tb.querySelector('.ref');var rb=Math.min(T[4](F[T[0]][0]),95);ref.style.bottom=rb+'%';ref.classList.toggle('low',rb>85);ref.style.opacity=c==='fra'?0:1;
     var n=tb.querySelector('.n'),from=parseFloat(n.textContent)||0,t0=null,dec=v%1?1:0;(function st(ts){if(!t0)t0=ts;var p=RM?1:clamp((ts-t0)/900,0,1);n.textContent=fmt(lerp(from,v,1-Math.pow(1-p,3)),dec);if(p<1)requestAnimationFrame(st)})(performance.now());
     tb.querySelector('.y').textContent=d[T[0]][1]});
   $('#eqSay').innerHTML=c==='fra'?'Born in France, a child can expect to live <b>83 years</b>, and <b>4</b> in 1,000 children die before turning five. Pick another country to compare.':
@@ -1552,7 +1553,6 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   var fastStart=0,lastFast=0,lastSick=-1e9;
   wake();
   var Q=[
-    ['Why hire you?','proud',"Because I sit between business and engineers. At Devoteam I design AI agents and lead their delivery with engineering teams, and on my own I built a full software platform end to end. Add three languages, a habit of learning fast, and a lot of curiosity. Shall I send you my CV?",[['Download my CV','cv'],['Copy my email','mail']]],
     ['Who are you?','smile',"I'm Joseph. Born in Lebanon, raised in Paris, studied in the USA. Today I'm a digital transformation strategy consultant at Devoteam, working for Safran Aircraft Engines.",[]],
     ['What are you looking for?','proud',"A graduate programme or a junior role from 2027, wherever technology shapes the future of business: AI, digital transformation, digital project management, product or strategy. The common thread is making new tech actually work for people. I'm open to relocation and work in English, French and Arabic.",[['Download my CV','cv']]],
     ['What excites you?','wow',"Emerging tech that changes how places work: smart cities, digital and smart infrastructure, energy, and AI that a region can truly own. That's where my thesis started, and where I'd love my career to go.",[['My purpose','#purpose']]],
@@ -1576,7 +1576,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   var LINES=['Psst… I’m available in 2027.','Is this enough to hire me?','We’d make a great team, you know.','I post cool things on LinkedIn too.','Hire me please. I bring croissants.','Still here? That’s a good sign.','I speak English, French and Arabic. And a bit of Python.',
     'Your team looks like it could use a Joseph.','Three languages, no extra charge.','Not to be pushy, but my CV is one click away.','Imagine this energy in your Monday meetings.','Shall we talk? My email is in the dock.','You scroll like someone who’s hiring.'],
     CTX={toolkit:'Everything here, ready for your team.',origin:'That’s where it all started.',hq:'Try the digital twin: add a wall!',lab:'Hover a dot, find your country.',paris2:'Next stop: your company?',next:'This is the part where you email me.',purpose:'Hover the pillars, they come alive.'},shown=0,qT=0,said={};
-  function quip(txt,force){if(!chat.hidden||cur==='sleep')return;if(!force&&shown>=10)return;shown++;hint.textContent=txt;hint.hidden=false;hint.classList.remove('popq');void hint.offsetWidth;hint.classList.add('popq');
+  function quip(txt,force){if(!chat.hidden||cur==='sleep')return;if(!force&&shown>=(COARSE?4:10))return;shown++;hint.textContent=txt;hint.hidden=false;hint.classList.remove('popq');void hint.offsetWidth;hint.classList.add('popq');
     if(!force)setFace(Math.random()<.5?'wink':'laugh');clearTimeout(qT);qT=setTimeout(function(){hint.hidden=true;if(cur!=='sleep'&&cur!=='dizzy')setFace(mood)},4800)}
   hint.style.cursor='pointer';hint.onclick=function(){open()};
   setInterval(function(){if(D.hidden||cur==='sleep')return;var c=CTX[curPal];if(c&&!said[curPal]){said[curPal]=1;quip(c);return}quip(LINES[Math.floor(Math.random()*LINES.length)])},30000);
@@ -1593,7 +1593,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
     return null}
   setTimeout(function(){var l=clockLine();if(l)quip(l,true)},15000);var once={};function react(sel,ev,txt){D.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest(sel)&&!once[sel]){once[sel]=1;setTimeout(function(){quip(txt,true)},500)}})}
   react('#recPick','click','Imagine what I’d build for your team.');react('#nnTrain','click','Fast learner. Like this network.');react('#twWall','click','I clear obstacles for teams too.');react('#twGoal','click','Give me a goal, I find the way.');
-  react('a[href$="CV.pdf"]','click','Great choice. Page one is my favourite.');react('a[href*="linkedin.com"]','click','See you on LinkedIn!');react('.pillar','pointerover','These four are why I do all this.');
+  react('a[href$="CV.pdf"]','click','Great choice. Page one is my favourite.');react('a[href*="linkedin.com"]','click','See you on LinkedIn!');
   D.addEventListener('visibilitychange',function(){if(!D.hidden&&shown>0)setTimeout(function(){quip('Welcome back! Thinking about hiring me?',true)},600)});
   setTimeout(function(){if(chat.hidden&&!greeted){hint.hidden=false;setFace('wink');setTimeout(function(){hint.hidden=true;setFace('smile')},5200)}},2600);
 })();
