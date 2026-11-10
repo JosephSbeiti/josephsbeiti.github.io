@@ -649,7 +649,7 @@ main{overflow-x:clip}
 .pbub{position:absolute;left:58%;top:-6%;width:62px;height:52px;border-radius:50%;background:#fff;color:#15171f;display:grid;place-items:center;font-family:var(--display);font-size:1.7rem;opacity:0;transform:scale(.4);transition:opacity .3s,transform .4s cubic-bezier(.2,1.4,.4,1)}
 .pbub::before,.pbub::after{content:"";position:absolute;background:#fff;border-radius:50%}
 .pbub::before{width:14px;height:14px;left:4px;bottom:-12px}.pbub::after{width:7px;height:7px;left:-4px;bottom:-22px}
-.pbub.on{opacity:1;transform:none}
+.pbub.on{opacity:1;transform:none}.pbub.bye{width:78px}.pbub.bye b{font-size:1.1rem;animation:none}
 .pbub b{animation:qbob 1.6s ease-in-out infinite}
 .bpass{position:absolute;right:max(16px,5vw);bottom:12vh;width:min(360px,calc(100vw - 32px));padding:14px 16px;border-radius:18px;background:#F7F8FB!important;color:#15171f!important;border:1px solid rgba(255,255,255,.6);z-index:3;opacity:0;transform:translateY(30px) rotate(3deg);transition:opacity .5s,transform .6s cubic-bezier(.2,1.2,.4,1);pointer-events:none;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
 .bpass.on{opacity:1;transform:none;pointer-events:auto}
@@ -1051,61 +1051,107 @@ body.gl-open .dock{transform:translateY(150%)}
               <linearGradient id="pxSuitL" x1="0" x2="1"><stop offset="0" stop-color="#22305a"/><stop offset="1" stop-color="#18223f"/></linearGradient>
               <linearGradient id="pxSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDC6A2"/><stop offset="1" stop-color="#DCAB85"/></linearGradient>
               <linearGradient id="pxSh" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
+              <linearGradient id="pxShV" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
               <radialGradient id="pxCheek" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E59A84" stop-opacity=".45"/><stop offset="1" stop-color="#E59A84" stop-opacity="0"/></radialGradient>
             </defs>
-            <ellipse id="pxShadow" cx="58" cy="337" rx="52" ry="6" fill="rgba(0,0,0,.38)"/>
+            <ellipse id="pxShadow" cx="60" cy="337" rx="52" ry="6" fill="rgba(0,0,0,.38)"/>
             <ellipse id="pxCaseSh" cx="0" cy="337" rx="34" ry="5" fill="rgba(0,0,0,.3)"/>
-            <g id="pxCase"><g transform="scale(1 -1)">
-              <path id="pxRods" d="M98 2 L150 2 M98 9 L150 9" stroke="#AEB6C6" stroke-width="3.2" stroke-linecap="round"/>
-              <rect id="pxGrip" x="144" y="-3" width="13" height="17" rx="5" fill="#1b1f2b"/>
-              <rect x="6" y="0" width="96" height="60" rx="12" style="fill:var(--facc,#6EF2D2)"/>
-              <rect x="6" y="0" width="96" height="60" rx="12" fill="url(#pxSh)"/>
-              <path d="M18 14H92M18 30H92M18 46H92" stroke="rgba(0,0,0,.16)" stroke-width="3" stroke-linecap="round"/>
-              <path d="M6 12a12 12 0 0 1 12-12h4v6h-4a6 6 0 0 0-6 6v4H6z M102 12a12 12 0 0 0-12-12h-4v6h4a6 6 0 0 1 6 6v4h6z" fill="#1b1f2b" opacity=".55"/>
-              
-              <circle cx="80" cy="44" r="7" fill="#fff" opacity=".6"/></g>
-              <rect x="34" y="-38" width="30" height="20" rx="4" fill="#fff" opacity=".92" transform="rotate(6 49 -28)"/><text x="49" y="-23" text-anchor="middle" font-size="15" font-weight="800" fill="#15171f" font-family="system-ui,sans-serif" transform="rotate(6 49 -28)">?</text>
-              <g id="pxWheel"><circle r="7" fill="#0d0f16"/><circle r="2.6" fill="#5c6478"/><path d="M0-5V5M-5 0H5" stroke="#3a4152" stroke-width="1.4"/></g>
-            </g>
-            <g id="pxBody">
-              <g id="pxLegB"><rect x="51.5" y="196" width="17" height="70" rx="8.5" fill="#151e38"/>
-                <g id="pxShinB"><rect x="52.5" y="256" width="15" height="70" rx="7.5" fill="#151e38"/>
-                  <g id="pxFootB"><path d="M51 324q0-7 8-7h5q15 2 19 12v6H51z" fill="#0b0c10"/><path d="M51 333h32" stroke="#3b2a20" stroke-width="2.4"/></g></g></g>
-              <g id="pxArmB"><rect x="32.5" y="104" width="15" height="62" rx="7.5" fill="#18223f"/>
-                <g id="pxForeB"><rect x="33" y="156" width="14" height="48" rx="7" fill="#18223f"/><rect x="33.5" y="199" width="13" height="5" rx="2" fill="#E9ECF2"/><circle cx="40" cy="210" r="7.5" fill="#D9A882"/></g></g>
-              <path d="M53 78h14v20q-7 6-14 0z" fill="#D29C77"/>
-              <path d="M34 110Q38 100 60 98Q82 100 86 110L91 152L87 216Q60 224 33 216L29 152Z" fill="url(#pxSuit)"/>
-              <path d="M49 99L60 134L71 99Z" fill="#F5F6F8"/>
-              <path d="M57.2 104h5.6l1.6 5-2.8 3 3.4 34-5 6-5-6 3.4-34-2.8-3z" fill="#7d1f35"/>
-              <path d="M49 99l-3.5 7 7 6z M71 99l3.5 7-7 6z" fill="#fff"/>
-              <path d="M48 100L60 140L55 147L40 118L45 104Z" fill="#131b35"/>
-              <path d="M72 100L60 140L65 147L80 118L75 104Z" fill="#131b35"/>
-              <path d="M60 147V214" stroke="rgba(0,0,0,.35)" stroke-width="1.4"/>
-              <circle cx="61.5" cy="168" r="2.2" fill="#0b1022"/><circle cx="61.5" cy="184" r="2.2" fill="#0b1022"/>
-              <path d="M67 124l9-3 2 5h-11z" style="fill:var(--facc,#6EF2D2)"/>
-              <path d="M36 196h14M70 196h14" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
-              <g id="pxLegF"><rect x="51.5" y="196" width="17" height="70" rx="8.5" fill="url(#pxSuitL)"/>
-                <g id="pxShinF"><rect x="52.5" y="256" width="15" height="70" rx="7.5" fill="url(#pxSuitL)"/>
-                  <g id="pxFootF"><path d="M51 324q0-7 8-7h5q15 2 19 12v6H51z" fill="#121318"/><path d="M51 333h32" stroke="#4a3528" stroke-width="2.4"/><path d="M60 319q8 0 14 4" stroke="rgba(255,255,255,.18)" stroke-width="1.6" fill="none"/></g></g></g>
-              <g id="pxHead">
-                <ellipse cx="35.5" cy="52" rx="4.6" ry="7.4" fill="#D9A882"/><ellipse cx="84.5" cy="52" rx="4.6" ry="7.4" fill="#D9A882"/>
-                <path d="M35.5 46Q35.5 18 60 18Q84.5 18 84.5 46Q84.5 68 75 78Q67 85 60 85Q53 85 45 78Q35.5 68 35.5 46Z" fill="url(#pxSkin)"/>
-                <path d="M38 60Q40 76 50 82Q55 85 60 85Q65 85 70 82Q80 76 82 60Q79 74 70 78Q65 80 60 80Q55 80 50 78Q41 74 38 60Z" fill="#3a2a22" opacity=".14"/>
-                <ellipse cx="44" cy="61" rx="6" ry="4" fill="url(#pxCheek)"/><ellipse cx="76" cy="61" rx="6" ry="4" fill="url(#pxCheek)"/>
-                <path d="M60 49q-2.6 8-1.2 11.2q2.2 1.6 5-.4" fill="none" stroke="#B57D58" stroke-width="1.7" stroke-linecap="round"/>
-                <path d="M50.5 65.6q4.6-3.6 9.5-1.3q4.9-2.3 9.5 1.3q-4.7 1.7-9.5.5q-4.8 1.2-9.5-.5z" fill="#21150f"/>
-                <path d="M51 66q-1.4 4.4 1.6 7.2M69 66q1.4 4.4-1.6 7.2" fill="none" stroke="#21150f" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M53 72.5q7 3 14 0q.6 8.6-7 12.6q-7.6-4-7-12.6z" fill="#21150f"/>
-                <path id="pxMouth" d="M54 69.5q6 4 12 0" fill="none" stroke="#6b2c24" stroke-width="2" stroke-linecap="round"/>
-                <g transform="translate(50.5 49)"><g class="plid"><path d="M-5.6 0q5.6-5 11.2 0q-5.6 4.4-11.2 0z" fill="#fff"/><circle class="ppu" r="2.7" fill="#4a2c1c"/><circle cx=".9" cy="-.9" r=".9" fill="#fff"/><path d="M-5.8 -.2q5.8-5.4 11.6 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
-                <g transform="translate(69.5 49)"><g class="plid"><path d="M-5.6 0q5.6-5 11.2 0q-5.6 4.4-11.2 0z" fill="#fff"/><circle class="ppu" r="2.7" fill="#4a2c1c"/><circle cx=".9" cy="-.9" r=".9" fill="#fff"/><path d="M-5.8 -.2q5.8-5.4 11.6 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
-                <path class="pbr" d="M43.5 41q6-3.6 12.5-.6" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
-                <path class="pbr" d="M64 40.4q6.5-3 12.5.6" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
-                <g id="pxHair" fill="#1b1412"></g>
+            <g id="pxFig">
+            <!-- profile: walking, facing right -->
+            <g id="pxS">
+              <g id="pxCase"><g transform="scale(1 -1)">
+                <path id="pxRods" d="M98 2 L150 2 M98 9 L150 9" stroke="#AEB6C6" stroke-width="3.2" stroke-linecap="round"/>
+                <rect id="pxGrip" x="144" y="-3" width="13" height="17" rx="5" fill="#1b1f2b"/>
+                <rect x="6" y="0" width="96" height="60" rx="12" style="fill:var(--facc,#6EF2D2)"/>
+                <rect x="6" y="0" width="96" height="60" rx="12" fill="url(#pxSh)"/>
+                <path d="M18 14H92M18 30H92M18 46H92" stroke="rgba(0,0,0,.16)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M6 12a12 12 0 0 1 12-12h4v6h-4a6 6 0 0 0-6 6v4H6z M102 12a12 12 0 0 0-12-12h-4v6h4a6 6 0 0 1 6 6v4h6z" fill="#1b1f2b" opacity=".55"/>
+                <circle cx="80" cy="44" r="7" fill="#fff" opacity=".6"/></g>
+                <rect x="34" y="-38" width="30" height="20" rx="4" fill="#fff" opacity=".92" transform="rotate(6 49 -28)"/><text x="49" y="-23" text-anchor="middle" font-size="15" font-weight="800" fill="#15171f" font-family="system-ui,sans-serif" transform="rotate(6 49 -28)">?</text>
+                <g id="pxWheel"><circle r="7" fill="#0d0f16"/><circle r="2.6" fill="#5c6478"/><path d="M0-5V5M-5 0H5" stroke="#3a4152" stroke-width="1.4"/></g>
               </g>
-              <g id="pxArmF"><rect x="72.5" y="104" width="15" height="62" rx="7.5" fill="url(#pxSuit)"/>
-                <g id="pxForeF"><rect x="73" y="156" width="14" height="48" rx="7" fill="#1e2b50"/><rect x="73.5" y="199" width="13" height="5" rx="2" fill="#F5F6F8"/><circle cx="80" cy="210" r="7.5" fill="#E3B590"/>
-                  <g id="pxTicket" opacity="0"><rect x="70" y="200" width="36" height="22" rx="3" fill="#fff" transform="rotate(-12 88 211)"/><rect x="75" y="206" width="17" height="3" fill="#15171f" opacity=".5" transform="rotate(-12 88 211)"/><rect x="75" y="212" width="11" height="2.4" style="fill:var(--facc,#6EF2D2)" transform="rotate(-12 88 211)"/></g></g></g>
+              <g id="pxSBody">
+                <g id="pxSArmB"><rect x="51.5" y="104" width="15" height="62" rx="7.5" fill="#141c36"/>
+                  <g id="pxSForeB"><rect x="52" y="156" width="14" height="48" rx="7" fill="#141c36"/><rect x="52.5" y="199" width="13" height="5" rx="2" fill="#D9DCE3"/><circle cx="59" cy="210" r="7.5" fill="#CF9F7B"/></g></g>
+                <g id="pxSLegB"><rect x="51.5" y="196" width="17" height="70" rx="8.5" fill="#151e38"/>
+                  <g id="pxSShinB"><rect x="52.5" y="256" width="15" height="70" rx="7.5" fill="#151e38"/>
+                    <g id="pxSFootB"><path d="M51 324q0-7 8-7h5q15 2 19 12v6H51z" fill="#0b0c10"/><path d="M51 333h32" stroke="#3b2a20" stroke-width="2.4"/></g></g></g>
+                <path d="M55 78h14v20q-7 6-14 0z" fill="#D29C77"/>
+                <path d="M45 108Q57 99 75 103Q83 107 83 118L85 152L81 214Q62 220 44 214L41 152Q40 117 45 108Z" fill="url(#pxSuit)"/>
+                <path d="M74 103L81 108L81 142L77 146Z" fill="#F5F6F8"/><path d="M78.5 108h3l1 36-3 4z" fill="#7d1f35"/>
+                <path d="M71 104Q78 126 75 148" fill="none" stroke="#111831" stroke-width="2.4"/>
+                <circle cx="80" cy="170" r="2.2" fill="#0b1022"/><circle cx="80" cy="186" r="2.2" fill="#0b1022"/>
+                <path d="M70 124l8-3 2 5h-10z" style="fill:var(--facc,#6EF2D2)"/>
+                <path d="M46 198h16" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+                <g id="pxSLegF"><rect x="51.5" y="196" width="17" height="70" rx="8.5" fill="url(#pxSuitL)"/>
+                  <g id="pxSShinF"><rect x="52.5" y="256" width="15" height="70" rx="7.5" fill="url(#pxSuitL)"/>
+                    <g id="pxSFootF"><path d="M51 324q0-7 8-7h5q15 2 19 12v6H51z" fill="#121318"/><path d="M51 333h32" stroke="#4a3528" stroke-width="2.4"/><path d="M60 319q8 0 14 4" stroke="rgba(255,255,255,.18)" stroke-width="1.6" fill="none"/></g></g></g>
+                <g id="pxSHead">
+                  <path d="M40 50Q38 22 62 19Q82 19 84 38Q85 44 88 48Q90.5 51 86.5 53.5Q85 56 84.4 58Q86.4 62 83.4 64Q84.5 72 79 77.5Q72 85 62 85Q50 84 45 76Q40 66 40 50Z" fill="url(#pxSkin)"/>
+                  <path d="M46 70Q52 82 62 84Q72 84 79 77Q72 81 64 80Q53 78 46 70Z" fill="#3a2a22" opacity=".14"/>
+                  <ellipse cx="72" cy="59" rx="6" ry="4" fill="url(#pxCheek)"/>
+                  <ellipse cx="56" cy="52" rx="5" ry="7.6" fill="#D9A882"/><path d="M55 48q3 3 0 8" fill="none" stroke="#B57D58" stroke-width="1.3"/>
+                  <path d="M84.6 55.4q-1.8 1-3.2.2" fill="none" stroke="#B57D58" stroke-width="1.3" stroke-linecap="round"/>
+                  <path d="M76.5 61q5-2.2 9.4.8q-4.2 1.6-9.4.6z" fill="#21150f"/>
+                  <path d="M75.5 66q5 1.6 8.6-.4q.6 8.4-6 12.2q-3.4-4-2.6-11.8z" fill="#21150f"/>
+                  <path id="pxSMouth" d="M77.5 64q3.4 1.7 6.6-.3" fill="none" stroke="#6b2c24" stroke-width="1.8" stroke-linecap="round"/>
+                  <g transform="translate(76 46)"><g class="plid"><path d="M-3.6 0q3.6-3.6 7.6 0q-3.8 3-7.6 0z" fill="#fff"/><circle class="spu" cx="1.4" r="2.2" fill="#4a2c1c"/><path d="M-3.8 -.2q3.8-4 8 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
+                  <path class="pbr" d="M70.5 39.6q6-2.8 11.5.6" fill="none" stroke="#1b1412" stroke-width="3.4" stroke-linecap="round"/>
+                  <g id="pxSHair" fill="#1b1412"></g>
+                </g>
+                <g id="pxSArmF"><rect x="52.5" y="104" width="15" height="62" rx="7.5" fill="url(#pxSuit)"/>
+                  <g id="pxSForeF"><rect x="53" y="156" width="14" height="48" rx="7" fill="#1e2b50"/><rect x="53.5" y="199" width="13" height="5" rx="2" fill="#F5F6F8"/><circle cx="60" cy="210" r="7.5" fill="#E3B590"/>
+                    <g id="pxSTicket"><rect x="50" y="200" width="36" height="22" rx="3" fill="#fff" transform="rotate(-12 68 211)"/><rect x="55" y="206" width="17" height="3" fill="#15171f" opacity=".5" transform="rotate(-12 68 211)"/><rect x="55" y="212" width="11" height="2.4" style="fill:var(--facc,#6EF2D2)" transform="rotate(-12 68 211)"/></g></g></g>
+              </g>
+            </g>
+            <!-- facing us -->
+            <g id="pxF" style="display:none">
+              <g id="pxFCase">
+                <path d="M-6 204V252M11 204V252" stroke="#AEB6C6" stroke-width="3.2" stroke-linecap="round"/>
+                <rect x="-28" y="250" width="62" height="80" rx="12" style="fill:var(--facc,#6EF2D2)"/>
+                <rect x="-28" y="250" width="62" height="80" rx="12" fill="url(#pxShV)"/>
+                <path d="M-14 262V318M3 262V318M20 262V318" stroke="rgba(0,0,0,.14)" stroke-width="3" stroke-linecap="round"/>
+                <rect x="-12" y="276" width="28" height="19" rx="4" fill="#fff" opacity=".92" transform="rotate(-5 2 285)"/><text x="2" y="290" text-anchor="middle" font-size="14" font-weight="800" fill="#15171f" font-family="system-ui,sans-serif" transform="rotate(-5 2 285)">?</text>
+                <circle cx="-20" cy="332" r="4.5" fill="#0d0f16"/><circle cx="26" cy="332" r="4.5" fill="#0d0f16"/>
+              </g>
+              <g id="pxFBody">
+                <rect x="43.5" y="196" width="16" height="130" rx="8" fill="url(#pxSuitL)"/><rect x="60.5" y="196" width="16" height="130" rx="8" fill="#1a2546"/>
+                <path d="M60 198v40" stroke="rgba(0,0,0,.3)" stroke-width="1.4"/>
+                <ellipse cx="49" cy="331" rx="11" ry="5.5" fill="#0d0e12"/><ellipse cx="71" cy="331" rx="11" ry="5.5" fill="#0d0e12"/>
+                <path d="M53 78h14v20q-7 6-14 0z" fill="#D29C77"/>
+                <path d="M34 110Q38 100 60 98Q82 100 86 110L91 152L87 216Q60 224 33 216L29 152Z" fill="url(#pxSuit)"/>
+                <path d="M49 99L60 134L71 99Z" fill="#F5F6F8"/>
+                <path d="M57.2 104h5.6l1.6 5-2.8 3 3.4 34-5 6-5-6 3.4-34-2.8-3z" fill="#7d1f35"/>
+                <path d="M49 99l-3.5 7 7 6z M71 99l3.5 7-7 6z" fill="#fff"/>
+                <path d="M48 100L60 140L55 147L40 118L45 104Z" fill="#131b35"/>
+                <path d="M72 100L60 140L65 147L80 118L75 104Z" fill="#131b35"/>
+                <path d="M60 147V214" stroke="rgba(0,0,0,.35)" stroke-width="1.4"/>
+                <circle cx="61.5" cy="168" r="2.2" fill="#0b1022"/><circle cx="61.5" cy="184" r="2.2" fill="#0b1022"/>
+                <path d="M67 124l9-3 2 5h-11z" style="fill:var(--facc,#6EF2D2)"/>
+                <g id="pxFArmL"><rect x="28.5" y="104" width="15" height="62" rx="7.5" fill="url(#pxSuit)"/>
+                  <g id="pxFForeL"><rect x="29" y="156" width="14" height="48" rx="7" fill="#1e2b50"/><rect x="29.5" y="199" width="13" height="5" rx="2" fill="#F5F6F8"/><circle cx="36" cy="210" r="7.5" fill="#E3B590"/></g></g>
+                <g id="pxFHead">
+                  <ellipse cx="35.5" cy="52" rx="4.6" ry="7.4" fill="#D9A882"/><ellipse cx="84.5" cy="52" rx="4.6" ry="7.4" fill="#D9A882"/>
+                  <path d="M35.5 46Q35.5 18 60 18Q84.5 18 84.5 46Q84.5 68 75 78Q67 85 60 85Q53 85 45 78Q35.5 68 35.5 46Z" fill="url(#pxSkin)"/>
+                  <path d="M38 60Q40 76 50 82Q55 85 60 85Q65 85 70 82Q80 76 82 60Q79 74 70 78Q65 80 60 80Q55 80 50 78Q41 74 38 60Z" fill="#3a2a22" opacity=".14"/>
+                  <ellipse cx="44" cy="61" rx="6" ry="4" fill="url(#pxCheek)"/><ellipse cx="76" cy="61" rx="6" ry="4" fill="url(#pxCheek)"/>
+                  <path d="M60 49q-2.6 8-1.2 11.2q2.2 1.6 5-.4" fill="none" stroke="#B57D58" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M50.5 65.6q4.6-3.6 9.5-1.3q4.9-2.3 9.5 1.3q-4.7 1.7-9.5.5q-4.8 1.2-9.5-.5z" fill="#21150f"/>
+                  <path d="M51 66q-1.4 4.4 1.6 7.2M69 66q1.4 4.4-1.6 7.2" fill="none" stroke="#21150f" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M53 72.5q7 3 14 0q.6 8.6-7 12.6q-7.6-4-7-12.6z" fill="#21150f"/>
+                  <path id="pxMouth" d="M54 69.5q6 4 12 0" fill="none" stroke="#6b2c24" stroke-width="2" stroke-linecap="round"/>
+                  <g transform="translate(50.5 49)"><g class="plid"><path d="M-5.6 0q5.6-5 11.2 0q-5.6 4.4-11.2 0z" fill="#fff"/><circle class="ppu" r="2.7" fill="#4a2c1c"/><circle cx=".9" cy="-.9" r=".9" fill="#fff"/><path d="M-5.8 -.2q5.8-5.4 11.6 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
+                  <g transform="translate(69.5 49)"><g class="plid"><path d="M-5.6 0q5.6-5 11.2 0q-5.6 4.4-11.2 0z" fill="#fff"/><circle class="ppu" r="2.7" fill="#4a2c1c"/><circle cx=".9" cy="-.9" r=".9" fill="#fff"/><path d="M-5.8 -.2q5.8-5.4 11.6 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
+                  <path class="pbr" d="M43.5 41q6-3.6 12.5-.6" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+                  <path class="pbr" d="M64 40.4q6.5-3 12.5.6" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+                  <g id="pxHair" fill="#1b1412"></g>
+                </g>
+                <g id="pxFArmR"><rect x="76.5" y="104" width="15" height="62" rx="7.5" fill="url(#pxSuit)"/>
+                  <g id="pxFForeR"><rect x="77" y="156" width="14" height="48" rx="7" fill="#1e2b50"/><rect x="77.5" y="199" width="13" height="5" rx="2" fill="#F5F6F8"/><circle cx="84" cy="210" r="7.5" fill="#E3B590"/>
+                    <g id="pxFTicket" opacity="0"><rect x="66" y="196" width="22" height="34" rx="3" fill="#fff"/><rect x="70" y="202" width="14" height="3" fill="#15171f" opacity=".5"/><rect x="70" y="208" width="9" height="2.4" style="fill:var(--facc,#6EF2D2)"/><rect x="70" y="214" width="12" height="10" fill="#15171f" opacity=".25"/></g></g></g>
+                <g id="pxFThink" style="display:none"><path d="M86 108Q96 128 90 150Q84 160 74 150" fill="none" stroke="#1e2b50" stroke-width="15" stroke-linecap="round"/><path d="M74 150L70 98" stroke="#1e2b50" stroke-width="14" stroke-linecap="round"/><rect x="63.5" y="88" width="13" height="5" rx="2" fill="#F5F6F8" transform="rotate(-6 70 90)"/><circle cx="69" cy="83" r="7.5" fill="#E3B590"/><path d="M64 80q3-4 8-3" fill="none" stroke="#C8946D" stroke-width="1.6" stroke-linecap="round"/></g>
+              </g>
+            </g>
             </g>
           </svg>
         </div>
@@ -1622,8 +1668,14 @@ function drawTrain(x,w,h,p,ac,bg,km){
 
 /* ── the airport: mini Joseph waits for his next flight ── */
 var AIR=(function(){var el=$('.flight.air');if(!el)return null;var pax=$('#pax',el),q=function(s){return $(s,pax)};
-  var hairH='';[[36,34,7.5],[41,25,8.5],[50,20,9],[60,18,9.5],[70,19,9],[79,24,8.5],[84,32,7.5],[38.5,42,5],[82,41,5],[46,30,6],[56,26,6.5],[65,26,6.5],[74,30,6],[35.5,46,3.8],[84.5,46,3.8],[53,15,6],[67,15,6],[45,18,5.5],[76,17,5]].forEach(function(c){hairH+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>'});q('#pxHair').innerHTML=hairH;
-  var A={el:el,pax:pax,head:q('#pxHead'),body:q('#pxBody'),armB:q('#pxArmB'),foreB:q('#pxForeB'),armF:q('#pxArmF'),foreF:q('#pxForeF'),legB:q('#pxLegB'),shinB:q('#pxShinB'),footB:q('#pxFootB'),legF:q('#pxLegF'),shinF:q('#pxShinF'),footF:q('#pxFootF'),cas:q('#pxCase'),rods:q('#pxRods'),grip:q('#pxGrip'),wk:0,wheel:q('#pxWheel'),csh:q('#pxCaseSh'),shadow:q('#pxShadow'),mouth:q('#pxMouth'),pu:$$('.ppu',pax),lid:$$('.plid',pax),brows:$$('.pbr',pax),ticket:q('#pxTicket'),bub:$('#pbub',el),pass:$('#bpass',el),rows:$$('.brow',el),last:{},mouthK:''};
+  function curls(list){var h='';list.forEach(function(c){h+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>'});return h}
+  q('#pxHair').innerHTML=curls([[36,34,7.5],[41,25,8.5],[50,20,9],[60,18,9.5],[70,19,9],[79,24,8.5],[84,32,7.5],[38.5,42,5],[82,41,5],[46,30,6],[56,26,6.5],[65,26,6.5],[74,30,6],[35.5,46,3.8],[84.5,46,3.8],[53,15,6],[67,15,6],[45,18,5.5],[76,17,5]]);
+  q('#pxSHair').innerHTML=curls([[44,30,8.5],[52,22,9],[62,19,9.5],[72,20,8.5],[80,27,7],[42,40,8],[44,50,6.5],[50,32,7],[60,27,7],[70,27,6],[41,58,4.5],[58,14,6],[69,14,5.5],[48,16,5.5],[83,34,4.5]]);
+  var A={el:el,pax:pax,fig:q('#pxFig'),S:q('#pxS'),F:q('#pxF'),sBody:q('#pxSBody'),sHead:q('#pxSHead'),sArmB:q('#pxSArmB'),sForeB:q('#pxSForeB'),sArmF:q('#pxSArmF'),sForeF:q('#pxSForeF'),sLegB:q('#pxSLegB'),sShinB:q('#pxSShinB'),sFootB:q('#pxSFootB'),sLegF:q('#pxSLegF'),sShinF:q('#pxSShinF'),sFootF:q('#pxSFootF'),sMouth:q('#pxSMouth'),sPu:q('.spu'),sTicket:q('#pxSTicket'),
+    fBody:q('#pxFBody'),fHead:q('#pxFHead'),fArmL:q('#pxFArmL'),fForeL:q('#pxFForeL'),fArmR:q('#pxFArmR'),fForeR:q('#pxFForeR'),fThink:q('#pxFThink'),fTicket:q('#pxFTicket'),fCase:q('#pxFCase'),
+    cas:q('#pxCase'),rods:q('#pxRods'),grip:q('#pxGrip'),wheel:q('#pxWheel'),csh:q('#pxCaseSh'),shadow:q('#pxShadow'),wk:0,
+    mouth:q('#pxMouth'),pu:$$('.ppu',pax),lid:$$('.plid',pax),brows:$$('.pbr',pax),bub:$('#pbub',el),pass:$('#bpass',el),rows:$$('.brow',el),mouthK:'',side:-1};
+  A.bubT=$('b',A.bub);
   /* split-flap cells */
   $$('.fl',el).forEach(function(f){var t=f.textContent,n=+f.dataset.w||t.length;f.textContent='';f._c=[];for(var i=0;i<n;i++){var c=D.createElement('i');c.textContent=t[i]||' ';f.appendChild(c);f._c.push(c)}f._t=t});
   A.setFlap=function(f,t,scr){var n=f._c.length;if(!scr&&f._t===t)return;f._t=t;for(var i=0;i<n;i++){var ch=scr?(Math.random()<.7?'ABCDEFGHIJKLMNOPQRSTUVWXYZ?'[Math.floor(Math.random()*27)]:'?'):(t[i]||' ');if(f._c[i].textContent!==ch){f._c[i].textContent=ch;f._c[i].classList.remove('f');void f._c[i].offsetWidth;f._c[i].classList.add('f')}}};
@@ -1670,44 +1722,66 @@ function drawAir(F,p,e,now,w,h,x,bg,mid,ac){var t=now/1000,bgc=hex(bg),acs='rgba
   var gxs=w*(sm?.8:.86),gys=fy-8,open=p>.5;x.fillStyle='rgba(255,255,255,.2)';x.fillRect(gxs-2,gys,4,(h-fy)*.36);x.fillStyle=open?acs:'rgba(255,255,255,.14)';x.fillRect(gxs-46,gys-34,92,34);x.fillStyle=open?'#0b0f1a':'rgba(255,255,255,.8)';x.font='700 '+(sm?12:14)+'px "IBM Plex Mono",ui-monospace,monospace';x.textAlign='center';x.fillText(open?'GATE OPEN':'GATE ?',gxs,gys-12);
   airPax(p,t,w,h)}
 var A_planeX=null,A_planeY=0;
-function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddyQuip){A.said=1;W.buddyQuip('Hey, that’s me down there! Where am I flying next?')}var cw=A.pax.offsetWidth||200,sm=w<700;
-  var xs=sm?w*.06:w*.22,X,walking=false;
-  if(p<.2){var u=p/.2;X=lerp(-cw*1.2,xs,1-Math.pow(1-u,2));walking=u<.97}else if(p>.84){var u2=(p-.84)/.16;X=lerp(xs,w*1.05,u2*u2);walking=u2>.02}else X=xs;
-  var sc=(A.pax.offsetHeight||400)/364,ph=X/(176*sc)*6.2832;
-  /* mood by moment */
-  var search=p>.22&&p<.5,pass=p>=.48&&p<.86,plane=p>.6&&p<.84,wave=p>=.8;
-  var headR=0,lx=1.2,ly=0,mouth='smile',browY=0,fu,ff,bu=walking?30+3*Math.sin(ph):14,bf=walking?8:6;
-  if(walking){fu=20*Math.sin(ph);ff=-14-8*Math.max(0,-Math.sin(ph))}else{fu=4+Math.sin(t*1.6)*1.5;ff=-6}
-  if(search){headR=-7;lx=1.6;ly=-1.6;mouth='hmm';browY=-2}
-  if(pass&&!plane){headR=5;lx=1.6;ly=1.2;mouth='smile';fu=-50+Math.sin(t*2)*3;ff=-62}
-  if(plane){mouth='wow';browY=-3;fu=-42;ff=-48;if(A_planeX!==null){var r=A.pax.getBoundingClientRect(),stk=A.el.querySelector('.stick').getBoundingClientRect(),hx=r.left-stk.left+r.width*.62,hy=r.top-stk.top+r.height*.16;var dx=A_planeX-hx,dy=A_planeY-hy,dd=Math.hypot(dx,dy)||1;lx=dx/dd*1.8;ly=dy/dd*1.8;headR=clamp(Math.atan2(dy,Math.abs(dx))*20,-10,6)}}
-  if(wave||(walking&&p>.84)){mouth='big';fu=-160+Math.sin(t*4)*6;ff=-22+Math.sin(t*9)*22;headR=walking?0:-3;lx=walking?1.4:-1;ly=0}
-  /* legs: thigh swing, knee bend in the swing phase, flat foot; hips sit on the lower foot */
-  function leg(q){if(!walking)return [0,2,-2];var th=-22*Math.sin(q),c=Math.cos(q),k=c>0?44*Math.pow(c,1.4):3;return [th,k,-(th+k)*.75+(c<0?Math.max(0,-Math.sin(q))*-12:0)]}
-  var LF=leg(ph),LB=leg(ph+Math.PI),R2=Math.PI/180;function fy(L){return 58*Math.cos(L[0]*R2)+60*Math.cos((L[0]+L[1])*R2)}
-  var bob=walking?(118-Math.max(fy(LF),fy(LB))):Math.sin(t*2)*.8;
+function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddyQuip){A.said=1;W.buddyQuip('Hey, that’s me down there! Where am I flying next?')}
+  var cw=A.pax.offsetWidth||200,sm=w<700,sc=(A.pax.offsetHeight||400)/364,R2=Math.PI/180;
+  var xs=sm?w*.08:w*.22,X,walking=false;
+  if(p<.2){var u0=p/.2;X=lerp(-cw*1.2,xs,1-Math.pow(1-u0,2));walking=u0<.97}else if(p>.89){var u2=(p-.89)/.11;X=lerp(xs,w*1.05,u2*u2);walking=u2>.02}else X=xs;
+  /* which way he faces: profile while travelling, turning to face us in between */
+  var turn,front;if(p<.24){turn=0}else if(p<.28){turn=(p-.24)/.04}else if(p<.85){turn=1}else if(p<.89){turn=1-(p-.85)/.04}else turn=0;
+  front=turn>=.5;var sx=Math.max(.04,Math.abs(Math.cos(turn*Math.PI)));
+  A.fig.setAttribute('transform','translate(60 0) scale('+sx.toFixed(3)+' 1) translate(-60 0)');
+  if(A.side!==front){A.side=front;A.S.style.display=front?'none':'';A.F.style.display=front?'':'none'}
   function rot(el,a,cx,cy){el.setAttribute('transform','rotate('+a.toFixed(2)+' '+cx+' '+cy+')')}
-  A.body.setAttribute('transform','translate(0 '+bob.toFixed(2)+')');
-  rot(A.legF,LF[0],60,204);rot(A.shinF,LF[1],60,262);rot(A.footF,LF[2],60,322);
-  rot(A.legB,LB[0],60,204);rot(A.shinB,LB[1],60,262);rot(A.footB,LB[2],60,322);
-  rot(A.armF,fu,80,112);rot(A.foreF,ff,80,160);rot(A.armB,bu,40,112);rot(A.foreB,bf,40,160);
-  /* the suitcase handle stays in the hand: solve its tilt from where the hand is */
-  var u=bu*R2,f2=(bu+bf)*R2,hX=40-48*Math.sin(u)-50*Math.sin(f2),hY=112+bob+48*Math.cos(u)+50*Math.cos(f2),wk=A.wk=A.wk+((walking?1:0)-A.wk)*(RM?1:.12),Lc=lerp(330-hY+.5,150,wk),v=Math.min(Lc-.5,330-hY),dX=Math.sqrt(Lc*Lc-v*v),wX=hX-dX,ang=Math.atan2(hY-330,hX-wX)/R2;
-  A.cas.setAttribute('transform','translate('+wX.toFixed(2)+' 330) rotate('+ang.toFixed(2)+')');
-  A.wheel.setAttribute('transform','rotate('+(-ang+X/(7*sc)/R2).toFixed(1)+')');
-  A.csh.setAttribute('cx',(wX+30).toFixed(1));A.rods.setAttribute('d','M98 2L'+(Lc).toFixed(1)+' 2M98 9L'+(Lc).toFixed(1)+' 9');A.grip.setAttribute('x',(Lc-6).toFixed(1));
-  A.pax.style.transform='translate3d('+X.toFixed(1)+'px,0,0)';
-  A.head.setAttribute('transform','rotate('+headR.toFixed(1)+' 60 84)');
-  A.pu.forEach(function(c){c.setAttribute('cx',lx.toFixed(2));c.setAttribute('cy',ly.toFixed(2))});
-  A.brows.forEach(function(b){b.style.transform='translateY('+browY+'px)'});
   var blink=(t%3.6)<.12;A.lid.forEach(function(l){l.style.transform='scaleY('+(blink?.1:1)+')'});
-  if(A.mouthK!==mouth){A.mouthK=mouth;A.mouth.setAttribute('d',MOUTHS[mouth][0]);A.mouth.setAttribute('fill',MOUTHS[mouth][1])}
-  A.ticket.setAttribute('opacity',pass||wave?1:0);
-  A.bub.classList.toggle('on',search);A.pass.classList.toggle('on',p>.5);A.el.classList.toggle('pass-on',p>.5);
+  var search=p>.28&&p<.5,pass=p>=.5&&p<.85,plane=p>.62&&p<.8,bye=p>=.8&&p<.89;
+  A.pass.classList.toggle('on',p>.5);A.el.classList.toggle('pass-on',p>.5);
+  A.bub.classList.toggle('on',search||bye);var bt=bye?'Bye!':'?';if(A.bubT.textContent!==bt)A.bubT.textContent=bt;A.bub.classList.toggle('bye',bye);
+  A.csh.style.display=front?'none':'';
+  if(!front){
+    /* profile: walking or standing, reading the boarding pass on the way in */
+    var ph=X/(176*sc)*6.2832,reading=p<.22;
+    function leg(q){if(!walking)return [0,2,-2];var th=-22*Math.sin(q),c=Math.cos(q),k=c>0?44*Math.pow(c,1.4):3;return [th,k,-(th+k)*.75+(c<0?Math.max(0,-Math.sin(q))*-12:0)]}
+    var LF=leg(ph),LB=leg(ph+Math.PI);function fy(L){return 58*Math.cos(L[0]*R2)+60*Math.cos((L[0]+L[1])*R2)}
+    var bob=walking?(118-Math.max(fy(LF),fy(LB))):Math.sin(t*2)*.8;
+    A.sBody.setAttribute('transform','translate(0 '+bob.toFixed(2)+')');
+    rot(A.sLegF,LF[0],60,204);rot(A.sShinF,LF[1],60,262);rot(A.sFootF,LF[2],60,322);
+    rot(A.sLegB,LB[0],60,204);rot(A.sShinB,LB[1],60,262);rot(A.sFootB,LB[2],60,322);
+    var fu,ff,headR=0,ex=1.4,ey=0;
+    if(reading){fu=-48+Math.sin(t*2)*2;ff=-70;headR=9;ex=1.2;ey=1.2}else if(walking){fu=20*Math.sin(ph);ff=-14-8*Math.max(0,-Math.sin(ph))}else{fu=3;ff=-6}
+    if(p>.89){fu=-150+Math.sin(t*4)*8;ff=-20+Math.sin(t*9)*20}
+    A.sTicket.style.display=(reading||p>.89)?'':'none';
+    rot(A.sArmF,fu,60,112);rot(A.sForeF,ff,60,160);rot(A.sHead,headR,62,84);
+    A.sPu.setAttribute('cx',ex.toFixed(2));A.sPu.setAttribute('cy',ey.toFixed(2));
+    var sm2=p>.89?'M77.5 63.6q3.6 3.6 7 -.4':'M77.5 64q3.4 1.7 6.6-.3';if(A.sMouth.getAttribute('d')!==sm2)A.sMouth.setAttribute('d',sm2);
+    /* suitcase: the handle stays in the far hand; standing, it rests flat on its base */
+    var bu=walking?30+3*Math.sin(ph):12,bf=walking?8:6;rot(A.sArmB,bu,59,112);rot(A.sForeB,bf,59,160);
+    var u=bu*R2,f2=(bu+bf)*R2,hX=59-48*Math.sin(u)-50*Math.sin(f2),hY=112+bob+48*Math.cos(u)+50*Math.cos(f2);
+    var wk=A.wk=A.wk+((walking?1:0)-A.wk)*(RM?1:.12),Lc=lerp(330-hY,150,wk),v=Math.min(Lc,330-hY),dX=Math.sqrt(Math.max(0,Lc*Lc-v*v)),wX=hX-dX,ang=Math.atan2(hY-330,hX-wX+1e-6)/R2,drop=(1-wk)*11;
+    A.cas.setAttribute('transform','translate('+wX.toFixed(2)+' '+(330+drop).toFixed(2)+') rotate('+ang.toFixed(2)+')');
+    A.wheel.setAttribute('transform','rotate('+(-ang+X/(7*sc)/R2).toFixed(1)+')');
+    A.rods.setAttribute('d','M98 2L'+Lc.toFixed(1)+' 2M98 9L'+Lc.toFixed(1)+' 9');A.grip.setAttribute('x',(Lc-6).toFixed(1));
+    A.csh.setAttribute('cx',(wX+30).toFixed(1));A.shadow.setAttribute('cx','62');
+  }else{
+    /* facing us: thinking, the boarding pass, the plane, then bye */
+    A.shadow.setAttribute('cx','60');
+    var headR2=0,lx=0,ly=0,mouth='smile',browY=0,ru=6,rf=-4,lu=20,lf=0,think=search;
+    A.fBody.setAttribute('transform','translate(0 '+(Math.sin(t*2)*.8).toFixed(2)+')');
+    if(think){headR2=-6;lx=1.4;ly=-1.8;mouth='hmm';browY=-2}
+    if(pass){lx=0;ly=1.2;ru=10;rf=160;mouth='smile'}
+    if(plane){mouth='wow';browY=-3;if(A_planeX!==null){var r=A.pax.getBoundingClientRect(),stk=A.el.querySelector('.stick').getBoundingClientRect(),hx=r.left-stk.left+r.width*.62,hy=r.top-stk.top+r.height*.16;var dx=A_planeX-hx,dy=A_planeY-hy,dd=Math.hypot(dx,dy)||1;lx=dx/dd*1.8;ly=dy/dd*1.8;headR2=clamp(dx/dd*-6,-8,8)}}
+    if(bye){mouth='big';ru=-150+Math.sin(t*4)*6;rf=-22+Math.sin(t*9)*24;lx=0;ly=0;headR2=Math.sin(t*3)*3}
+    A.fThink.style.display=think?'':'none';A.fArmR.style.display=think?'none':'';
+    A.fTicket.setAttribute('opacity',pass&&!bye?1:0);
+    rot(A.fArmR,ru,84,112);rot(A.fForeR,rf,84,160);rot(A.fArmL,lu,36,112);rot(A.fForeL,lf,36,160);rot(A.fHead,headR2,60,84);
+    A.pu.forEach(function(c){c.setAttribute('cx',lx.toFixed(2));c.setAttribute('cy',ly.toFixed(2))});
+    A.brows.forEach(function(b){b.style.transform='translateY('+browY+'px)'});
+    if(A.mouthK!==mouth){A.mouthK=mouth;A.mouth.setAttribute('d',MOUTHS[mouth][0]);A.mouth.setAttribute('fill',MOUTHS[mouth][1])}
+  }
+  A.pax.style.transform='translate3d('+X.toFixed(1)+'px,0,0)';
   /* departures board */
   var R=A.rows,d1=$('.fl.d',R[0]),s1=$('.fl.s',R[0]);
-  if(search&&p>.26&&p<.46){if(!A._scr||t-A._scr>.12){A._scr=t;A.setFlap(d1,'',true)}}else A.setFlap(d1,'NEXT CHAPTER');
-  A.setFlap(s1,p<.26?'SCHEDULED':p<.46?'SEARCHING':'BOARDING');s1.classList.toggle('hot',p>=.46);
+  if(search&&p>.3&&p<.46){if(!A._scr||t-A._scr>.12){A._scr=t;A.setFlap(d1,'',true)}}else A.setFlap(d1,'NEXT CHAPTER');
+  A.setFlap(s1,p<.3?'SCHEDULED':p<.46?'SEARCHING':'BOARDING');s1.classList.toggle('hot',p>=.46);
   A.setFlap($('.fl.s',R[1]),p>.5?'GATE OPEN':'ON TIME')}
 (function(){var r=$('.op-r'),sw=$('#swarm');if(!r||!sw||!('IntersectionObserver' in W))return;new IntersectionObserver(function(es){sw.classList.toggle('dim',es[0].isIntersecting&&W.innerWidth>900)},{rootMargin:'-35% 0px -35% 0px'}).observe(r)})();
 var flRun=false;function flightsTick(now){var any=false;FLIGHTS.forEach(function(F){if(drawFlight(F,now)&&F.last)any=true});if(any&&!RM)requestAnimationFrame(flightsTick);else flRun=false}
