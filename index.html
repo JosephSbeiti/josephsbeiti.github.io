@@ -562,7 +562,109 @@ main{overflow-x:clip}
 .flight .fmeta{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);text-align:right;line-height:1.9}
 .flight .fmeta b{font-weight:500;color:var(--facc,var(--a))}
 @media(max-width:700px){.flight{height:135vh}.flight .fmeta{text-align:left}}
-@media(prefers-reduced-motion:reduce){.flight{height:auto}.flight .stick{position:relative;top:0;height:70vh}}
+@media(prefers-reduced-motion:reduce){.flight,.flight.train,.flight.air{height:auto}.flight .stick{position:relative;top:0;height:70vh}}
+/* story bridges */
+.ask{margin-top:18px;font-family:var(--display);font-weight:500;font-size:clamp(1.25rem,2.2vw,1.6rem);line-height:1.3;color:var(--a);letter-spacing:-.01em;text-wrap:balance}
+#purpose .ask{margin-top:12px;color:var(--fg)}
+.conviction{margin-top:clamp(56px,8vw,96px)}
+.jgo{margin-top:clamp(56px,8vw,90px);display:grid;gap:10px;max-width:40rem}
+.jgo-t{font-family:var(--display);font-weight:700;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.jgo-s{color:var(--fg2);font-size:1.05rem;max-width:34rem}
+.jgo-line{display:flex;align-items:center;gap:14px;margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg3)}
+.jgo-line i{position:relative;width:2px;height:120px;background:repeating-linear-gradient(to bottom,var(--a) 0 8px,transparent 8px 14px);opacity:.8;animation:jgo 1.6s linear infinite;background-size:2px 14px}
+@keyframes jgo{to{background-position:0 14px}}
+/* chapters: the brand is the headline */
+#journey .stop{margin-top:2px}
+#journey .stop .city{font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1;letter-spacing:-.03em;color:var(--fg2)}
+#journey .fl-left{max-width:600px}
+.bc .bk{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);line-height:1.5}
+.bc .bn{display:block;margin-top:8px;font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,5.2vw,4rem);line-height:.98;letter-spacing:-.04em;color:var(--fg);text-wrap:balance;background:linear-gradient(100deg,var(--fg) 30%,color-mix(in srgb,var(--a) 70%,var(--fg)));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.bc .bn.caps{letter-spacing:.06em;font-size:clamp(2.8rem,6.4vw,4.8rem)}
+.bc .br{display:block;margin-top:10px;font-weight:600;font-size:1rem;color:var(--a);line-height:1.35}
+.bc .bd{margin-top:12px;color:var(--fg2);font-size:.98rem}
+.bc .minis{margin-top:14px}
+.bsub{margin-top:14px;padding-top:12px;border-top:1px solid var(--edge);font-size:.9rem;color:var(--fg2)}
+.bsub i{font-style:normal;color:var(--a);margin-right:4px}
+.bstat{margin-top:14px;display:flex;align-items:baseline;gap:10px;padding:10px 14px;border-radius:12px;background:rgba(0,0,0,.2);border:1px solid var(--edge);width:max-content;max-width:100%}
+.bstat b{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--a)}
+.bstat span{font-size:.86rem;color:var(--fg2)}
+.thesis .tq{margin-top:10px;font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,1.9vw,1.4rem);line-height:1.32;letter-spacing:-.01em;text-wrap:balance}
+.thesis .tq::before{content:"“";color:var(--a)}.thesis .tq::after{content:"”";color:var(--a)}
+.thesis.in{margin-top:16px;padding-top:14px;border-top:1px solid var(--edge)}
+.thesis a{color:var(--a)}
+.bridge{display:grid;grid-template-columns:auto 1fr auto 1fr auto;align-items:center;gap:8px;margin-top:16px}
+.bnode{display:grid;gap:2px;padding:10px 12px;border-radius:14px;border:1px solid var(--edge);background:rgba(0,0,0,.2);text-align:center;max-width:12rem}
+.bnode b{font-size:.9rem;line-height:1.2}.bnode span{font-size:.72rem;color:var(--fg3)}
+.bnode.me{border-color:var(--a);background:color-mix(in srgb,var(--a) 18%,transparent)}
+.blink{height:2px;position:relative;overflow:hidden;background:color-mix(in srgb,var(--a) 25%,transparent);border-radius:2px;min-width:18px}
+.blink i{position:absolute;inset:0;width:40%;background:linear-gradient(90deg,transparent,var(--a),transparent);animation:blink 1.8s linear infinite}
+.blink:last-of-type i{animation-direction:reverse}
+@keyframes blink{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+@media(max-width:560px){.bridge{grid-template-columns:1fr;justify-items:center}.blink{width:2px;height:18px;min-width:0}.blink i{width:100%;height:40%;background:linear-gradient(180deg,transparent,var(--a),transparent);animation-name:blinkv}.bnode{max-width:none;width:100%}}
+@keyframes blinkv{from{transform:translateY(-100%)}to{transform:translateY(250%)}}
+.sitaf .sf{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.sitaf .sf div{border-radius:12px;background:rgba(0,0,0,.18);border:1px solid var(--edge);padding:10px 12px}
+.sitaf .sf b{display:block;font-family:var(--display);font-weight:600;font-size:1.3rem;color:var(--a)}
+.sitaf .sf span{display:block;font-size:.74rem;line-height:1.3;color:var(--fg3);margin-top:3px}
+@media(max-width:520px){.sitaf .sf{grid-template-columns:1fr}}
+.prog{grid-template-columns:repeat(3,1fr)}
+@media(max-width:600px){.prog{grid-template-columns:repeat(3,1fr)}.pstep{padding:10px 8px}.pstep b{font-size:.82rem}}
+/* time saved */
+.sv-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:10px}
+.sv-h b{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;color:var(--a);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sv-h span{color:var(--fg2)}
+.sv-bar{position:relative;display:flex;height:46px;margin-top:16px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.08)}
+.sv-bar>div{position:relative;display:flex;align-items:center;padding-inline:12px;font-size:.8rem;font-weight:600;white-space:nowrap;overflow:hidden}
+.sv-keep{flex:0 0 25%;background:var(--fg);color:var(--ink);z-index:1}
+.sv-cut{flex:1;background:rgba(255,255,255,.22);color:transparent;transition:background .9s,color .6s .5s}
+.sv-cut::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 8px,transparent 8px 16px);transform:translateX(-100%);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.saved.go .sv-cut{background:color-mix(in srgb,var(--a) 70%,transparent);color:var(--ink)}
+.saved.go .sv-cut::after{transform:none}
+.sv-keep span{opacity:.0;transition:opacity .5s .8s}.saved.go .sv-keep span{opacity:1}
+.sv-scale{display:flex;justify-content:space-between;margin-top:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg3)}
+.sv-f{margin-top:12px;font-size:.95rem;color:var(--fg2)}.sv-f b{color:var(--fg)}
+/* the train band: a long ride north */
+.flight.train{height:330vh}
+.flight.train .ftxt,.flight.air .ftxt{top:clamp(24px,6vh,64px);bottom:auto}
+.flight.train .route,.flight.air .route{font-size:clamp(2rem,4.4vw,3.6rem)}
+@media(max-width:700px){.flight.train{height:250vh}}
+/* the airport */
+.flight.air{height:380vh}
+@media(max-width:700px){.flight.air{height:300vh}}
+.flight.air .ftxt .wrap{flex-direction:column;align-items:flex-start;gap:8px}
+.flight.air .fmeta{text-align:left}
+.board{position:absolute;right:max(16px,4vw);top:clamp(24px,6vh,64px);width:max-content;max-width:calc(100vw - 32px);padding:12px 14px;border-radius:16px;background:rgba(6,8,16,.72);font-family:var(--mono);z-index:2}
+.bhd{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px}
+.brow{display:grid;grid-template-columns:auto auto auto;gap:8px;margin-top:5px}
+.fl{display:flex;gap:2px}
+.fl i{font-style:normal;display:inline-grid;place-items:center;width:1.2em;height:1.65em;border-radius:3px;background:#141826;color:#FFD34D;font-size:clamp(9px,.95vw,12.5px);font-weight:600;box-shadow:inset 0 -1px 0 rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);position:relative}
+.fl i::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.55)}
+.fl i.f{animation:flap .09s linear}
+@keyframes flap{50%{transform:scaleY(.2)}}
+.fl.s i{color:#6EF2D2}.fl.s.hot i{color:#FF6B8B}
+.pax{position:absolute;left:0;bottom:6vh;height:min(50vh,420px);aspect-ratio:230/340;will-change:transform;z-index:2}
+.pax svg{width:100%;height:100%;overflow:visible;display:block}
+.pax #pxHead{transform-box:view-box;transform-origin:60px 92px}
+.pax #pxArmB{transform-box:view-box;transform-origin:36px 106px}
+.pax #pxArmF{transform-box:view-box;transform-origin:84px 106px}
+.pax #pxLegB{transform-box:view-box;transform-origin:52px 188px}
+.pax #pxLegF{transform-box:view-box;transform-origin:69px 188px}
+.pax #pxCase{transform-box:view-box;transform-origin:-43px 303px}
+.pax .plid{transform-box:fill-box;transform-origin:center}
+.pbub{position:absolute;left:58%;top:-6%;width:62px;height:52px;border-radius:50%;background:#fff;color:#15171f;display:grid;place-items:center;font-family:var(--display);font-size:1.7rem;opacity:0;transform:scale(.4);transition:opacity .3s,transform .4s cubic-bezier(.2,1.4,.4,1)}
+.pbub::before,.pbub::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.pbub::before{width:14px;height:14px;left:4px;bottom:-12px}.pbub::after{width:7px;height:7px;left:-4px;bottom:-22px}
+.pbub.on{opacity:1;transform:none}
+.pbub b{animation:qbob 1.6s ease-in-out infinite}
+.bpass{position:absolute;right:max(16px,5vw);bottom:12vh;width:min(360px,calc(100vw - 32px));padding:14px 16px;border-radius:18px;background:rgba(250,250,252,.94);color:#15171f;z-index:3;opacity:0;transform:translateY(30px) rotate(3deg);transition:opacity .5s,transform .6s cubic-bezier(.2,1.2,.4,1);pointer-events:none;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.bpass.on{opacity:1;transform:none;pointer-events:auto}
+.bp-h{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#5a6070;padding-bottom:10px;border-bottom:1px dashed rgba(0,0,0,.2)}
+.bp-r{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin-top:10px}
+.bp-r em{display:block;font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#7a8090}
+.bp-r b{font-size:1rem}.bp-r b.q{color:var(--facc,#6EF2D2);font-size:1.4rem;line-height:1;-webkit-text-stroke:.5px #15171f}
+.bp-go{margin-left:auto;padding:9px 16px!important;font-size:.85rem!important;background:#15171f!important;color:#fff!important;border-color:#15171f!important}
+@media(max-width:700px){.board{left:max(16px,env(safe-area-inset-left,0px));right:auto;top:clamp(150px,22vh,190px);transition:opacity .4s}.pax{height:min(40vh,320px)}.bpass{bottom:auto;top:clamp(150px,22vh,190px);left:16px;right:16px;width:auto}.flight.air.pass-on .board{opacity:0}}
+
 /* Joseph OS */
 .jos{margin-top:30px;border-radius:20px;overflow:hidden;border:1px solid var(--edge);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);background:#0b0f1c}
 .jos-bar{display:flex;align-items:center;gap:16px;padding:7px 14px;font-size:.8rem;background:rgba(255,255,255,.08);border-bottom:1px solid var(--edge);color:var(--fg2)}
@@ -725,19 +827,20 @@ body.gl-open .dock{transform:translateY(150%)}
     <div class="col">
       <span class="kick rv">Origin · Lebanon → Paris</span>
       <h2 class="words rv" style="margin-top:16px">Born in Lebanon. Raised in Paris.</h2>
-      <p class="lead rv" style="margin-top:18px">I grew up between two realities. In France, I was privileged and had access to every opportunity I needed. In Lebanon, the country I was born in, I saw brilliant and talented people with far fewer doors open to them.</p>
+      <p class="ask rv">Where does my ambition come from?</p>
+      <p class="lead rv" style="margin-top:14px">I grew up between two realities. In France, I was privileged and had access to every opportunity I needed. In Lebanon, the country I was born in, I saw brilliant and talented people with far fewer doors open to them.</p>
       <p class="said rv">That contrast is what drives me.</p>
       <div class="tags rv"><span class="chip">French &amp; Lebanese</span><span class="chip">English · French · Arabic, all native</span></div>
     </div>
   </div>
 </section>
-
 <!-- PURPOSE -->
 <section class="sec" id="purpose" data-shape="pillars" data-pal="purpose" data-ch="Purpose">
   <div class="wrap">
     <div class="col">
       <span class="kick rv">Purpose</span>
-      <h2 class="words rv" style="margin-top:16px">Every child should start with equal chances.</h2>
+      <p class="ask rv">So I made it my purpose, and the subject of my master's thesis.</p>
+      <h2 class="words rv" style="margin-top:14px">Every child should start with equal chances.</h2>
       <p class="lead rv" style="margin-top:18px">Today, the chances you get in life still depend on where you were born. We have the tools, the technology and the innovation to change that. I want to help bring a wealthy and sustainable society to the next generations: clean water, education, health and energy, for everyone.</p>
     </div>
     <div class="pillars" id="pillars">
@@ -751,11 +854,10 @@ body.gl-open .dock{transform:translateY(150%)}
         <b>Energy</b><span>Lights on in every home</span></div>
     </div>
     <p class="note rv">Hover each pillar. The whole world takes its colour.</p>
-
     <div class="glass pad eq rv" id="eq">
       <div class="eq-head">
-        <div><span class="kick">Equal chances, in real numbers</span><h3 style="margin-top:8px">Where a child is born, in numbers</h3>
-          <p>France, where I grew up, Lebanon, where I was born, and Mexico and Ivory Coast, the other two countries of my master's thesis.</p></div>
+        <div><span class="kick">From my master's thesis research</span><h3 style="margin-top:8px">Where a child is born, in numbers</h3>
+          <p>Lebanon, Mexico and Ivory Coast, the three countries my thesis studied, next to France, where I grew up.</p></div>
         <div class="seg" role="group" aria-label="Country of birth" id="eqSeg">
           <button data-c="fra" aria-pressed="false">France</button><button data-c="lbn" aria-pressed="true">Lebanon</button><button data-c="mex" aria-pressed="false">Mexico</button><button data-c="civ" aria-pressed="false">Ivory Coast</button>
         </div>
@@ -765,41 +867,32 @@ body.gl-open .dock{transform:translateY(150%)}
       <p class="src">Dashed line: France. Sources: World Bank World Development Indicators and WHO/UNICEF JMP, via <a href="https://statisticsoftheworld.com/clean-water-by-country" target="_blank" rel="noopener">Statistics of the World</a>, <a href="https://lumistats.com/country/FRA/" target="_blank" rel="noopener">Lumistats</a> and <a href="https://www.indexmundi.com/facts/indicators/SE.SEC.CMPT.LO.ZS/rankings" target="_blank" rel="noopener">Index Mundi</a>. Electricity: Our World in Data (Ember, Energy Institute), the dataset of my energy project. Latest year available for each value.</p>
     </div>
     <p class="conviction rv">The regions left behind should <b>own their development</b>: built by them, for them, drawing on the world's knowledge.</p>
+    <div class="jgo rv">
+      <span class="kick">The journey</span>
+      <p class="jgo-t">Now, let me tell you about my journey.</p>
+      <p class="jgo-s">It starts in Paris, where I grew up. In 2021, baccalaureate with honours in hand, I took the train north.</p>
+      <div class="jgo-line" aria-hidden="true"><i></i><span>Scroll to board</span></div>
+    </div>
   </div>
 </section>
-
-
-
-
 <!-- JOURNEY -->
 <section class="hz" id="journey" data-ch="Journey">
   <div class="hz-stick">
     <div class="hz-track" id="track">
-      <article class="panel" data-shape="eiffel" data-pal="paris1" data-ch="Paris · 2019">
-        <div class="float">
-          <div class="fl-left">
-<span class="chap">Chapter 1 of 6</span>
-            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Paris</span><span class="when">2019 – 2021</span></div>
-              <h3>Where I grew up.</h3><p class="role">French National Baccalauréat, with honours</p></div>
-          </div>
-          <div class="glass fc r2 mini" data-depth="2.2"><span class="kick">Mother tongues</span><b>EN · FR · AR</b></div>
-        </div>
-      </article>
-      <div class="flight" data-from="paris" data-to="lille" data-pf="paris1" data-pt="lille" data-mode="train" aria-label="Paris to Lille"><div class="stick"><canvas></canvas>
-        <div class="ftxt"><div class="wrap"><div class="route">Paris <i>→</i><br>Lille</div><div class="fmeta"><span class="dist">— km</span><br><b>2021 · by train</b></div></div></div></div></div>
+      <div class="flight train" data-shape="wLille" data-pal="paris1" data-ch="Paris → Lille" data-from="paris" data-to="lille" data-pf="paris1" data-pt="lille" data-mode="train" aria-label="By train from Paris to Lille"><div class="stick"><canvas></canvas>
+        <div class="ftxt"><div class="wrap"><div class="route">Paris <i>→</i> Lille</div><div class="fmeta"><span class="dist">— km</span> · <b>2021 · by train</b><br>Baccalaureate with honours in hand</div></div></div></div></div>
       <article class="panel" data-shape="wLille" data-pal="lille" data-ch="Lille · 2021">
         <div class="float">
           <div class="fl-left">
-<span class="chap">Chapter 2 of 6</span>
-            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Lille</span><span class="when">2021 – 2025 · by train from Paris</span></div>
-              <h3>BBA in Global Management</h3><p class="role">SKEMA Business School · Major in International Business</p>
-              <div class="txt"><p>Four years of international business, built around one idea: companies can create a sustainable future.</p></div></div>
-            <div class="glass pad fc" data-depth="1.5"><span class="kick">Bachelor's thesis</span><p style="margin-top:8px">Post-conflict reconstruction in Lebanon, leveraging project management strategies for sustainable development.</p>
-              <p class="muted" style="margin-top:8px;font-size:.92rem"><b style="color:var(--fg)">L'Oréal:</b> go-to-market for a new men's skincare line.</p></div>
+            <span class="chap">Chapter 1 of 5</span>
+            <div class="stop"><span class="city decode">Lille</span><span class="when">2021 – 2025</span></div>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Summer 2023 · Maison Place Vendôme, Paris</span><b class="bn">Louis Vuitton</b><span class="br">Sales Advisor</span>
+              <p class="bd">International clients from five continents, advised in English, French and Arabic.</p>
+              <div class="minis"><div><b data-count="600" data-suf="+">600+</b><span>client experiences, end to end</span></div><div><b data-count="10000" data-pre="€">€10,000</b><span>daily target, regularly exceeded</span></div></div></div>
+            <div class="glass pad fc bc" data-depth="1.4"><span class="bk">2021 – 2025</span><b class="bn">SKEMA Business School</b><span class="br">BBA in Global Management · Major in International Business</span>
+              <p class="bd">Four years of international business, built around one idea: companies can create a sustainable future.</p>
+              <p class="bsub"><i aria-hidden="true">★</i> Promotion president, 2025 · representing students to programme management</p></div>
           </div>
-          <div class="glass fc r1 mini" data-depth="2.4"><span class="kick">Summer 2023 · Louis Vuitton</span><b>Sales Advisor</b><span class="muted">Maison Place Vendôme</span>
-            <div class="minis"><div><b data-count="700" data-suf="+">700+</b><span>client experiences</span></div><div><b data-count="10000" data-pre="€">€10,000</b><span>daily target, regularly exceeded</span></div></div></div>
-          <div class="glass fc r2 mini" data-depth="2"><span class="kick">2025</span><b>Promotion president</b><span class="muted">representing students to programme management</span></div>
         </div>
       </article>
       <div class="flight" data-from="lille" data-to="raleigh" data-pf="lille" data-pt="usa" data-mode="plane" aria-label="Lille to Raleigh"><div class="stick"><canvas></canvas>
@@ -807,9 +900,13 @@ body.gl-open .dock{transform:translateY(150%)}
       <article class="panel" data-shape="wUsa" data-pal="usa" data-ch="Raleigh · 2024">
         <div class="float">
           <div class="fl-left">
-<span class="chap">Chapter 3 of 6</span>
-            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Raleigh</span><span class="when">2024 · BBA final year</span></div>
-              <h3>Getting used to living abroad.</h3><p class="role">Final year of my BBA, in the United States</p></div>
+            <span class="chap">Chapter 2 of 5</span>
+            <div class="stop"><span class="city decode">Raleigh</span><span class="when">2024 · BBA final year</span></div>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">SKEMA Raleigh · on NC State University's Centennial Campus</span><b class="bn">Research Triangle</b><span class="br">North Carolina, USA</span>
+              <p class="bd">SKEMA's US campus sits inside NC State's Centennial Campus, about 20 minutes from Research Triangle Park, one of the world's largest research hubs, home to IBM, Cisco and GSK.</p>
+              <div class="minis"><div><b data-count="300" data-suf="+">300+</b><span>international companies in the park</span></div><div><b data-count="50000" data-suf="+">50,000+</b><span>people working there</span></div></div></div>
+            <div class="glass pad fc thesis" data-depth="1.4"><span class="kick">Bachelor's thesis · written here</span>
+              <p class="tq">Post-conflict reconstruction in Lebanon: leveraging project management strategies for sustainable development.</p></div>
           </div>
         </div>
       </article>
@@ -818,18 +915,22 @@ body.gl-open .dock{transform:translateY(150%)}
       <article class="panel" data-shape="wBeirut" data-pal="beirut" data-ch="Beirut · 2025">
         <div class="float">
           <div class="fl-left">
-<span class="chap">Chapter 4 of 6</span>
-            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Beirut</span><span class="when">May – Aug 2025 · back where I was born</span></div>
-              <h3>Key Account Manager Assistant</h3><p class="role">SITA, aviation &amp; travel technology</p>
-              <div class="txt"><p>Benchmarked 20+ aviation institutions and government entities, turned the insights into transformation solutions and partnership strategies, including Beirut Airport's biometric passenger path.</p></div></div>
-            <div class="glass pad fc" data-depth="1.5"><span class="kick">Dashboards &amp; KPIs</span><p style="margin-top:8px">Power BI and Excel dashboards on the demand and adoption of 11+ SITA products across 7 solution categories, and a KPI framework on revenue, renewals and client ROI. Client records kept up to date in Salesforce.</p></div>
+            <span class="chap">Chapter 3 of 5</span>
+            <div class="stop"><span class="city decode">Beirut</span><span class="when">May – Aug 2025 · back where I was born</span></div>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Key Account Manager Assistant</span><b class="bn caps">SITA</b><span class="br">Aviation &amp; Travel Technology · shaping the future of travel</span>
+              <p class="bd">SITA runs much of the technology behind airports, airlines and borders. I worked between its product teams and the institutions modernising how the world travels, matching their needs with the right SITA solutions, including Beirut Airport's biometric passenger path.</p>
+              <div class="bridge" aria-label="SITA product teams, connected through me, to airports, airlines and governments">
+                <div class="bnode"><b>SITA</b><span>product teams</span></div>
+                <div class="blink" aria-hidden="true"><i></i></div>
+                <div class="bnode me"><b>Me</b><span>the link</span></div>
+                <div class="blink" aria-hidden="true"><i></i></div>
+                <div class="bnode"><b>Airports · airlines · governments</b><span>modernising their systems</span></div>
+              </div>
+              <div class="minis"><div><b data-count="5">5</b><span>government entities</span></div><div><b data-count="12" data-suf="+">12+</b><span>airport operators</span></div></div></div>
+            <div class="glass pad fc mini sitaf" data-depth="1.5"><span class="kick">About SITA</span>
+              <div class="sf"><div><b>1949</b><span>founded by 11 airlines, still owned by the air transport industry</span></div><div><b>200+</b><span>countries and territories</span></div><div><b>80+</b><span>nations using its border technology</span></div></div>
+              <span class="src" style="margin-top:4px">Source: <a href="https://en.wikipedia.org/wiki/SITA_(business_services_company)" target="_blank" rel="noopener">SITA, Wikipedia</a></span></div>
           </div>
-          <div class="glass fc r1 mini" data-depth="2.3"><span class="kick">From benchmark to plan</span>
-            <div class="funnel" style="margin-top:10px">
-              <div class="fstep"><b>20+</b><span>entities benchmarked</span></div>
-              <div class="fstep"><b>15+</b><span>accounts assessed</span></div>
-              <div class="fstep"><b>4</b><span>priority accounts, up to 15% growth in 24 months</span></div>
-            </div></div>
         </div>
       </article>
       <div class="flight" data-from="beirut" data-to="raleigh" data-pf="beirut" data-pt="raleigh" data-mode="plane" aria-label="Beirut to Raleigh"><div class="stick"><canvas></canvas>
@@ -837,16 +938,16 @@ body.gl-open .dock{transform:translateY(150%)}
       <article class="panel" data-shape="wUsa" data-pal="raleigh" data-ch="Raleigh · 2025">
         <div class="float">
           <div class="fl-left">
-<span class="chap">Chapter 5 of 6</span>
-            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Raleigh</span><span class="when">Aug 2025 – May 2026</span></div>
-              <h3>MSc International Business, AI &amp; Data</h3><p class="role">NC State University / SKEMA Business School · in the Research Triangle</p></div>
-            <div class="glass pad fc" data-depth="1.5"><span class="kick">Master's thesis, co-written · pick a country</span>
-              <p style="margin-top:8px;font-weight:600">How can digital transformation be strategically implemented in the Global South to leverage sustainable development?</p>
-              <div class="tabs" role="group" aria-label="Country"><button aria-pressed="true" data-t="0">Lebanon</button><button aria-pressed="false" data-t="1">Mexico</button><button aria-pressed="false" data-t="2">Ivory Coast</button></div>
-              <p class="tabtxt" id="tabtxt" aria-live="polite">Rebuild institutional capacity</p>
-              <p class="muted" style="font-size:.9rem">In all three, the missing piece was the same: <b style="color:var(--fg)">coordination between sectors</b>.</p></div>
+            <span class="chap">Chapter 4 of 5</span>
+            <div class="stop"><span class="city decode">Raleigh</span><span class="when">Aug 2025 – May 2026</span></div>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Consulting strategy · SKEMA project · 2025</span><b class="bn">Apple</b><span class="br">Production diversification strategy</span>
+              <p class="bd">A plan to spread production across India, Vietnam and the United States, with a business case weighing cost, risk and stakeholder interests, while keeping the annual iPhone launch on track.</p>
+              <p class="bstat"><b>−30%</b><span>projected exposure to China-related tariffs and taxes</span></p></div>
+            <div class="glass pad fc bc" data-depth="1.3"><span class="bk">with SKEMA Business School</span><b class="bn">NC State University</b><span class="br">MSc International Business, AI &amp; Data</span>
+              <div class="thesis in"><span class="kick">Master's thesis · co-written</span>
+                <p class="tq">How can digital transformation be strategically implemented in the Global South to leverage sustainable development?</p>
+                <p class="muted" style="font-size:.9rem;margin-top:8px">The numbers in <a href="#eq">my purpose</a> come from this research.</p></div></div>
           </div>
-          <div class="glass fc r1 mini" data-depth="2.3"><span class="kick">Apple · consulting strategy</span><b class="big">−30%</b><span class="muted">projected exposure to China-related tariffs and taxes, by diversifying production across India, Vietnam and the US</span></div>
         </div>
       </article>
       <div class="flight" data-from="raleigh" data-to="paris" data-pf="raleigh" data-pt="paris2" data-mode="plane" aria-label="Raleigh to Paris"><div class="stick"><canvas></canvas>
@@ -854,26 +955,69 @@ body.gl-open .dock{transform:translateY(150%)}
       <article class="panel" data-shape="wParis" data-pal="paris2" data-ch="Paris · 2026">
         <div class="float">
           <div class="fl-left">
-<span class="chap">Chapter 6 of 6</span>
-            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Paris</span><span class="when">Jul – Dec 2026</span></div>
-              <h3>Digital Transformation Strategy Consultant</h3><p class="role">Devoteam Digital Impulse, for Safran Aircraft Engines' IT department</p>
+            <span class="chap">Chapter 5 of 5</span>
+            <div class="stop"><span class="city decode">Paris</span><span class="when">Since July 2026</span></div>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Devoteam Digital Impulse · for the IT department of</span><b class="bn">Safran Aircraft Engines</b><span class="br">Digital Transformation Strategy Consultant</span>
               <div class="prog" role="group" aria-label="Programme" id="prog">
                 <button class="pstep" aria-pressed="true"><em>Frame</em><b>The 2030 ambition</b></button>
-                <button class="pstep" aria-pressed="false"><em>Deliver</em><b>3 AI agents</b></button>
-                <button class="pstep" aria-pressed="false"><em>Steer</em><b>PMO lead</b></button>
-                <button class="pstep" aria-pressed="false"><em>Scale</em><b>8 IT divisions</b></button>
+                <button class="pstep" aria-pressed="false"><em>Deliver</em><b>5+ AI agents</b></button>
+                <button class="pstep" aria-pressed="false"><em>Steer</em><b>Team PMO</b></button>
               </div>
               <p class="pdetail" id="pdetail" aria-live="polite"></p></div>
+            <div class="glass pad fc saved" id="saved" data-depth="1.4"><span class="kick">Automation · Excel VBA &amp; Python</span>
+              <div class="sv-h"><b><span id="svN">0</span> min</b><span>saved on every single item</span></div>
+              <div class="sv-bar" aria-hidden="true"><div class="sv-keep"><span>5 min now</span></div><div class="sv-cut"><span>15 min saved</span></div></div>
+              <div class="sv-scale" aria-hidden="true"><span>Task time</span><span>Before: 20 min</span></div>
+              <p class="sv-f"><b>15+ hours</b> back every month for strategic work. Task time cut by 75%.</p></div>
           </div>
-          <div class="glass fc r1 mini" data-depth="2.3"><span class="kick">Automation</span>
-            <div class="auto" style="margin-top:8px"><div class="clock"><svg viewBox="0 0 88 88"><circle cx="44" cy="44" r="38" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="8"/><circle class="arc" id="arc" cx="44" cy="44" r="38" fill="none" stroke-width="8" stroke-linecap="round" stroke-dasharray="238.8" stroke-dashoffset="0"/></svg><b id="mins">20</b></div>
-              <div><b style="font-size:.95rem">minutes per item</b><div class="tog" role="group" aria-label="Before or after" style="margin-top:8px"><button id="aBefore" aria-pressed="true">Before</button><button id="aAfter" aria-pressed="false">After</button></div></div></div>
-            <span class="muted" style="font-size:.84rem">Excel (VBA), Power BI and Python · 15+ hours freed a month</span></div>
-          <div class="glass fc r2 mini" data-depth="1.9"><span class="kick">Scale</span><div class="minis"><div><b data-count="640" data-suf="+">640+</b><span>employees, 8 IT divisions</span></div><div><b data-count="3">3</b><span>AI agents, responsible AI</span></div></div></div>
         </div>
       </article>
-      <div class="flight last" data-from="paris" data-to="next" data-pf="paris2" data-pt="hq" data-mode="plane" aria-label="Paris to the next chapter"><div class="stick"><canvas></canvas>
-        <div class="ftxt"><div class="wrap"><div class="route">Paris <i>→</i><br><span class="q">?</span></div><div class="fmeta"><span class="dist">2027</span><br><b>Where will the next chapter be written?</b></div></div></div></div></div>
+      <div class="flight last air" data-from="paris" data-to="next" data-pf="paris2" data-pt="hq" data-mode="air" aria-label="Paris departures: where will the next chapter be written?"><div class="stick"><canvas></canvas>
+        <div class="board glass" aria-hidden="true"><div class="bhd"><span>Departures · Paris</span><span class="bclock" id="bclock">2027</span></div>
+          <div class="brow"><span class="fl d" data-w="12">NEXT CHAPTER</span><span class="fl t">2027</span><span class="fl s" data-w="9">SCHEDULED</span></div>
+          <div class="brow"><span class="fl d" data-w="12">YOUR TEAM?</span><span class="fl t">2027</span><span class="fl s" data-w="9">ON TIME</span></div>
+          <div class="brow"><span class="fl d" data-w="12">THE WORLD</span><span class="fl t">2027</span><span class="fl s" data-w="9">ON TIME</span></div></div>
+        <div class="pax" id="pax" aria-hidden="true">
+          <div class="pbub" id="pbub"><b>?</b></div>
+          <svg viewBox="-80 -10 230 340">
+            <ellipse cx="45" cy="318" rx="70" ry="8" fill="rgba(0,0,0,.35)"/>
+            <g id="pxCase"><path d="M-27 214L-3 162" stroke="#9aa3b8" stroke-width="4" stroke-linecap="round"/><path d="M-37 214L-11 160" stroke="#9aa3b8" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+              <rect x="-72" y="212" width="58" height="88" rx="10" style="fill:var(--facc,#6EF2D2)"/><rect x="-72" y="212" width="58" height="88" rx="10" fill="url(#pxSh)"/>
+              <path d="M-58 220v72M-28 220v72" stroke="rgba(0,0,0,.18)" stroke-width="3"/>
+              <circle cx="-43" cy="248" r="11" fill="#fff" opacity=".92"/><text x="-43" y="253" text-anchor="middle" font-size="14" font-weight="700" fill="#15171f" font-family="system-ui,sans-serif">?</text>
+              <rect x="-66" y="270" width="18" height="11" rx="2" fill="#fff" opacity=".7" transform="rotate(-8 -57 275)"/>
+              <circle class="whl" cx="-60" cy="303" r="6" fill="#0d0f16"/><circle class="whl" cx="-26" cy="303" r="6" fill="#0d0f16"/></g>
+            <defs><linearGradient id="pxSh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient></defs>
+            <g id="pxBody">
+              <g id="pxLegB"><rect x="44" y="184" width="16" height="96" rx="8" fill="#1a2038"/><ellipse cx="56" cy="284" rx="14" ry="7" fill="#0d0f16"/></g>
+              <g id="pxArmB"><rect x="29" y="102" width="14" height="66" rx="7" fill="#11131a"/><circle cx="36" cy="168" r="7.5" fill="#E6BD98"/></g>
+              <g id="pxLegF"><rect x="61" y="184" width="16" height="96" rx="8" fill="#232a48"/><ellipse cx="73" cy="284" rx="14" ry="7" fill="#0d0f16"/></g>
+              <path d="M30 104Q60 92 90 104L95 194Q60 200 25 194Z" fill="#15171f"/>
+              <path d="M49 97L60 124L71 97Z" fill="#F4F4F2"/><path d="M60 124V190" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+              <path d="M51 80h18v16l-9 6-9-6z" fill="#D9AE88"/>
+              <g id="pxHead">
+                <ellipse cx="33" cy="60" rx="5" ry="7.5" fill="#D9AE88"/><ellipse cx="87" cy="60" rx="5" ry="7.5" fill="#D9AE88"/>
+                <ellipse cx="60" cy="58" rx="26.5" ry="31" fill="#E6BD98"/>
+                <path d="M35 63c1 17 12 28 25 28s24-11 25-28c-4 11-12 18-25 18s-21-7-25-18z" fill="#2a1c16" opacity=".28"/>
+                <path d="M51 79q9 13 18 0q-9 4-18 0z" fill="#241712"/>
+                <path d="M49 71.5q11-6 22 0q-11-2.5-22 0z" fill="#241712"/>
+                <path d="M60 56q-3 7 0 10q3 0 4.5-2" fill="none" stroke="#B88763" stroke-width="1.6" stroke-linecap="round"/>
+                <path id="pxMouth" d="M51 75q9 7 18 0" fill="none" stroke="#5B2A22" stroke-width="2.4" stroke-linecap="round"/>
+                <g transform="translate(49 54)"><g class="plid"><ellipse rx="5.6" ry="4.2" fill="#fff"/><circle class="ppu" r="2.7" fill="#1b1412"/></g></g>
+                <g transform="translate(71 54)"><g class="plid"><ellipse rx="5.6" ry="4.2" fill="#fff"/><circle class="ppu" r="2.7" fill="#1b1412"/></g></g>
+                <path class="pbr" d="M42 46q7-4 13 0" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+                <path class="pbr" d="M65 46q6-4 13 0" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+                <g id="pxHair" fill="#1b1412"></g>
+              </g>
+              <g id="pxArmF"><rect x="77" y="102" width="14" height="66" rx="7" fill="#1b1e28"/><circle cx="84" cy="168" r="7.5" fill="#E6BD98"/>
+                <g id="pxTicket" opacity="0"><rect x="70" y="160" width="34" height="22" rx="3" fill="#fff" transform="rotate(-10 87 171)"/><rect x="74" y="166" width="16" height="3" fill="#15171f" opacity=".5" transform="rotate(-10 87 171)"/></g></g>
+            </g>
+          </svg>
+        </div>
+        <div class="bpass glass" id="bpass"><div class="bp-h"><span>Boarding pass</span><span>2027</span></div>
+          <div class="bp-r"><div><em>Passenger</em><b>Joseph Sbeiti</b></div><div><em>From</em><b>Paris</b></div><div><em>To</em><b class="q">?</b></div></div>
+          <div class="bp-r"><div><em>Gate</em><b>Your team</b></div><div><em>Boarding</em><b>2027</b></div><a class="btn bp-go" href="#next">Let's talk</a></div></div>
+        <div class="ftxt"><div class="wrap"><div class="route">Paris <i>→</i> <span class="q">?</span></div><div class="fmeta"><b>Departures · 2027</b><br>Where will the next chapter be written?</div></div></div></div></div>
     </div>
     <div class="hz-dots glass" id="hzDots" aria-label="Journey stops"></div><div class="kmc glass" id="kmc" aria-live="off"><b id="kmv">0</b><span>km travelled</span></div>
   </div>
@@ -1289,11 +1433,12 @@ function drawFlight(F,now){var r=F.el.getBoundingClientRect(),vh=W.innerHeight;i
   var p=RM?1:clamp(-r.top/(r.height-vh+1),0,1),cv=F.cv,dpr=Math.min(1.5,W.devicePixelRatio||1),w=cv.clientWidth,h=cv.clientHeight,x=F.x;
   if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}x.setTransform(dpr,0,0,dpr,0,0);
   var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,bg=mixHex(F.pf[0],F.pt[0],e),mid=mixHex(F.pf[1],F.pt[1],e),acc=mixHex(F.pf[2],F.pt[2],e);F.el.style.setProperty('--facc',acc);
+  if(F.mode==='air'){drawAir(F,p,e,now||performance.now(),w,h,x,bg,mid,hex(acc));return true}
   var g=x.createRadialGradient(w*.5,h*.45,0,w*.5,h*.45,Math.max(w,h)*.8);g.addColorStop(0,mid);g.addColorStop(1,bg);x.fillStyle=g;x.fillRect(0,0,w,h);
   /* the view: close on each city, pulled back mid-flight; the last band zooms out to the whole world */
   var A=F.a,B=F.b||[A[0]+40,A[1]-8],ay=mY(A[1]),by=mY(B[1]),span=Math.max(Math.abs(B[0]-A[0])+6,(Math.abs(by-ay)+6)*w/h*.8),fit=Math.min(w*.7/span,h*.55/(Math.abs(by-ay)+6));
   var v;if(F.last){var z=lerp(Math.min(28,w/30),w/300,e);v={cx:lerp(A[0],10,e),cy:lerp(ay,mY(25),e),s:z}}
-  else{var zoom=1.45-.45*Math.sin(Math.PI*p);v={cx:lerp(A[0],B[0],e),cy:lerp(ay,by,e)-(h*.06)/(fit*zoom),s:Math.min(30,fit*zoom)}}
+  else{var zoom=1.45-.45*Math.sin(Math.PI*p);v={cx:lerp(A[0],B[0],e),cy:lerp(ay,by,e)-(h*(F.mode==='train'?.2:.06))/(fit*zoom),s:Math.min(30,fit*zoom)}}
   function P(lo,la){return [w/2+(lo-v.cx)*v.s,h/2-(mY(la)-v.cy)*v.s]}
   /* dot-matrix land, only the visible cells */
   var lo0=Math.max(-180,Math.floor(v.cx-w/2/v.s)-1),lo1=Math.min(179,Math.ceil(v.cx+w/2/v.s)+1),rd=Math.max(.8,Math.min(v.s*.3,7));
@@ -1316,12 +1461,150 @@ function drawFlight(F,now){var r=F.el.getBoundingClientRect(),vh=W.innerHeight;i
     for(var s3=1;s3<=lim;s3++){var t3=s3/N2,px=(1-t3)*(1-t3)*pa[0]+2*(1-t3)*t3*mx+t3*t3*pb[0],py=(1-t3)*(1-t3)*pa[1]+2*(1-t3)*t3*my+t3*t3*pb[1];x.lineTo(px,py);ang2=Math.atan2(py-pt[1],px-pt[0]);pt=[px,py]}x.stroke();x.setLineDash([]);
     /* traveller */
     x.save();x.translate(pt[0],pt[1]);x.rotate(lim?ang2:Math.atan2(pb[1]-pa[1],pb[0]-pa[0]));x.shadowColor='rgba('+ac+',1)';x.shadowBlur=16;x.fillStyle='#fff';var sc=1.5;x.scale(sc,sc);
-    if(F.mode==='train'){x.beginPath();x.moveTo(-12,-4);x.lineTo(7,-4);x.quadraticCurveTo(13,-4,13,0);x.quadraticCurveTo(13,4,7,4);x.lineTo(-12,4);x.closePath();x.fill();x.fillStyle='rgba('+ac+',1)';x.fillRect(-9,-2,4,2.5);x.fillRect(-3,-2,4,2.5);x.fillRect(3,-2,3,2.5)}
+    if(F.mode==='train'){x.beginPath();x.arc(0,0,4,0,6.283);x.fill()}
     else{x.beginPath();x.moveTo(12,0);x.quadraticCurveTo(10,-2,6,-2);x.lineTo(1,-2);x.lineTo(-4,-11);x.lineTo(-7,-11);x.lineTo(-3,-2);x.lineTo(-9,-2);x.lineTo(-12,-6);x.lineTo(-14,-6);x.lineTo(-12,0);x.lineTo(-14,6);x.lineTo(-12,6);x.lineTo(-9,2);x.lineTo(-3,2);x.lineTo(-7,11);x.lineTo(-4,11);x.lineTo(1,2);x.lineTo(6,2);x.quadraticCurveTo(10,2,12,0);x.fill()}x.restore()}
   /* city pins */
   [[pa,F.el.dataset.from],[pb,F.b?F.el.dataset.to:null]].forEach(function(q,k){if(!q[1])return;var on=k===0||p>.97;x.fillStyle=on?'rgba('+ac+',1)':'rgba(255,255,255,.55)';x.beginPath();x.arc(q[0][0],q[0][1],6,0,6.283);x.fill();x.strokeStyle=bg;x.lineWidth=3;x.stroke();
     x.font='500 12px "IBM Plex Mono",ui-monospace,monospace';x.textAlign='center';x.fillStyle='rgba(255,255,255,.85)';x.fillText(q[1].toUpperCase(),q[0][0],q[0][1]-16)});
+  if(F.mode==='train')drawTrain(x,w,h,p,ac,bg,Math.round(hav(F.a,F.b)));
   return true}
+/* ── the train: a long, real ride north, Paris to Lille ── */
+function trCum(p){var a=.14,b=.86,c;if(p<a)c=p*p/(2*a);else if(p<=b)c=a/2+(p-a);else c=a/2+(b-a)+((1-b)/2-(1-p)*(1-p)/(2*(1-b)));return c/(a/2+(b-a)+(1-b)/2)}
+function trVel(p){var a=.14,b=.86;return p<a?p/a:p>b?(1-p)/(1-b):1}
+function hsh(i){var s=Math.sin(i*127.1+311.7)*43758.5453;return s-Math.floor(s)}
+function drawTrain(x,w,h,p,ac,bg,km){
+  var ty=h*.8,H=Math.max(30,Math.min(58,w*.04)),U=Math.max(110,Math.min(200,w*.15)),D=w*16,s=trCum(p)*D,v=trVel(p),Fx=w<700?w*.9:w*.66,bgc=hex(bg);
+  /* the ground rises from the map */
+  var g=x.createLinearGradient(0,h*.42,0,h);g.addColorStop(0,'rgba('+bgc+',0)');g.addColorStop(.42,'rgba('+bgc+',.9)');g.addColorStop(1,'rgba('+bgc+',1)');x.fillStyle=g;x.fillRect(0,h*.42,w,h*.58);
+  /* far hills */
+  x.fillStyle='rgba(255,255,255,.035)';x.beginPath();x.moveTo(0,ty);for(var X=0;X<=w+8;X+=8){var q=X+s*.06;x.lineTo(X,ty-H*1.9-Math.sin(q*.0042)*H*.5-Math.sin(q*.013+1)*H*.18)}x.lineTo(w,ty);x.closePath();x.fill();
+  /* trees and hedges */
+  var per=90,o=s*.32,i0=Math.floor(o/per)-1;x.fillStyle='rgba(0,0,0,.32)';
+  for(var i=i0;i<i0+w/per+3;i++){if(hsh(i)<.35)continue;var tx=i*per-o+hsh(i+7)*40,th=H*(.5+hsh(i+3)*.8),tr=H*(.25+hsh(i+5)*.25);x.beginPath();x.arc(tx,ty-th,tr,0,6.283);x.arc(tx+tr*.7,ty-th+tr*.4,tr*.75,0,6.283);x.fill();x.fillRect(tx-1.5,ty-th,3,th)}
+  /* speed streaks */
+  if(v>.5){x.strokeStyle='rgba(255,255,255,'+(.05+.07*(v-.5)*2)+')';x.lineWidth=1;for(var k=0;k<14;k++){var yy=ty-H*1.6+hsh(k)*H*2.2,L=60+hsh(k+9)*160,xx=((hsh(k+4)*w*1.5-s*1.6)%(w*1.5)+w*1.5)%(w*1.5)-L;x.beginPath();x.moveTo(xx,yy);x.lineTo(xx+L,yy);x.stroke()}}
+  /* stations: Paris at the start, Lille at the end */
+  function sx(Xw){return Fx+(Xw-s)}
+  var wireY=ty-12-H-26;
+  [[0,'PARIS'],[D,'LILLE']].forEach(function(st){var a=sx(st[0]-U*9),b=sx(st[0]+U*1.6);if(b<-50||a>w+50)return;
+    x.fillStyle='rgba(255,255,255,.06)';x.fillRect(a,wireY-34,b-a,6);/* canopy */
+    for(var c=a;c<b;c+=U*1.4){x.fillStyle='rgba(255,255,255,.08)';x.fillRect(c,wireY-28,3,ty-wireY+18)}
+    var bx=sx(st[0]+46);x.fillStyle='rgba(255,255,255,.35)';x.fillRect(bx-2,ty-H*2.9,4,H*2.9);x.fillStyle='#F4F6FA';x.fillRect(bx-62,ty-H*3.5,124,H*.75);x.fillStyle='#15171f';x.font='700 '+Math.round(H*.42)+'px "Space Grotesk",system-ui,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(st[1],bx,ty-H*3.5+H*.39);x.textBaseline='alphabetic'});
+  /* catenary */
+  x.strokeStyle='rgba(255,255,255,.28)';x.lineWidth=1.5;x.beginPath();x.moveTo(0,wireY);x.lineTo(w,wireY);x.stroke();
+  var pp=230,po=s%pp;for(var c2=-po;c2<w+pp;c2+=pp){x.fillStyle='rgba(255,255,255,.22)';x.fillRect(c2,wireY-14,3,ty-wireY+14);x.fillRect(c2-2,wireY-14,30,2.5)}
+  /* rails and sleepers */
+  x.fillStyle='rgba(255,255,255,.12)';var sp=24,so=s%sp;for(var c3=-so;c3<w+sp;c3+=sp)x.fillRect(c3,ty+3,10,6);
+  x.fillStyle='rgba(255,255,255,.45)';x.fillRect(0,ty,w,2);x.fillStyle='rgba(255,255,255,.2)';x.fillRect(0,ty+8,w,1.5);
+  /* the train: two power cars, five coaches, articulated bogies */
+  var dy=Math.sin(s*.045)*v*.9,top=ty-12-H+dy,bot=ty-12+dy,N=U*.55,gap=5,body=x.createLinearGradient(0,top,0,bot);body.addColorStop(0,'#F7F8FB');body.addColorStop(.6,'#D9DEE7');body.addColorStop(1,'#9EA6B4');
+  var cars=[],xr=Fx-U*1.2;cars.push({a:xr,b:Fx,t:'F'});var cx=xr-gap;for(var n=0;n<5;n++){cars.push({a:cx-U,b:cx,t:'C'});cx-=U+gap}cars.push({a:cx-U*1.2,b:cx,t:'R'});
+  var acs='rgba('+ac+',1)';
+  cars.forEach(function(c){if(c.b<-20||c.a>w+20)return;x.save();x.beginPath();
+    if(c.t==='F'){x.moveTo(c.a,top+3);x.lineTo(c.b-N,top);x.quadraticCurveTo(c.b-N*.15,top+H*.08,c.b,bot-H*.22);x.quadraticCurveTo(c.b+1,bot,c.b-10,bot);x.lineTo(c.a,bot)}
+    else if(c.t==='R'){x.moveTo(c.b,top+3);x.lineTo(c.a+N,top);x.quadraticCurveTo(c.a+N*.15,top+H*.08,c.a,bot-H*.22);x.quadraticCurveTo(c.a-1,bot,c.a+10,bot);x.lineTo(c.b,bot)}
+    else{x.moveTo(c.a+6,top);x.lineTo(c.b-6,top);x.quadraticCurveTo(c.b,top,c.b,top+6);x.lineTo(c.b,bot);x.lineTo(c.a,bot);x.lineTo(c.a,top+6);x.quadraticCurveTo(c.a,top,c.a+6,top)}
+    x.closePath();x.fillStyle=body;x.shadowColor='rgba('+ac+',.35)';x.shadowBlur=18;x.fill();x.shadowBlur=0;x.clip();
+    x.fillStyle=acs;x.fillRect(c.a-20,bot-H*.34,c.b-c.a+40,H*.11);x.fillStyle='rgba(20,24,40,.85)';x.fillRect(c.a-20,bot-H*.2,c.b-c.a+40,H*.2);
+    if(c.t==='C'){var nw=Math.max(3,Math.floor((c.b-c.a-18)/24)),ww=(c.b-c.a-18)/nw;for(var j=0;j<nw;j++){var wx=c.a+9+j*ww;x.fillStyle='#1E2536';x.beginPath();x.roundRect?x.roundRect(wx+2,top+H*.22,ww-6,H*.3,3):x.rect(wx+2,top+H*.22,ww-6,H*.3);x.fill();x.fillStyle='rgba(255,214,150,.22)';x.fillRect(wx+3,top+H*.24,ww-8,H*.1)}
+      x.strokeStyle='rgba(0,0,0,.18)';x.lineWidth=1.5;x.strokeRect(c.a+(c.b-c.a)*.5-7,top+H*.16,14,H*.62)}
+    else{var f=c.t==='F',nx=f?c.b:c.a,dir=f?-1:1;x.fillStyle='#141a28';x.beginPath();x.moveTo(nx+dir*N*.98,top+H*.14);x.lineTo(nx+dir*N*.36,top+H*.2);x.quadraticCurveTo(nx+dir*N*.12,top+H*.3,nx+dir*N*.08,top+H*.46);x.lineTo(nx+dir*N*.9,top+H*.44);x.closePath();x.fill();
+      x.fillStyle='rgba(255,255,255,.9)';x.beginPath();x.arc(nx+dir*7,bot-H*.27,2.6,0,6.283);x.fill();
+      x.strokeStyle='rgba(0,0,0,.2)';x.lineWidth=1.5;x.strokeRect(nx+dir*N*1.15-(f?12:0),top+H*.16,12,H*.62)}
+    x.restore()});
+  /* gangways */
+  x.fillStyle='#2a3142';cars.forEach(function(c,k){if(k&&c.b>-10&&c.b<w+10)x.fillRect(c.b-1,top+H*.12,gap+2,H*.7)});
+  /* bogies and wheels */
+  var wr=H*.17,ang=s/Math.max(4,wr);function bogie(bx){if(bx<-40||bx>w+40)return;x.fillStyle='#1a1f2c';x.fillRect(bx-H*.55,bot-2,H*1.1,H*.16);[-H*.32,H*.32].forEach(function(dx){x.fillStyle='#0e1119';x.beginPath();x.arc(bx+dx,ty-wr+1,wr,0,6.283);x.fill();x.strokeStyle='rgba(255,255,255,.35)';x.lineWidth=1.4;x.beginPath();for(var q=0;q<3;q++){var aa=ang+q*2.094;x.moveTo(bx+dx,ty-wr+1);x.lineTo(bx+dx+Math.cos(aa)*wr*.8,ty-wr+1+Math.sin(aa)*wr*.8)}x.stroke()})}
+  bogie(cars[0].b-N*1.1);cars.forEach(function(c,k){if(k)bogie(c.b+gap/2)});bogie(cars[cars.length-1].a+N*1.1);
+  /* pantograph to the wire */
+  var px=cars[0].a+U*.32;x.strokeStyle='rgba(230,235,245,.85)';x.lineWidth=2;x.beginPath();x.moveTo(px-10,top);x.lineTo(px+10,(top+wireY)/2);x.lineTo(px-2,wireY+2);x.moveTo(px+6,top);x.lineTo(px-12,(top+wireY)/2);x.lineTo(px-2,wireY+2);x.moveTo(px-14,wireY+2);x.lineTo(px+10,wireY+2);x.stroke();x.fillStyle='#2a3142';x.fillRect(px-14,top-3,28,3);
+  /* station platforms in front of the wheels */
+  [0,D].forEach(function(st){var a=sx(st-U*9),b=sx(st+U*1.6);if(b<-50||a>w+50)return;x.fillStyle='rgba(18,22,36,.96)';x.fillRect(a,ty-H*.22,b-a,H*.22+14);x.fillStyle='rgba(255,209,102,.85)';x.fillRect(a,ty-H*.22,b-a,2)});
+  /* the readout */
+  var mono=w<700?'500 10.5px':'500 12px';x.font=mono+' "IBM Plex Mono",ui-monospace,monospace';x.textAlign='left';x.fillStyle='rgba(255,255,255,.7)';
+  var gx=Math.max(16,(w-1240)/2+20);x.fillText('KM '+Math.round(km*trCum(p))+' / '+km,gx,ty+30);x.fillStyle=acs;x.fillText(Math.round(300*v)+' KM/H',gx+(w<700?110:140),ty+30);
+  x.fillStyle='rgba(255,255,255,.45)';x.fillText(p<.06?'DEPARTING PARIS':p>.94?'ARRIVING IN LILLE':'HIGH-SPEED LINE NORTH',gx+(w<700?200:270),ty+30)}
+
+/* ── the airport: mini Joseph waits for his next flight ── */
+var AIR=(function(){var el=$('.flight.air');if(!el)return null;var pax=$('#pax',el),q=function(s){return $(s,pax)};
+  var hairH='';[[34,40,8],[40,31,8.5],[49,26,9],[59,24,9.5],[69,25,9],[78,30,8.5],[85,38,8],[38,48,5.5],[83,47,5.5],[45,36,6],[55,32,6.5],[65,32,6.5],[75,36,6],[31,50,4.5],[88,52,4.5],[52,22,6],[66,21,6]].forEach(function(c){hairH+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>'});q('#pxHair').innerHTML=hairH;
+  var A={el:el,pax:pax,head:q('#pxHead'),body:q('#pxBody'),armB:q('#pxArmB'),armF:q('#pxArmF'),legB:q('#pxLegB'),legF:q('#pxLegF'),cas:q('#pxCase'),whl:$$('.whl',pax),mouth:q('#pxMouth'),pu:$$('.ppu',pax),lid:$$('.plid',pax),brows:$$('.pbr',pax),ticket:q('#pxTicket'),bub:$('#pbub',el),pass:$('#bpass',el),rows:$$('.brow',el),last:{},mouthK:''};
+  /* split-flap cells */
+  $$('.fl',el).forEach(function(f){var t=f.textContent,n=+f.dataset.w||t.length;f.textContent='';f._c=[];for(var i=0;i<n;i++){var c=D.createElement('i');c.textContent=t[i]||' ';f.appendChild(c);f._c.push(c)}f._t=t});
+  A.setFlap=function(f,t,scr){var n=f._c.length;if(!scr&&f._t===t)return;f._t=t;for(var i=0;i<n;i++){var ch=scr?(Math.random()<.7?'ABCDEFGHIJKLMNOPQRSTUVWXYZ?'[Math.floor(Math.random()*27)]:'?'):(t[i]||' ');if(f._c[i].textContent!==ch){f._c[i].textContent=ch;f._c[i].classList.remove('f');void f._c[i].offsetWidth;f._c[i].classList.add('f')}}};
+  return A})();
+var MOUTHS={smile:['M51 75q9 7 18 0','none'],big:['M50 74q10 12 20 0z','#5B2A22'],wow:['M56 77a4 5 0 1 0 8 0a4 5 0 1 0-8 0','#5B2A22'],hmm:['M53 77q7-3 14 1','none']};
+function easeIO(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+function drawAir(F,p,e,now,w,h,x,bg,mid,ac){var t=now/1000,bgc=hex(bg),acs='rgba('+ac+',1)',sm=w<700;
+  /* hall */
+  x.fillStyle=bg;x.fillRect(0,0,w,h);
+  var wx=w*.03,wy=h*.04,ww=w*.94,wh=h*.64,hz2=wy+wh*.8;
+  var sky=x.createLinearGradient(0,wy,0,hz2);sky.addColorStop(0,mixHex(bg,'#000000',.45));sky.addColorStop(.7,mixHex(mid,bg,.3));sky.addColorStop(1,'rgba('+ac+',.55)');
+  x.save();x.beginPath();x.rect(wx,wy,ww,wh);x.clip();x.fillStyle=sky;x.fillRect(wx,wy,ww,wh);
+  for(var i=0;i<90;i++){var sx2=wx+hsh(i)*ww,sy=wy+hsh(i+50)*wh*.65,tw=.25+.6*Math.abs(Math.sin(t*1.3+i));x.fillStyle='rgba(255,255,255,'+(tw*.6).toFixed(2)+')';x.fillRect(sx2,sy,1.6,1.6)}
+  /* far skyline, generic */
+  x.fillStyle=mixHex(bg,'#000000',.25);var bx=wx;for(var k=0;bx<wx+ww;k++){var bw=18+hsh(k+200)*46,bh=wh*(.06+hsh(k+300)*.16);x.fillRect(bx,hz2-bh,bw-3,bh);for(var l=0;l<5;l++){if(hsh(k*7+l)<.55)continue;x.fillStyle='rgba(255,214,150,.35)';x.fillRect(bx+4+hsh(k+l)*(bw-12),hz2-bh+6+l*bh/6,2,2);x.fillStyle=mixHex(bg,'#000000',.25)}bx+=bw}
+  /* apron and runway lights */
+  x.fillStyle=mixHex(bg,'#000000',.4);x.fillRect(wx,hz2,ww,wh-(hz2-wy));
+  for(var r=0;r<40;r++){var lx=wx+r*ww/40,on=((Math.floor(t*8)-r)%40+40)%40<4;x.fillStyle=on?acs:'rgba(255,255,255,.35)';x.beginPath();x.arc(lx,hz2+wh*.08,on?2.4:1.3,0,6.283);x.fill()}
+  /* the plane: parked, then rolling, then up and away */
+  var tp=clamp((p-.58)/.24,0,1),S=Math.min(w,1400)*.00068;
+  if(tp<1){var px,py,pa=0;var x0=wx+ww*.82,x1=wx-ww*.25;px=lerp(x0,x1,easeIO(tp));var lift=clamp((tp-.38)/.62,0,1);py=hz2+wh*.04-lift*lift*wh*.75;pa=lift*.24;
+    x.save();x.translate(px,py);x.rotate(pa);x.scale(S,S);
+    if(lift>0){var cone=x.createRadialGradient(-150,4,0,-150,4,260);cone.addColorStop(0,'rgba(255,255,230,.35)');cone.addColorStop(1,'rgba(255,255,230,0)');x.fillStyle=cone;x.beginPath();x.moveTo(-120,0);x.lineTo(-380,-60);x.lineTo(-380,70);x.closePath();x.fill()}
+    x.fillStyle='#E9EDF4';x.beginPath();x.moveTo(-130,0);x.quadraticCurveTo(-128,-16,-100,-17);x.lineTo(95,-17);x.lineTo(140,-62);x.lineTo(160,-62);x.lineTo(145,-14);x.quadraticCurveTo(150,0,130,4);x.lineTo(-110,6);x.quadraticCurveTo(-130,6,-130,0);x.fill();
+    x.fillStyle='#C9D0DC';x.beginPath();x.moveTo(-10,-2);x.lineTo(70,-2);x.lineTo(30,30);x.lineTo(14,30);x.closePath();x.fill();
+    x.fillStyle='#AEB6C4';x.beginPath();x.ellipse(10,12,20,7,0,0,6.283);x.fill();
+    x.fillStyle=acs;x.fillRect(-95,-9,190,3);x.fillStyle='#1E2536';for(var wn=0;wn<16;wn++)x.fillRect(-88+wn*12,-13,5,4);x.fillRect(-122,-11,10,5);
+    x.fillStyle=acs;x.beginPath();x.moveTo(140,-60);x.lineTo(160,-62);x.lineTo(147,-24);x.lineTo(132,-24);x.closePath();x.fill();
+    if(tp<.38){x.fillStyle='#0e1119';x.fillRect(-92,6,4,10);x.fillRect(20,6,5,10);x.beginPath();x.arc(-90,17,4,0,6.283);x.arc(22,17,4.5,0,6.283);x.fill()}
+    var bl=Math.sin(t*6)>.6;x.fillStyle=bl?'rgba(255,80,80,1)':'rgba(255,80,80,.25)';x.beginPath();x.arc(150,-62,4,0,6.283);x.fill();x.fillStyle=bl?'rgba(255,255,255,1)':'rgba(255,255,255,.3)';x.beginPath();x.arc(36,28,3,0,6.283);x.fill();
+    x.restore();A_planeX=px;A_planeY=py}else{A_planeX=null;var fb=Math.sin(t*5)>.4;x.fillStyle=fb?'rgba(255,255,255,.9)':'rgba(255,80,80,.6)';x.beginPath();x.arc(wx+ww*.06+Math.sin(t*.2)*4,wy+wh*.1,1.8,0,6.283);x.fill()}
+  /* glass reflections */
+  var rf=x.createLinearGradient(wx,wy,wx+ww*.5,wy+wh);rf.addColorStop(0,'rgba(255,255,255,.06)');rf.addColorStop(.35,'rgba(255,255,255,0)');x.fillStyle=rf;x.fillRect(wx,wy,ww,wh);
+  x.restore();
+  /* mullions and frame */
+  x.fillStyle=mixHex(bg,'#000000',.55);var mN=sm?3:5;for(var m=1;m<mN;m++)x.fillRect(wx+ww*m/mN-3,wy,6,wh);x.fillRect(wx,wy+wh*.42,ww,4);x.strokeStyle=mixHex(bg,'#ffffff',.12);x.lineWidth=6;x.strokeRect(wx,wy,ww,wh);
+  /* floor with the window's reflection */
+  var fy=wy+wh,fg=x.createLinearGradient(0,fy,0,h);fg.addColorStop(0,mixHex(mid,bg,.55));fg.addColorStop(1,mixHex(bg,'#000000',.35));x.fillStyle=fg;x.fillRect(0,fy,w,h-fy);
+  var rg=x.createLinearGradient(0,fy,0,fy+(h-fy)*.7);rg.addColorStop(0,'rgba('+ac+',.16)');rg.addColorStop(1,'rgba('+ac+',0)');x.fillStyle=rg;x.fillRect(wx,fy,ww,(h-fy)*.7);
+  x.strokeStyle='rgba(255,255,255,.05)';x.lineWidth=1;for(var fl=1;fl<7;fl++){var yy=fy+(h-fy)*Math.pow(fl/7,1.6);x.beginPath();x.moveTo(0,yy);x.lineTo(w,yy);x.stroke()}
+  /* a row of gate seats */
+  var seatY=fy+(h-fy)*.32,sx0=w*(sm?.42:.5),sw=sm?26:38;var sc=mixHex(mid,'#ffffff',.08),nS=sm?4:6;for(var se=0;se<nS;se++){var xx=sx0+se*(sw+6);x.fillStyle=sc;x.beginPath();x.roundRect?x.roundRect(xx,seatY-sw*.95,sw,sw*.6,6):x.rect(xx,seatY-sw*.95,sw,sw*.6);x.fill();x.fillStyle=mixHex(sc,'#000000',.25);x.beginPath();x.roundRect?x.roundRect(xx-2,seatY-sw*.42,sw+4,sw*.24,5):x.rect(xx-2,seatY-sw*.42,sw+4,sw*.24);x.fill()}x.fillStyle='rgba(255,255,255,.12)';x.fillRect(sx0+6,seatY-sw*.18,2,sw*.5);x.fillRect(sx0+nS*(sw+6)-14,seatY-sw*.18,2,sw*.5);
+  /* the gate sign */
+  var gxs=w*(sm?.8:.86),gys=fy-8,open=p>.5;x.fillStyle='rgba(255,255,255,.2)';x.fillRect(gxs-2,gys,4,(h-fy)*.36);x.fillStyle=open?acs:'rgba(255,255,255,.14)';x.fillRect(gxs-46,gys-34,92,34);x.fillStyle=open?'#0b0f1a':'rgba(255,255,255,.8)';x.font='700 '+(sm?12:14)+'px "IBM Plex Mono",ui-monospace,monospace';x.textAlign='center';x.fillText(open?'GATE OPEN':'GATE ?',gxs,gys-12);
+  airPax(p,t,w,h)}
+var A_planeX=null,A_planeY=0;
+function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddyQuip){A.said=1;W.buddyQuip('Hey, that’s me down there! Where am I flying next?')}var cw=A.pax.offsetWidth||200,sm=w<700;
+  var xs=sm?w*.06:w*.22,X,walking=false;
+  if(p<.2){var u=p/.2;X=lerp(-cw*1.2,xs,1-Math.pow(1-u,2));walking=u<.97}else if(p>.84){var u2=(p-.84)/.16;X=lerp(xs,w*1.05,u2*u2);walking=u2>.02}else X=xs;
+  var ph=X*.045,sw=walking?Math.sin(ph):0,bob=walking?-Math.abs(Math.cos(ph))*5:Math.sin(t*2)*1.2;
+  /* mood by moment */
+  var search=p>.22&&p<.5,pass=p>=.48&&p<.86,plane=p>.6&&p<.84,wave=p>=.8;
+  var headR=0,lx=1.4,ly=0,mouth='smile',armF=walking?-20*sw:4,armB=34+(walking?5*sw:0),browY=0;
+  if(search){headR=-7;lx=1.8;ly=-1.8;mouth='hmm';browY=-2}
+  if(pass&&!plane){headR=6;lx=1.8;ly=1.4;mouth='smile';armF=-70+Math.sin(t*2)*3}
+  if(plane){mouth='wow';browY=-3;armF=-70;if(A_planeX!==null){var r=A.pax.getBoundingClientRect(),stk=A.el.querySelector('.stick').getBoundingClientRect(),hx=r.left-stk.left+r.width*.6,hy=r.top-stk.top+r.height*.2;var dx=A_planeX-hx,dy=A_planeY-hy,dd=Math.hypot(dx,dy)||1;lx=dx/dd*2;ly=dy/dd*2;headR=clamp(Math.atan2(dy,Math.abs(dx))*20,-10,6)}}
+  if(wave){mouth='big';armF=-150+Math.sin(t*9)*16;headR=0;lx=-1.2;ly=0}
+  if(walking&&p>.84){armF=-150+Math.sin(t*9)*16}
+  A.pax.style.transform='translate3d('+X.toFixed(1)+'px,'+bob.toFixed(1)+'px,0)';
+  A.legB.style.transform='rotate('+(24*sw).toFixed(1)+'deg)';A.legF.style.transform='rotate('+(-24*sw).toFixed(1)+'deg)';
+  A.armF.style.transform='rotate('+armF.toFixed(1)+'deg)';A.armB.style.transform='rotate('+armB.toFixed(1)+'deg)';
+  A.cas.style.transform='translate('+(walking?0:4)+'px,'+(walking?Math.abs(Math.sin(ph))*-1.5:0).toFixed(1)+'px) rotate('+(walking?-5:0)+'deg)';
+  A.whl.forEach(function(c){c.setAttribute('r',walking?5.5+Math.abs(Math.sin(ph*2))*.6:6)});
+  A.head.style.transform='rotate('+headR.toFixed(1)+'deg)';
+  A.pu.forEach(function(c){c.setAttribute('cx',lx.toFixed(2));c.setAttribute('cy',ly.toFixed(2))});
+  A.brows.forEach(function(b){b.style.transform='translateY('+browY+'px)'});
+  var blink=(t%3.6)<.12;A.lid.forEach(function(l){l.style.transform='scaleY('+(blink?.1:1)+')'});
+  if(A.mouthK!==mouth){A.mouthK=mouth;A.mouth.setAttribute('d',MOUTHS[mouth][0]);A.mouth.setAttribute('fill',MOUTHS[mouth][1])}
+  A.ticket.setAttribute('opacity',pass||wave?1:0);
+  A.bub.classList.toggle('on',search);A.pass.classList.toggle('on',p>.5);A.el.classList.toggle('pass-on',p>.5);
+  /* departures board */
+  var R=A.rows,d1=$('.fl.d',R[0]),s1=$('.fl.s',R[0]);
+  if(search&&p>.26&&p<.46){if(!A._scr||t-A._scr>.12){A._scr=t;A.setFlap(d1,'',true)}}else A.setFlap(d1,'NEXT CHAPTER');
+  A.setFlap(s1,p<.26?'SCHEDULED':p<.46?'SEARCHING':'BOARDING');s1.classList.toggle('hot',p>=.46);
+  A.setFlap($('.fl.s',R[1]),p>.5?'GATE OPEN':'ON TIME')}
 var flRun=false;function flightsTick(now){var any=false;FLIGHTS.forEach(function(F){if(drawFlight(F,now)&&F.last)any=true});if(any&&!RM)requestAnimationFrame(flightsTick);else flRun=false}
 function flightsOnScroll(){FLIGHTS.forEach(function(F){drawFlight(F)});var L=FLIGHTS[FLIGHTS.length-1];if(L){var r=L.el.getBoundingClientRect();if(r.bottom>0&&r.top<W.innerHeight&&!flRun){flRun=true;requestAnimationFrame(flightsTick)}}}
 if('IntersectionObserver' in W){var dio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){decode(en.target);dio.unobserve(en.target)}})},{threshold:.6});$$('#journey .decode').forEach(function(d){dio.observe(d)})}
@@ -1616,14 +1899,10 @@ $$('#eqSeg button').forEach(function(b){b.onclick=function(){eqSet(b.dataset.c)}
 new IntersectionObserver(function(es,o){if(es[0].isIntersecting){eqSet('lbn');o.disconnect()}},{threshold:.3}).observe($('#eq'));
 
 /* thesis + programme + automation */
-var TH=['Rebuild institutional capacity','Connect capacity that already exists, but in isolation','Follow through on the gaps its own strategy names'];
-$$('.tabs button').forEach(function(b){b.onclick=function(){$$('.tabs button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});$('#tabtxt').textContent=TH[+b.dataset.t]}});
-var PG=['Framing the programme’s 2030 ambitions, scope, IT architecture impacts, initiatives, methodology and governance for Safran Aircraft Engines’ IT department, alongside a director.','Co-designed and co-led the delivery of 3 AI agents and agentic workflows with engineers, from ideation to implementation, with responsible AI principles and ethical data use.','As PMO lead: monitoring roadmaps and risk logs, tracking progress, coordinating stakeholders, identifying improvements and raising alerts.','Streamlined operations and onboarding for 8 IT divisions, 640+ employees, including an offshore hub in India.'];
+var PG=['Framing the programme’s 2030 ambitions, scope, IT architecture impacts, initiatives, methodology and governance for Safran Aircraft Engines’ IT department, alongside a director.','Designed and led the delivery of 5+ AI agents and agentic workflows with technical engineers, from ideation to implementation, applying responsible AI principles and ethical data use.','As team PMO: tracking progress, coordinating stakeholders across 3+ business teams, running gap analysis and producing management reporting.'];
 var pst=$$('.pstep');function pg(i){pst.forEach(function(b,k){b.setAttribute('aria-pressed',k===i)});$('#pdetail').textContent=PG[i]}pst.forEach(function(b,i){b.onclick=function(){pg(i)}});pg(0);
-function autoSet(after){$('#aBefore').setAttribute('aria-pressed',!after);$('#aAfter').setAttribute('aria-pressed',after);$('#arc').style.strokeDashoffset=after?238.8*.75:0;var m=$('#mins'),from=+m.textContent,to=after?5:20,t0=null;
-  (function st(ts){if(!t0)t0=ts;var p=RM?1:clamp((ts-t0)/900,0,1);m.textContent=Math.round(lerp(from,to,1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(st)})(performance.now())}
-$('#aBefore').onclick=function(){autoSet(false)};$('#aAfter').onclick=function(){autoSet(true)};
-new IntersectionObserver(function(es,o){if(es[0].isIntersecting){setTimeout(function(){autoSet(true)},RM?0:600);o.disconnect()}},{threshold:.6}).observe($('.clock'));
+/* time saved: the 15 minutes light up */
+(function(){var sv=$('#saved'),n=$('#svN');new IntersectionObserver(function(es,o){if(!es[0].isIntersecting)return;o.disconnect();setTimeout(function(){sv.classList.add('go');var t0=null;(function st(ts){if(!t0)t0=ts;var p=RM?1:clamp((ts-t0)/1300,0,1);n.textContent=Math.round(15*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(st)})(performance.now())},RM?0:400)},{threshold:.55}).observe(sv)})();
 
 /* ── Room 0: the central brain ── */
 (function(){var cvb=$('#brainCv'),c=cvb.getContext('2d'),M=MOBILE?900:1600,P=[],reg=[],act=-1,vis=false,tt=0,sparks=[],mx=0,my=0;
