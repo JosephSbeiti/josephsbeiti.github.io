@@ -74,7 +74,7 @@ p{margin:0}
 @keyframes wipe{0%{opacity:.0;clip-path:circle(0% at 100% 55%)}25%{opacity:.75}100%{opacity:0;clip-path:circle(140% at 30% 55%)}}
 /* ── liquid glass ── */
 .glass{position:relative;border-radius:26px;background:linear-gradient(140deg,rgba(255,255,255,.13),rgba(255,255,255,.04) 45%,rgba(255,255,255,.07));
-  -webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);
   border:1px solid var(--edge);box-shadow:inset 0 1px 0 var(--edge-2),inset 0 -1px 0 rgba(255,255,255,.05),0 30px 60px -30px rgba(0,0,0,.6);overflow:hidden;isolation:isolate}
 .glass::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(420px circle at var(--gx,20%) var(--gy,-10%),rgba(255,255,255,.16),transparent 45%);transition:opacity .4s}
 .glass::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.10),transparent 22%);mix-blend-mode:screen}
@@ -535,6 +535,54 @@ main{overflow-x:clip}
 #sigpen{fill:#fff;filter:drop-shadow(0 0 3px var(--a)) drop-shadow(0 0 8px var(--a));opacity:0}
 .sig-sub{font-family:var(--mono);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg3);opacity:0;transition:opacity 1s 3.2s}
 .sig.go .sig-sub{opacity:1}
+/* journey as rooms joined by flight bands */
+#journey .panel{min-height:100vh;display:flex;align-items:center}
+#journey .panel>.float{width:100%;max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));grid-template-columns:minmax(0,560px);}
+#journey .fl-left{max-width:560px}
+#journey .fc.mini{max-width:560px}
+#journey .stop .city{font-size:clamp(3rem,7vw,5.6rem);line-height:.95}
+.chap{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--a);margin-bottom:-4px}
+.flight{position:relative;height:170vh;z-index:1}
+.flight .stick{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--nav-h));height:calc(100vh - var(--nav-h));overflow:hidden}
+.flight canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.flight .ftxt{position:absolute;left:0;right:0;bottom:clamp(110px,17vh,170px);pointer-events:none}
+.flight .ftxt .wrap{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.flight .route{font-family:var(--display);font-weight:700;font-size:clamp(2rem,5vw,4rem);line-height:1;letter-spacing:-.04em;color:#fff}
+.flight .route i{font-style:normal;color:var(--facc,var(--a))}
+.flight .route .q{color:var(--facc,var(--a));display:inline-block;animation:qbob 2.4s ease-in-out infinite}
+@keyframes qbob{50%{transform:translateY(-6px) rotate(6deg)}}
+.flight .fmeta{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);text-align:right;line-height:1.9}
+.flight .fmeta b{font-weight:500;color:var(--facc,var(--a))}
+@media(max-width:700px){.flight{height:135vh}.flight .fmeta{text-align:left}}
+@media(prefers-reduced-motion:reduce){.flight{height:auto}.flight .stick{position:relative;top:0;height:70vh}}
+/* Joseph OS */
+.jos{margin-top:30px;border-radius:20px;overflow:hidden;border:1px solid var(--edge);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);background:#0b0f1c}
+.jos-bar{display:flex;align-items:center;gap:16px;padding:7px 14px;font-size:.8rem;background:rgba(255,255,255,.08);border-bottom:1px solid var(--edge);color:var(--fg2)}
+.jos-bar b{color:var(--fg);font-weight:600}.jos-bar em{margin-left:auto;font-style:normal;font-family:var(--mono);font-size:.75rem}
+@media(max-width:600px){.jos-bar span{display:none}}
+.jos-desk{position:relative;height:490px;overflow:hidden;background:radial-gradient(90% 80% at 20% 0%,color-mix(in srgb,var(--a) 28%,transparent),transparent 60%),radial-gradient(70% 90% at 100% 100%,color-mix(in srgb,var(--m) 80%,transparent),transparent 70%),linear-gradient(160deg,var(--d),#05070f)}
+.jos-icons{position:absolute;left:16px;top:16px;display:grid;grid-template-columns:repeat(1,84px);gap:6px}
+@media(max-width:600px){.jos-desk{height:520px}.jos-icons{grid-template-columns:repeat(5,minmax(0,1fr));left:6px;right:6px;top:auto;bottom:10px;gap:2px}.jos-ic span{font-size:.6rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.jos-ic i{width:40px;height:40px}}
+.jos-ic{all:unset;cursor:pointer;display:grid;justify-items:center;gap:6px;padding:8px 4px;border-radius:12px;text-align:center}
+.jos-ic i{font-style:normal;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:1.05rem;color:var(--ink);background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--a) 70%,#fff));box-shadow:0 8px 18px -8px rgba(0,0,0,.7),inset 0 -2px 0 rgba(0,0,0,.12);transition:transform .25s cubic-bezier(.2,1.4,.4,1)}
+.jos-ic span{font-size:.72rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.jos-ic:hover i{transform:translateY(-3px) scale(1.06)}
+.jos-ic:focus-visible{outline:2px solid var(--a)}
+.jos-hint{position:absolute;right:18px;bottom:14px;margin:0;font-family:var(--mono);font-size:.72rem;color:rgba(255,255,255,.55)}
+@media(max-width:600px){.jos-hint{display:none}}
+.jwin{position:absolute;width:min(430px,calc(100% - 24px));border-radius:14px;overflow:hidden;background:color-mix(in srgb,var(--d) 78%,#0b0f1c);border:1px solid rgba(255,255,255,.18);box-shadow:0 26px 50px -18px rgba(0,0,0,.8);animation:jwin .35s cubic-bezier(.2,1.3,.4,1)}
+@keyframes jwin{from{transform:scale(.85) translateY(14px);opacity:0}}
+.jwin-h{display:flex;align-items:center;gap:7px;padding:8px 10px;cursor:grab;background:rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.1);font-size:.78rem;user-select:none;touch-action:none}
+.jwin-h:active{cursor:grabbing}
+.jwin-h i{width:11px;height:11px;border-radius:50%;background:#ff5f57;cursor:pointer}.jwin-h i+i{background:#febc2e;cursor:default}.jwin-h i+i+i{background:#28c840}
+.jwin-h b{margin-left:6px;font-weight:600}
+.jwin-b{padding:14px;font-size:.88rem;line-height:1.55;color:var(--fg2);max-height:300px;overflow:auto}
+.jwin-b h4{margin:0 0 6px;color:var(--fg);font-family:var(--display);font-size:1rem}
+.jwin-b .go{all:unset;cursor:pointer;display:inline-block;margin-top:10px;padding:6px 12px;border-radius:99px;background:var(--a);color:var(--ink);font-weight:600;font-size:.8rem}
+.term{font-family:var(--mono);font-size:.8rem;color:#cfe;background:#060912;min-height:220px}
+.term .ln{white-space:pre-wrap;word-break:break-word}
+.term .pr{color:var(--a)}
+.term input{all:unset;width:70%;color:#fff;caret-color:var(--a)}
 /* mini Joseph */
 .buddy{position:fixed;z-index:72;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .bface{all:unset;cursor:pointer;width:72px;height:72px;border-radius:50%;box-shadow:0 14px 30px -10px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.25);transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
@@ -713,15 +761,19 @@ body.gl-open .dock{transform:translateY(150%)}
       <article class="panel" data-shape="eiffel" data-pal="paris1" data-ch="Paris · 2019">
         <div class="float">
           <div class="fl-left">
+<span class="chap">Chapter 1 of 6</span>
             <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Paris</span><span class="when">2019 – 2021</span></div>
               <h3>Where I grew up.</h3><p class="role">French National Baccalauréat, with honours</p></div>
           </div>
           <div class="glass fc r2 mini" data-depth="2.2"><span class="kick">Mother tongues</span><b>EN · FR · AR</b></div>
         </div>
       </article>
+      <div class="flight" data-from="paris" data-to="lille" data-pf="paris1" data-pt="lille" data-mode="train" aria-label="Paris to Lille"><div class="stick"><canvas></canvas>
+        <div class="ftxt"><div class="wrap"><div class="route">Paris <i>→</i><br>Lille</div><div class="fmeta"><span class="dist">— km</span><br><b>2021 · by train</b></div></div></div></div></div>
       <article class="panel" data-shape="wLille" data-pal="lille" data-ch="Lille · 2021">
         <div class="float">
           <div class="fl-left">
+<span class="chap">Chapter 2 of 6</span>
             <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Lille</span><span class="when">2021 – 2025 · by train from Paris</span></div>
               <h3>BBA in Global Management</h3><p class="role">SKEMA Business School · Major in International Business</p>
               <div class="txt"><p>Four years of international business, built around one idea: companies can create a sustainable future.</p></div></div>
@@ -733,17 +785,23 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="glass fc r2 mini" data-depth="2"><span class="kick">2025</span><b>Promotion president</b><span class="muted">representing students to programme management</span></div>
         </div>
       </article>
-      <article class="panel" data-shape="wUsa" data-pal="usa" data-ch="USA · 2024">
+      <div class="flight" data-from="lille" data-to="raleigh" data-pf="lille" data-pt="usa" data-mode="plane" aria-label="Lille to Raleigh"><div class="stick"><canvas></canvas>
+        <div class="ftxt"><div class="wrap"><div class="route">Lille <i>→</i><br>Raleigh</div><div class="fmeta"><span class="dist">— km</span><br><b>2024 · BBA final year abroad</b></div></div></div></div></div>
+      <article class="panel" data-shape="wUsa" data-pal="usa" data-ch="Raleigh · 2024">
         <div class="float">
           <div class="fl-left">
-            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">USA</span><span class="when">BBA final year</span></div>
+<span class="chap">Chapter 3 of 6</span>
+            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Raleigh</span><span class="when">2024 · BBA final year</span></div>
               <h3>Getting used to living abroad.</h3><p class="role">Final year of my BBA, in the United States</p></div>
           </div>
         </div>
       </article>
+      <div class="flight" data-from="raleigh" data-to="beirut" data-pf="usa" data-pt="beirut" data-mode="plane" aria-label="Raleigh to Beirut"><div class="stick"><canvas></canvas>
+        <div class="ftxt"><div class="wrap"><div class="route">Raleigh <i>→</i><br>Beirut</div><div class="fmeta"><span class="dist">— km</span><br><b>2025 · back where I was born</b></div></div></div></div></div>
       <article class="panel" data-shape="wBeirut" data-pal="beirut" data-ch="Beirut · 2025">
         <div class="float">
           <div class="fl-left">
+<span class="chap">Chapter 4 of 6</span>
             <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Beirut</span><span class="when">May – Aug 2025 · back where I was born</span></div>
               <h3>Key Account Manager Assistant</h3><p class="role">SITA, aviation &amp; travel technology</p>
               <div class="txt"><p>Benchmarked 20+ aviation institutions and government entities, turned the insights into transformation solutions and partnership strategies, including Beirut Airport's biometric passenger path.</p></div></div>
@@ -757,9 +815,12 @@ body.gl-open .dock{transform:translateY(150%)}
             </div></div>
         </div>
       </article>
-      <article class="panel" data-shape="wRaleigh" data-pal="raleigh" data-ch="Raleigh · 2025">
+      <div class="flight" data-from="beirut" data-to="raleigh" data-pf="beirut" data-pt="raleigh" data-mode="plane" aria-label="Beirut to Raleigh"><div class="stick"><canvas></canvas>
+        <div class="ftxt"><div class="wrap"><div class="route">Beirut <i>→</i><br>Raleigh</div><div class="fmeta"><span class="dist">— km</span><br><b>2025 · MSc in the Research Triangle</b></div></div></div></div></div>
+      <article class="panel" data-shape="wUsa" data-pal="raleigh" data-ch="Raleigh · 2025">
         <div class="float">
           <div class="fl-left">
+<span class="chap">Chapter 5 of 6</span>
             <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Raleigh</span><span class="when">Aug 2025 – May 2026</span></div>
               <h3>MSc International Business, AI &amp; Data</h3><p class="role">NC State University / SKEMA Business School · in the Research Triangle</p></div>
             <div class="glass pad fc" data-depth="1.5"><span class="kick">Master's thesis, co-written · pick a country</span>
@@ -771,9 +832,12 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="glass fc r1 mini" data-depth="2.3"><span class="kick">Apple · consulting strategy</span><b class="big">−30%</b><span class="muted">projected exposure to China-related tariffs and taxes, by diversifying production across India, Vietnam and the US</span></div>
         </div>
       </article>
+      <div class="flight" data-from="raleigh" data-to="paris" data-pf="raleigh" data-pt="paris2" data-mode="plane" aria-label="Raleigh to Paris"><div class="stick"><canvas></canvas>
+        <div class="ftxt"><div class="wrap"><div class="route">Raleigh <i>→</i><br>Paris</div><div class="fmeta"><span class="dist">— km</span><br><b>2026 · Devoteam, for Safran</b></div></div></div></div></div>
       <article class="panel" data-shape="wParis" data-pal="paris2" data-ch="Paris · 2026">
         <div class="float">
           <div class="fl-left">
+<span class="chap">Chapter 6 of 6</span>
             <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Paris</span><span class="when">Jul – Dec 2026</span></div>
               <h3>Digital Transformation Strategy Consultant</h3><p class="role">Devoteam Digital Impulse, for Safran Aircraft Engines' IT department</p>
               <div class="prog" role="group" aria-label="Programme" id="prog">
@@ -791,6 +855,8 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="glass fc r2 mini" data-depth="1.9"><span class="kick">Scale</span><div class="minis"><div><b data-count="640" data-suf="+">640+</b><span>employees, 8 IT divisions</span></div><div><b data-count="3">3</b><span>AI agents, responsible AI</span></div></div></div>
         </div>
       </article>
+      <div class="flight last" data-from="paris" data-to="next" data-pf="paris2" data-pt="hq" data-mode="plane" aria-label="Paris to the next chapter"><div class="stick"><canvas></canvas>
+        <div class="ftxt"><div class="wrap"><div class="route">Paris <i>→</i><br><span class="q">?</span></div><div class="fmeta"><span class="dist">2027</span><br><b>Where will the next chapter be written?</b></div></div></div></div></div>
     </div>
     <div class="hz-dots glass" id="hzDots" aria-label="Journey stops"></div><div class="kmc glass" id="kmc" aria-live="off"><b id="kmv">0</b><span>km travelled</span></div>
   </div>
@@ -871,6 +937,19 @@ body.gl-open .dock{transform:translateY(150%)}
 <section class="sec" id="lab" data-shape="globe" data-pal="lab" data-ch="Lab">
   <div class="wrap">
     <div class="col"><span class="kick rv">Lab</span><h2 class="words rv" style="margin-top:16px">Where I build things to understand them.</h2></div>
+    <div class="jos rv" id="jos" aria-label="Joseph OS, a tiny desktop with my projects as apps">
+      <div class="jos-bar"><b>◆ Joseph OS</b><span>File</span><span>View</span><span>Help</span><em id="josClock">--:--</em></div>
+      <div class="jos-desk" id="josDesk">
+        <div class="jos-icons">
+          <button class="jos-ic" data-app="term"><i>&gt;_</i><span>Terminal</span></button>
+          <button class="jos-ic" data-app="energy"><i>⚡</i><span>Energy.app</span></button>
+          <button class="jos-ic" data-app="conc"><i>✦</i><span>Concierge.app</span></button>
+          <button class="jos-ic" data-app="robot"><i>◉</i><span>Robot.app</span></button>
+          <button class="jos-ic" data-app="notes"><i>✎</i><span>Notes</span></button>
+        </div>
+        <p class="jos-hint">Open an app. Or try the terminal: type <b>help</b>.</p>
+      </div>
+    </div>
     <div class="glass pad rv edp" style="margin-top:30px">
       <div class="edp-head"><div><span class="kick">k-means clustering &amp; linear regression · Python · 164 countries · 2022</span>
         <h3 style="margin-top:8px">Energy development profiles</h3>
@@ -1100,12 +1179,12 @@ SH.slabs=make3d(function(k){return slab(k,k%4,0,0,0)});
 SH.slabsApart=make3d(function(k){if(k%5===0){var t=Math.random();return [.9+t*.9,(Math.random()-.5)*.9,(Math.random()-.5)*.3]}var i=k%4;return slab(k,i,[.55,-.35,.4,-.15][i],[-.12,.06,-.08,.14][i],[.25,-.2,.3,-.15][i])});
 SH.y2027=sampleCanvas(function(x,S){x.font='700 '+(S*.36)+'px Sora, Arial, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('2027',S*.5,S*.52)});
 function word(t){return sampleCanvas(function(x,S){var f=S*.3;x.font='700 '+f+'px Sora, Arial, sans-serif';var m=x.measureText(t).width;if(m>S*.78){f*=S*.78/m;x.font='700 '+f+'px Sora, Arial, sans-serif'}x.textAlign='center';x.textBaseline='middle';x.fillText(t,S*.5,S*.52)})}
-SH.wLille=word('LILLE');SH.wUsa=word('USA');SH.wBeirut=word('BEIRUT');SH.wRaleigh=word('RALEIGH');SH.wParis=word('PARIS');
-var SOFT={slabs:1,slabsApart:1};var FLAT={wLille:1,wUsa:1,wBeirut:1,wRaleigh:1,wParis:1,cedar:1,eiffel:1,train:1,plane:1,radar:1,cap:1,engine:1,drop:1,heart:1,bolt:1,pillars:1,y2027:1};
+SH.wLille=word('LILLE');SH.wUsa=word('USA');SH.wBeirut=word('BEIRUT');SH.wParis=word('PARIS');
+var SOFT={slabs:1,slabsApart:1};var FLAT={wLille:1,wUsa:1,wBeirut:1,wParis:1,cedar:1,eiffel:1,train:1,plane:1,radar:1,cap:1,engine:1,drop:1,heart:1,bolt:1,pillars:1,y2027:1};
 
 /* ── anchors: what the page is at each scroll position ── */
 var hz=$('#journey'),track=$('#track'),panels=$$('.panel',track),HZ=false;
-function setupHz(){HZ=!RM&&W.innerWidth>=1000&&W.innerHeight>=760;hz.classList.toggle('on',HZ);
+function setupHz(){HZ=false;hz.classList.toggle('on',HZ);
   if(HZ){hz.style.height=(panels.length*100)+'vh'}else{hz.style.height='';track.style.transform=''}}
 var anchors=[];
 function buildAnchors(){anchors=[];$$('[data-shape][data-pal]').forEach(function(e){
@@ -1116,7 +1195,7 @@ function buildAnchors(){anchors=[];$$('[data-shape][data-pal]').forEach(function
     var rr=e.getBoundingClientRect();return rr.top+W.scrollY+(e.id==='top'?0:W.innerHeight*.2)}})})}
 
 /* ── the swarm renderer ── */
-var cv=$('#swarm'),ctx=cv.getContext('2d'),DPR=Math.min(W.devicePixelRatio||1,MOBILE?1.5:2),VW=0,VH=0;
+var cv=$('#swarm'),ctx=cv.getContext('2d'),DPR=Math.min(W.devicePixelRatio||1,MOBILE?1.25:1.35),VW=0,VH=0;
 function size(){VW=W.innerWidth;VH=W.innerHeight;cv.width=Math.round(VW*DPR);cv.height=Math.round(VH*DPR);ctx.setTransform(DPR,0,0,DPR,0,0)}
 var cur=new Float32Array(N*3),off=new Float32Array(N*2),vel=new Float32Array(N*2);cur.set(SH.sphere);
 var seeds=new Float32Array(N);for(var s=0;s<N;s++)seeds[s]=Math.random();
@@ -1124,7 +1203,7 @@ var mouse={x:-1e4,y:-1e4,nx:0,ny:0},override=null,overT=0,state={A:'sphere',B:'s
 W.addEventListener('pointermove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;mouse.nx=e.clientX/VW-.5;mouse.ny=e.clientY/VH-.5},{passive:true});
 D.addEventListener('pointerleave',function(){mouse.x=mouse.y=-1e4});
 var time=0,last=performance.now(),cols={d:'#070B1A',m:'#1D2A6E',a:'#6EF2D2'},pillarCol=null;
-var dive=null;
+var dive=null,GB=new Float32Array(N*8),GN=[0,0];
 function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   var A=SH[state.A],B=SH[state.B],raw=clamp(state.t,0,1),t=ease(raw),O=override?SH[override]:null;overT=clamp(overT+(override?dt*2.2:-dt*2.2),0,1);var ot=ease(overT);
   var V=state.via&&state.A!==state.B?SH[state.via]:null,mode=0,e1=0,vx=0,vy=0;
@@ -1141,6 +1220,7 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
     if(dv>=1)dive=null}
   var vOff=0;
   var acc=hex(pillarCol&&ot>0?mixHex(cols.a,pillarCol,ot):cols.a),mid=hex(mixHex(cols.m,'#ffffff',.6));state.CX=CX;state.CY=CY;state.SC=SC;
+  GN[0]=0;GN[1]=0;
   for(var k=0;k<N;k++){var i3=k*3,x,y,z;
     if(mode){var qx=V[i3]*.9+vOff,qy=V[i3+1]*.9,qz=V[i3+2];if(mode===1){x=lerp(A[i3],qx,e1);y=lerp(A[i3+1],qy,e1);z=lerp(A[i3+2],qz,e1)}else if(mode===2){x=qx;y=qy;z=qz}else{x=lerp(qx,B[i3],e1);y=lerp(qy,B[i3+1],e1);z=lerp(qz,B[i3+2],e1)}}
     else{x=lerp(A[i3],B[i3],t);y=lerp(A[i3+1],B[i3+1],t);z=lerp(A[i3+2],B[i3+2],t);if(burst){var sb=seeds[k];x+=Math.cos(sb*91.7)*burst*(.3+sb);y+=Math.sin(sb*53.3)*burst*(.3+sb);z+=Math.sin(sb*17.1)*burst*.4}}
@@ -1157,8 +1237,10 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
       var al=(bright*(useAcc?.95:.6)*za).toFixed(3);
       if(streak>.05){var zb=1+(zk-1)*(1-.35*streak);ctx.strokeStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+al+')';ctx.lineWidth=sz*.6;ctx.beginPath();ctx.moveTo(CX+(qx0-CX)*zb,CY+(qy0-CY)*zb);ctx.lineTo(px,py);ctx.stroke();continue}
       ctx.fillStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+al+')';ctx.fillRect(px-sz/2,py-sz/2,sz,sz);continue}
-    ctx.fillStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+(bright*(useAcc?.95:.6)).toFixed(3)+')';ctx.fillRect(px-sz/2,py-sz/2,sz,sz)}
-  ctx.globalCompositeOperation='source-over';
+    var gI=useAcc?0:1,nI=GN[gI]++,b5=gI*N*4+nI*4;GB[b5]=px-sz/2;GB[b5+1]=py-sz/2;GB[b5+2]=sz;GB[b5+3]=bright*(useAcc?.95:.6)}
+  /* draw in two batches (accent, mid): one colour each, alpha per particle */
+  for(var gI2=0;gI2<2;gI2++){var cc=gI2?mid:acc;ctx.fillStyle='rgb('+cc[0]+','+cc[1]+','+cc[2]+')';for(var q2=0,o5=gI2*N*4;q2<GN[gI2];q2++,o5+=4){ctx.globalAlpha=GB[o5+3];ctx.fillRect(GB[o5],GB[o5+1],GB[o5+2],GB[o5+2])}}
+  ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
   if(!RM)requestAnimationFrame(frame)}
 
 /* travelled distance, great-circle, counted as you scroll */
@@ -1180,12 +1262,65 @@ function drawMap(v,jp){var acc=hex(cols.a);ctx.fillStyle='rgba(255,255,255,'+(.0
       else{ctx.beginPath();ctx.moveTo(12,0);ctx.quadraticCurveTo(10,-2,6,-2);ctx.lineTo(1,-2);ctx.lineTo(-4,-11);ctx.lineTo(-7,-11);ctx.lineTo(-3,-2);ctx.lineTo(-9,-2);ctx.lineTo(-12,-6);ctx.lineTo(-14,-6);ctx.lineTo(-12,0);ctx.lineTo(-14,6);ctx.lineTo(-12,6);ctx.lineTo(-9,2);ctx.lineTo(-3,2);ctx.lineTo(-7,11);ctx.lineTo(-4,11);ctx.lineTo(1,2);ctx.lineTo(6,2);ctx.quadraticCurveTo(10,2,12,0);ctx.fill()}
       ctx.restore();if(!moving){ctx.fillStyle='rgba('+acc[0]+','+acc[1]+','+acc[2]+','+(.25*v)+')';ctx.beginPath();ctx.arc(cur[0],cur[1],12+Math.sin(time*3)*3,0,6.283);ctx.fill()}}}
 
+
+/* ── flight bands: the camera flies the dot-matrix world from one chapter to the next ── */
+var CITYLL={paris:[2.35,48.86],lille:[3.06,50.63],raleigh:[-78.64,35.78],beirut:[35.5,33.89]};
+var LAND=(function(){var bin=atob(MASK.b),o=new Uint8Array(MASK.w*MASK.h);for(var k=0;k<o.length;k++)o[k]=(bin.charCodeAt(k>>3)>>(7-(k&7)))&1;return o})();
+function mY(la){return Math.log(Math.tan(Math.PI/4+la*Math.PI/360))*180/Math.PI}
+function hav(a,b){var r=Math.PI/180,dl=(b[1]-a[1])*r,dn=(b[0]-a[0])*r,h=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a[1]*r)*Math.cos(b[1]*r)*Math.sin(dn/2)*Math.sin(dn/2);return 6371*2*Math.atan2(Math.sqrt(h),Math.sqrt(1-h))}
+var FLIGHTS=$$('.flight').map(function(f){var a=CITYLL[f.dataset.from],b=CITYLL[f.dataset.to]||null,cv=$('canvas',f);
+  if(b)$('.dist',f).textContent=Math.round(hav(a,b)).toLocaleString('en-US')+' km';
+  return {el:f,cv:cv,x:cv.getContext('2d'),a:a,b:b,pf:PAL[f.dataset.pf],pt:PAL[f.dataset.pt],mode:f.dataset.mode,last:!b}});
+function drawFlight(F,now){var r=F.el.getBoundingClientRect(),vh=W.innerHeight;if(r.bottom<-50||r.top>vh+50)return false;
+  var p=RM?1:clamp(-r.top/(r.height-vh+1),0,1),cv=F.cv,dpr=Math.min(1.5,W.devicePixelRatio||1),w=cv.clientWidth,h=cv.clientHeight,x=F.x;
+  if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}x.setTransform(dpr,0,0,dpr,0,0);
+  var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,bg=mixHex(F.pf[0],F.pt[0],e),mid=mixHex(F.pf[1],F.pt[1],e),acc=mixHex(F.pf[2],F.pt[2],e);F.el.style.setProperty('--facc',acc);
+  var g=x.createRadialGradient(w*.5,h*.45,0,w*.5,h*.45,Math.max(w,h)*.8);g.addColorStop(0,mid);g.addColorStop(1,bg);x.fillStyle=g;x.fillRect(0,0,w,h);
+  /* the view: close on each city, pulled back mid-flight; the last band zooms out to the whole world */
+  var A=F.a,B=F.b||[A[0]+40,A[1]-8],ay=mY(A[1]),by=mY(B[1]),span=Math.max(Math.abs(B[0]-A[0])+6,(Math.abs(by-ay)+6)*w/h*.8),fit=Math.min(w*.7/span,h*.55/(Math.abs(by-ay)+6));
+  var v;if(F.last){var z=lerp(Math.min(28,w/30),w/300,e);v={cx:lerp(A[0],10,e),cy:lerp(ay,mY(25),e),s:z}}
+  else{var zoom=1.45-.45*Math.sin(Math.PI*p);v={cx:lerp(A[0],B[0],e),cy:lerp(ay,by,e)-(h*.06)/(fit*zoom),s:Math.min(30,fit*zoom)}}
+  function P(lo,la){return [w/2+(lo-v.cx)*v.s,h/2-(mY(la)-v.cy)*v.s]}
+  /* dot-matrix land, only the visible cells */
+  var lo0=Math.max(-180,Math.floor(v.cx-w/2/v.s)-1),lo1=Math.min(179,Math.ceil(v.cx+w/2/v.s)+1),rd=Math.max(.8,Math.min(v.s*.3,7));
+  x.fillStyle='rgba(255,255,255,'+(.10+.06*Math.min(1,v.s/20)).toFixed(3)+')';x.beginPath();
+  for(var i=0;i<MASK.h;i++){var la=MASK.lat1-(i+.5)*MASK.step,yy=h/2-(mY(la)-v.cy)*v.s;if(yy<-10||yy>h+10)continue;
+    for(var lo=lo0;lo<=lo1;lo++){var j=lo+180;if(j<0||j>=MASK.w||!LAND[i*MASK.w+j])continue;var xx=w/2+(lo+.5-v.cx)*v.s;x.moveTo(xx+rd,yy);x.arc(xx,yy,rd,0,6.283)}}x.fill();
+  var pa=P(A[0],A[1]),pb=P(B[0],B[1]),mx=(pa[0]+pb[0])/2,my=(pa[1]+pb[1])/2-Math.hypot(pb[0]-pa[0],pb[1]-pa[1])*(F.mode==='train'?.15:.3);
+  var ac=hex(acc);
+  if(F.last){/* the unknown: candidate sparks light up all over the map */
+    var t=(now||performance.now())/1000;x.fillStyle='rgba('+ac+',1)';
+    for(var k=0;k<26;k++){var sx=Math.sin(k*12.9898)*43758.5453,sy=Math.sin(k*78.233)*12543.1;sx=sx-Math.floor(sx);sy=sy-Math.floor(sy);var q=P(-120+sx*260,-30+sy*90),tw=.5+.5*Math.sin(t*2+k*1.7);x.globalAlpha=e*tw*.8;x.beginPath();x.arc(q[0],q[1],2+tw*2.5,0,6.283);x.fill()}
+    x.globalAlpha=1;
+    /* the route hesitates between possible places, never settling */
+    var cyc=t/2.2,k0=Math.floor(cyc),fr=cyc-k0,fe=fr<.5?0:(fr-.5)*2;fe=fe*fe*(3-2*fe);
+    function cand(k){var a2=Math.sin((k%26)*12.9898)*43758.5453,b2=Math.sin((k%26)*78.233)*12543.1;a2-=Math.floor(a2);b2-=Math.floor(b2);return P(-120+a2*260,-30+b2*90)}
+    var c0=cand(k0),c1=cand(k0+1),ex=lerp(c0[0],c1[0],fe),ey=lerp(c0[1],c1[1],fe),grow=Math.min(1,p*1.6);ex=lerp(pa[0],ex,grow);ey=lerp(pa[1],ey,grow);
+    var qx=(pa[0]+ex)/2,qy=(pa[1]+ey)/2-Math.hypot(ex-pa[0],ey-pa[1])*.35;
+    x.strokeStyle='rgba('+ac+',.9)';x.lineWidth=2;x.setLineDash([7,8]);x.lineDashOffset=-t*20;x.beginPath();x.moveTo(pa[0],pa[1]);x.quadraticCurveTo(qx,qy,ex,ey);x.stroke();x.setLineDash([]);x.lineDashOffset=0;
+    if(grow>.3){var pr=10+4*Math.sin(t*4);x.strokeStyle='rgba('+ac+',.9)';x.lineWidth=2;x.beginPath();x.arc(ex,ey,pr,0,6.283);x.stroke();x.fillStyle='rgba('+ac+',.18)';x.fill();
+      x.font='700 18px Sora, Arial, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle='#fff';x.fillText('?',ex,ey+1);x.textBaseline='alphabetic'}}
+  else{x.strokeStyle='rgba('+ac+',.95)';x.lineWidth=2;x.setLineDash(F.mode==='train'?[14,6]:[7,8]);x.beginPath();x.moveTo(pa[0],pa[1]);var N2=90,lim=Math.round(N2*p),pt=pa,ang2=0;
+    for(var s3=1;s3<=lim;s3++){var t3=s3/N2,px=(1-t3)*(1-t3)*pa[0]+2*(1-t3)*t3*mx+t3*t3*pb[0],py=(1-t3)*(1-t3)*pa[1]+2*(1-t3)*t3*my+t3*t3*pb[1];x.lineTo(px,py);ang2=Math.atan2(py-pt[1],px-pt[0]);pt=[px,py]}x.stroke();x.setLineDash([]);
+    /* traveller */
+    x.save();x.translate(pt[0],pt[1]);x.rotate(lim?ang2:Math.atan2(pb[1]-pa[1],pb[0]-pa[0]));x.shadowColor='rgba('+ac+',1)';x.shadowBlur=16;x.fillStyle='#fff';var sc=1.5;x.scale(sc,sc);
+    if(F.mode==='train'){x.beginPath();x.moveTo(-12,-4);x.lineTo(7,-4);x.quadraticCurveTo(13,-4,13,0);x.quadraticCurveTo(13,4,7,4);x.lineTo(-12,4);x.closePath();x.fill();x.fillStyle='rgba('+ac+',1)';x.fillRect(-9,-2,4,2.5);x.fillRect(-3,-2,4,2.5);x.fillRect(3,-2,3,2.5)}
+    else{x.beginPath();x.moveTo(12,0);x.quadraticCurveTo(10,-2,6,-2);x.lineTo(1,-2);x.lineTo(-4,-11);x.lineTo(-7,-11);x.lineTo(-3,-2);x.lineTo(-9,-2);x.lineTo(-12,-6);x.lineTo(-14,-6);x.lineTo(-12,0);x.lineTo(-14,6);x.lineTo(-12,6);x.lineTo(-9,2);x.lineTo(-3,2);x.lineTo(-7,11);x.lineTo(-4,11);x.lineTo(1,2);x.lineTo(6,2);x.quadraticCurveTo(10,2,12,0);x.fill()}x.restore()}
+  /* city pins */
+  [[pa,F.el.dataset.from],[pb,F.b?F.el.dataset.to:null]].forEach(function(q,k){if(!q[1])return;var on=k===0||p>.97;x.fillStyle=on?'rgba('+ac+',1)':'rgba(255,255,255,.55)';x.beginPath();x.arc(q[0][0],q[0][1],6,0,6.283);x.fill();x.strokeStyle=bg;x.lineWidth=3;x.stroke();
+    x.font='500 12px "IBM Plex Mono",ui-monospace,monospace';x.textAlign='center';x.fillStyle='rgba(255,255,255,.85)';x.fillText(q[1].toUpperCase(),q[0][0],q[0][1]-16)});
+  return true}
+var flRun=false;function flightsTick(now){var any=false;FLIGHTS.forEach(function(F){if(drawFlight(F,now)&&F.last)any=true});if(any&&!RM)requestAnimationFrame(flightsTick);else flRun=false}
+function flightsOnScroll(){FLIGHTS.forEach(function(F){drawFlight(F)});var L=FLIGHTS[FLIGHTS.length-1];if(L){var r=L.el.getBoundingClientRect();if(r.bottom>0&&r.top<W.innerHeight&&!flRun){flRun=true;requestAnimationFrame(flightsTick)}}}
+if('IntersectionObserver' in W){var dio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){decode(en.target);dio.unobserve(en.target)}})},{threshold:.6});$$('#journey .decode').forEach(function(d){dio.observe(d)})}
+
 /* ── scroll: blend shapes and worlds ── */
 var links=$$('#links a'),here=$('#here'),bar=$('#bar'),dock=$('#dock'),dots=[],lastPanel=-1,hzP=0,lastCh='';
 function parallax(){if(!HZ)return;var n1=panels.length-1;panels.forEach(function(pn,i){var local=i-hzP*n1;if(Math.abs(local)>1.3)return;
   (pn.__fc||(pn.__fc=$$('.fc',pn))).forEach(function(c){var d=+c.dataset.depth||1;c.style.transform='translate3d('+(local*d*90+mouse.nx*d*12)+'px,'+(mouse.ny*d*10)+'px,0) rotateY('+(mouse.nx*d*5)+'deg) rotateX('+(-mouse.ny*d*4)+'deg)'})})}
 W.addEventListener('pointermove',function(){if(HZ&&state.jv>.5)requestAnimationFrame(parallax)},{passive:true});
-function applyCols(c){cols=c;root.style.setProperty('--d',c.d);root.style.setProperty('--m',c.m);root.style.setProperty('--a',pillarCol&&overT>.01?mixHex(c.a,pillarCol,ease(overT)):c.a)}
+var lastV={};function setV(k,v){if(lastV[k]!==v){lastV[k]=v;root.style.setProperty(k,v)}}
+function applyCols(c){cols=c;setV('--d',c.d);setV('--m',c.m);setV('--a',pillarCol&&overT>.01?mixHex(c.a,pillarCol,ease(overT)):c.a)}
 function onScroll(){var vh=W.innerHeight,y=W.scrollY,vc=y+vh*.5;
   if(HZ){var r=hz.getBoundingClientRect(),span=hz.offsetHeight-vh,p=clamp(-r.top/span,0,1),n1=panels.length-1;track.style.transform='translate3d('+(-p*n1*W.innerWidth)+'px,0,0)';
     var ai=Math.round(p*n1);dots.forEach(function(d,i){d.classList.toggle('on',i===ai)});
@@ -1201,6 +1336,7 @@ function onScroll(){var vh=W.innerHeight,y=W.scrollY,vc=y+vh*.5;
   if(ch!==lastCh){if(lastCh&&secId===lastSec)wipe(PAL[(tt<.5?a:b).pal][2]);lastCh=ch;if(W.buddyMood)W.buddyMood((tt<.5?a:b).pal)}
   if(secId!==lastSec){lastSec=secId;W.curSec=secId}lastY=y;camera(vh);
   links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+secId)});
+  flightsOnScroll();
   bar.style.transform='scaleX('+clamp(y/(D.documentElement.scrollHeight-vh),0,1)+')';
   var hb=$('#top').getBoundingClientRect().bottom,nt=$('#next').getBoundingClientRect().top;dock.classList.toggle('show',hb<vh*.2&&nt>vh*.5);
   if(RM)frame(performance.now())}
@@ -1260,7 +1396,7 @@ function layout(){setupHz();size();buildAnchors();if(!HZ)$$('.fc').forEach(funct
 /* journey dots */
 (function(){var box=$('#hzDots');panels.forEach(function(p,i){var b=D.createElement('button');b.innerHTML='<i></i>'+p.dataset.ch.split(' · ')[0];b.setAttribute('aria-label','Go to '+p.dataset.ch);
   b.onclick=function(){var span=hz.offsetHeight-W.innerHeight;W.scrollTo({top:hz.getBoundingClientRect().top+W.scrollY+span*i/(panels.length-1),behavior:RM?'auto':'smooth'})};box.appendChild(b);dots.push(b)})})();
-W.addEventListener('scroll',function(){requestAnimationFrame(onScroll)},{passive:true});
+var scrollQ=false;W.addEventListener('scroll',function(){if(!scrollQ){scrollQ=true;requestAnimationFrame(function(){scrollQ=false;onScroll()})}},{passive:true});
 W.addEventListener('resize',function(){clearTimeout(W.__rz);W.__rz=setTimeout(layout,120)});
 layout();requestAnimationFrame(frame);
 
@@ -1369,6 +1505,44 @@ setInterval(function(){if(overT>0)applyCols(cols)},50);
       for(var i=sparks.length-1;i>=0;i--){var s3=sparks[i];s3.vy+=1;s3.x+=s3.vx/60;s3.y+=s3.vy/60;s3.l-=.035;if(s3.l<=0){s3.el.remove();sparks.splice(i,1);continue}s3.el.setAttribute('cx',s3.x);s3.el.setAttribute('cy',s3.y);s3.el.setAttribute('opacity',s3.l)}
       if(p>=1)sg.classList.add('done');if(p<1||sparks.length)requestAnimationFrame(st)})(t0)}
   if('IntersectionObserver' in W)new IntersectionObserver(function(es,o){if(es[0].isIntersecting){play();o.disconnect()}},{threshold:.6}).observe(sg);else play()})();
+
+
+/* ── Joseph OS: a tiny desktop where my projects are apps ── */
+(function(){var desk=$('#josDesk');if(!desk)return;var z=10,open={};
+  function clock(){var d=new Date();$('#josClock').textContent=d.toLocaleDateString('en-GB',{weekday:'short'})+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}clock();setInterval(clock,30000);
+  function go(sel){var el=$(sel);if(el)el.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'})}
+  var APPS={
+    term:{t:'Terminal',w:470,body:function(b){b.classList.add('term');var log=D.createElement('div'),row=D.createElement('div'),inp=D.createElement('input');row.className='ln';row.innerHTML='<span class="pr">joseph@os ~ % </span>';row.appendChild(inp);inp.setAttribute('aria-label','Terminal command');b.appendChild(log);b.appendChild(row);
+      function out(t){var l=D.createElement('div');l.className='ln';l.textContent=t;log.appendChild(l);b.scrollTop=b.scrollHeight}
+      var CMD={help:'Commands: whoami, journey, skills, languages, projects, contact, cv, date, clear, sudo hire-me',
+        whoami:'Joseph Sbeiti. Strategy consultant in digital transformation, building AI and software on the side.',
+        journey:'Paris → Lille → Raleigh → Beirut → Raleigh → Paris → ?',
+        skills:'Digital transformation, AI product design, PMO, business analysis, process automation (Excel VBA, Python), Power BI, C++.',
+        languages:'English, French, Arabic (native) · Spanish A2 · Dutch, learning',
+        projects:'MegaMind (AI brain + digital twin) · Energy profiles (k-means) · International Signature (full platform) · robotics prototypes',
+        contact:'josephsbeiti@gmail.com · linkedin.com/in/joseph-sbeiti',
+        ls:'Energy.app  Concierge.app  Robot.app  Notes  cv.pdf'};
+      out('Joseph OS 1.0. Type help.');
+      inp.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var c=inp.value.trim().toLowerCase();inp.value='';out('joseph@os ~ % '+c);if(!c)return;
+        if(c==='clear'){log.innerHTML='';return}if(c==='date'){out(new Date().toString());return}
+        if(c==='cv'||c==='open cv.pdf'){out('Opening cv.pdf…');var a=D.createElement('a');a.href='Joseph-Sbeiti-CV.pdf';a.download='Joseph-Sbeiti-CV.pdf';D.body.appendChild(a);a.click();a.remove();return}
+        if(c.indexOf('sudo hire')===0){out('[sudo] password for recruiter: ********');setTimeout(function(){out('Permission granted. Email copied: josephsbeiti@gmail.com');try{navigator.clipboard.writeText('josephsbeiti@gmail.com').catch(function(){})}catch(err){}if(W.buddyQuip)W.buddyQuip('You found the secret command. I like you.')},700);return}
+        if(c==='sudo'||c.indexOf('sudo ')===0){out('Nice try. Only hire-me works with sudo.');return}
+        out(CMD[c]||('command not found: '+c+'. Type help.'))});
+      setTimeout(function(){try{inp.focus({preventScroll:true})}catch(e){}},50)}},
+    energy:{t:'Energy.app',body:function(b){b.innerHTML='<h4>Energy development profiles</h4>164 countries clustered with k-means into 4 energy profiles, and a regression showing that income explains 83% of electricity per person. Python, Our World in Data.<br><button class="go">Open the analysis</button>';$('.go',b).onclick=function(){go('.edp')}}},
+    conc:{t:'Concierge.app',body:function(b){b.innerHTML='<h4>International Signature</h4>The whole platform of a luxury concierge service, programmed end to end: website, client accounts, back-office and a cross-selling recommendation algorithm.<br><button class="go">Try the recommender idea</button>';$('.go',b).onclick=function(){go('#rec')}}},
+    robot:{t:'Robot.app',body:function(b){b.innerHTML='<h4>MegaMind digital twin</h4>A small robot explores a virtual building before it touches the real floor. Add walls, set a goal, watch it replan.<br><button class="go">Launch the twin</button>';$('.go',b).onclick=function(){go('#twin')}}},
+    notes:{t:'Notes',body:function(b){b.innerHTML='<h4>After hours</h4>Small software projects, robotics and electronics prototypes, and websites for friends. Building is how I learn, and how I understand what engineers deal with every day.'}}};
+  function openApp(k){var A=APPS[k];if(open[k]){open[k].style.zIndex=++z;open[k].animate&&open[k].animate([{transform:'scale(1.03)'},{transform:'none'}],{duration:200});return}
+    var w=D.createElement('div');w.className='jwin';w.style.zIndex=++z;var n=Object.keys(open).length,dw=desk.clientWidth,mob=dw<600;
+    w.style.left=(mob?12:Math.min(120+n*34,dw-450))+'px';w.style.top=(mob?12+n*18:22+n*30)+'px';if(A.w&&!mob)w.style.width=A.w+'px';
+    w.innerHTML='<div class="jwin-h"><i title="Close" role="button" aria-label="Close '+A.t+'"></i><i></i><i></i><b>'+A.t+'</b></div><div class="jwin-b"></div>';desk.appendChild(w);open[k]=w;A.body($('.jwin-b',w));
+    $('.jwin-h i',w).onclick=function(){w.remove();delete open[k]};w.addEventListener('pointerdown',function(){w.style.zIndex=++z});
+    var h=$('.jwin-h',w),sx,sy,ox,oy,drag=false;h.addEventListener('pointerdown',function(e){if(e.target.tagName==='I')return;drag=true;sx=e.clientX;sy=e.clientY;ox=w.offsetLeft;oy=w.offsetTop;h.setPointerCapture(e.pointerId)});
+    h.addEventListener('pointermove',function(e){if(!drag)return;w.style.left=clamp(ox+e.clientX-sx,-w.offsetWidth+80,desk.clientWidth-80)+'px';w.style.top=clamp(oy+e.clientY-sy,0,desk.clientHeight-40)+'px'});
+    h.addEventListener('pointerup',function(){drag=false})}
+  $$('.jos-ic',desk).forEach(function(b){b.onclick=function(){openApp(b.dataset.app)}})})();
 
 /* ── equal chances ── */
 var EQ={fra:{n:'France',w:[99.7,2024],s:[99.5,2019],l:[83.0,2024],u:[4.3,2024],e:[8442,2024]},lbn:{n:'Lebanon',w:[47.7,2024],s:[52.9,2023],l:[77.9,2024],u:[17.6,2024],e:[920,2024]},
@@ -1622,7 +1796,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   W.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var dx=lx==null?0:e.clientX-lx,dy=ly==null?0:e.clientY-ly,n=Math.min(3,1+Math.hypot(dx,dy)/20);
     for(var i=0;i<n;i++){var t=i/n;P.push({x:e.clientX-dx*t+(Math.random()-.5)*4,y:e.clientY-dy*t+(Math.random()-.5)*4,vx:(Math.random()-.5)*.6-dx*.02,vy:(Math.random()-.5)*.6-dy*.02+.15,l:1,r:1+Math.random()*1.8})}
     lx=e.clientX;ly=e.clientY;if(P.length>160)P.splice(0,P.length-160);if(!run){run=true;requestAnimationFrame(tick)}},{passive:true});
-  function tick(){x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,innerWidth,innerHeight);var col=getComputedStyle(root).getPropertyValue('--a').trim()||'#7ff';x.fillStyle=col;x.shadowColor=col;x.shadowBlur=8;
+  function tick(){x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,innerWidth,innerHeight);var col=(cols&&cols.a)||'#7ff';x.fillStyle=col;x.shadowColor=col;x.shadowBlur=8;
     for(var i=P.length-1;i>=0;i--){var p=P[i];p.x+=p.vx;p.y+=p.vy;p.l-=.06;if(p.l<=0){P.splice(i,1);continue}x.globalAlpha=p.l*.85;x.beginPath();x.arc(p.x,p.y,p.r*p.l+.3,0,6.283);x.fill()}
     x.globalAlpha=1;if(P.length)requestAnimationFrame(tick);else{run=false;x.clearRect(0,0,innerWidth,innerHeight)}}})();
 
@@ -1674,7 +1848,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   function say(txt,actions,mood){var t=D.createElement('div');t.className='bm';t.innerHTML='<span class="typing"><i></i><i></i><i></i></span>';log.appendChild(t);log.scrollTop=log.scrollHeight;setFace('think');
     setTimeout(function(){t.textContent=txt;(actions||[]).forEach(function(a){var b=D.createElement('button');b.textContent=a[0];b.onclick=function(){act(a[1])};t.appendChild(D.createElement('br'));t.appendChild(b)});setFace(mood||'smile');log.scrollTop=log.scrollHeight},RM?0:700)}
   function act(a){if(a==='cv'){var l=D.createElement('a');l.href='Joseph-Sbeiti-CV.pdf';l.download='Joseph-Sbeiti-CV.pdf';D.body.appendChild(l);l.click();l.remove()}
-    else if(a==='mail'){try{navigator.clipboard.writeText('josephsbeiti@gmail.com')}catch(e){}var tt=$('#toast');tt.textContent='Copied josephsbeiti@gmail.com';tt.classList.add('show');setTimeout(function(){tt.classList.remove('show')},2200)}
+    else if(a==='mail'){try{navigator.clipboard.writeText('josephsbeiti@gmail.com').catch(function(){})}catch(e){}var tt=$('#toast');tt.textContent='Copied josephsbeiti@gmail.com';tt.classList.add('show');setTimeout(function(){tt.classList.remove('show')},2200)}
     else{close();var el=$(a);if(el)el.scrollIntoView({behavior:RM?'auto':'smooth'})}}
   chips.innerHTML=Q.map(function(q,i){return '<button data-i="'+i+'">'+q[0]+'</button>'}).join('');
   $$('button',chips).forEach(function(b){b.onclick=function(){var q=Q[+b.dataset.i];var m=D.createElement('div');m.className='bm me';m.textContent=q[0];log.appendChild(m);say(q[2],q[3],q[1])}});
@@ -1692,6 +1866,10 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   hint.style.cursor='pointer';hint.onclick=function(){open()};
   setInterval(function(){if(D.hidden||cur==='sleep')return;var c=CTX[curPal];if(c&&!said[curPal]){said[curPal]=1;quip(c);return}quip(LINES[Math.floor(Math.random()*LINES.length)])},30000);
   W.buddyQuip=function(t){quip(t,true)};
+  /* he notices when the window is resized */
+  var lastW=W.innerWidth,rzT=0;W.addEventListener('resize',function(){clearTimeout(rzT);rzT=setTimeout(function(){var nw=W.innerWidth,d=nw-lastW;if(Math.abs(d)<120){return}
+    face.animate&&face.animate([{transform:d<0?'scaleX(.7) scaleY(1.15)':'scaleX(1.25) scaleY(.85)'},{transform:'none'}],{duration:600,easing:'cubic-bezier(.2,1.6,.4,1)'});
+    quip(nw<520?'Phone size! Everything still works, just cosier.':d<0?'Hey, it’s getting tight in here.':nw>1600?'Wow, a big screen. I feel taller.':'Ah, room to breathe.',true);lastW=nw},250)});
   /* he reads the visitor's clock */
   function clockLine(){var d=new Date(),h=d.getHours(),w=d.getDay();
     if(h<5)return 'Shouldn’t you be asleep? I almost am.';
