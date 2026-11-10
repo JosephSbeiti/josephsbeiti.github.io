@@ -671,7 +671,7 @@ main{overflow-x:clip}
 .pbub{position:absolute;left:58%;top:-6%;width:62px;height:52px;border-radius:50%;background:#fff;color:#15171f;display:grid;place-items:center;font-family:var(--display);font-size:1.7rem;opacity:0;transform:scale(.4);transition:opacity .3s,transform .4s cubic-bezier(.2,1.4,.4,1)}
 .pbub::before,.pbub::after{content:"";position:absolute;background:#fff;border-radius:50%}
 .pbub::before{width:14px;height:14px;left:4px;bottom:-12px}.pbub::after{width:7px;height:7px;left:-4px;bottom:-22px}
-.pbub.on{opacity:1;transform:none}.pbub.bye{width:78px}.pbub.bye b{font-size:1.1rem;animation:none}
+.pbub.on{opacity:1;transform:none}.pbub.bye{width:max-content;max-width:min(260px,70vw);height:auto;padding:10px 16px;border-radius:18px;left:56%;top:-14%}.pbub.bye b{font-size:.95rem;line-height:1.3;font-family:var(--body);font-weight:600;animation:none;text-align:center}@media(max-width:700px){.pbub.bye{left:-4%;top:-7%;max-width:min(210px,58vw);padding:8px 12px}.pbub.bye b{font-size:.82rem}}
 .pbub b{animation:qbob 1.6s ease-in-out infinite}
 .bpass{position:absolute;right:max(16px,5vw);bottom:12vh;width:min(360px,calc(100vw - 32px));padding:14px 16px;border-radius:18px;background:#F7F8FB!important;color:#15171f!important;border:1px solid rgba(255,255,255,.6);z-index:3;opacity:0;transform:translateY(30px) rotate(3deg);transition:opacity .5s,transform .6s cubic-bezier(.2,1.2,.4,1);pointer-events:none;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
 .bpass.on{opacity:1;transform:none;pointer-events:auto}
@@ -1744,7 +1744,7 @@ function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddy
   var blink=(t%3.6)<.12;A.lid.forEach(function(l){l.style.transform='scaleY('+(blink?.1:1)+')'});
   var search=p>.28&&p<.5,pass=p>=.5&&p<.85,plane=p>.62&&p<.8,bye=p>=.8&&p<.89;
   A.pass.classList.toggle('on',p>.5);A.el.classList.toggle('pass-on',p>.5);
-  A.bub.classList.toggle('on',search||bye);var bt=bye?'Bye!':'?';if(A.bubT.textContent!==bt)A.bubT.textContent=bt;A.bub.classList.toggle('bye',bye);
+  A.bub.classList.toggle('on',search||bye);var bt=bye?'I’m going to shape the future, bye!':'?';if(A.bubT.textContent!==bt)A.bubT.textContent=bt;A.bub.classList.toggle('bye',bye);
   A.csh.style.display=front?'none':'';
   if(!front){
     /* profile: walking or standing, reading the boarding pass on the way in */
