@@ -140,7 +140,8 @@ p{margin:0}
 .seg button:hover{color:var(--fg)}
 .seg button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
 .seg button:focus-visible{outline:2px solid var(--a)}
-#origin{min-height:100vh;display:flex;align-items:flex-start;padding-top:clamp(60px,6vw,76px)}
+#origin{display:flex;align-items:flex-start;padding-top:clamp(60px,6vw,76px);padding-bottom:clamp(30px,4vw,50px)}
+#purpose{padding-top:clamp(40px,5vw,64px)}
 #origin>.wrap{width:100%}
 /* ── generic layouts ── */
 .col{max-width:600px}
@@ -1874,6 +1875,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
     ['What is MegaMind?','wow',"My own AI brain, built from scratch without external AI models. It drives a small robot that learns in a digital twin before it touches the real world.",[['Show me','#hq']]],
     ['Why this portfolio?','think',"A CV tells you what I did. This page shows how I think and what I build: my story, my projects and where I'm heading. And if it makes you want to work with me, well, that was kind of the plan.",[['Download my CV','cv']]],
     ['Can you code?','proud',"Yes. I programmed the whole platform of International Signature, a luxury concierge service: website, client accounts, back-office and a cross-selling recommendation algorithm. I also build software, robotics and websites for myself and friends.",[['See it','#lab']]],
+    ['Coffee or tea?','think','__coffee__',[]],
     ['A fun fact','laugh',"I teach myself robotics and electronics by building my own prototypes, just for fun. Mini me is the cartoon version, the real one replies by email.",[['Copy my email','mail']]]];
   function say(txt,actions,mood){var t=D.createElement('div');t.className='bm';t.innerHTML='<span class="typing"><i></i><i></i><i></i></span>';log.appendChild(t);log.scrollTop=log.scrollHeight;setFace('think');
     setTimeout(function(){t.textContent=txt;(actions||[]).forEach(function(a){var b=D.createElement('button');b.textContent=a[0];b.onclick=function(){act(a[1])};t.appendChild(D.createElement('br'));t.appendChild(b)});setFace(mood||'smile');log.scrollTop=log.scrollHeight},RM?0:700)}
@@ -1881,7 +1883,10 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
     else if(a==='mail'){try{navigator.clipboard.writeText('josephsbeiti@gmail.com').catch(function(){})}catch(e){}var tt=$('#toast');tt.textContent='Copied josephsbeiti@gmail.com';tt.classList.add('show');setTimeout(function(){tt.classList.remove('show')},2200)}
     else{close();var el=$(a);if(el)el.scrollIntoView({behavior:RM?'auto':'smooth'})}}
   chips.innerHTML=Q.map(function(q,i){return '<button data-i="'+i+'">'+q[0]+'</button>'}).join('');
-  $$('button',chips).forEach(function(b){b.onclick=function(){var q=Q[+b.dataset.i];var m=D.createElement('div');m.className='bm me';m.textContent=q[0];log.appendChild(m);say(q[2],q[3],q[1])}});
+  $$('button',chips).forEach(function(b){b.onclick=function(){var q=Q[+b.dataset.i];var m=D.createElement('div');m.className='bm me';m.textContent=q[0];log.appendChild(m);
+    if(q[2]==='__coffee__'){say('Hmm… thinking…',[],'think');setTimeout(function(){say('Still thinking… this is harder than backpropagation.',[],'wow')},1500);
+      setTimeout(function(){say('Okay, ask the real me. That sounds like a coffee-chat question anyway. Or a tea chat. See? Still undecided.',[['Copy my email','mail']],'laugh')},3200);return}
+    say(q[2],q[3],q[1])}});
   var greeted=false;
   function open(){hint.hidden=true;chat.hidden=false;face.setAttribute('aria-expanded','true');if(!greeted){greeted=true;say("Hi, I'm mini Joseph! Ask me anything below. Well, almost anything.",[],'laugh')}else setFace('smile')}
   function close(){chat.hidden=true;face.setAttribute('aria-expanded','false');setFace('wink');setTimeout(function(){setFace('smile')},900)}
