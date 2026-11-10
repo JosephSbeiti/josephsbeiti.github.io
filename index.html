@@ -441,7 +441,8 @@ svg :focus{outline:none}
 .rec-key{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:.78rem;color:var(--fg3)}
 .rec-key i{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--c);margin-right:6px;vertical-align:-1px}
 .rec-how{grid-column:1/-1;padding-top:14px;border-top:1px solid var(--edge);font-size:.95rem;color:var(--fg2);line-height:1.55}
-.rec-how b{color:var(--fg)}.rec-how em{font-style:normal;color:var(--fg)}
+.rec-how b{color:var(--fg)}
+.twin-ins{margin-top:18px;display:flex;gap:16px;align-items:center;padding:18px 22px}.twin-ins p{color:var(--fg2);font-size:1rem;line-height:1.55;max-width:70ch}.twin-ins b{color:var(--fg)}.tw-ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:var(--a);background:color-mix(in srgb,var(--a) 16%,transparent);border:1px solid color-mix(in srgb,var(--a) 35%,transparent)}.tw-ic svg{width:24px;height:24px}.rec-how em{font-style:normal;color:var(--fg)}
 
 @keyframes recin{from{opacity:0;transform:translateX(-10px)}}
 @keyframes recbar{from{width:0}}
@@ -987,8 +988,7 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="fl-left">
             <span class="chap">Chapter 2 of 5</span>
             <div class="stop"><span class="city decode">Raleigh</span><span class="when">2024 · BBA final year</span></div>
-            <div class="glass pad fc bc" data-depth="1"><span class="bk">Raleigh campus · BBA final year</span><b class="bn">SKEMA Business School</b><span class="br">On NC State University's Centennial Campus</span>
-              <p class="bd">Final year of my BBA in the United States, on SKEMA's campus inside NC State's Centennial Campus.</p></div>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Raleigh campus · 2024</span><b class="bn">SKEMA Business School</b><span class="br">The final year of my BBA, on NC State University's Centennial Campus</span></div>
             <div class="glass pad fc mini ctx" data-depth="1.3"><span class="kick">Where I studied · the Research Triangle</span>
               <p class="bd">About 20 minutes from campus, Research Triangle Park is one of the largest tech and research hubs in the world, home to IBM, Cisco, GSK and Syngenta.</p>
               <div class="minis"><div><b data-count="300" data-suf="+">300+</b><span>international companies</span></div><div><b data-count="50000" data-suf="+">50,000+</b><span>people working there</span></div></div></div>
@@ -1237,21 +1237,8 @@ body.gl-open .dock{transform:translateY(150%)}
       <p class="note">A tiny demo network trained live in your browser to show the idea. MegaMind's own code stays private.</p>
     </div>
 
-    <div class="glass pad room rv" id="twinpanel">
-      <div class="room-head">
-        <div><span class="room-tag">Room 2 · Digital twin</span><h3 style="margin-top:6px">Watch the robot explore before it touches the floor.</h3>
-          <p>It only knows what its camera has seen. It drives to the nearest unknown edge, maps the building room by room, and replans when something gets in its way.</p></div>
-        <div class="ctrls">
-          <button class="ctrl main" id="twPlay"><span>Pause</span></button>
-          <button class="ctrl sel" id="twWall" aria-pressed="true">Place walls</button>
-          <button class="ctrl sel" id="twGoal" aria-pressed="false">Set a goal</button>
-          <button class="ctrl" id="twReset">Reset</button>
-        </div>
-      </div>
-      <div class="twin"><canvas id="twin" width="1020" height="600" aria-label="Top-down digital twin of a building being mapped by a robot"></canvas></div>
-      <div class="twin-bar"><div class="twin-stats"><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FFD166;margin-right:6px;vertical-align:-1px"></i>your walls</span><span>Mapped <b id="twCov">0%</b></span><span>Steps <b id="twSteps">0</b></span><span id="twState">Exploring</span></div><div class="cov"><i id="twBar"></i></div></div>
-      <p class="note">An illustrative simulation in your browser, inspired by how MegaMind trains. Click to add or remove a wall, or choose “Set a goal” and click where the robot should go.</p>
-    </div>
+    <div class="glass pad twin-ins rv"><span class="tw-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="8" rx="1.5"/><rect x="13" y="12" width="8" height="8" rx="1.5"/><path d="M11 8h4a2 2 0 0 1 2 2v2M13 16H9a2 2 0 0 1-2-2v-2"/></svg></span>
+      <p><b>Digital twin.</b> Before it ever moves in the real world, the robot learns in a virtual copy of a building, seen through a model of its real camera. Mistakes there cost nothing.</p></div>
     <a class="lnk rv" href="https://github.com/JosephSbeiti/MegaMind" target="_blank" rel="noopener">MegaMind on GitHub ↗</a>
   </div>
 </section>
@@ -2176,7 +2163,7 @@ var pst=$$('.pstep');function pg(i){pst.forEach(function(b,k){b.setAttribute('ar
   init();layoutNN();drawFloor();paintW();paintA(null);stats();new IntersectionObserver(function(es){nnVis=es[0].isIntersecting;if(nnVis&&!pRun){pRun=true;plast=performance.now();requestAnimationFrame(ptick)}if(!nnVis&&training)toggle()}).observe($('#nnpanel'))})();
 
 /* ── Room 2: digital twin ── */
-(function(){var GW=34,GH=20,cvt=$('#twin'),c=cvt.getContext('2d'),C=cvt.width/GW,truth,known,robot,dir,goal,steps,trail,playing=!RM,mode='wall',timer=0,visible=false,state='',path=null;
+(function(){if(!$('#twin'))return;var GW=34,GH=20,cvt=$('#twin'),c=cvt.getContext('2d'),C=cvt.width/GW,truth,known,robot,dir,goal,steps,trail,playing=!RM,mode='wall',timer=0,visible=false,state='',path=null;
   function build(){truth=[];for(var y=0;y<GH;y++){truth.push([]);for(var x=0;x<GW;x++)truth[y].push(x===0||y===0||x===GW-1||y===GH-1?1:0)}function wall(a,b,c2,d){for(var y=b;y<=d;y++)for(var x=a;x<=c2;x++)truth[y][x]=1}
     wall(11,1,11,18);wall(22,1,22,18);wall(1,8,10,8);wall(1,13,10,13);wall(12,10,21,10);wall(23,7,32,7);wall(23,13,32,13);
     [[11,4],[11,5],[11,15],[22,3],[22,4],[22,16],[5,8],[6,8],[4,13],[16,10],[17,10],[27,7],[28,7],[28,13],[29,13]].forEach(function(d){truth[d[1]][d[0]]=0});wall(15,3,17,4);wall(26,2,28,3);wall(3,15,5,16);wall(29,16,30,17);wall(14,14,15,16)}
