@@ -707,6 +707,10 @@ main{overflow-x:clip}
 #journey .panel{position:relative;z-index:2;margin-top:-100vh}
 .flight .stick{will-change:opacity}
 @media(max-width:700px){.flight:not(.last){height:240vh}.flight.train{height:300vh}}
+.sec{padding-block:clamp(56px,7vw,96px)}
+#journey .panel{align-items:flex-start;padding-top:calc(var(--nav-h) + clamp(28px,5vh,56px));padding-bottom:clamp(40px,6vh,72px);min-height:0}
+.flight:not(.last){height:225vh}
+@media(max-width:700px){.flight:not(.last){height:215vh}}
 @media(prefers-reduced-motion:reduce){.flight:not(.last),.flight.train{height:auto}#journey .panel{margin-top:0}}
 
 .op .jgo{margin-top:clamp(40px,5vw,64px)}.jgo-line{margin-top:10px}.jgo-line i{height:40px}
