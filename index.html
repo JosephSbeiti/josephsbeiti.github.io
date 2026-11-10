@@ -705,13 +705,14 @@ main{overflow-x:clip}
 .flight:not(.last){height:255vh}
 .flight.train{height:430vh}
 #journey .panel{position:relative;z-index:2;margin-top:-100vh}
+#journey .panel+.flight{margin-top:-40vh}
 .flight .stick{will-change:opacity}
 @media(max-width:700px){.flight:not(.last){height:240vh}.flight.train{height:370vh}}
 .sec{padding-block:clamp(56px,7vw,96px)}
 #journey .panel{align-items:flex-start;padding-top:calc(var(--nav-h) + clamp(28px,5vh,56px));padding-bottom:clamp(40px,6vh,72px);min-height:0}
 .flight:not(.last){height:290vh}
 @media(max-width:700px){.flight:not(.last){height:275vh}}
-@media(prefers-reduced-motion:reduce){.flight:not(.last),.flight.train{height:auto}#journey .panel{margin-top:0}}
+@media(prefers-reduced-motion:reduce){.flight:not(.last),.flight.train{height:auto}#journey .panel,#journey .panel+.flight{margin-top:0}}
 
 .op .jgo{margin-top:clamp(40px,5vw,64px)}.jgo-line{margin-top:10px}.jgo-line i{height:40px}
 #origin.op{padding-bottom:clamp(24px,3vw,40px)}
@@ -1494,7 +1495,8 @@ var FLIGHTS=$$('.flight').map(function(f){var a=CITYLL[f.dataset.from],b=CITYLL[
   return {el:f,st:$('.stick',f),tx:$('.ftxt',f),cv:cv,x:cv.getContext('2d'),a:a,b:b,pf:PAL[f.dataset.pf],pt:PAL[f.dataset.pt],mode:f.dataset.mode,last:!b}});
 function drawFlight(F,now){var r=F.el.getBoundingClientRect(),vh=W.innerHeight;if(r.bottom<-50||r.top>vh+50)return false;
   var ov=!F.last&&!RM,p=RM?1:clamp(-r.top/(r.height-(ov?2:1)*vh+1),0,1);
-  if(ov){var fd=clamp((-r.top-(r.height-2*vh))/vh,0,1);F.st.style.opacity=(1-fd*fd*(3-2*fd)).toFixed(3);if(F.tx)F.tx.style.opacity=clamp(1-fd*4,0,1).toFixed(3);if(fd>=1)return true}
+  if(ov){var fi=clamp(1-r.top/vh,0,1),fd=clamp((-r.top-(r.height-2*vh))/vh,0,1),fiE=fi*fi*(3-2*fi);F.st.style.opacity=(fiE*(1-fd*fd*(3-2*fd))).toFixed(3);
+    var mk=r.top>0?'linear-gradient(to bottom,transparent 0,#000 '+Math.round(40+60*fi)+'%)':'none';if(F.mk!==mk){F.mk=mk;F.st.style.webkitMaskImage=F.st.style.maskImage=mk}if(F.tx)F.tx.style.opacity=Math.min(clamp((fi-.75)/.25,0,1),clamp(1-fd*4,0,1)).toFixed(3);if(fd>=1)return true}
   var cv=F.cv,dpr=Math.min(1.5,W.devicePixelRatio||1),w=cv.clientWidth,h=cv.clientHeight,x=F.x;
   if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}x.setTransform(dpr,0,0,dpr,0,0);
   var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,bg=mixHex(F.pf[0],F.pt[0],e),mid=mixHex(F.pf[1],F.pt[1],e),acc=mixHex(F.pf[2],F.pt[2],e);F.el.style.setProperty('--facc',acc);
