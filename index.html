@@ -423,6 +423,26 @@ svg :focus{outline:none}
 .rec-out li i{grid-column:1/-1;height:6px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
 .rec-out li i::after{content:"";display:block;height:100%;width:var(--w);border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--a) 50%,transparent),var(--a));animation:recbar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k)*90ms + .1s)}
 .rec-out .empty{color:var(--fg3);font-size:.9rem;display:block}
+/* International Signature: compact, explained */
+.fs{max-width:980px}
+.fs-chips{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fs-chips li{font-size:.86rem;font-weight:600;padding:6px 12px;border-radius:99px;border:1px solid var(--edge);background:rgba(255,255,255,.05);color:var(--fg2)}
+.fs-chips li.lbl{border:0;background:none;padding-left:0;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
+.fs-chips li.on{border-color:var(--a);color:var(--fg);background:color-mix(in srgb,var(--a) 16%,transparent)}
+.rec{margin-top:14px}
+.rec-l .kick{display:block}
+.rec-pick.seg2 button{font-size:.84rem;padding:7px 12px}
+.rec-out{min-height:200px}
+.rec-out li{grid-template-columns:1fr auto}
+.rec-out li i.seg{display:flex;gap:2px;width:100%;grid-column:1/-1;height:7px;border-radius:9px;overflow:hidden;background:rgba(255,255,255,.06)}
+.rec-out li i.seg::after{display:none}
+.rec-out li i.seg u{display:block;flex:none;height:7px;width:var(--w);background:var(--c);animation:recbar .7s cubic-bezier(.2,.7,.2,1) both}
+.rec-out li small{grid-column:1/-1;font-size:.82rem;color:var(--fg2)}
+.rec-key{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:.78rem;color:var(--fg3)}
+.rec-key i{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--c);margin-right:6px;vertical-align:-1px}
+.rec-how{grid-column:1/-1;padding-top:14px;border-top:1px solid var(--edge);font-size:.95rem;color:var(--fg2);line-height:1.55}
+.rec-how b{color:var(--fg)}.rec-how em{font-style:normal;color:var(--fg)}
+
 @keyframes recin{from{opacity:0;transform:translateX(-10px)}}
 @keyframes recbar{from{width:0}}
 @media(max-width:820px){.rec{grid-template-columns:1fr}}
@@ -1244,18 +1264,18 @@ body.gl-open .dock{transform:translateY(150%)}
       <div class="fs-head"><div><span class="kick">Software engineering · built end to end</span>
         <h3 style="margin-top:8px">International Signature, the whole platform</h3>
         <p class="muted" style="margin-top:8px;max-width:64ch">For this luxury concierge service, I programmed every layer of the software myself: the public website, client account creation, the back-office where the team handles requests, and the recommendation algorithm that suggests the right extra services to each client.</p></div></div>
+      <ul class="fs-chips" aria-label="What I built"><li class="lbl">What I built</li><li>Website</li><li>Client accounts</li><li>Back-office</li><li class="on">Cross-selling algorithm</li></ul>
       <div class="rec" id="rec">
-        <div class="rec-l"><span class="kick">Try the idea · pick one or more requests</span>
-          <div class="rec-pick" id="recPick" role="group" aria-label="Client requests"></div></div>
-        <div class="rec-r" aria-live="polite"><span class="kick">The client is also likely to want</span><ol class="rec-out" id="recOut"></ol></div>
-        <p class="note" style="grid-column:1/-1;margin:0">Illustrative demo with sample data: it scores which services are often booked together. Not the client's real data or code.</p>
+        <div class="rec-l">
+          <span class="kick">1 · The client asks for</span><div class="rec-pick" id="recPick" role="group" aria-label="Client requests"></div>
+          <span class="kick" style="margin-top:14px">2 · Who the client is</span><div class="rec-pick seg2" id="recProf" role="group" aria-label="Client profile"></div>
+          <span class="kick" style="margin-top:14px">3 · The trip</span><div class="rec-pick seg2" id="recCtx" role="group" aria-label="Trip context"></div>
+        </div>
+        <div class="rec-r" aria-live="polite"><span class="kick">The algorithm suggests</span><ol class="rec-out" id="recOut"></ol>
+          <div class="rec-key"><span><i style="--c:#5EE6C8"></i>Booked together</span><span><i style="--c:#B79CFF"></i>Client's taste</span><span><i style="--c:#FFC861"></i>Fits the trip</span></div></div>
+        <div class="rec-how"><b>How it decides.</b> Every service gets a score out of 100: <em>50% how strongly it is booked together</em> with what the client asked for, <em>30% how well it matches the client's past requests</em>, and <em>20% how well it fits the trip</em>. The top three are suggested, each with its main reason.
+          <span class="note" style="display:block;margin-top:6px">Demo with sample data, not real client data.</span></div>
       </div>
-      <ol class="fs-flow" aria-label="The layers I built">
-        <li style="--i:0"><span class="fs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="15" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span><b>Website</b><span>Front end: pages, structure, design and copy, so visitors become clients.</span></li>
-        <li style="--i:1"><span class="fs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><b>Client accounts</b><span>Sign-up, log-in and each client's own space and requests.</span></li>
-        <li style="--i:2"><span class="fs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="18" cy="18" r="2.5"/></svg></span><b>Back-office</b><span>Where the team receives, tracks and answers every client request, with admin access.</span></li>
-        <li style="--i:3"><span class="fs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 11l7.4-3.8M8.3 13l7.4 3.8"/></svg></span><b>Cross-selling algorithm</b><span>Recommends complementary services to each client, based on what they ask for.</span></li>
-      </ol>
     </div>
     <div class="jos rv" id="jos" aria-label="Joseph OS, a tiny desktop with my projects as apps">
       <div class="jos-bar"><b>◆ Joseph OS</b><span>File</span><span>View</span><span>Help</span><em id="josClock">--:--</em></div>
@@ -2268,17 +2288,38 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
 
 
 /* ── illustrative cross-selling demo: services often booked together ── */
-(function(){var pick=$('#recPick'),out=$('#recOut');if(!pick)return;
-  var S=['Private jet','Chauffeur','Villa rental','Yacht charter','Fine dining','Event tickets','Personal shopper','Spa & wellness'];
+(function(){var pick=$('#recPick'),out=$('#recOut'),pf=$('#recProf'),cx=$('#recCtx');if(!pick)return;
+  /* sample data: 200 past client requests */
+  var S=['Private jet','Chauffeur','Villa rental','Yacht charter','Fine dining','Event tickets','Personal shopper','Spa & wellness'],CAT=[0,0,1,2,3,4,4,5],CATN=['travel','stays','the sea','fine dining','experiences','wellness'];
+  var N=200,freq=[60,80,55,40,70,45,30,38];
   var pairs={'0-1':42,'0-2':30,'0-3':18,'0-4':12,'1-4':34,'1-5':26,'1-6':14,'2-3':28,'2-4':16,'2-7':22,'3-4':20,'3-7':9,'4-5':24,'5-6':8,'6-7':18,'4-7':11,'1-2':15};
-  var freq=[60,80,55,40,70,45,30,38];
   function co(a,b){return pairs[Math.min(a,b)+'-'+Math.max(a,b)]||0}
-  var sel=[0];
+  /* normalised pointwise mutual information, clipped to [0,1]: how much more often two services go together than chance */
+  function npmi(a,b){var pab=co(a,b)/N;if(!pab)return 0;var v=Math.log(pab/((freq[a]/N)*(freq[b]/N)))/-Math.log(pab);return Math.max(0,v)}
+  function lift(a,b){return (co(a,b)/N)/((freq[a]/N)*(freq[b]/N))}
+  var PROF=[{n:'New client',h:[0,0,0,0,0,0]},{n:'Loves the sea',h:[1,3,6,4,1,2]},{n:'Business traveller',h:[8,2,0,4,3,1]}];
+  var CTX=[{n:'Summer · coast',w:'a summer trip to the coast',k:[.7,.6,1,1,.8,.6,.6,.4]},{n:'Winter · mountains',w:'a winter trip to the mountains',k:[.8,1,.9,0,.8,.4,.3,1]},{n:'City weekend',w:'a city weekend',k:[.4,.9,.2,.1,1,1,1,.6]}];
+  var CATP=[0,0,0,0,0,0];freq.forEach(function(f,i){CATP[CAT[i]]+=f});var CT=CATP.reduce(function(a,b){return a+b},0);CATP=CATP.map(function(v){return v/CT});
+  var sel=[0],prof=0,ctx=0;
   pick.innerHTML=S.map(function(n,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(sel.indexOf(i)>=0)+'">'+n+'</button>'}).join('');
-  function render(){if(!sel.length){out.innerHTML='<li class="empty">Pick a request to see suggestions.</li>';return}
-    var sc=S.map(function(n,j){if(sel.indexOf(j)>=0)return null;var v=0;sel.forEach(function(a){v+=co(a,j)/Math.sqrt(freq[a]*freq[j])});return{n:n,v:v/sel.length}}).filter(function(o){return o&&o.v>0}).sort(function(a,b){return b.v-a.v}).slice(0,3);
-    var mx=.75;out.innerHTML=sc.map(function(o,k){var pct=Math.round(Math.min(.98,o.v/mx)*100);return '<li style="--k:'+k+'"><b>'+o.n+'</b><em>'+pct+'% match</em><i style="--w:'+pct+'%"></i></li>'}).join('')||'<li class="empty">No strong pairing for this mix.</li>'}
-  $$('button',pick).forEach(function(b){b.onclick=function(){var i=+b.dataset.i,k=sel.indexOf(i);if(k>=0)sel.splice(k,1);else sel.push(i);b.setAttribute('aria-pressed',k<0);render()}});
+  pf.innerHTML=PROF.map(function(o,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===prof)+'">'+o.n+'</button>'}).join('');
+  cx.innerHTML=CTX.map(function(o,i){return '<button type="button" data-i="'+i+'" aria-pressed="'+(i===ctx)+'">'+o.n+'</button>'}).join('');
+  function render(){
+    var h=PROF[prof].h,H=h.reduce(function(a,b){return a+b},0),alpha=2;
+    /* client taste: smoothed share of past requests in the service's category (new clients fall back to the overall mix) */
+    var taste=S.map(function(n,j){return (h[CAT[j]]+alpha*CATP[CAT[j]])/(H+alpha)}),tmax=Math.max.apply(null,taste.filter(function(v,j){return sel.indexOf(j)<0}).concat([1e-9]));
+    var sc=S.map(function(n,j){if(sel.indexOf(j)>=0)return null;
+      var A=0,best=-1;sel.forEach(function(r){var v=npmi(r,j);if(v>A){A=v;best=r}});
+      var T=taste[j]/tmax,K=CTX[ctx].k[j],parts=[.5*A,.3*T,.2*K],tot=parts[0]+parts[1]+parts[2];
+      var top=parts.indexOf(Math.max.apply(null,parts)),why;
+      if(top===0&&best>=0)why='Booked with '+S[best].toLowerCase()+' '+lift(best,j).toFixed(1)+'× more often than chance';
+      else if(top===1)why=PROF[prof].h[CAT[j]]?'Matches this client’s taste for '+CATN[CAT[j]]:'A popular choice for new clients';
+      else why='Fits '+CTX[ctx].w;
+      return {n:n,p:parts,v:tot,why:why}}).filter(Boolean).sort(function(a,b){return b.v-a.v}).slice(0,3);
+    if(!sel.length){out.innerHTML='<li class="empty">Pick a request to see suggestions.</li>';return}
+    out.innerHTML=sc.map(function(o,k){var pct=Math.round(o.v*100);return '<li style="--k:'+k+'"><b>'+o.n+'</b><em>'+pct+'/100</em><i class="seg"><u style="--w:'+(o.p[0]*100).toFixed(1)+'%;--c:#5EE6C8"></u><u style="--w:'+(o.p[1]*100).toFixed(1)+'%;--c:#B79CFF"></u><u style="--w:'+(o.p[2]*100).toFixed(1)+'%;--c:#FFC861"></u></i><small>'+o.why+'</small></li>'}).join('')}
+  function grp(el,set,multi){$$('button',el).forEach(function(b){b.onclick=function(){var i=+b.dataset.i;if(multi){var k=sel.indexOf(i);if(k>=0)sel.splice(k,1);else sel.push(i);b.setAttribute('aria-pressed',k<0)}else{set(i);$$('button',el).forEach(function(x){x.setAttribute('aria-pressed',x===b)})}render()}})}
+  grp(pick,null,true);grp(pf,function(i){prof=i});grp(cx,function(i){ctx=i});
   render()})();
 
 /* ── cursor trail: a short comet of particles in the chapter's accent ── */
