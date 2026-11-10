@@ -617,17 +617,17 @@ main{overflow-x:clip}
 .sv-bar>div{position:relative;display:flex;align-items:center;padding-inline:12px;font-size:.8rem;font-weight:600;white-space:nowrap;overflow:hidden}
 .sv-keep{flex:0 0 25%;background:var(--fg);color:var(--ink);z-index:1}
 .sv-cut{flex:1;background:rgba(255,255,255,.22);color:transparent;transition:background .9s,color .6s .5s}
-.sv-cut::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 8px,transparent 8px 16px);transform:translateX(-100%);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.saved.go .sv-cut{background:color-mix(in srgb,var(--a) 70%,transparent);color:var(--ink)}
+.sv-cut::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 8px,transparent 8px 16px);transform:translateX(-100%);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.saved.go .sv-cut{background:var(--a);color:var(--ink)}.sv-cut span{position:relative;z-index:1}
 .saved.go .sv-cut::after{transform:none}
 .sv-keep span{opacity:.0;transition:opacity .5s .8s}.saved.go .sv-keep span{opacity:1}
 .sv-scale{display:flex;justify-content:space-between;margin-top:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg3)}
 .sv-f{margin-top:12px;font-size:.95rem;color:var(--fg2)}.sv-f b{color:var(--fg)}
 /* the train band: a long ride north */
-.flight.train{height:330vh}
+.flight.train{height:260vh}
 .flight.train .ftxt,.flight.air .ftxt{top:clamp(24px,6vh,64px);bottom:auto}
 .flight.train .route,.flight.air .route{font-size:clamp(2rem,4.4vw,3.6rem)}
-@media(max-width:700px){.flight.train{height:250vh}}
+@media(max-width:700px){.flight.train{height:200vh}}
 /* the airport */
 .flight.air{height:380vh}
 @media(max-width:700px){.flight.air{height:300vh}}
@@ -664,6 +664,33 @@ main{overflow-x:clip}
 .bp-r b{font-size:1rem}.bp-r b.q{color:var(--facc,#6EF2D2);font-size:1.4rem;line-height:1;-webkit-text-stroke:.5px #15171f}
 .bp-go{margin-left:auto;padding:9px 16px!important;font-size:.85rem!important;background:#15171f!important;color:#fff!important;border-color:#15171f!important}
 @media(max-width:700px){.board{left:max(16px,env(safe-area-inset-left,0px));right:auto;top:clamp(150px,22vh,190px);transition:opacity .4s}.pax{height:min(40vh,320px)}.bpass{bottom:auto;top:clamp(150px,22vh,190px);left:16px;right:16px;width:auto}.flight.air.pass-on .board{opacity:0}}
+/* journey type scale: one label size, one brand size, one body size */
+#journey .chap{font-size:12px;letter-spacing:.18em}
+#journey .stop{gap:12px;align-items:baseline}
+#journey .stop .city{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,2.4vw,2rem);letter-spacing:-.02em;color:var(--fg)}
+#journey .stop .when{font-size:12.5px;color:var(--fg2);letter-spacing:.04em}
+#journey .bc .bk,#journey .kick{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg2)}
+#journey .kick::before{display:none}
+#journey .bc .bn{font-size:clamp(2rem,3.4vw,2.7rem);line-height:1.04;letter-spacing:-.03em;margin-top:8px;background:none;-webkit-text-fill-color:currentColor;color:var(--fg)}
+#journey .bc .br{font-size:1.12rem;margin-top:8px}
+#journey .bd,#journey .bc .bd{font-size:1rem;line-height:1.55;color:var(--fg2);margin-top:12px}
+#journey .bvia{margin-top:6px;font-size:1rem;color:var(--fg2)}#journey .bvia b{color:var(--fg);font-weight:600}
+#journey .bsub{font-size:1rem}
+#journey .minis b{font-size:1.35rem}
+#journey .minis span,#journey .sitaf .sf span,#journey .bnode span{font-size:.84rem;color:var(--fg2);line-height:1.35}
+#journey .sitaf .sf b{font-size:1.35rem}
+#journey .bnode b{font-size:.95rem}
+#journey .thesis .tq{font-size:1.2rem;line-height:1.4}
+#journey .bstat b{font-size:1.35rem}#journey .bstat span{font-size:.95rem}
+#journey .pstep em{font-size:11px;color:var(--fg2)}#journey .pstep[aria-pressed="true"] em{color:var(--ink)}
+#journey .pstep b{font-size:1rem}
+#journey .pdetail{font-size:1rem;line-height:1.55}
+#journey .sv-h b{font-size:clamp(2rem,3.4vw,2.7rem)}#journey .sv-h>span{font-size:1rem}
+#journey .sv-bar>div{font-size:.86rem}
+#journey .sv-scale{font-size:11.5px;color:var(--fg2)}
+#journey .sv-f{font-size:1rem}
+#journey .ctx .bd{margin-top:8px}
+
 
 /* Joseph OS */
 .jos{margin-top:30px;border-radius:20px;overflow:hidden;border:1px solid var(--edge);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);background:#0b0f1c}
@@ -854,18 +881,6 @@ body.gl-open .dock{transform:translateY(150%)}
         <b>Energy</b><span>Lights on in every home</span></div>
     </div>
     <p class="note rv">Hover each pillar. The whole world takes its colour.</p>
-    <div class="glass pad eq rv" id="eq">
-      <div class="eq-head">
-        <div><span class="kick">From my master's thesis research</span><h3 style="margin-top:8px">Where a child is born, in numbers</h3>
-          <p>Lebanon, Mexico and Ivory Coast, the three countries my thesis studied, next to France, where I grew up.</p></div>
-        <div class="seg" role="group" aria-label="Country of birth" id="eqSeg">
-          <button data-c="fra" aria-pressed="false">France</button><button data-c="lbn" aria-pressed="true">Lebanon</button><button data-c="mex" aria-pressed="false">Mexico</button><button data-c="civ" aria-pressed="false">Ivory Coast</button>
-        </div>
-      </div>
-      <div class="tubes" id="tubes"></div>
-      <p class="eq-say" id="eqSay" aria-live="polite"></p>
-      <p class="src">Dashed line: France. Sources: World Bank World Development Indicators and WHO/UNICEF JMP, via <a href="https://statisticsoftheworld.com/clean-water-by-country" target="_blank" rel="noopener">Statistics of the World</a>, <a href="https://lumistats.com/country/FRA/" target="_blank" rel="noopener">Lumistats</a> and <a href="https://www.indexmundi.com/facts/indicators/SE.SEC.CMPT.LO.ZS/rankings" target="_blank" rel="noopener">Index Mundi</a>. Electricity: Our World in Data (Ember, Energy Institute), the dataset of my energy project. Latest year available for each value.</p>
-    </div>
     <p class="conviction rv">The regions left behind should <b>own their development</b>: built by them, for them, drawing on the world's knowledge.</p>
     <div class="jgo rv">
       <span class="kick">The journey</span>
@@ -886,12 +901,12 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="fl-left">
             <span class="chap">Chapter 1 of 5</span>
             <div class="stop"><span class="city decode">Lille</span><span class="when">2021 – 2025</span></div>
-            <div class="glass pad fc bc" data-depth="1"><span class="bk">Summer 2023 · Maison Place Vendôme, Paris</span><b class="bn">Louis Vuitton</b><span class="br">Sales Advisor</span>
-              <p class="bd">International clients from five continents, advised in English, French and Arabic.</p>
-              <div class="minis"><div><b data-count="600" data-suf="+">600+</b><span>client experiences, end to end</span></div><div><b data-count="10000" data-pre="€">€10,000</b><span>daily target, regularly exceeded</span></div></div></div>
-            <div class="glass pad fc bc" data-depth="1.4"><span class="bk">2021 – 2025</span><b class="bn">SKEMA Business School</b><span class="br">BBA in Global Management · Major in International Business</span>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">2021 – 2025</span><b class="bn">SKEMA Business School</b><span class="br">BBA in Global Management · Major in International Business</span>
               <p class="bd">Four years of international business, built around one idea: companies can create a sustainable future.</p>
               <p class="bsub"><i aria-hidden="true">★</i> Promotion president, 2025 · representing students to programme management</p></div>
+            <div class="glass pad fc bc" data-depth="1.4"><span class="bk">Summer 2023 · Maison Place Vendôme, Paris</span><b class="bn">Louis Vuitton</b><span class="br">Sales Advisor</span>
+              <p class="bd">International clients from five continents, advised in English, French and Arabic.</p>
+              <div class="minis"><div><b data-count="600" data-suf="+">600+</b><span>client experiences, end to end</span></div><div><b data-count="10000" data-pre="€">€10,000</b><span>daily target, regularly exceeded</span></div></div></div>
           </div>
         </div>
       </article>
@@ -902,9 +917,11 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="fl-left">
             <span class="chap">Chapter 2 of 5</span>
             <div class="stop"><span class="city decode">Raleigh</span><span class="when">2024 · BBA final year</span></div>
-            <div class="glass pad fc bc" data-depth="1"><span class="bk">SKEMA Raleigh · on NC State University's Centennial Campus</span><b class="bn">Research Triangle</b><span class="br">North Carolina, USA</span>
-              <p class="bd">SKEMA's US campus sits inside NC State's Centennial Campus, about 20 minutes from Research Triangle Park, one of the world's largest research hubs, home to IBM, Cisco and GSK.</p>
-              <div class="minis"><div><b data-count="300" data-suf="+">300+</b><span>international companies in the park</span></div><div><b data-count="50000" data-suf="+">50,000+</b><span>people working there</span></div></div></div>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Raleigh campus · BBA final year</span><b class="bn">SKEMA Business School</b><span class="br">On NC State University's Centennial Campus</span>
+              <p class="bd">Final year of my BBA in the United States, on SKEMA's campus inside NC State's Centennial Campus.</p></div>
+            <div class="glass pad fc mini ctx" data-depth="1.3"><span class="kick">Where I studied · the Research Triangle</span>
+              <p class="bd">About 20 minutes from campus, Research Triangle Park is one of the largest tech and research hubs in the world, home to IBM, Cisco, GSK and Syngenta.</p>
+              <div class="minis"><div><b data-count="300" data-suf="+">300+</b><span>international companies</span></div><div><b data-count="50000" data-suf="+">50,000+</b><span>people working there</span></div></div></div>
             <div class="glass pad fc thesis" data-depth="1.4"><span class="kick">Bachelor's thesis · written here</span>
               <p class="tq">Post-conflict reconstruction in Lebanon: leveraging project management strategies for sustainable development.</p></div>
           </div>
@@ -916,48 +933,48 @@ body.gl-open .dock{transform:translateY(150%)}
         <div class="float">
           <div class="fl-left">
             <span class="chap">Chapter 3 of 5</span>
-            <div class="stop"><span class="city decode">Beirut</span><span class="when">May – Aug 2025 · back where I was born</span></div>
-            <div class="glass pad fc bc" data-depth="1"><span class="bk">Key Account Manager Assistant</span><b class="bn caps">SITA</b><span class="br">Aviation &amp; Travel Technology · shaping the future of travel</span>
-              <p class="bd">SITA runs much of the technology behind airports, airlines and borders. I worked between its product teams and the institutions modernising how the world travels, matching their needs with the right SITA solutions, including Beirut Airport's biometric passenger path.</p>
-              <div class="bridge" aria-label="SITA product teams, connected through me, to airports, airlines and governments">
-                <div class="bnode"><b>SITA</b><span>product teams</span></div>
+            <div class="stop"><span class="city decode">Beirut</span><span class="when">May – Aug 2025</span></div>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Aviation &amp; travel technology</span><b class="bn">SITA</b><span class="br">Key Account Manager Assistant</span>
+              <p class="bd">Shaping the future of travel. SITA runs much of the technology behind airports, airlines and borders. I worked between SITA's product managers and the institutions modernising how the world travels, matching their needs with the right SITA solutions, including Beirut Airport's biometric passenger path.</p>
+              <div class="bridge" aria-label="SITA product managers, connected through me, to airports, airlines and governments">
+                <div class="bnode"><b>SITA</b><span>product managers</span></div>
                 <div class="blink" aria-hidden="true"><i></i></div>
                 <div class="bnode me"><b>Me</b><span>the link</span></div>
                 <div class="blink" aria-hidden="true"><i></i></div>
-                <div class="bnode"><b>Airports · airlines · governments</b><span>modernising their systems</span></div>
+                <div class="bnode"><b>Airports · airlines · governments</b><span>modernising systems and infrastructure</span></div>
               </div>
               <div class="minis"><div><b data-count="5">5</b><span>government entities</span></div><div><b data-count="12" data-suf="+">12+</b><span>airport operators</span></div></div></div>
             <div class="glass pad fc mini sitaf" data-depth="1.5"><span class="kick">About SITA</span>
               <div class="sf"><div><b>1949</b><span>founded by 11 airlines, still owned by the air transport industry</span></div><div><b>200+</b><span>countries and territories</span></div><div><b>80+</b><span>nations using its border technology</span></div></div>
-              <span class="src" style="margin-top:4px">Source: <a href="https://en.wikipedia.org/wiki/SITA_(business_services_company)" target="_blank" rel="noopener">SITA, Wikipedia</a></span></div>
+              </div>
           </div>
         </div>
       </article>
       <div class="flight" data-from="beirut" data-to="raleigh" data-pf="beirut" data-pt="raleigh" data-mode="plane" aria-label="Beirut to Raleigh"><div class="stick"><canvas></canvas>
-        <div class="ftxt"><div class="wrap"><div class="route">Beirut <i>→</i><br>Raleigh</div><div class="fmeta"><span class="dist">— km</span><br><b>2025 · MSc in the Research Triangle</b></div></div></div></div></div>
+        <div class="ftxt"><div class="wrap"><div class="route">Beirut <i>→</i><br>Raleigh</div><div class="fmeta"><span class="dist">— km</span><br><b>2025 · MSc, SKEMA × NC State</b></div></div></div></div></div>
       <article class="panel" data-shape="wUsa" data-pal="raleigh" data-ch="Raleigh · 2025">
         <div class="float">
           <div class="fl-left">
             <span class="chap">Chapter 4 of 5</span>
             <div class="stop"><span class="city decode">Raleigh</span><span class="when">Aug 2025 – May 2026</span></div>
-            <div class="glass pad fc bc" data-depth="1"><span class="bk">Consulting strategy · SKEMA project · 2025</span><b class="bn">Apple</b><span class="br">Production diversification strategy</span>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">In partnership with NC State University</span><b class="bn">SKEMA Business School</b><span class="br">MSc International Business, AI &amp; Data</span>
+              <div class="thesis in"><span class="kick">Master's thesis · co-written</span>
+                <p class="tq">How can digital transformation be strategically implemented in the Global South to leverage sustainable development?</p></div></div>
+            <div class="glass pad fc bc" data-depth="1.3"><span class="bk">Consulting strategy · SKEMA project · 2025</span><b class="bn">Apple</b><span class="br">Production diversification strategy</span>
               <p class="bd">A plan to spread production across India, Vietnam and the United States, with a business case weighing cost, risk and stakeholder interests, while keeping the annual iPhone launch on track.</p>
               <p class="bstat"><b>−30%</b><span>projected exposure to China-related tariffs and taxes</span></p></div>
-            <div class="glass pad fc bc" data-depth="1.3"><span class="bk">with SKEMA Business School</span><b class="bn">NC State University</b><span class="br">MSc International Business, AI &amp; Data</span>
-              <div class="thesis in"><span class="kick">Master's thesis · co-written</span>
-                <p class="tq">How can digital transformation be strategically implemented in the Global South to leverage sustainable development?</p>
-                <p class="muted" style="font-size:.9rem;margin-top:8px">The numbers in <a href="#eq">my purpose</a> come from this research.</p></div></div>
           </div>
         </div>
       </article>
       <div class="flight" data-from="raleigh" data-to="paris" data-pf="raleigh" data-pt="paris2" data-mode="plane" aria-label="Raleigh to Paris"><div class="stick"><canvas></canvas>
         <div class="ftxt"><div class="wrap"><div class="route">Raleigh <i>→</i><br>Paris</div><div class="fmeta"><span class="dist">— km</span><br><b>2026 · Devoteam, for Safran</b></div></div></div></div></div>
+
       <article class="panel" data-shape="wParis" data-pal="paris2" data-ch="Paris · 2026">
         <div class="float">
           <div class="fl-left">
             <span class="chap">Chapter 5 of 5</span>
             <div class="stop"><span class="city decode">Paris</span><span class="when">Since July 2026</span></div>
-            <div class="glass pad fc bc" data-depth="1"><span class="bk">Devoteam Digital Impulse · for the IT department of</span><b class="bn">Safran Aircraft Engines</b><span class="br">Digital Transformation Strategy Consultant</span>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Client · IT department</span><b class="bn">Safran Aircraft Engines</b><span class="br">Digital Transformation Strategy Consultant</span><p class="bvia">With <b>Devoteam Digital Impulse</b>, the consulting firm I work for</p>
               <div class="prog" role="group" aria-label="Programme" id="prog">
                 <button class="pstep" aria-pressed="true"><em>Frame</em><b>The 2030 ambition</b></button>
                 <button class="pstep" aria-pressed="false"><em>Deliver</em><b>5+ AI agents</b></button>
@@ -1853,7 +1870,7 @@ var EQ={fra:{n:'France',w:[99.7,2024],s:[99.5,2019],l:[83.0,2024],u:[4.3,2024],e
   mex:{n:'Mexico',w:[43.0,2024],s:[90.7,2019],l:[75.3,2024],u:[13.1,2024],e:[2714,2024]},civ:{n:'Ivory Coast',w:[36.4,2024],s:[57.3,2020],l:[62.1,2024],u:[64.5,2024],e:[338,2024]}};
 var TUBES=[['w','#58C8FF','Safely managed drinking water','%',function(v){return v}],['s','#FFD166','Children who finish lower secondary school','%',function(v){return v}],
   ['l','#FF6B8B','Life expectancy at birth','yrs',function(v){return v/90*100}],['e','#FFB347','Electricity generated per person','kWh',function(v){return v/9000*100}]];
-$('#tubes').innerHTML=TUBES.map(function(t){return '<div class="tube" style="--tc:'+t[1]+'"><div class="t"><canvas class="lqc" aria-hidden="true"></canvas><div class="ref"><span>France</span></div></div><div class="v"><span class="n">0</span><small>'+t[3]+'</small></div><div class="k">'+t[2]+'</div><div class="y"></div></div>'}).join('');
+if($('#tubes'))$('#tubes').innerHTML=TUBES.map(function(t){return '<div class="tube" style="--tc:'+t[1]+'"><div class="t"><canvas class="lqc" aria-hidden="true"></canvas><div class="ref"><span>France</span></div></div><div class="v"><span class="n">0</span><small>'+t[3]+'</small></div><div class="k">'+t[2]+'</div><div class="y"></div></div>'}).join('');
 
 /* ── liquid tubes: a real little fluid, always moving, sloshing when the country changes ── */
 (function(){var tubes=$$('#tubes .tube');if(!tubes.length)return;var run=false,vis=false,t0=performance.now();
@@ -1896,7 +1913,7 @@ function eqSet(c){$$('#eqSeg button').forEach(function(b){b.setAttribute('aria-p
     'Born in '+d.n+', a child can expect to live <b>'+fmt(d.l[0],1)+' years</b>, against 83 in France. <b>'+fmt(d.u[0],1)+'</b> in 1,000 children die before turning five, against 4.3 in France.'+
     (c==='lbn'?' Almost every home is connected, but the grid itself collapsed: electricity generated per person fell from <b>3,726 kWh</b> in 2019 to <b>920</b> in 2024.':'')}
 $$('#eqSeg button').forEach(function(b){b.onclick=function(){eqSet(b.dataset.c)}});
-new IntersectionObserver(function(es,o){if(es[0].isIntersecting){eqSet('lbn');o.disconnect()}},{threshold:.3}).observe($('#eq'));
+if($('#eq'))new IntersectionObserver(function(es,o){if(es[0].isIntersecting){eqSet('lbn');o.disconnect()}},{threshold:.3}).observe($('#eq'));
 
 /* thesis + programme + automation */
 var PG=['Framing the programme’s 2030 ambitions, scope, IT architecture impacts, initiatives, methodology and governance for Safran Aircraft Engines’ IT department, alongside a director.','Designed and led the delivery of 5+ AI agents and agentic workflows with technical engineers, from ideation to implementation, applying responsible AI principles and ethical data use.','As team PMO: tracking progress, coordinating stakeholders across 3+ business teams, running gap analysis and producing management reporting.'];
