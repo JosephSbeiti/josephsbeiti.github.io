@@ -519,12 +519,6 @@ main{overflow-x:clip}
 @keyframes divein{0%,35%{transform:scale(.82);filter:blur(14px);opacity:0}100%{transform:none;filter:none;opacity:1}}
 @keyframes diveout{0%,35%{transform:scale(1.18);filter:blur(14px);opacity:0}100%{transform:none;filter:none;opacity:1}}
 #journey.divein,#journey.diveout{animation:none}
-.rider{position:fixed;left:0;top:0;width:46px;height:46px;z-index:5;pointer-events:none;opacity:0;will-change:transform}
-.rider svg{width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.35),0 0 24px var(--a);animation:ride .5s ease-in-out infinite alternate}
-.rider::after{content:"";position:absolute;right:-12px;top:6px;width:14px;height:14px;border-radius:50% 50% 40% 40%;background:#E6BD98;box-shadow:0 0 0 1.5px #15171f;transform-origin:20% 100%;animation:wave .35s ease-in-out infinite alternate}
-@keyframes ride{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-4px) rotate(6deg)}}
-@keyframes wave{from{transform:rotate(-25deg)}to{transform:rotate(25deg)}}
-.buddy.away .bface{transform:scale(.6);opacity:.35}
 .buddy .bface{transition:transform .3s cubic-bezier(.2,1.4,.4,1),opacity .3s}
 /* mini Joseph */
 .buddy{position:fixed;z-index:72;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-start;gap:10px}
@@ -611,7 +605,7 @@ body.gl-open .dock{transform:translateY(150%)}
 <canvas id="swarm" aria-hidden="true"></canvas>
 <div class="veil" aria-hidden="true"></div>
 <div class="wipe" id="wipe" aria-hidden="true"></div>
-<canvas id="trail" aria-hidden="true"></canvas><div class="rider" id="rider" aria-hidden="true"></div>
+<canvas id="trail" aria-hidden="true"></canvas>
 
 <nav class="nav" aria-label="Sections">
   <div class="wrap">
@@ -1127,7 +1121,7 @@ var dive=null;
 function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   var A=SH[state.A],B=SH[state.B],raw=clamp(state.t,0,1),t=ease(raw),O=override?SH[override]:null;overT=clamp(overT+(override?dt*2.2:-dt*2.2),0,1);var ot=ease(overT);
   var V=state.via&&state.A!==state.B?SH[state.via]:null,mode=0,e1=0,vx=0,vy=0;
-  if(V){if(raw<.3){mode=1;e1=ease(raw/.3);vx=-.8}else if(raw<.7){mode=2;var u=(raw-.3)/.4;vx=lerp(-.8,.8,ease(u));vy=state.via==='plane'?-Math.sin(Math.PI*u)*.22:0}else{mode=3;e1=ease((raw-.7)/.3);vx=.8}}
+  if(V){if(raw<.35){mode=1;e1=ease(raw/.35)}else if(raw<.65){mode=2}else{mode=3;e1=ease((raw-.65)/.35)}}
   var burst=(!V&&state.A!==state.B)?Math.sin(Math.PI*raw)*.5:0;
   var flat=V||(FLAT[state.A]&&t<.5)||(FLAT[state.B]&&t>=.5)||(O&&ot>.5&&FLAT[override]);
   var soft=(SOFT[state.A]&&t<.5)||(SOFT[state.B]&&t>=.5);var rotY=flat?Math.sin(time*.4)*.14+mouse.nx*.35:(soft?-.55+Math.sin(time*.3)*.25+mouse.nx*.5:time*.25+mouse.nx*.8),rotX=flat?-mouse.ny*.15:(soft?.42-mouse.ny*.3:-mouse.ny*.4+.15),cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
@@ -1138,11 +1132,10 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
     if(dive.dir>0){if(dv<.5){u=dv/.5;zf=1+7*u*u;za=1-u*.85;streak=u}else{u=(dv-.5)/.5;zf=.08+.92*ease(u);za=.15+.85*u}}
     else{if(dv<.5){u=dv/.5;zf=1-.9*u*u;za=1-u*.85}else{u=(dv-.5)/.5;zf=8-7*ease(u);za=.15+.85*u;streak=1-u}}
     if(dv>=1)dive=null}
+  var vOff=0;
   var acc=hex(pillarCol&&ot>0?mixHex(cols.a,pillarCol,ot):cols.a),mid=hex(mixHex(cols.m,'#ffffff',.6));state.CX=CX;state.CY=CY;state.SC=SC;
-  if(W.rider){var ro=mode===1?e1:mode===2?1:mode===3?1-e1:0;if(ro>.01){var top=(state.via==='plane'?-.16:-.2),rx=vx,ry=vy+top,px0=CX+rx*Math.cos(rotY)*SC*1.6/1.9,py0=CY+(ry*Math.cos(rotX))*SC*1.6/1.9;
-    W.rider.style.opacity=ro.toFixed(2);W.rider.style.transform='translate3d('+(px0-23)+'px,'+(py0-40)+'px,0)';W.rider.classList.add('on')}else if(W.rider.classList.contains('on')){W.rider.classList.remove('on');W.rider.style.opacity=0}}
   for(var k=0;k<N;k++){var i3=k*3,x,y,z;
-    if(mode){var qx=V[i3]*.6+vx,qy=V[i3+1]*.6+vy,qz=V[i3+2];if(mode===1){x=lerp(A[i3],qx,e1);y=lerp(A[i3+1],qy,e1);z=lerp(A[i3+2],qz,e1)}else if(mode===2){x=qx;y=qy;z=qz}else{x=lerp(qx,B[i3],e1);y=lerp(qy,B[i3+1],e1);z=lerp(qz,B[i3+2],e1)}}
+    if(mode){var qx=V[i3]*.9+vOff,qy=V[i3+1]*.9,qz=V[i3+2];if(mode===1){x=lerp(A[i3],qx,e1);y=lerp(A[i3+1],qy,e1);z=lerp(A[i3+2],qz,e1)}else if(mode===2){x=qx;y=qy;z=qz}else{x=lerp(qx,B[i3],e1);y=lerp(qy,B[i3+1],e1);z=lerp(qz,B[i3+2],e1)}}
     else{x=lerp(A[i3],B[i3],t);y=lerp(A[i3+1],B[i3+1],t);z=lerp(A[i3+2],B[i3+2],t);if(burst){var sb=seeds[k];x+=Math.cos(sb*91.7)*burst*(.3+sb);y+=Math.sin(sb*53.3)*burst*(.3+sb);z+=Math.sin(sb*17.1)*burst*.4}}
     if(O){x=lerp(x,O[i3],ot);y=lerp(y,O[i3+1],ot);z=lerp(z,O[i3+2],ot);if(override==='y2027'||state.blast){var bb=Math.sin(Math.PI*ot)*.7,sb2=seeds[k];x+=Math.cos(sb2*77.7)*bb*(.2+sb2);y+=Math.sin(sb2*41.3)*bb*(.2+sb2);z+=Math.cos(sb2*13.1)*bb*.5}}
     var sd=seeds[k];x+=Math.sin(time*.9+sd*40)*.004;y+=Math.cos(time*.8+sd*30)*.004;
@@ -1481,11 +1474,11 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
 (function(){var c=$('#trail');if(!c||RM||!matchMedia('(pointer:fine)').matches){if(c)c.remove();return}
   var x=c.getContext('2d'),dpr=Math.min(2,W.devicePixelRatio||1),P=[],run=false,lx=null,ly=null;
   function sz(){c.width=innerWidth*dpr;c.height=innerHeight*dpr}sz();W.addEventListener('resize',sz);
-  W.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var dx=lx==null?0:e.clientX-lx,dy=ly==null?0:e.clientY-ly,n=Math.min(5,1+Math.hypot(dx,dy)/14);
+  W.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var dx=lx==null?0:e.clientX-lx,dy=ly==null?0:e.clientY-ly,n=Math.min(3,1+Math.hypot(dx,dy)/20);
     for(var i=0;i<n;i++){var t=i/n;P.push({x:e.clientX-dx*t+(Math.random()-.5)*4,y:e.clientY-dy*t+(Math.random()-.5)*4,vx:(Math.random()-.5)*.6-dx*.02,vy:(Math.random()-.5)*.6-dy*.02+.15,l:1,r:1+Math.random()*1.8})}
     lx=e.clientX;ly=e.clientY;if(P.length>160)P.splice(0,P.length-160);if(!run){run=true;requestAnimationFrame(tick)}},{passive:true});
   function tick(){x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,innerWidth,innerHeight);var col=getComputedStyle(root).getPropertyValue('--a').trim()||'#7ff';x.fillStyle=col;x.shadowColor=col;x.shadowBlur=8;
-    for(var i=P.length-1;i>=0;i--){var p=P[i];p.x+=p.vx;p.y+=p.vy;p.l-=.035;if(p.l<=0){P.splice(i,1);continue}x.globalAlpha=p.l*.85;x.beginPath();x.arc(p.x,p.y,p.r*p.l+.3,0,6.283);x.fill()}
+    for(var i=P.length-1;i>=0;i--){var p=P[i];p.x+=p.vx;p.y+=p.vy;p.l-=.06;if(p.l<=0){P.splice(i,1);continue}x.globalAlpha=p.l*.85;x.beginPath();x.arc(p.x,p.y,p.r*p.l+.3,0,6.283);x.fill()}
     x.globalAlpha=1;if(P.length)requestAnimationFrame(tick);else{run=false;x.clearRect(0,0,innerWidth,innerHeight)}}})();
 
 /* ── mini Joseph: a little cartoon of me you can talk to ── */
@@ -1513,8 +1506,6 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
     var ox=look?look[0]:dx/d*m,oy=look?look[1]:dy/d*m*.8;pl.setAttribute('cx',ox);pl.setAttribute('cy',oy);pr.setAttribute('cx',ox);pr.setAttribute('cy',oy)},{passive:true});
   var MOODS={hero:'smile',origin:'proud',purpose:'think',paris1:'smile',lille:'wink',usa:'wow',beirut:'proud',raleigh:'think',paris2:'smile',hq:'wow',lab:'think',toolkit:'smile',next:'laugh'};
   var curPal='hero',mood='smile';
-  var rd=$('#rider');if(rd){var cl=face.querySelector('svg').cloneNode(true);cl.querySelectorAll('[id]').forEach(function(n){if(n.tagName!=='clipPath'&&n.tagName!=='radialGradient')n.removeAttribute('id')});rd.appendChild(cl);W.rider=rd;
-    new MutationObserver(function(){$('#buddy').classList.toggle('away',rd.classList.contains('on'))}).observe(rd,{attributes:true,attributeFilter:['class']})}
   W.buddyMood=function(pal){curPal=pal;mood=MOODS[pal]||'smile';if(chat.hidden&&cur!=='sleep'&&cur!=='dizzy')setFace(mood)};
   /* scroll too fast and he gets dizzy; leave him alone and he falls asleep */
   var lastSY=W.scrollY,lastST=performance.now(),dizzyT=0,idleT=0,zz=D.createElement('span');zz.className='bzz';zz.setAttribute('aria-hidden','true');zz.innerHTML='<i>z</i><i>z</i><i>Z</i>';face.appendChild(zz);
@@ -1556,7 +1547,18 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
     if(!force)setFace(Math.random()<.5?'wink':'laugh');clearTimeout(qT);qT=setTimeout(function(){hint.hidden=true;if(cur!=='sleep'&&cur!=='dizzy')setFace(mood)},4800)}
   hint.style.cursor='pointer';hint.onclick=function(){open()};
   setInterval(function(){if(D.hidden||cur==='sleep')return;var c=CTX[curPal];if(c&&!said[curPal]){said[curPal]=1;quip(c);return}quip(LINES[Math.floor(Math.random()*LINES.length)])},30000);
-  W.buddyQuip=function(t){quip(t,true)};var once={};function react(sel,ev,txt){D.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest(sel)&&!once[sel]){once[sel]=1;setTimeout(function(){quip(txt,true)},500)}})}
+  W.buddyQuip=function(t){quip(t,true)};
+  /* he reads the visitor's clock */
+  function clockLine(){var d=new Date(),h=d.getHours(),w=d.getDay();
+    if(h<5)return 'Shouldn’t you be asleep? I almost am.';
+    if(w===1&&h<12)return 'Monday morning already? Let’s make it a good week.';
+    if(w===5&&h>=12)return 'Happy Friday! Perfect day to send an email.';
+    if(w===0||w===6)return 'Browsing portfolios on the weekend? I like your dedication.';
+    if(h<10)return 'Good morning! Coffee first, then we talk?';
+    if(h>=12&&h<14)return 'Lunch break browsing? I approve.';
+    if(h>=19)return 'Working late? Me too, sometimes.';
+    return null}
+  setTimeout(function(){var l=clockLine();if(l)quip(l,true)},15000);var once={};function react(sel,ev,txt){D.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest(sel)&&!once[sel]){once[sel]=1;setTimeout(function(){quip(txt,true)},500)}})}
   react('#recPick','click','Imagine what I’d build for your team.');react('#nnTrain','click','Fast learner. Like this network.');react('#twWall','click','I clear obstacles for teams too.');react('#twGoal','click','Give me a goal, I find the way.');
   react('a[href$="CV.pdf"]','click','Great choice. Page one is my favourite.');react('a[href*="linkedin.com"]','click','See you on LinkedIn!');react('.pillar','pointerover','These four are why I do all this.');
   D.addEventListener('visibilitychange',function(){if(!D.hidden&&shown>0)setTimeout(function(){quip('Welcome back! Thinking about hiring me?',true)},600)});
