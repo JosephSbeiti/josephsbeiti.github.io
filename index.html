@@ -701,6 +701,14 @@ main{overflow-x:clip}
 .op .conviction{margin-top:clamp(40px,6vw,64px)}
 .op .jgo{margin-top:clamp(60px,8vw,96px)}
 #swarm{transition:opacity .7s}#swarm.dim{opacity:.32}
+/* the map fades into each chapter instead of handing over a new screen */
+.flight:not(.last){height:255vh}
+.flight.train{height:350vh}
+#journey .panel{position:relative;z-index:2;margin-top:-100vh}
+.flight .stick{will-change:opacity}
+@media(max-width:700px){.flight:not(.last){height:240vh}.flight.train{height:300vh}}
+@media(prefers-reduced-motion:reduce){.flight:not(.last),.flight.train{height:auto}#journey .panel{margin-top:0}}
+
 .op .jgo{margin-top:clamp(40px,5vw,64px)}.jgo-line{margin-top:10px}.jgo-line i{height:40px}
 #origin.op{padding-bottom:clamp(24px,3vw,40px)}
 @media(max-width:900px){.op-grid{grid-template-columns:1fr;gap:56px}.op-stick{position:static}.op-r{padding-top:0}}
@@ -1479,9 +1487,11 @@ function mY(la){return Math.log(Math.tan(Math.PI/4+la*Math.PI/360))*180/Math.PI}
 function hav(a,b){var r=Math.PI/180,dl=(b[1]-a[1])*r,dn=(b[0]-a[0])*r,h=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a[1]*r)*Math.cos(b[1]*r)*Math.sin(dn/2)*Math.sin(dn/2);return 6371*2*Math.atan2(Math.sqrt(h),Math.sqrt(1-h))}
 var FLIGHTS=$$('.flight').map(function(f){var a=CITYLL[f.dataset.from],b=CITYLL[f.dataset.to]||null,cv=$('canvas',f);
   if(b)$('.dist',f).textContent=Math.round(hav(a,b)).toLocaleString('en-US')+' km';
-  return {el:f,cv:cv,x:cv.getContext('2d'),a:a,b:b,pf:PAL[f.dataset.pf],pt:PAL[f.dataset.pt],mode:f.dataset.mode,last:!b}});
+  return {el:f,st:$('.stick',f),tx:$('.ftxt',f),cv:cv,x:cv.getContext('2d'),a:a,b:b,pf:PAL[f.dataset.pf],pt:PAL[f.dataset.pt],mode:f.dataset.mode,last:!b}});
 function drawFlight(F,now){var r=F.el.getBoundingClientRect(),vh=W.innerHeight;if(r.bottom<-50||r.top>vh+50)return false;
-  var p=RM?1:clamp(-r.top/(r.height-vh+1),0,1),cv=F.cv,dpr=Math.min(1.5,W.devicePixelRatio||1),w=cv.clientWidth,h=cv.clientHeight,x=F.x;
+  var ov=!F.last&&!RM,p=RM?1:clamp(-r.top/(r.height-(ov?2:1)*vh+1),0,1);
+  if(ov){var fd=clamp((-r.top-(r.height-2*vh))/vh,0,1);F.st.style.opacity=(1-fd*fd*(3-2*fd)).toFixed(3);if(F.tx)F.tx.style.opacity=clamp(1-fd*4,0,1).toFixed(3);if(fd>=1)return true}
+  var cv=F.cv,dpr=Math.min(1.5,W.devicePixelRatio||1),w=cv.clientWidth,h=cv.clientHeight,x=F.x;
   if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}x.setTransform(dpr,0,0,dpr,0,0);
   var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,bg=mixHex(F.pf[0],F.pt[0],e),mid=mixHex(F.pf[1],F.pt[1],e),acc=mixHex(F.pf[2],F.pt[2],e);F.el.style.setProperty('--facc',acc);
   if(F.mode==='air'){drawAir(F,p,e,now||performance.now(),w,h,x,bg,mid,hex(acc));return true}
