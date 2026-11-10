@@ -514,6 +514,11 @@ main{overflow-x:clip}
 .sleeping svg{transform:rotate(-8deg);transition:transform .8s}
 .bhint.popq{animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
 #trail{position:fixed;inset:0;width:100vw;height:100vh;z-index:66;pointer-events:none;mix-blend-mode:screen}
+.divein{animation:divein 1.15s cubic-bezier(.2,.7,.2,1)}
+.diveout{animation:diveout 1.15s cubic-bezier(.2,.7,.2,1)}
+@keyframes divein{0%,35%{transform:scale(.82);filter:blur(14px);opacity:0}100%{transform:none;filter:none;opacity:1}}
+@keyframes diveout{0%,35%{transform:scale(1.18);filter:blur(14px);opacity:0}100%{transform:none;filter:none;opacity:1}}
+#journey.divein,#journey.diveout{animation:none}
 /* mini Joseph */
 .buddy{position:fixed;z-index:72;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .bface{all:unset;cursor:pointer;width:72px;height:72px;border-radius:50%;box-shadow:0 14px 30px -10px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.25);transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
@@ -1110,6 +1115,7 @@ var mouse={x:-1e4,y:-1e4,nx:0,ny:0},override=null,overT=0,state={A:'sphere',B:'s
 W.addEventListener('pointermove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;mouse.nx=e.clientX/VW-.5;mouse.ny=e.clientY/VH-.5},{passive:true});
 D.addEventListener('pointerleave',function(){mouse.x=mouse.y=-1e4});
 var time=0,last=performance.now(),cols={d:'#070B1A',m:'#1D2A6E',a:'#6EF2D2'},pillarCol=null;
+var dive=null;
 function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   var A=SH[state.A],B=SH[state.B],raw=clamp(state.t,0,1),t=ease(raw),O=override?SH[override]:null;overT=clamp(overT+(override?dt*2.2:-dt*2.2),0,1);var ot=ease(overT);
   var V=state.via&&state.A!==state.B?SH[state.via]:null,mode=0,e1=0,vx=0,vy=0;
@@ -1119,6 +1125,11 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   var soft=(SOFT[state.A]&&t<.5)||(SOFT[state.B]&&t>=.5);var rotY=flat?Math.sin(time*.4)*.14+mouse.nx*.35:(soft?-.55+Math.sin(time*.3)*.25+mouse.nx*.5:time*.25+mouse.nx*.8),rotX=flat?-mouse.ny*.15:(soft?.42-mouse.ny*.3:-mouse.ny*.4+.15),cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
   var wide=VW>900,CX=wide?VW*.72:VW*.5,CY=VH*.52+(wide?0:VH*.02),SC=wide?Math.min(VW*.27,VH*.4):Math.min(VW*.42,VH*.3);
   ctx.clearRect(0,0,VW,VH);if(state.jv>.01)drawMap(state.jv,state.jp);ctx.globalCompositeOperation='lighter';
+  /* camera dive: fly through the old world, the next one rushes in from the distance */
+  var zf=1,za=1,streak=0;if(dive){var dv=clamp((now-dive.t0)/dive.dur,0,1),u;
+    if(dive.dir>0){if(dv<.5){u=dv/.5;zf=1+7*u*u;za=1-u*.85;streak=u}else{u=(dv-.5)/.5;zf=.08+.92*ease(u);za=.15+.85*u}}
+    else{if(dv<.5){u=dv/.5;zf=1-.9*u*u;za=1-u*.85}else{u=(dv-.5)/.5;zf=8-7*ease(u);za=.15+.85*u;streak=1-u}}
+    if(dv>=1)dive=null}
   var acc=hex(pillarCol&&ot>0?mixHex(cols.a,pillarCol,ot):cols.a),mid=hex(mixHex(cols.m,'#ffffff',.6));
   for(var k=0;k<N;k++){var i3=k*3,x,y,z;
     if(mode){var qx=V[i3]*.6+vx,qy=V[i3+1]*.6+vy,qz=V[i3+2];if(mode===1){x=lerp(A[i3],qx,e1);y=lerp(A[i3+1],qy,e1);z=lerp(A[i3+2],qz,e1)}else if(mode===2){x=qx;y=qy;z=qz}else{x=lerp(qx,B[i3],e1);y=lerp(qy,B[i3+1],e1);z=lerp(qz,B[i3+2],e1)}}
@@ -1132,6 +1143,10 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
       vel[k*2]+=-off[k*2]*.06;vel[k*2+1]+=-off[k*2+1]*.06;vel[k*2]*=.86;vel[k*2+1]*=.86;off[k*2]+=vel[k*2];off[k*2+1]+=vel[k*2+1]}
     px+=off[k*2];py+=off[k*2+1];
     var bright=clamp(.55+z2*.5,.25,1),useAcc=sd<.34,c=useAcc?acc:mid,sz=(useAcc?3:2.1)*per*(MOBILE?1.5:1.9);
+    if(zf!==1){var zk=1+(zf-1)*(.45+sd*1.1),qx0=px,qy0=py;px=CX+(qx0-CX)*zk;py=CY+(qy0-CY)*zk;sz*=Math.max(.4,Math.min(3,Math.sqrt(zk)));
+      var al=(bright*(useAcc?.95:.6)*za).toFixed(3);
+      if(streak>.05){var zb=1+(zk-1)*(1-.35*streak);ctx.strokeStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+al+')';ctx.lineWidth=sz*.6;ctx.beginPath();ctx.moveTo(CX+(qx0-CX)*zb,CY+(qy0-CY)*zb);ctx.lineTo(px,py);ctx.stroke();continue}
+      ctx.fillStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+al+')';ctx.fillRect(px-sz/2,py-sz/2,sz,sz);continue}
     ctx.fillStyle='rgba('+c[0]+','+c[1]+','+c[2]+','+(bright*(useAcc?.95:.6)).toFixed(3)+')';ctx.fillRect(px-sz/2,py-sz/2,sz,sz)}
   ctx.globalCompositeOperation='source-over';
   if(!RM)requestAnimationFrame(frame)}
@@ -1168,7 +1183,8 @@ function onScroll(){var vh=W.innerHeight,y=W.scrollY,vc=y+vh*.5;
   var ch=(tt<.5?a:b).ch;if(here.textContent!==ch)here.textContent=ch;
   var secId=(function(){var e=(tt<.5?a:b).el;return e.closest('#journey')?'journey':e.id})();
   if(ch!==lastCh){if(lastCh&&secId===lastSec)wipe(PAL[(tt<.5?a:b).pal][2]);lastCh=ch;if(W.buddyMood)W.buddyMood((tt<.5?a:b).pal)}
-  if(secId!==lastSec){lastSec=secId}lastY=y;camera(vh);
+  if(secId!==lastSec){if(lastSec&&!RM&&(!dive||performance.now()-dive.t0>450)){dive={t0:performance.now(),dur:1150,dir:y>=lastY?1:-1};
+      var se=D.getElementById(secId);if(se){se.classList.remove('divein','diveout');void se.offsetWidth;se.classList.add(y>=lastY?'divein':'diveout')}}lastSec=secId}lastY=y;camera(vh);
   links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+secId)});
   bar.style.transform='scaleX('+clamp(y/(D.documentElement.scrollHeight-vh),0,1)+')';
   var hb=$('#top').getBoundingClientRect().bottom,nt=$('#next').getBoundingClientRect().top;dock.classList.toggle('show',hb<vh*.2&&nt>vh*.5);
@@ -1496,7 +1512,8 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   wake();
   var Q=[
     ['Who are you?','smile',"I'm Joseph. Born in Lebanon, raised in Paris, studied in the USA. Today I'm a digital transformation strategy consultant at Devoteam, working for Safran Aircraft Engines.",[]],
-    ['What are you looking for?','proud',"A graduate programme or a junior role from 2027, wherever technology meets business: AI, digital transformation, product, strategy or delivery. The common thread is making new tech actually work for people. I'm open to relocation and work in English, French and Arabic.",[['Download my CV','cv']]],
+    ['What are you looking for?','proud',"A graduate programme or a junior role from 2027, wherever technology shapes the future of business: AI, digital transformation, digital project management, product or strategy. The common thread is making new tech actually work for people. I'm open to relocation and work in English, French and Arabic.",[['Download my CV','cv']]],
+    ['What excites you?','wow',"Emerging tech that changes how places work: smart cities, digital and smart infrastructure, energy, and AI that a region can truly own. That's where my thesis started, and where I'd love my career to go.",[['My purpose','#purpose']]],
     ['What is MegaMind?','wow',"My own AI brain, built from scratch without external AI models. It drives a small robot that learns in a digital twin before it touches the real world.",[['Show me','#hq']]],
     ['Why this portfolio?','think',"A CV tells you what I did. This page shows how I think and what I build: my story, my projects and where I'm heading. And if it makes you want to work with me, well, that was kind of the plan.",[['Download my CV','cv']]],
     ['Can you code?','proud',"Yes. I programmed the whole platform of International Signature, a luxury concierge service: website, client accounts, back-office and a cross-selling recommendation algorithm. I also build software, robotics and websites for myself and friends.",[['See it','#lab']]],
