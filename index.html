@@ -975,7 +975,7 @@ body.gl-open .dock{transform:translateY(150%)}
             <div class="glass pad fc bc" data-depth="1"><span class="bk">2021 – 2025</span><b class="bn">SKEMA Business School</b><span class="br">BBA in Global Management · Major in International Business</span>
               <p class="bd">Four years of international business, built around one idea: companies can create a sustainable future.</p>
               <p class="bsub"><i aria-hidden="true">★</i> Promotion president, 2025 · representing students to programme management</p></div>
-            <div class="glass pad fc bc" data-depth="1.4"><span class="bk">Luxury retail · Summer 2023</span><b class="bn">Louis Vuitton</b><span class="br">Sales Advisor · Maison Place Vendôme, Paris</span>
+            <div class="glass pad fc bc" data-depth="1.4"><span class="bk">Luxury retail · 2023</span><b class="bn">Louis Vuitton</b><span class="br">Sales Advisor · Maison Place Vendôme, Paris</span>
               <p class="bd">International clients from five continents, advised in English, French and Arabic.</p>
               <div class="minis"><div><b data-count="600" data-suf="+">600+</b><span>client experiences, end to end</span></div><div><b data-count="10000" data-pre="€">€10,000</b><span>daily target, regularly exceeded</span></div></div></div>
           </div>
@@ -1003,7 +1003,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <div class="float">
           <div class="fl-left">
             <span class="chap">Chapter 3 of 5</span>
-            <div class="stop"><span class="city decode">Beirut</span><span class="when">May – Aug 2025</span></div>
+            <div class="stop"><span class="city decode">Beirut</span><span class="when">2025</span></div>
             <div class="glass pad fc bc" data-depth="1"><span class="bk">Aviation &amp; travel technology</span><b class="bn">SITA Aero</b><span class="br">Key Account Manager Assistant</span>
               <p class="bd">Shaping the future of travel. Airports, airlines and governments came to SITA to modernise their infrastructure and systems with technology and innovation, such as a biometric passenger path at Beirut Airport. On the other side, product managers came to us with the right solutions. I linked the two, matching each institution's needs with what fit best, including solutions SITA already had.</p>
               <div class="bridge" aria-label="Product managers and their solutions, connected through me at SITA, to airports, airlines and governments">
@@ -1026,7 +1026,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <div class="float">
           <div class="fl-left">
             <span class="chap">Chapter 4 of 5</span>
-            <div class="stop"><span class="city decode">Raleigh</span><span class="when">Aug 2025 – May 2026</span></div>
+            <div class="stop"><span class="city decode">Raleigh</span><span class="when">2025 – 2026</span></div>
             <div class="glass pad fc bc" data-depth="1"><span class="bk">In partnership with NC State University</span><b class="bn">SKEMA Business School</b><span class="br">MSc International Business, AI &amp; Data Analytics</span>
               <div class="thesis in"><span class="kick">Master's thesis · co-written</span>
                 <p class="tq">How can digital transformation be strategically implemented in the Global South to leverage sustainable development?</p></div></div>
@@ -1043,7 +1043,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <div class="float">
           <div class="fl-left">
             <span class="chap">Chapter 5 of 5</span>
-            <div class="stop"><span class="city decode">Paris</span><span class="when">Since July 2026</span></div>
+            <div class="stop"><span class="city decode">Paris</span><span class="when">Since 2026</span></div>
             <div class="glass pad fc bc" data-depth="1"><span class="bk">Digital transformation strategy</span><b class="bn one">Safran Aircraft Engines <span>· IT department</span></b><span class="br">Digital Transformation Strategy Consultant</span><p class="bvia">With <b>Devoteam Digital Impulse</b>, the consulting firm I work for</p>
               <div class="prog" role="group" aria-label="Programme" id="prog">
                 <button class="pstep" aria-pressed="true"><em>Frame</em><b>The 2030 ambition</b></button>
@@ -2420,10 +2420,10 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   var bin=atob(MASK.b),pts=[],k=0,i,j;for(i=0;i<MASK.h;i++)for(j=0;j<MASK.w;j++,k++){if(bin.charCodeAt(k>>3)&(128>>(k&7))){var lo=(MASK.lon0+(j+.5)*MASK.step)*Math.PI/180,la=(MASK.lat1-(i+.5)*MASK.step)*Math.PI/180;pts.push(Math.cos(la)*Math.cos(lo),Math.cos(la)*Math.sin(lo),Math.sin(la))}}
   var P=new Float32Array(pts),gl=$('#gl'),btn=$('#globeBtn'),stage=$('#glStage'),cvg=$('#glcv'),card=$('#gcard'),pinsEl=$('#glPins'),view={lon:-20,lat:30,z:1},open=false,anim=0,spin=0,idle=true,routeT=1;
   var ROUTE=['beirut','paris','lille','usa','beirut','usa','paris'];
-  var PL={beirut:{t:'Beirut',sub:'Lebanon',items:[['Where it starts','Born in Lebanon','French & Lebanese','#origin'],['May – Aug 2025','Key Account Manager Assistant','SITA, aviation technology','#journey']]},
-    paris:{t:'Paris',sub:'France',items:[['Growing up','French National Baccalauréat','with honours, 2021','#journey'],['Summer 2023','Sales Advisor, Louis Vuitton','Maison Place Vendôme','#journey'],['Jul – Dec 2026','Digital Transformation Strategy Consultant','Devoteam Digital Impulse, for Safran','#journey']]},
+  var PL={beirut:{t:'Beirut',sub:'Lebanon',items:[['Where it starts','Born in Lebanon','French & Lebanese','#origin'],['2025','Key Account Manager Assistant','SITA Aero, aviation & travel technology','#journey']]},
+    paris:{t:'Paris',sub:'France',items:[['Growing up','French National Baccalauréat','with honours, 2021','#journey'],['2023','Sales Advisor, Louis Vuitton','Maison Place Vendôme','#journey'],['2026','Digital Transformation Strategy Consultant','Devoteam Digital Impulse, for Safran','#journey']]},
     lille:{t:'Lille',sub:'France',items:[['2021 – 2025','BBA in Global Management','SKEMA Business School · promotion president','#journey']]},
-    usa:{t:'Raleigh',sub:'North Carolina, USA',items:[['BBA final year','Living abroad','United States','#journey'],['Aug 2025 – May 2026','MSc International Business, AI & Data','NC State University / SKEMA','#journey']]}};
+    usa:{t:'Raleigh',sub:'North Carolina, USA',items:[['2024','BBA final year','SKEMA Raleigh, on NC State’s campus','#journey'],['2025 – 2026','MSc International Business, AI & Data Analytics','SKEMA Business School, with NC State','#journey']]}};
   var pins={};Object.keys(PL).forEach(function(k2){var b=D.createElement('button');b.className='pin'+(k2==='lille'?' up':'');b.innerHTML='<b>'+PL[k2].t+'</b><i></i>';b.setAttribute('aria-label',PL[k2].t+': what happened here');b.onclick=function(){focus(k2)};pinsEl.appendChild(b);pins[k2]=b});
   function vec(c2){var lo=c2.lon*Math.PI/180,la=c2.lat*Math.PI/180;return [Math.cos(la)*Math.cos(lo),Math.cos(la)*Math.sin(lo),Math.sin(la)]}
   function rotM(){var l=view.lon*Math.PI/180,p=view.lat*Math.PI/180;return {cl:Math.cos(l),sl:Math.sin(l),cp:Math.cos(p),sp:Math.sin(p)}}
