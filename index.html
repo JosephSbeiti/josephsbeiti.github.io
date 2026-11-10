@@ -1521,7 +1521,11 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   function wake(){if(cur==='sleep'){face.classList.remove('sleeping');setFace('wow');setTimeout(function(){if(cur==='wow')setFace(mood)},900)}clearTimeout(idleT);idleT=setTimeout(function(){if(chat.hidden&&cur!=='dizzy'){setFace('sleep');face.classList.add('sleeping')}},20000)}
   ['pointermove','keydown','pointerdown','touchstart'].forEach(function(ev){W.addEventListener(ev,wake,{passive:true})});
   W.addEventListener('scroll',function(){var now=performance.now(),dt=now-lastST,v=Math.abs(W.scrollY-lastSY)/(dt||1)*1000;lastSY=W.scrollY;lastST=now;wake();
-    if(v>4500&&dt<200&&chat.hidden&&!RM){if(cur!=='dizzy'){setFace('dizzy');face.classList.add('dizzy')}clearTimeout(dizzyT);dizzyT=setTimeout(function(){face.classList.remove('dizzy');setFace(mood);quip('Whoa, slow down… I get seasick.',true)},1100)}},{passive:true});
+    /* only after 3 seconds of non-stop fast scrolling */
+    if(v>2500&&dt<250){if(!fastStart)fastStart=now;lastFast=now}else if(now-lastFast>450)fastStart=0;
+    if(fastStart&&now-fastStart>3000&&chat.hidden&&!RM&&now-lastSick>20000){lastSick=now;fastStart=0;setFace('dizzy');face.classList.add('dizzy');
+      clearTimeout(dizzyT);dizzyT=setTimeout(function(){face.classList.remove('dizzy');setFace(mood)},2600);quip('Whoa, slow down… I get seasick.',true)}},{passive:true});
+  var fastStart=0,lastFast=0,lastSick=-1e9;
   wake();
   var Q=[
     ['Why hire you?','proud',"Because I sit between business and engineers. At Devoteam I design AI agents and lead their delivery with engineering teams, and on my own I built a full software platform end to end. Add three languages, a habit of learning fast, and a lot of curiosity. Shall I send you my CV?",[['Download my CV','cv'],['Copy my email','mail']]],
