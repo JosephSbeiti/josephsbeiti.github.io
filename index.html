@@ -424,7 +424,7 @@ svg :focus{outline:none}
 .rec-out li i::after{content:"";display:block;height:100%;width:var(--w);border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--a) 50%,transparent),var(--a));animation:recbar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k)*90ms + .1s)}
 .rec-out .empty{color:var(--fg3);font-size:.9rem;display:block}
 /* International Signature: compact, explained */
-.fs{max-width:980px}
+.fs,#lab>.wrap>.glass{max-width:980px}
 .fs-chips{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .fs-chips li{font-size:.86rem;font-weight:600;padding:6px 12px;border-radius:99px;border:1px solid var(--edge);background:rgba(255,255,255,.05);color:var(--fg2)}
 .fs-chips li.lbl{border:0;background:none;padding-left:0;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
@@ -1262,19 +1262,6 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="rec-key"><span><i style="--c:#5EE6C8"></i>Booked together</span><span><i style="--c:#B79CFF"></i>Client's taste</span><span><i style="--c:#FFC861"></i>Fits the trip</span></div></div>
         <div class="rec-how"><b>How it decides.</b> Every service gets a score out of 100: <em>50% how strongly it is booked together</em> with what the client asked for, <em>30% how well it matches the client's past requests</em>, and <em>20% how well it fits the trip</em>. The top three are suggested, each with its main reason.
           <span class="note" style="display:block;margin-top:6px">Demo with sample data, not real client data.</span></div>
-      </div>
-    </div>
-    <div class="jos rv" id="jos" aria-label="Joseph OS, a tiny desktop with my projects as apps">
-      <div class="jos-bar"><b>◆ Joseph OS</b><span>File</span><span>View</span><span>Help</span><em id="josClock">--:--</em></div>
-      <div class="jos-desk" id="josDesk">
-        <div class="jos-icons">
-          <button class="jos-ic" data-app="term"><i>&gt;_</i><span>Terminal</span></button>
-          <button class="jos-ic" data-app="energy"><i>⚡</i><span>Energy.app</span></button>
-          <button class="jos-ic" data-app="conc"><i>✦</i><span>Concierge.app</span></button>
-          <button class="jos-ic" data-app="robot"><i>◉</i><span>Robot.app</span></button>
-          <button class="jos-ic" data-app="notes"><i>✎</i><span>Notes</span></button>
-        </div>
-        <p class="jos-hint">Open an app. Or try the terminal: type <b>help</b>.</p>
       </div>
     </div>
     <div class="glass pad rv edp" style="margin-top:30px">
