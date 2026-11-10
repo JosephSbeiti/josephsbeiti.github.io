@@ -703,10 +703,10 @@ main{overflow-x:clip}
 #swarm{transition:opacity .7s}#swarm.dim{opacity:.32}
 /* the map fades into each chapter instead of handing over a new screen */
 .flight:not(.last){height:255vh}
-.flight.train{height:350vh}
+.flight.train{height:430vh}
 #journey .panel{position:relative;z-index:2;margin-top:-100vh}
 .flight .stick{will-change:opacity}
-@media(max-width:700px){.flight:not(.last){height:240vh}.flight.train{height:300vh}}
+@media(max-width:700px){.flight:not(.last){height:240vh}.flight.train{height:370vh}}
 .sec{padding-block:clamp(56px,7vw,96px)}
 #journey .panel{align-items:flex-start;padding-top:calc(var(--nav-h) + clamp(28px,5vh,56px));padding-bottom:clamp(40px,6vh,72px);min-height:0}
 .flight:not(.last){height:290vh}
@@ -1585,11 +1585,7 @@ function drawTrain(x,w,h,p,ac,bg,km){
   /* pantograph to the wire */
   var px=cars[0].a+U*.32;x.strokeStyle='rgba(230,235,245,.85)';x.lineWidth=2;x.beginPath();x.moveTo(px-10,top);x.lineTo(px+10,(top+wireY)/2);x.lineTo(px-2,wireY+2);x.moveTo(px+6,top);x.lineTo(px-12,(top+wireY)/2);x.lineTo(px-2,wireY+2);x.moveTo(px-14,wireY+2);x.lineTo(px+10,wireY+2);x.stroke();x.fillStyle='#2a3142';x.fillRect(px-14,top-3,28,3);
   /* station platforms in front of the wheels */
-  [0,D].forEach(function(st){var a=sx(st-U*9),b=sx(st+U*1.6);if(b<-50||a>w+50)return;x.fillStyle='rgba(18,22,36,.96)';x.fillRect(a,ty-H*.22,b-a,H*.22+14);x.fillStyle='rgba(255,209,102,.85)';x.fillRect(a,ty-H*.22,b-a,2)});
-  /* the readout */
-  var mono=w<700?'500 10.5px':'500 12px';x.font=mono+' "IBM Plex Mono",ui-monospace,monospace';x.textAlign='left';x.fillStyle='rgba(255,255,255,.7)';
-  var gx=Math.max(16,(w-1240)/2+20);x.fillText('KM '+Math.round(km*trCum(p))+' / '+km,gx,ty+30);x.fillStyle=acs;x.fillText(Math.round(300*v)+' KM/H',gx+(w<700?110:140),ty+30);
-  x.fillStyle='rgba(255,255,255,.45)';x.fillText(p<.06?'DEPARTING PARIS':p>.94?'ARRIVING IN LILLE':'HIGH-SPEED LINE NORTH',gx+(w<700?200:270),ty+30)}
+  [0,D].forEach(function(st){var a=sx(st-U*9),b=sx(st+U*1.6);if(b<-50||a>w+50)return;x.fillStyle='rgba(18,22,36,.96)';x.fillRect(a,ty-H*.22,b-a,H*.22+14);x.fillStyle='rgba(255,209,102,.85)';x.fillRect(a,ty-H*.22,b-a,2)});}
 
 /* ── the airport: mini Joseph waits for his next flight ── */
 var AIR=(function(){var el=$('.flight.air');if(!el)return null;var pax=$('#pax',el),q=function(s){return $(s,pax)};
