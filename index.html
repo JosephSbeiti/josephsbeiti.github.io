@@ -140,7 +140,7 @@ p{margin:0}
 .seg button:hover{color:var(--fg)}
 .seg button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
 .seg button:focus-visible{outline:2px solid var(--a)}
-#origin{min-height:120vh;display:flex;align-items:center}
+#origin{min-height:100vh;display:flex;align-items:flex-start;padding-top:clamp(60px,6vw,76px)}
 #origin>.wrap{width:100%}
 /* ── generic layouts ── */
 .col{max-width:600px}
@@ -588,7 +588,8 @@ main{overflow-x:clip}
 .term .ln{white-space:pre-wrap;word-break:break-word}
 .term .pr{color:var(--a)}
 .term input{all:unset;width:70%;color:#fff;caret-color:var(--a)}
-.qwrap{padding-block:clamp(30px,6vw,70px) 0}
+.qwrap{padding-block:0;margin-top:-28px}
+.hero{padding-bottom:clamp(16px,2vw,24px);min-height:calc(86svh - var(--nav-h))}
 .qwrap .quote{max-width:860px}
 /* mini Joseph */
 .buddy{position:fixed;z-index:72;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-start;gap:10px}
