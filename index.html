@@ -143,7 +143,7 @@ p{margin:0}
 .seg button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
 .seg button:focus-visible{outline:2px solid var(--a)}
 #origin{display:flex;align-items:flex-start;padding-top:clamp(60px,6vw,76px);padding-bottom:clamp(30px,4vw,50px)}
-#purpose{padding-top:clamp(40px,5vw,64px)}
+section#purpose{padding-top:clamp(40px,5vw,64px)}
 #origin>.wrap{width:100%}
 /* ── generic layouts ── */
 .col{max-width:600px}
@@ -691,6 +691,18 @@ main{overflow-x:clip}
 #journey .sv-scale{font-size:11.5px;color:var(--fg2)}
 #journey .sv-f{font-size:1rem}
 #journey .ctx .bd{margin-top:8px}
+/* origin + purpose, side by side */
+.op-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(36px,5vw,80px);align-items:start}
+.op-l{align-self:stretch}
+.op-stick{position:sticky;top:calc(var(--nav-h) + clamp(28px,6vh,64px))}
+.op-r{padding-top:clamp(120px,22vh,240px)}
+.op .pillars{grid-template-columns:1fr 1fr;margin-top:26px}
+.op .pillar .scene{height:118px}
+.op .conviction{margin-top:clamp(40px,6vw,64px)}
+.op .jgo{margin-top:clamp(60px,8vw,96px)}
+#swarm{transition:opacity .7s}#swarm.dim{opacity:.32}
+@media(max-width:900px){.op-grid{grid-template-columns:1fr;gap:56px}.op-stick{position:static}.op-r{padding-top:0}}
+
 /* calmer titles everywhere */
 h2{font-size:clamp(1.6rem,2.6vw,2.2rem)}
 #origin h2,#purpose h2{font-size:clamp(1.6rem,2.6vw,2.2rem)}
@@ -872,27 +884,22 @@ body.gl-open .dock{transform:translateY(150%)}
 
 
 <!-- ORIGIN -->
-<section class="sec" id="origin" data-shape="cedar" data-pal="origin" data-ch="Origin">
+<section class="sec op" id="origin" data-shape="cedar" data-pal="origin" data-ch="Origin">
   <div class="wrap">
-    <div class="col">
-      <span class="kick rv">Origin · Lebanon → Paris</span>
-      <h2 class="words rv" style="margin-top:16px">Born in Lebanon. Raised in Paris.</h2>
-      <p class="ask rv">Where does my ambition come from?</p>
-      <p class="lead rv" style="margin-top:14px">I grew up between two realities. In France, I was privileged and had access to every opportunity I needed. In Lebanon, the country I was born in, I saw brilliant and talented people with far fewer doors open to them.</p>
-      <p class="said rv">That contrast is what drives me.</p>
-      <div class="tags rv"><span class="chip">French &amp; Lebanese</span><span class="chip">English · French · Arabic, all native</span></div>
-    </div>
-  </div>
-</section>
-<!-- PURPOSE -->
-<section class="sec" id="purpose" data-shape="pillars" data-pal="purpose" data-ch="Purpose">
-  <div class="wrap">
-    <div class="col">
-      <span class="kick rv">Purpose</span>
-      <p class="ask rv">So I made it my purpose, and the subject of my master's thesis.</p>
-      <h2 class="words rv" style="margin-top:14px">Every child should start with equal chances.</h2>
-      <p class="lead rv" style="margin-top:18px">Today, the chances you get in life still depend on where you were born. We have the tools, the technology and the innovation to change that. I want to help bring a wealthy and sustainable society to the next generations, with better opportunities for everyone. Clean water, education, health and energy are some of its pillars.</p>
-    </div>
+    <div class="op-grid">
+      <div class="op-l"><div class="op-stick">
+        <span class="kick rv">Origin · Lebanon → Paris</span>
+        <h2 class="words rv" style="margin-top:16px">Born in Lebanon. Raised in Paris.</h2>
+        <p class="ask rv">Where does my ambition come from?</p>
+        <p class="lead rv" style="margin-top:14px">I grew up between two realities. In France, I was privileged and had access to every opportunity I needed. In Lebanon, the country I was born in, I saw brilliant and talented people with far fewer doors open to them.</p>
+        <p class="said rv">That contrast is what drives me.</p>
+        <div class="tags rv"><span class="chip">French &amp; Lebanese</span><span class="chip">English · French · Arabic, all native</span></div>
+      </div></div>
+      <div class="op-r" id="purpose" data-shape="pillars" data-pal="purpose" data-ch="Purpose">
+        <span class="kick rv">Purpose</span>
+        <p class="ask rv">So I made it my purpose, and the subject of my master's thesis.</p>
+        <h2 class="words rv" style="margin-top:14px">Every child should start with equal chances.</h2>
+        <p class="lead rv" style="margin-top:18px">Today, the chances you get in life still depend on where you were born. We have the tools, the technology and the innovation to change that. I want to help bring a wealthy and sustainable society to the next generations, with better opportunities for everyone. Clean water, education, health and energy are some of its pillars.</p>
     <div class="pillars" id="pillars">
       <div class="glass pillar pw rv" tabindex="0" data-shape="drop" data-col="#58C8FF" data-scene="water" style="--pc:#58C8FF"><canvas class="scene" aria-hidden="true"></canvas>
         <b>Clean water</b><span>Flowing to every home</span></div>
@@ -904,7 +911,9 @@ body.gl-open .dock{transform:translateY(150%)}
         <b>Energy</b><span>Lights on in every home</span></div>
     </div>
     <p class="note rv">Hover each pillar. The whole world takes its colour.</p>
-    <p class="conviction rv">The regions left behind should <b>own their development</b>: built by them, for them, drawing on the world's knowledge.</p>
+        <p class="conviction rv">The regions left behind should <b>own their development</b>: built by them, for them, drawing on the world's knowledge.</p>
+      </div>
+    </div>
     <div class="jgo rv">
       <span class="kick">The journey</span>
       <p class="jgo-t">Now, let me tell you about my journey.</p>
@@ -1645,6 +1654,7 @@ function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddy
   if(search&&p>.26&&p<.46){if(!A._scr||t-A._scr>.12){A._scr=t;A.setFlap(d1,'',true)}}else A.setFlap(d1,'NEXT CHAPTER');
   A.setFlap(s1,p<.26?'SCHEDULED':p<.46?'SEARCHING':'BOARDING');s1.classList.toggle('hot',p>=.46);
   A.setFlap($('.fl.s',R[1]),p>.5?'GATE OPEN':'ON TIME')}
+(function(){var r=$('.op-r'),sw=$('#swarm');if(!r||!sw||!('IntersectionObserver' in W))return;new IntersectionObserver(function(es){sw.classList.toggle('dim',es[0].isIntersecting&&W.innerWidth>900)},{rootMargin:'-35% 0px -35% 0px'}).observe(r)})();
 var flRun=false;function flightsTick(now){var any=false;FLIGHTS.forEach(function(F){if(drawFlight(F,now)&&F.last)any=true});if(any&&!RM)requestAnimationFrame(flightsTick);else flRun=false}
 function flightsOnScroll(){FLIGHTS.forEach(function(F){drawFlight(F)});var L=FLIGHTS[FLIGHTS.length-1];if(L){var r=L.el.getBoundingClientRect();if(r.bottom>0&&r.top<W.innerHeight&&!flRun){flRun=true;requestAnimationFrame(flightsTick)}}}
 if('IntersectionObserver' in W){var dio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){decode(en.target);dio.unobserve(en.target)}})},{threshold:.6});$$('#journey .decode').forEach(function(d){dio.observe(d)})}
