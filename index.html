@@ -700,8 +700,17 @@ h2{font-size:clamp(1.6rem,2.6vw,2.2rem)}
 .jgo-t{font-size:clamp(1.6rem,2.6vw,2.2rem)}
 .flight .route{font-size:clamp(1.7rem,3.4vw,2.8rem)}
 .flight.train .route,.flight.air .route{font-size:clamp(1.6rem,3vw,2.5rem)}
-#journey .bc .bn{font-size:clamp(1.6rem,2.6vw,2.1rem)}
-#journey .stop .city{font-size:clamp(1.35rem,2vw,1.7rem)}
+#journey .bc .bn{font-size:clamp(1.75rem,2.9vw,2.35rem)}
+#journey .stop .city{font-size:clamp(2rem,3.4vw,2.7rem);font-weight:700;letter-spacing:-.03em}
+#journey .stop .when{font-size:13px}
+#journey .fl-left{gap:16px}
+#journey .bc .bk{color:var(--fg);opacity:.86;font-size:12.5px}
+#journey .bc .bn.one{font-size:clamp(1.15rem,1.55vw,1.4rem);margin-top:0;white-space:nowrap}@media(max-width:560px){#journey .bc .bn.one{white-space:normal}}
+#journey .bc .bn.one span{color:var(--fg2);font-weight:500}
+.flight .fmeta{color:#fff;font-size:12.5px;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.flight.air .fmeta{font-family:var(--display);text-transform:none;letter-spacing:0;font-size:clamp(1.05rem,1.6vw,1.3rem);line-height:1.5;padding:10px 16px;border-radius:14px;background:rgba(6,8,16,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.flight.air .fmeta b{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
 #journey .sv-h b{font-size:clamp(1.6rem,2.6vw,2.1rem)}
 
 
@@ -948,7 +957,7 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="fl-left">
             <span class="chap">Chapter 3 of 5</span>
             <div class="stop"><span class="city decode">Beirut</span><span class="when">May – Aug 2025</span></div>
-            <div class="glass pad fc bc" data-depth="1"><span class="bk">Aviation &amp; travel technology</span><b class="bn">SITA</b><span class="br">Key Account Manager Assistant</span>
+            <div class="glass pad fc bc" data-depth="1"><span class="bk">Aviation &amp; travel technology</span><b class="bn">SITA Aero</b><span class="br">Key Account Manager Assistant</span>
               <p class="bd">Shaping the future of travel. SITA runs much of the technology behind airports, airlines and borders. I worked between SITA's product managers and the institutions modernising how the world travels, matching their needs with the right SITA solutions, including Beirut Airport's biometric passenger path.</p>
               <div class="bridge" aria-label="SITA product managers, connected through me, to airports, airlines and governments">
                 <div class="bnode"><b>SITA</b><span>product managers</span></div>
@@ -988,7 +997,7 @@ body.gl-open .dock{transform:translateY(150%)}
           <div class="fl-left">
             <span class="chap">Chapter 5 of 5</span>
             <div class="stop"><span class="city decode">Paris</span><span class="when">Since July 2026</span></div>
-            <div class="glass pad fc bc" data-depth="1"><span class="bk">Client · IT department</span><b class="bn">Safran Aircraft Engines</b><span class="br">Digital Transformation Strategy Consultant</span><p class="bvia">With <b>Devoteam Digital Impulse</b>, the consulting firm I work for</p>
+            <div class="glass pad fc bc" data-depth="1"><b class="bn one">Safran Aircraft Engines <span>· IT department</span></b><span class="br">Digital Transformation Strategy Consultant</span><p class="bvia">With <b>Devoteam Digital Impulse</b>, the consulting firm I work for</p>
               <div class="prog" role="group" aria-label="Programme" id="prog">
                 <button class="pstep" aria-pressed="true"><em>Frame</em><b>The 2030 ambition</b></button>
                 <button class="pstep" aria-pressed="false"><em>Deliver</em><b>5+ AI agents</b></button>
