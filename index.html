@@ -1753,7 +1753,7 @@ function drawAir(F,p,e,now,w,h,x,bg,mid,ac){var t=now/1000,bgc=hex(bg),acs='rgba
 var A_planeX=null,A_planeY=0;
 function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddyQuip){A.said=1;W.buddyQuip('Hey, that’s me down there! Where am I flying next?')}
   var cw=A.pax.offsetWidth||200,sm=w<700,sc=(A.pax.offsetHeight||400)/364,R2=Math.PI/180;
-  var xs=Math.max(sm?w*.04:w*.12,(sm?w*.42+26:w*.5+38)-cw*.63),X,walking=false;
+  var xs=sm?w*.08:w*.22,benchEnd=sm?w*.42+26:w*.5+38,X,walking=false;
   if(p<.2){var u0=p/.2;X=lerp(-cw*1.2,xs,1-Math.pow(1-u0,2));walking=u0<.97}else if(p>.89){var u2=(p-.89)/.11;X=lerp(xs,w*1.05,u2*u2);walking=u2>.02}else X=xs;
   /* which way he faces: profile while travelling, turning to face us in between */
   var turn,front;if(p<.24){turn=0}else if(p<.28){turn=(p-.24)/.04}else if(p<.85){turn=1}else if(p<.89){turn=1-(p-.85)/.04}else turn=0;
@@ -1762,7 +1762,7 @@ function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddy
   if(A.side!==front){A.side=front;A.S.style.display=front?'none':'';A.F.style.display=front?'':'none'}
   function rot(el,a,cx,cy){el.setAttribute('transform','rotate('+a.toFixed(2)+' '+cx+' '+cy+')')}
   var blink=(t%3.6)<.12;A.lid.forEach(function(l){l.style.transform='scaleY('+(blink?.1:1)+')'});
-  var search=p>.28&&p<.5,pass=p>=.5&&p<.85,plane=p>.62&&p<.8,bye=p>=.8&&p<.89;
+  var search=p>.28&&p<.5,pass=p>=.5&&p<.85,plane=p>.62&&p<.8,bye=p>=.8&&(p<.89||X+cw*.63<benchEnd);
   A.pass.classList.toggle('on',p>.5);A.el.classList.toggle('pass-on',p>.5);
   var call=p>.07&&p<.23,bon=search||bye||call;A.bub.classList.toggle('on',bon);if(bon){var bt=bye?'I’m going to shape the future, bye!':call?'I just got to the airport, I’ll call you later!':'?';if(A.bubT.textContent!==bt)A.bubT.textContent=bt;A.bub.classList.toggle('bye',bye||call)}
   A.csh.style.display=front?'none':'';
