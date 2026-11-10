@@ -372,6 +372,7 @@ section#purpose{padding-top:clamp(40px,5vw,64px)}
 .cov{height:6px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;width:160px}
 .cov i{display:block;height:100%;background:var(--a);width:0;transition:width .3s}
 .note{font-family:var(--mono);font-size:11px;color:var(--fg3);margin-top:12px;line-height:1.6}
+.note.kid{font-family:var(--body);font-size:.98rem;color:var(--fg2);line-height:1.55;max-width:62ch}.note.kid b{color:var(--fg)}.note.kid span{font-family:var(--mono);font-size:11px;color:var(--fg3)}
 
 /* lab */
 .edp-head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start}
@@ -1286,7 +1287,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <div><b>22 countries</b><span>have clean electricity but very little of it. A green mix is not the same as access.</span></div>
         <div><b>R² 0.83</b><span>Income explains 83% of the differences in electricity per person. 1% more GDP goes with about 1.25% more.</span></div>
       </div>
-      <p class="note">Method: electricity generated per person and low-carbon share (renewables + nuclear), standardised, then k-means for k = 2 to 7; k = 4 has the best silhouette score. Data: Our World in Data (Ember, Energy Institute, Maddison Project). Countries far above the line, like Paraguay or Laos, export electricity.</p>
+      <p class="note kid"><b>In simple words:</b> every dot is a country. I let the computer sort 164 countries into four families, by how much electricity each person gets and how clean it is, to see who is on the same path and whether richer countries really have more power. Find yours. <span>Data: Our World in Data.</span></p>
     </div>
     <div class="glass pad rv side">
       <div><span class="kick">After hours</span><h3 style="margin-top:8px">I build for fun, for myself and for friends.</h3>
