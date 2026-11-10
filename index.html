@@ -588,6 +588,8 @@ main{overflow-x:clip}
 .term .ln{white-space:pre-wrap;word-break:break-word}
 .term .pr{color:var(--a)}
 .term input{all:unset;width:70%;color:#fff;caret-color:var(--a)}
+.qwrap{padding-block:clamp(30px,6vw,70px) 0}
+.qwrap .quote{max-width:860px}
 /* mini Joseph */
 .buddy{position:fixed;z-index:72;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .bface{all:unset;cursor:pointer;width:72px;height:72px;border-radius:50%;box-shadow:0 14px 30px -10px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.25);transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
@@ -706,6 +708,12 @@ body.gl-open .dock{transform:translateY(150%)}
   </div>
   <a class="scrollhint" href="#origin"><i></i><span>Scroll · everything moves with you</span></a>
 </header>
+<div class="wrap qwrap">
+    <div class="glass pad quote rv"><span class="qm" aria-hidden="true">“</span><div><blockquote>A mature and <b>forward-looking vision</b>.</blockquote>
+      <p>“He stood out for his ability to quickly understand complex concepts and contribute thoughtfully to class discussions. […] I strongly recommend him for […] professional opportunities and am confident he will make a valuable contribution to any organization.”</p>
+      <cite>Adjunct Professor of Global Business · SKEMA Business School, Raleigh</cite></div></div>
+</div>
+
 
 <!-- ORIGIN -->
 <section class="sec" id="origin" data-shape="cedar" data-pal="origin" data-ch="Origin">
@@ -1010,9 +1018,6 @@ body.gl-open .dock{transform:translateY(150%)}
       <div class="glass pad rv"><h4>Delivery &amp; business</h4><ul><li>PowerPoint <small>advanced</small></li><li>PMO</li><li>Roadmaps &amp; risk logs</li><li>Stakeholder coordination</li><li>KPI frameworks</li><li>Benchmarking</li><li>Go-to-market</li><li>Jira <small>basic</small></li><li>Salesforce CRM <small>basic</small></li><li>Scrum</li></ul></div>
     </div>
     <div class="certs rv"><div><b>Google Cloud AI Infrastructure</b>Google Cloud Skills Boost · 2026</div><div><b>CI/CD for multi-agent systems with GitHub Actions</b>Microsoft · 2026</div><div><b>Gen AI Transformation</b>Devoteam · 2026</div><div><b>Scrum: The Basics</b>LinkedIn · 2025</div></div>
-    <div class="glass pad quote rv"><span class="qm" aria-hidden="true">“</span><div><blockquote>A mature and <b>forward-looking vision</b>.</blockquote>
-      <p>“He stood out for his ability to quickly understand complex concepts and contribute thoughtfully to class discussions. […] I strongly recommend him for […] professional opportunities and am confident he will make a valuable contribution to any organization.”</p>
-      <cite>Adjunct Professor of Global Business · SKEMA Business School, Raleigh</cite></div></div>
   </div>
 </section>
 
@@ -1856,8 +1861,8 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   ['pointermove','keydown','pointerdown','touchstart'].forEach(function(ev){W.addEventListener(ev,wake,{passive:true})});
   W.addEventListener('scroll',function(){var now=performance.now(),dt=now-lastST,v=Math.abs(W.scrollY-lastSY)/(dt||1)*1000;lastSY=W.scrollY;lastST=now;wake();
     /* only after 3 seconds of non-stop fast scrolling */
-    if(v>2500&&dt<250){if(!fastStart)fastStart=now;lastFast=now}else if(now-lastFast>450)fastStart=0;
-    if(fastStart&&now-fastStart>3000&&chat.hidden&&!RM&&now-lastSick>20000){lastSick=now;fastStart=0;setFace('dizzy');face.classList.add('dizzy');
+    if(v>900&&dt<600){if(!fastStart)fastStart=now;lastFast=now}else if(now-lastFast>600)fastStart=0;
+    if(fastStart&&now-fastStart>3000&&chat.hidden&&!RM&&now-lastSick>15000){lastSick=now;fastStart=0;if(cur==='sleep'){face.classList.remove('sleeping')}setFace('dizzy');face.classList.add('dizzy');
       clearTimeout(dizzyT);dizzyT=setTimeout(function(){face.classList.remove('dizzy');setFace(mood)},2600);quip('Whoa, slow down… I get seasick.',true)}},{passive:true});
   var fastStart=0,lastFast=0,lastSick=-1e9;
   wake();
