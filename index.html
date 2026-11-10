@@ -795,7 +795,7 @@ h2{font-size:clamp(1.6rem,2.6vw,2.2rem)}
 .term .pr{color:var(--a)}
 .term input{all:unset;width:70%;color:#fff;caret-color:var(--a)}
 .qwrap{padding-block:0;margin-top:-28px}
-.hero{padding-top:clamp(40px,7vh,72px);padding-bottom:clamp(16px,2vw,24px);min-height:calc(70svh - var(--nav-h))}.scrollhint{margin-top:clamp(28px,4vh,44px)}
+.hero{padding-top:clamp(40px,7vh,72px);padding-bottom:clamp(16px,2vw,24px);min-height:calc(70svh - var(--nav-h))}.scrollhint{margin-top:clamp(28px,4vh,44px)}.sh-x{font-style:normal;color:var(--a)}
 .qwrap .quote{max-width:860px}
 /* mini Joseph */
 .buddy{position:fixed;z-index:72;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-start;gap:10px}
@@ -913,7 +913,7 @@ body.gl-open .dock{transform:translateY(150%)}
       <a class="btn" href="mailto:josephsbeiti@gmail.com">Email</a>
     </div>
   </div>
-  <a class="scrollhint" href="#origin"><i></i><span>Scroll · everything moves with you</span></a>
+  <a class="scrollhint" href="#origin"><i></i><span>Scroll · everything moves with you <em class="sh-x">(surprises included)</em></span></a>
 </header>
 <div class="wrap qwrap">
     <div class="glass pad quote rv"><span class="qm" aria-hidden="true">“</span><div><blockquote>A mature and <b>forward-looking vision</b>.</blockquote>
@@ -1776,11 +1776,12 @@ function airPax(p,t,w,h){var A=AIR;if(!A)return;if(!A.said&&p>.08&&p<.7&&W.buddy
     var headR2=0,lx=0,ly=0,mouth='smile',browY=0,ru=6,rf=-4,lu=20,lf=0,think=search;
     A.fBody.setAttribute('transform','translate(0 '+(Math.sin(t*2)*.8).toFixed(2)+')');
     if(think){headR2=-6;lx=1.4;ly=-1.8;mouth='hmm';browY=-2}
-    if(pass){lx=0;ly=1.2;ru=10;rf=160;mouth='smile'}
+    if(pass){lx=-.8;ly=1.6;ru=-14;rf=134;headR2=4;mouth='smile'}
     if(plane){mouth='wow';browY=-3;if(A_planeX!==null){var r=A.pax.getBoundingClientRect(),stk=A.el.querySelector('.stick').getBoundingClientRect(),hx=r.left-stk.left+r.width*.62,hy=r.top-stk.top+r.height*.16;var dx=A_planeX-hx,dy=A_planeY-hy,dd=Math.hypot(dx,dy)||1;lx=dx/dd*1.8;ly=dy/dd*1.8;headR2=clamp(dx/dd*-6,-8,8)}}
     if(bye){mouth='big';ru=-150+Math.sin(t*4)*6;rf=-22+Math.sin(t*9)*24;lx=0;ly=0;headR2=Math.sin(t*3)*3}
     A.fThink.style.display=think?'':'none';A.fArmR.style.display=think?'none':'';
     A.fTicket.setAttribute('opacity',pass&&!bye?1:0);
+    var k2=RM?1:.16;A.ru=A.ru==null?ru:A.ru+(ru-A.ru)*k2;A.rf=A.rf==null?rf:A.rf+(rf-A.rf)*k2;ru=A.ru;rf=A.rf;
     lx=-lx;headR2=-headR2;rot(A.fArmR,ru,84,112);rot(A.fForeR,rf,84,160);rot(A.fArmL,lu,36,112);rot(A.fForeL,lf,36,160);rot(A.fHead,headR2,60,84);
     A.pu.forEach(function(c){c.setAttribute('cx',lx.toFixed(2));c.setAttribute('cy',ly.toFixed(2))});
     A.brows.forEach(function(b){b.style.transform='translateY('+browY+'px)'});
