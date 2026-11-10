@@ -69,6 +69,9 @@ p{margin:0}
 .veil{position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,var(--d) 72%,transparent) 0%,color-mix(in srgb,var(--d) 35%,transparent) 48%,transparent 70%)}
 @media(max-width:900px){.veil{background:color-mix(in srgb,var(--d) 55%,transparent)}}
 
+.wipe{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;background:radial-gradient(60% 70% at 50% 50%,color-mix(in srgb,var(--wc,#fff) 55%,transparent),transparent 70%);mix-blend-mode:screen}
+.wipe.go{animation:wipe 1.15s cubic-bezier(.3,.6,.2,1)}
+@keyframes wipe{0%{opacity:.0;clip-path:circle(0% at 100% 55%)}25%{opacity:.75}100%{opacity:0;clip-path:circle(140% at 30% 55%)}}
 /* ── liquid glass ── */
 .glass{position:relative;border-radius:26px;background:linear-gradient(140deg,rgba(255,255,255,.13),rgba(255,255,255,.04) 45%,rgba(255,255,255,.07));
   -webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);
@@ -137,6 +140,8 @@ p{margin:0}
 .seg button:hover{color:var(--fg)}
 .seg button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
 .seg button:focus-visible{outline:2px solid var(--a)}
+#origin{min-height:120vh;display:flex;align-items:center}
+#origin>.wrap{width:100%}
 /* ── generic layouts ── */
 .col{max-width:600px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
@@ -212,27 +217,9 @@ p{margin:0}
 
 
 
-/* ownership scene */
-.own2{position:relative;height:220vh}
-.own2 .mark{position:absolute;left:0;width:1px;height:1px}
-.own2-stick{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--nav-h));min-height:calc(100vh - var(--nav-h));display:flex;align-items:center;padding-block:30px}
-.own2-stick>.wrap{width:100%}
-.own2-card{max-width:560px}
-.ownbar{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
-.ownbar i{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
-.ownbar b{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#FF8A5B,var(--a));border-radius:99px}
-.layers{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
-.layers li{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:baseline;padding:10px 14px;border-radius:14px;background:rgba(0,0,0,.16);border:1px solid var(--edge);transition:border-color .5s,background .5s}
-.layers li b{font-weight:700;font-size:.92rem}
-.layers li span{position:relative;display:grid;font-size:.88rem;color:var(--fg2)}
-.layers li span em{grid-area:1/1;font-style:normal;transition:opacity .5s,transform .5s}
-.layers li span em.o{opacity:0;transform:translateY(6px)}
-.own2.owned .layers li{border-color:color-mix(in srgb,var(--a) 55%,transparent);background:color-mix(in srgb,var(--a) 10%,transparent)}
-.own2.owned .layers li span em.r{opacity:0;transform:translateY(-6px)}
-.own2.owned .layers li span em.o{opacity:1;transform:none}
-@media(max-width:560px){.layers li{grid-template-columns:1fr;gap:2px}}
-@media(prefers-reduced-motion:reduce){.own2{height:auto}.own2-stick{position:relative}}
 
+.conviction{margin-top:clamp(60px,9vw,110px);max-width:22em;font-family:var(--display);font-weight:300;font-size:clamp(1.6rem,3.2vw,2.6rem);line-height:1.2;letter-spacing:-.02em;color:var(--fg)}
+.conviction b{font-weight:600;color:var(--a)}
 /* ── journey: horizontal when there is room ── */
 .hz{position:relative}
 .hz-stick{position:relative}
@@ -294,6 +281,26 @@ p{margin:0}
 .tog button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
 .tog button:focus-visible{outline:2px solid var(--a)}
 
+
+/* floating cards around the shape */
+.float{display:grid;gap:14px}
+.fl-left{display:grid;gap:14px;max-width:600px}
+.fc{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.mini{padding:16px 18px;display:flex;flex-direction:column;gap:4px;max-width:600px}
+.mini>b{font-family:var(--display);font-weight:600;font-size:1.15rem}
+.mini>b.big{font-size:2.4rem;line-height:1;color:var(--a)}
+.mini .muted{font-size:.86rem}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.minis div{border-radius:12px;background:rgba(0,0,0,.18);border:1px solid var(--edge);padding:10px 12px}
+.minis b{display:block;font-family:var(--display);font-weight:600;font-size:1.3rem;line-height:1.1}
+.minis span{font-size:.76rem;color:var(--fg3);line-height:1.3;display:block;margin-top:3px}
+.hz.on .float{position:relative;width:100%;height:100%;display:block;perspective:1200px}
+.hz.on .fl-left{position:absolute;left:max(20px,calc((100vw - var(--max))/2 + 20px));top:50%;transform:translateY(-50%);width:min(500px,40vw)}
+.hz.on .fc.r1{position:absolute;right:max(24px,4vw);top:13%;width:min(300px,23vw)}
+.hz.on .fc.r2{position:absolute;right:max(40px,7vw);bottom:13%;width:min(280px,21vw)}
+.hz.on .fc{will-change:transform}
+.hz.on .panel{display:block}
+.hz.on .fl-left .fc{transform-origin:left center}
 /* ── HQ ── */
 .room-tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--a)}
 .brainbox{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:center}
@@ -388,6 +395,24 @@ p{margin:0}
 .finds span{font-size:.86rem;color:var(--fg2)}
 @media(max-width:760px){.finds{grid-template-columns:1fr}.edp-pick{width:100%}}
 svg :focus{outline:none}
+.fs-flow{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;counter-reset:fs}
+.fs-flow::before{content:"";position:absolute;left:6%;right:6%;top:31px;height:2px;background:repeating-linear-gradient(90deg,var(--a) 0 8px,transparent 8px 16px);opacity:.55;animation:fsflow 1.2s linear infinite}
+@keyframes fsflow{to{background-position:16px 0}}
+.fs-flow li{position:relative;display:grid;gap:6px;align-content:start;padding:0 4px;counter-increment:fs;transition:transform .35s cubic-bezier(.2,1.3,.4,1)}
+.fs-flow li:hover{transform:translateY(-6px)}
+.fs-ic{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;color:var(--a);background:color-mix(in srgb,var(--d) 70%,transparent);border:1px solid color-mix(in srgb,var(--a) 45%,var(--edge));box-shadow:0 0 0 6px color-mix(in srgb,var(--d) 60%,transparent);position:relative;animation:fspulse 4s ease-in-out infinite;animation-delay:calc(var(--i)*1s)}
+.fs-ic svg{width:28px;height:28px}
+.fs-ic::after{content:"0" counter(fs);position:absolute;top:-8px;right:-10px;font-family:var(--mono);font-size:10px;background:var(--a);color:var(--ink);border-radius:99px;padding:1px 6px}
+@keyframes fspulse{0%,70%,100%{box-shadow:0 0 0 6px color-mix(in srgb,var(--d) 60%,transparent)}80%{box-shadow:0 0 0 6px color-mix(in srgb,var(--d) 60%,transparent),0 0 28px 4px var(--a)}}
+.fs-flow b{font-family:var(--display);font-size:1.05rem;margin-top:6px}
+.fs-flow span{font-size:.9rem;color:var(--fg2);line-height:1.5}
+.side{margin-top:16px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.side>div{min-width:0;flex:1 1 380px}
+.side-tags{display:flex;flex-wrap:wrap;gap:8px;flex:0 1 auto}
+.side-tags span{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:99px;border:1px solid var(--edge);background:rgba(255,255,255,.05);font-size:.9rem;font-weight:600}
+.side-tags svg{width:18px;height:18px;color:var(--a)}
+@media(max-width:820px){.fs-flow{grid-template-columns:1fr;gap:18px}.fs-flow::before{left:31px;right:auto;top:10px;bottom:10px;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--a) 0 8px,transparent 8px 16px);animation:none}
+  .fs-flow li{grid-template-columns:62px 1fr;column-gap:14px}.fs-flow li .fs-ic{grid-row:span 2}.fs-flow b{margin-top:8px}}
 .browser{border:1px solid var(--edge);border-radius:14px;overflow:hidden;margin-top:14px}
 .browser .bb{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--edge);background:rgba(0,0,0,.2)}
 .browser .bb i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
@@ -447,6 +472,48 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer a{text-decoration:none}
 footer a:hover{color:var(--a)}
 
+
+/* chapter portals: each chapter arrives from its own direction */
+.portal{position:fixed;inset:0;z-index:85;pointer-events:none;overflow:hidden;visibility:hidden}
+.portal.go{visibility:visible}
+.portal i{position:absolute;inset:0;transform:translateX(-110%);will-change:transform;
+  background:linear-gradient(125deg,color-mix(in srgb,var(--pd) 90%,transparent) 0%,color-mix(in srgb,var(--pm) 86%,transparent) 70%,color-mix(in srgb,var(--pa) 55%,var(--pm)) 100%);
+  -webkit-backdrop-filter:blur(16px) saturate(170%);backdrop-filter:blur(16px) saturate(170%);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--pa) 55%,transparent),0 0 80px -10px var(--pa)}
+.portal i::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 30% 20%,rgba(255,255,255,.14),transparent 60%);mix-blend-mode:screen}
+.portal .pt{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;text-align:center;gap:6px;opacity:0;padding-inline:16px}
+.portal .pn{font-family:var(--mono);font-size:.8rem;letter-spacing:.3em;color:var(--pa)}
+.portal .pw{font-family:var(--display);font-weight:700;font-size:clamp(3rem,11vw,9.5rem);line-height:.95;letter-spacing:-.04em;color:#fff;text-shadow:0 0 60px color-mix(in srgb,var(--pa) 70%,transparent)}
+.portal .ps{font-size:clamp(.9rem,1.6vw,1.1rem);color:rgba(255,255,255,.72);max-width:32ch}
+main{overflow-x:clip}
+.sec>.wrap{transform-origin:50% 30%;will-change:transform}
+/* mini Joseph */
+.buddy{position:fixed;z-index:72;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.bface{all:unset;cursor:pointer;width:72px;height:72px;border-radius:50%;box-shadow:0 14px 30px -10px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.25);transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
+.bface:hover{transform:scale(1.08) rotate(-4deg)}
+.bface:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+.bface svg{width:100%;height:100%;display:block}
+.bface .lid{transition:transform .12s}
+.bhint{padding:10px 14px;font-size:.88rem;border-radius:16px 16px 16px 4px;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{transform:scale(.6) translateY(10px);opacity:0}}
+.bchat{width:min(350px,calc(100vw - 32px));background:color-mix(in srgb,var(--d) 86%,transparent)!important;max-height:min(480px,70vh);display:flex;flex-direction:column;border-radius:22px;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+.bhead{white-space:nowrap;display:flex;align-items:baseline;gap:8px;padding:14px 16px 10px;border-bottom:1px solid var(--edge)}
+.bhead b{font-family:var(--display);font-weight:600}
+.bhead span{font-size:.78rem;color:var(--fg3)}
+.bx{all:unset;cursor:pointer;margin-left:auto;font-size:1.3rem;line-height:1;color:var(--fg3);padding:0 4px}
+.bx:hover{color:var(--fg)}
+.blog{padding:12px 14px;overflow-y:auto;display:grid;gap:8px;align-content:start;flex:1}
+.bm{max-width:88%;padding:9px 12px;border-radius:14px;font-size:.9rem;line-height:1.45;background:rgba(255,255,255,.08);border:1px solid var(--edge);border-bottom-left-radius:4px}
+.bm.me{justify-self:end;background:var(--a);color:var(--ink);border-color:transparent;border-bottom-left-radius:14px;border-bottom-right-radius:4px}
+.bm a,.bm button{all:unset;cursor:pointer;display:inline-block;margin-top:6px;margin-right:6px;font-weight:600;font-size:.82rem;padding:5px 10px;border-radius:99px;background:var(--a);color:var(--ink)}
+.bchips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 14px;border-top:1px solid var(--edge)}
+.bchips button{all:unset;cursor:pointer;font-size:.8rem;font-weight:600;padding:6px 11px;border-radius:99px;border:1px solid var(--edge);background:rgba(255,255,255,.05)}
+.bchips button:hover{border-color:var(--a)}
+.bchips button:focus-visible{outline:2px solid var(--a)}
+.typing{display:inline-flex;gap:3px}.typing i{width:6px;height:6px;border-radius:50%;background:var(--fg2);animation:tp 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tp{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+@media(max-width:600px){.buddy{bottom:calc(82px + env(safe-area-inset-bottom,0px))}.bface{width:58px;height:58px}}
+body.gl-open .buddy{display:none}
 /* dock */
 .dock{position:fixed;z-index:70;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:4px;padding:5px;border-radius:99px;transform:translateY(150%);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .dock.show{transform:none}
@@ -504,12 +571,14 @@ body.gl-open .dock{transform:translateY(150%)}
 <div class="sky" aria-hidden="true"></div>
 <canvas id="swarm" aria-hidden="true"></canvas>
 <div class="veil" aria-hidden="true"></div>
+<div class="wipe" id="wipe" aria-hidden="true"></div>
+<div class="portal" id="portal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><div class="pt"><span class="pn"></span><b class="pw"></b><span class="ps"></span></div></div>
 
 <nav class="nav" aria-label="Sections">
   <div class="wrap">
     <a class="me" href="#top">Joseph Sbeiti<i>.</i></a>
     <div class="links" id="links">
-      <a href="#origin">Origin</a><a href="#purpose">Purpose</a><a href="#own">Ownership</a><a href="#journey">Journey</a><a href="#hq">MegaMind HQ</a><a href="#lab">Lab</a><a href="#next">Next</a>
+      <a href="#origin">Origin</a><a href="#purpose">Purpose</a><a href="#journey">Journey</a><a href="#hq">MegaMind HQ</a><a href="#lab">Lab</a><a href="#next">Next</a>
     </div>
     <span class="here" id="here">Hello</span>
     <button class="globe-btn" id="globeBtn" aria-label="Open the globe of my journey" aria-expanded="false">
@@ -592,24 +661,11 @@ body.gl-open .dock{transform:translateY(150%)}
       <p class="eq-say" id="eqSay" aria-live="polite"></p>
       <p class="src">Dashed line: France. Sources: World Bank World Development Indicators and WHO/UNICEF JMP, via <a href="https://statisticsoftheworld.com/clean-water-by-country" target="_blank" rel="noopener">Statistics of the World</a>, <a href="https://lumistats.com/country/FRA/" target="_blank" rel="noopener">Lumistats</a> and <a href="https://www.indexmundi.com/facts/indicators/SE.SEC.CMPT.LO.ZS/rankings" target="_blank" rel="noopener">Index Mundi</a>. Electricity: Our World in Data (Ember, Energy Institute), the dataset of my energy project. Latest year available for each value.</p>
     </div>
-
+    <p class="conviction rv">The regions left behind should <b>own their development</b>: built by them, for them, drawing on the world's knowledge.</p>
   </div>
 </section>
 
-<!-- OWN YOUR INTELLIGENCE: the particles do the explaining -->
-<section class="own2" id="own" data-ch="Own your intelligence">
-  <div class="mark" style="top:0" data-shape="slabsApart" data-pal="rented" data-ch="Rented intelligence"></div>
-  <div class="mark" style="top:50%" data-shape="slabs" data-pal="owned" data-ch="Owned intelligence"></div>
-  <div class="own2-stick"><div class="wrap">
-    <div class="glass pad own2-card">
-      <span class="kick">The conviction</span>
-      <h2 style="margin-top:12px">Own your intelligence.</h2>
-      <p class="lead" style="margin-top:12px">The regions left behind should own their development: built by them, for them, drawing on the world's knowledge. Keep scrolling and watch the four layers come home.</p>
-      <div class="ownbar"><span>Rented</span><i><b id="ownFill"></b></i><span>Owned</span></div>
-      <ol class="layers" id="layers"></ol>
-    </div>
-  </div></div>
-</section>
+
 
 
 <!-- JOURNEY -->
@@ -617,100 +673,85 @@ body.gl-open .dock{transform:translateY(150%)}
   <div class="hz-stick">
     <div class="hz-track" id="track">
       <article class="panel" data-shape="eiffel" data-pal="paris1" data-ch="Paris · 2019">
-        <div class="wrap"><div class="panel-in">
-          <div class="glass pad">
-            <div class="stop"><span class="city">Paris</span><span class="when">2019 – 2021</span></div>
-            <h3>Where I grew up.</h3><p class="role">French National Baccalauréat, with honours</p>
+        <div class="float">
+          <div class="fl-left">
+            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Paris</span><span class="when">2019 – 2021</span></div>
+              <h3>Where I grew up.</h3><p class="role">French National Baccalauréat, with honours</p></div>
           </div>
-        </div></div>
+          <div class="glass fc r2 mini" data-depth="2.2"><span class="kick">Mother tongues</span><b>EN · FR · AR</b></div>
+        </div>
       </article>
-      <article class="panel" data-shape="train" data-pal="lille" data-ch="Lille · 2021">
-        <div class="wrap"><div class="panel-in">
-          <div class="glass pad">
-            <div class="stop"><span class="city">Lille</span><span class="when">2021 – 2025 · by train from Paris</span></div>
-            <h3>BBA in Global Management</h3><p class="role">SKEMA Business School · Major in International Business · promotion president, 2025</p>
-            <div class="txt"><p>Four years of international business, built around one idea: companies can create a sustainable future.</p>
-              <p><b style="color:var(--fg)">Bachelor's thesis:</b> post-conflict reconstruction in Lebanon, leveraging project management strategies for sustainable development. <b style="color:var(--fg)">L'Oréal:</b> go-to-market for a new men's skincare line.</p></div>
+      <article class="panel" data-shape="train" data-via="train" data-pal="lille" data-ch="Lille · 2021">
+        <div class="float">
+          <div class="fl-left">
+            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Lille</span><span class="when">2021 – 2025 · by train from Paris</span></div>
+              <h3>BBA in Global Management</h3><p class="role">SKEMA Business School · Major in International Business</p>
+              <div class="txt"><p>Four years of international business, built around one idea: companies can create a sustainable future.</p></div></div>
+            <div class="glass pad fc" data-depth="1.5"><span class="kick">Bachelor's thesis</span><p style="margin-top:8px">Post-conflict reconstruction in Lebanon, leveraging project management strategies for sustainable development.</p>
+              <p class="muted" style="margin-top:8px;font-size:.92rem"><b style="color:var(--fg)">L'Oréal:</b> go-to-market for a new men's skincare line.</p></div>
           </div>
-          <div class="glass pad">
-            <span class="kick">Summer 2023 · Louis Vuitton, Place Vendôme</span>
-            <h3 style="margin-top:8px">Sales Advisor</h3>
-            <div class="stats" style="margin-top:14px">
-              <div><b data-count="700" data-suf="+">700+</b><span>client experiences</span></div>
-              <div><b data-count="10000" data-pre="€">€10,000</b><span>daily target, regularly exceeded</span></div>
-              <div><b data-count="5">5</b><span>continents served</span></div>
-              <div><b>EN·FR·AR</b><span>advising in three languages</span></div>
-            </div>
-            <p class="muted" style="margin-top:12px;font-size:.92rem">Behind every sale, there is a human relationship first.</p>
-          </div>
-        </div></div>
+          <div class="glass fc r1 mini" data-depth="2.4"><span class="kick">Summer 2023 · Louis Vuitton</span><b>Sales Advisor</b><span class="muted">Maison Place Vendôme</span>
+            <div class="minis"><div><b data-count="700" data-suf="+">700+</b><span>client experiences</span></div><div><b data-count="10000" data-pre="€">€10,000</b><span>daily target, regularly exceeded</span></div></div></div>
+          <div class="glass fc r2 mini" data-depth="2"><span class="kick">2025</span><b>Promotion president</b><span class="muted">representing students to programme management</span></div>
+        </div>
       </article>
-      <article class="panel" data-shape="plane" data-pal="usa" data-ch="USA · 2024">
-        <div class="wrap"><div class="panel-in">
-          <div class="glass pad">
-            <div class="stop"><span class="city">USA</span><span class="when">BBA final year</span></div>
-            <h3>Getting used to living abroad.</h3><p class="role">Final year of my BBA, in the United States</p>
+      <article class="panel" data-shape="plane" data-via="plane" data-pal="usa" data-ch="USA · 2024">
+        <div class="float">
+          <div class="fl-left">
+            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">USA</span><span class="when">BBA final year</span></div>
+              <h3>Getting used to living abroad.</h3><p class="role">Final year of my BBA, in the United States</p></div>
           </div>
-        </div></div>
+        </div>
       </article>
-      <article class="panel" data-shape="radar" data-pal="beirut" data-ch="Beirut · 2025">
-        <div class="wrap"><div class="panel-in">
-          <div class="glass pad">
-            <div class="stop"><span class="city">Beirut</span><span class="when">May – Aug 2025 · back where I was born</span></div>
-            <h3>Key Account Manager Assistant</h3><p class="role">SITA, aviation &amp; travel technology</p>
-            <div class="txt"><p>Benchmarked 20+ aviation institutions and government entities and turned the insights into transformation solutions and partnership strategies, including Beirut Airport's biometric passenger path. Built Power BI dashboards and a KPI framework on revenue, renewals and client ROI, supported 15+ stakeholder meetings and kept client records up to date in Salesforce.</p></div>
+      <article class="panel" data-shape="radar" data-via="plane" data-pal="beirut" data-ch="Beirut · 2025">
+        <div class="float">
+          <div class="fl-left">
+            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Beirut</span><span class="when">May – Aug 2025 · back where I was born</span></div>
+              <h3>Key Account Manager Assistant</h3><p class="role">SITA, aviation &amp; travel technology</p>
+              <div class="txt"><p>Benchmarked 20+ aviation institutions and government entities, turned the insights into transformation solutions and partnership strategies, including Beirut Airport's biometric passenger path.</p></div></div>
+            <div class="glass pad fc" data-depth="1.5"><span class="kick">Dashboards &amp; KPIs</span><p style="margin-top:8px">Power BI and Excel dashboards on the demand and adoption of 11+ SITA products across 7 solution categories, and a KPI framework on revenue, renewals and client ROI. Client records kept up to date in Salesforce.</p></div>
           </div>
-          <div class="glass pad">
-            <span class="kick">From benchmark to growth plan</span>
-            <div class="funnel" style="margin-top:14px">
-              <div class="fstep"><b>20+</b><span>institutions and government entities benchmarked</span></div>
-              <div class="fstep"><b>11+</b><span>SITA products tracked across 7 solution categories</span></div>
-              <div class="fstep"><b>15+</b><span>accounts assessed with a KPI framework</span></div>
-              <div class="fstep"><b>4</b><span>priority accounts, 24-month plan, up to 15% combined revenue growth</span></div>
-            </div>
-          </div>
-        </div></div>
+          <div class="glass fc r1 mini" data-depth="2.3"><span class="kick">From benchmark to plan</span>
+            <div class="funnel" style="margin-top:10px">
+              <div class="fstep"><b>20+</b><span>entities benchmarked</span></div>
+              <div class="fstep"><b>15+</b><span>accounts assessed</span></div>
+              <div class="fstep"><b>4</b><span>priority accounts, up to 15% growth in 24 months</span></div>
+            </div></div>
+        </div>
       </article>
-      <article class="panel" data-shape="cap" data-pal="raleigh" data-ch="Raleigh · 2025">
-        <div class="wrap"><div class="panel-in">
-          <div class="glass pad">
-            <div class="stop"><span class="city">Raleigh</span><span class="when">Aug 2025 – May 2026</span></div>
-            <h3>MSc International Business, AI &amp; Data</h3><p class="role">NC State University / SKEMA Business School</p>
-            <div class="txt"><p>A year in the Research Triangle, one of America's leading hubs for technology and research.</p>
-              <p><b style="color:var(--fg)">Apple, consulting strategy:</b> production diversification across India, Vietnam and the United States, projected to reduce exposure to China-related tariffs and taxes by 30% while keeping annual iPhone launches on track.</p></div>
+      <article class="panel" data-shape="cap" data-via="plane" data-pal="raleigh" data-ch="Raleigh · 2025">
+        <div class="float">
+          <div class="fl-left">
+            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Raleigh</span><span class="when">Aug 2025 – May 2026</span></div>
+              <h3>MSc International Business, AI &amp; Data</h3><p class="role">NC State University / SKEMA Business School · in the Research Triangle</p></div>
+            <div class="glass pad fc" data-depth="1.5"><span class="kick">Master's thesis, co-written · pick a country</span>
+              <p style="margin-top:8px;font-weight:600">How can digital transformation be strategically implemented in the Global South to leverage sustainable development?</p>
+              <div class="tabs" role="group" aria-label="Country"><button aria-pressed="true" data-t="0">Lebanon</button><button aria-pressed="false" data-t="1">Mexico</button><button aria-pressed="false" data-t="2">Ivory Coast</button></div>
+              <p class="tabtxt" id="tabtxt" aria-live="polite">Rebuild institutional capacity</p>
+              <p class="muted" style="font-size:.9rem">In all three, the missing piece was the same: <b style="color:var(--fg)">coordination between sectors</b>.</p></div>
           </div>
-          <div class="glass pad">
-            <span class="kick">Master's thesis, co-written · pick a country</span>
-            <p style="margin-top:8px;font-weight:600">How can digital transformation be strategically implemented in the Global South to leverage sustainable development?</p>
-            <div class="tabs" role="group" aria-label="Country"><button aria-pressed="true" data-t="0">Lebanon</button><button aria-pressed="false" data-t="1">Mexico</button><button aria-pressed="false" data-t="2">Ivory Coast</button></div>
-            <p class="tabtxt" id="tabtxt" aria-live="polite">Rebuild institutional capacity</p>
-            <p class="muted" style="font-size:.92rem">In all three countries the missing piece was the same: <b style="color:var(--fg)">coordination between sectors</b>.</p>
-          </div>
-        </div></div>
+          <div class="glass fc r1 mini" data-depth="2.3"><span class="kick">Apple · consulting strategy</span><b class="big">−30%</b><span class="muted">projected exposure to China-related tariffs and taxes, by diversifying production across India, Vietnam and the US</span></div>
+        </div>
       </article>
-      <article class="panel" data-shape="engine" data-pal="paris2" data-ch="Paris · 2026">
-        <div class="wrap"><div class="panel-in">
-          <div class="glass pad">
-            <div class="stop"><span class="city">Paris</span><span class="when">Jul – Dec 2026</span></div>
-            <h3>Digital Transformation Strategy Consultant</h3><p class="role">Devoteam Digital Impulse, for Safran Aircraft Engines' IT department</p>
-            <div class="prog" role="group" aria-label="Programme" id="prog">
-              <button class="pstep" aria-pressed="true"><em>Frame</em><b>The 2030 ambition</b></button>
-              <button class="pstep" aria-pressed="false"><em>Deliver</em><b>3 AI agents</b></button>
-              <button class="pstep" aria-pressed="false"><em>Steer</em><b>PMO lead</b></button>
-              <button class="pstep" aria-pressed="false"><em>Scale</em><b>8 IT divisions</b></button>
-            </div>
-            <p class="pdetail" id="pdetail" aria-live="polite"></p>
+      <article class="panel" data-shape="engine" data-via="plane" data-pal="paris2" data-ch="Paris · 2026">
+        <div class="float">
+          <div class="fl-left">
+            <div class="glass pad fc" data-depth="1"><div class="stop"><span class="city decode">Paris</span><span class="when">Jul – Dec 2026</span></div>
+              <h3>Digital Transformation Strategy Consultant</h3><p class="role">Devoteam Digital Impulse, for Safran Aircraft Engines' IT department</p>
+              <div class="prog" role="group" aria-label="Programme" id="prog">
+                <button class="pstep" aria-pressed="true"><em>Frame</em><b>The 2030 ambition</b></button>
+                <button class="pstep" aria-pressed="false"><em>Deliver</em><b>3 AI agents</b></button>
+                <button class="pstep" aria-pressed="false"><em>Steer</em><b>PMO lead</b></button>
+                <button class="pstep" aria-pressed="false"><em>Scale</em><b>8 IT divisions</b></button>
+              </div>
+              <p class="pdetail" id="pdetail" aria-live="polite"></p></div>
           </div>
-          <div class="glass pad">
-            <span class="kick">Automation</span>
-            <div class="auto" style="margin-top:12px">
-              <div class="clock"><svg viewBox="0 0 88 88"><circle cx="44" cy="44" r="38" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="8"/><circle class="arc" id="arc" cx="44" cy="44" r="38" fill="none" stroke-width="8" stroke-linecap="round" stroke-dasharray="238.8" stroke-dashoffset="0"/></svg><b id="mins">20</b></div>
-              <div><b>minutes per item</b><p class="muted" style="font-size:.9rem">Excel (VBA), Power BI and Python. 15+ hours freed every month.</p>
-                <div class="tog" role="group" aria-label="Before or after" style="margin-top:8px"><button id="aBefore" aria-pressed="true">Before</button><button id="aAfter" aria-pressed="false">After</button></div></div>
-            </div>
-            <div class="stats" style="margin-top:14px"><div><b data-count="640" data-suf="+">640+</b><span>employees, 8 IT divisions, incl. an offshore hub in India</span></div><div><b data-count="3">3</b><span>AI agents, responsible AI built in</span></div></div>
-          </div>
-        </div></div>
+          <div class="glass fc r1 mini" data-depth="2.3"><span class="kick">Automation</span>
+            <div class="auto" style="margin-top:8px"><div class="clock"><svg viewBox="0 0 88 88"><circle cx="44" cy="44" r="38" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="8"/><circle class="arc" id="arc" cx="44" cy="44" r="38" fill="none" stroke-width="8" stroke-linecap="round" stroke-dasharray="238.8" stroke-dashoffset="0"/></svg><b id="mins">20</b></div>
+              <div><b style="font-size:.95rem">minutes per item</b><div class="tog" role="group" aria-label="Before or after" style="margin-top:8px"><button id="aBefore" aria-pressed="true">Before</button><button id="aAfter" aria-pressed="false">After</button></div></div></div>
+            <span class="muted" style="font-size:.84rem">Excel (VBA), Power BI and Python · 15+ hours freed a month</span></div>
+          <div class="glass fc r2 mini" data-depth="1.9"><span class="kick">Scale</span><div class="minis"><div><b data-count="640" data-suf="+">640+</b><span>employees, 8 IT divisions</span></div><div><b data-count="3">3</b><span>AI agents, responsible AI</span></div></div></div>
+        </div>
       </article>
     </div>
     <div class="hz-dots glass" id="hzDots" aria-label="Journey stops"></div>
@@ -728,8 +769,8 @@ body.gl-open .dock{transform:translateY(150%)}
     </div>
 
     <div class="glass pad room rv" id="room0">
-      <div class="room-head"><div><span class="room-tag">Room 0 · The central brain</span><h3 style="margin-top:6px">Five senses, one core that decides.</h3>
-        <p>Specialised networks for sight, hearing, language, movement and smell feed one shared core. Hover a sense to watch its signals travel to the core. Move your mouse to turn the brain.</p></div></div>
+      <div class="room-head"><div><span class="room-tag">Room 0 · The central brain</span><h3 style="margin-top:6px">Many senses, one core that decides.</h3>
+        <p>Specialised networks for sight, hearing, language and movement feed one shared core that understands and decides. Hover a sense to watch its signals travel to the core. Move your mouse to turn the brain.</p></div></div>
       <div class="brainbox">
         <div class="brain"><canvas id="brainCv" aria-label="A brain made of light, with sense regions sending signals to a central core"></canvas></div>
         <div class="mods" id="mods">
@@ -737,7 +778,7 @@ body.gl-open .dock{transform:translateY(150%)}
           <button class="mod" data-r="1" style="--mc:#A78BFA"><i></i><b>Hear<span>spoken commands</span></b></button>
           <button class="mod" data-r="2" style="--mc:#FF7AC6"><i></i><b>Language<span>its own small model, in EN · FR · AR</span></b></button>
           <button class="mod" data-r="3" style="--mc:#FFD166"><i></i><b>Move<span>drive, explore, map</span></b></button>
-          <button class="mod" data-r="4" style="--mc:#7CF29A"><i></i><b>Smell<span>a fifth sense for its surroundings</span></b></button>
+          <button class="mod" data-r="4" style="--mc:#7CF29A"><i></i><b>Understand<span>connects it all into meaning</span></b></button>
         </div>
       </div>
       <div class="cando">
@@ -781,7 +822,7 @@ body.gl-open .dock{transform:translateY(150%)}
         </div>
       </div>
       <div class="twin"><canvas id="twin" width="1020" height="600" aria-label="Top-down digital twin of a building being mapped by a robot"></canvas></div>
-      <div class="twin-bar"><div class="twin-stats"><span>Mapped <b id="twCov">0%</b></span><span>Steps <b id="twSteps">0</b></span><span id="twState">Exploring</span></div><div class="cov"><i id="twBar"></i></div></div>
+      <div class="twin-bar"><div class="twin-stats"><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FFD166;margin-right:6px;vertical-align:-1px"></i>your walls</span><span>Mapped <b id="twCov">0%</b></span><span>Steps <b id="twSteps">0</b></span><span id="twState">Exploring</span></div><div class="cov"><i id="twBar"></i></div></div>
       <p class="note">An illustrative simulation in your browser, inspired by how MegaMind trains. Click to add or remove a wall, or choose “Set a goal” and click where the robot should go.</p>
     </div>
     <a class="lnk rv" href="https://github.com/JosephSbeiti/MegaMind" target="_blank" rel="noopener">MegaMind on GitHub ↗</a>
@@ -811,14 +852,21 @@ body.gl-open .dock{transform:translateY(150%)}
       </div>
       <p class="note">Method: electricity generated per person and low-carbon share (renewables + nuclear), standardised, then k-means for k = 2 to 7; k = 4 has the best silhouette score. Data: Our World in Data (Ember, Energy Institute, Maddison Project). Countries far above the line, like Paraguay or Laos, export electricity.</p>
     </div>
-    <div class="two">
-      <div class="glass pad rv" style="grid-column:1/-1">
-        <span class="kick">Web build</span>
-        <h3 style="margin-top:8px">International Signature</h3>
-        <p class="muted" style="margin-top:8px">I designed and built the website of a luxury private concierge service, and the back-office where its team manages client requests.</p>
-        <div class="browser" aria-hidden="true"><div class="bb"><i></i><i></i><i></i></div><div class="page"><div class="lg">International Signature</div><div class="ln"></div><div class="tg">Conciergerie de luxe</div><div class="rows"><span></span><span></span><span></span></div></div></div>
-        <div class="stats" style="margin-top:14px"><div><b style="font-size:1.15rem">Website</b><span>copy, structure, design, build</span></div><div><b style="font-size:1.15rem">Back-office</b><span>client requests, admin access</span></div></div>
-      </div>
+    <div class="glass pad rv fs" style="margin-top:22px">
+      <div class="fs-head"><div><span class="kick">Software engineering · built end to end</span>
+        <h3 style="margin-top:8px">International Signature, the whole platform</h3>
+        <p class="muted" style="margin-top:8px;max-width:64ch">For this luxury concierge service, I programmed every layer of the software myself: the public website, client account creation, the back-office where the team handles requests, and the recommendation algorithm that suggests the right extra services to each client.</p></div></div>
+      <ol class="fs-flow" aria-label="The layers I built">
+        <li style="--i:0"><span class="fs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="15" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span><b>Website</b><span>Front end: pages, structure, design and copy, so visitors become clients.</span></li>
+        <li style="--i:1"><span class="fs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><b>Client accounts</b><span>Sign-up, log-in and each client's own space and requests.</span></li>
+        <li style="--i:2"><span class="fs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="18" cy="18" r="2.5"/></svg></span><b>Back-office</b><span>Where the team receives, tracks and answers every client request, with admin access.</span></li>
+        <li style="--i:3"><span class="fs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 11l7.4-3.8M8.3 13l7.4 3.8"/></svg></span><b>Cross-selling algorithm</b><span>Recommends complementary services to each client, based on what they ask for.</span></li>
+      </ol>
+    </div>
+    <div class="glass pad rv side">
+      <div><span class="kick">After hours</span><h3 style="margin-top:8px">I build for fun, for myself and for friends.</h3>
+        <p class="muted" style="margin-top:8px;max-width:58ch">Small software projects, robotics and electronics prototypes, and websites for friends' businesses. Building is how I learn, and how I understand what my engineers deal with every day.</p></div>
+      <div class="side-tags"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg>Software</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="7" width="12" height="10" rx="2"/><path d="M9 11h.01M15 11h.01M12 3v4M3 12h3M18 12h3M9 21v-4M15 21v-4"/></svg>Robotics &amp; electronics</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Websites</span></div>
     </div>
   </div>
 </section>
@@ -871,6 +919,42 @@ body.gl-open .dock{transform:translateY(150%)}
   <a href="https://www.linkedin.com/in/joseph-sbeiti/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg>LinkedIn</a>
 </div>
 <div class="toast" id="toast" role="status"></div>
+<div class="buddy" id="buddy">
+  <div class="bchat glass" id="bchat" role="dialog" aria-label="Chat with mini Joseph" hidden>
+    <div class="bhead"><b>Mini Joseph</b><span>knows a few things about me</span><button class="bx" id="bx" aria-label="Close the chat">×</button></div>
+    <div class="blog" id="blog" aria-live="polite"></div>
+    <div class="bchips" id="bchips"></div>
+  </div>
+  <div class="bhint glass" id="bhint" hidden>Hi! I'm mini Joseph. Click me.</div>
+  <button class="bface" id="bface" aria-label="Open the chat with mini Joseph" aria-expanded="false">
+    <svg viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="58" style="fill:var(--a)" opacity=".9"/>
+      <circle cx="60" cy="60" r="58" fill="url(#bshade)"/>
+      <defs><radialGradient id="bshade" cx=".3" cy=".25" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></radialGradient>
+        <clipPath id="bclip"><circle cx="60" cy="60" r="58"/></clipPath></defs>
+      <g clip-path="url(#bclip)">
+        <path d="M14 124c3-24 22-36 46-36s43 12 46 36z" fill="#15171f"/>
+        <path d="M49 89l11 17 11-17-5-3-6 7-6-7z" fill="#F4F4F2"/>
+        <path d="M51 76h18v14l-9 6-9-6z" fill="#D9AE88"/>
+        <ellipse cx="33" cy="60" rx="5" ry="7.5" fill="#D9AE88"/><ellipse cx="87" cy="60" rx="5" ry="7.5" fill="#D9AE88"/>
+        <ellipse cx="60" cy="58" rx="26.5" ry="31" fill="#E6BD98"/>
+        <path d="M35 63c1 17 12 28 25 28s24-11 25-28c-4 11-12 18-25 18s-21-7-25-18z" fill="#2a1c16" opacity=".28"/>
+        <path d="M51 79q9 13 18 0q-9 4-18 0z" fill="#241712"/>
+        <path d="M49 71.5q11-6 22 0q-11-2.5-22 0z" fill="#241712"/>
+        <path d="M60 56q-3 7 0 10q3 0 4.5-2" fill="none" stroke="#B88763" stroke-width="1.6" stroke-linecap="round"/>
+        <g id="bmouth"><path d="M51 75q9 7 18 0" fill="none" stroke="#5B2A22" stroke-width="2.4" stroke-linecap="round"/></g>
+        <g id="beyes">
+          <g transform="translate(49 54)"><g class="lid"><ellipse rx="5.6" ry="4.2" fill="#fff"/><circle id="bpl" r="2.7" fill="#1b1412"/></g></g>
+          <g transform="translate(71 54)"><g class="lid"><ellipse rx="5.6" ry="4.2" fill="#fff"/><circle id="bpr" r="2.7" fill="#1b1412"/></g></g>
+        </g>
+        <path id="bbl" d="M42 46q7-4 13 0" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+        <path id="bbr" d="M65 46q6-4 13 0" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+        <g id="bhair" fill="#1b1412"></g>
+      </g>
+    </svg>
+  </button>
+</div>
+
 
 <div class="gl" id="gl" role="dialog" aria-modal="true" aria-label="Globe of my journey" aria-hidden="true">
   <div class="gl-top"><div class="wrap"><span class="kick">The route · drag to spin</span><h2 style="margin-top:6px">Beirut, Paris, Lille, the USA, and back.</h2></div></div>
@@ -883,6 +967,7 @@ body.gl-open .dock{transform:translateY(150%)}
 (function(){
 'use strict';
 var D=document,W=window,root=D.documentElement;root.classList.add('js');
+var MASK={"lon0":-180,"lat1":80,"step":1.0,"w":360,"h":138,"b":"AAAAAAAAAAAAAA///uAf//////+AAAABrvwAAAAAAAAAAH8AAAAAAAAAAAAAAAAAAAAAAAAeHznn/h////////4AAAABXsAAAAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAAAAEcIA5MfAI///////8AAAAAPFAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAABoCGc8X/AH///////4AAAAAAAAAAAAAB4AAAAB9+AAAAAAAAAAAAAAAAAAAAAD/wMzz8AAAP/////2AAAAAAAAAAAAD4AAAA////AAAB/oAAAAAAAAAAAAAACAwACAcAAAAP/////+AAAAAAAAAAAAMAAAAX///6AAAAAAAAAAAAAAAAAAAAP+Ac8+M/gAAD////+8AAAAAAAAAAAA4AAAH///+O+HAAHAAAAAAAAAAAAAAAf/+4/Y/94AAD////+wAAAAAAAAAAABwAHhH///////8AHwAAAAAwAAAAAAAAON/8E4//9AADf////gAAAAAAAAAAABwAPZ+///////4nv/gAAAAAAAH8gAAAAAP+A8f//8AA3///ogAAAAAABtgAAAAAfv/////////////8AAAAAB///+B/2H/+DnDxf8AAz////AAAAAAA//wAAAA8Pv//////////////9H8wAP////////QsDPzwD8AAf///wAAAAAAG///wIBe/3+/////////////////+AD////////+//fz4Y/wA7//4AAAAAAAD///+I////v//////////////////4EP///////////5gD/8A///gAAAAAAAf//5+P///8//////////////////7w/////////////qAD+QAP/wABr8AAAAf8f+D///////////////////////AwAf///////////zwx/AAP/wAAP8AAAB/4/+f//////////////////////4AMAf//////////+DBAbwAH/AAADAAAAN/j/////////////////////////+AAH///////////4AwgHQAD/AAAAAAAAf/H///////////////////////n/6AAP///////////wAA/AAAB+AAAAAAAB/+H//////////////////////jP+AAAH/9z////////gAA/wAAAMAAAAAACB//D7////////////////////+A/YAAAA/xAD///////gAA/wQAAAAAAAAAAB9/Ab///////////////////+ODgAAAAAB0AAX//////4AA/94AAAAAAAAAYA5+C///////////////////4AAHQAAAAABcAAP//////8AAf/+AAAAAAAAB8AA+i///////////////////wAAfgAAAAAMAAAC///////wAf/+AAAAAAAAAYAOeH///////////////////AAA/gAAAABQAAADf//////8Af//AAAAAAAAAcAPQH//////////////////8AAA/AAAAAEAAAAAP///////z///4AAAAAAADuAEDv//////////////////+AAA+AAAAAAAAAABP///////x///8AAAAAAAPHAf/////////////////////4AA8AAAAAAAAAAAn///////x///8AAAAAAAPPx//////////////////////6AA4AAAAAAAAAAAD///////////6AAAAAAAAPH//////////////////////6AAwAAAAAAAAAAAC///////////kAAAAAAAAQP//////////////////////zAAAAAAAAAAAAAABv////////+MMAAAAAAAAC///////////////////////7AAAAAAAAAAAAAAAL////////7wPgAAAAAAAf///////////////////////yAAAAAAAAAAAAAAAP/////////gCgAAAAAAAD///////////////////////iAAAAAAAAAAAAAAAP/////////pAAAAAAAAAD/////vP////////////////BAAAAAAAAAAAAAAAP/////////+AAAAAAAAAB//v//GP///////////////+AAAAAAAAAAAAAAAAP////////8wAAAAAAAAAB//P/+EP///////////////8CAAAAAAAAAAAAAAAP////////wgAAAAAAAADj/jz/+AD///////////////4HgAAAAAAAAAAAAAAP////////gAAAAAAAAAH/4Fw/4AA//////////////+ACAAAAAAAAAAAAAAAP////////gAAAAAAAAAH/wAcP8PA//////////////8AAAAAAAAAAAAAAAAAP///////8AAAAAAAAAAH/gMHfV///////////////v4AMAAAAAAAAAAAAAAAP///////8AAAAAAAAAAH/IMCOH//////////////+ZwAMAAAAAAAAAAAAAAAH///////oAAAAAAAQAAH/AACGP//////////////8BwAMAAAAAAAAAAAAAAAH///////wAAAAAAAAAAH+AAYDH//////////////+g4AYAAAAAAAAAAAAAAAD///////wAAAAAAAAAAAgf+AABs//////////////g4D4AAAAAAAAAAAAAAAB///////wAAAAAAAAAAAh/+AAAA//////////////A4fwAAAAAAAAAAAAAAAB///////gAAAAAAAAAAB//8AAAA//////////////Ah2AAAAAAAAAAAAAAAAAP/////+AAAAAAAAAAAD//+AAAB//////////////gjwAAAAAAAAAAAAAAAAAH/////4AAAAAAAAAAQH///4GAB//////////////gBAAAAAAAAAAAAAAAAAAG/////4AAAAAAAAAAAP///8PwD//////////////gCAAAAAAAAAAAAAAAAAACf////4AAAAAAAAAAAP////v////////////////gAAAAAAAAAAAAAAAAAAABv//xAYAAAAAAAAAAAP//////3//H///////////gAAAAAAAAAAAAAAAAAAAAv//AAYAAAAAAAAAAAf/////////H///////////wAAAAAAAAAAAAAAAAAAAB3/+AAcAAAAAAAAAAB///////8//h///////////gAAAAAAAAAAAAAAAAAAAAZ/+AAMAAAAAAAAAAD///////8//wH//////////AAAAAAAAAAAAAAAAAAAAAJ/+AAEAAAAAAAAAAH///////+f/wB/f////////AAAAAAAAAAAAAAAAAAAAAI/8AAAAAAAAAAAAAH///////+f/44Af///////8QAAAAAAAAAAAAAAAAAAAACf8AAAAAAAAAAAAAP///////+H//+AP///////4gAAAAAAAAAAAAAAAAAAAAAP8AAvAAAAAAAAAAP////////H///AD///////ggAAAAAAAAAAAAAAAAAAAAAH8AQBggAAAAAAAAf////////n//+ADf/4P//YAAAAAAAAAAAAAAAAAAAAAAAH+A4AYAAAAAAAAAP////////j//+AAf/4H/+IAAAAAAAAAAAAAAAgAAAAAAAH/B4ABwAAAAAAAAP////////h//8AAf/gD/8YAAAAAAAAAAAAAAAAAAAAAAAD/lwAD8AAAAAAAAP////////x//4AAf/AD/8QAAAAAAAAAAAAAAAAAAAAAAAAf/wAAAAAAAAAAAP////////4//gAAf+AB/+AAwAAAAAAAAAAAAAAAAAAAAAAH/wAAAAAAAAAAAP////////4f+AAAf8AD//AAwAAAAAAAAAAAAAAAAAAAAAAAH/AAAAAAAAAAAf////////8/8AAAPwAAP/gAgAAAAAAAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAf////////+fgAAAPwAAP/gAwAAAAAAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAf/////////eAAAAHwAAP/gAsAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAf/////////gBAAAHwAAM/gAKAAAAAAAAAAAAAAAAAAAAAAAADABIAAAAAAAAH/////////gIAAADwAAEfgALAAAAAAAAAAAAAAAAAAAAAAAADgPfIAAAAAAAH/////////34AAADwAAIPABIAAAAAAAAAAAAAAAAAAAAAAAAAyPf+AAAAAAAD//////////4AAADoAAIEACBAAAAAAAAAAAAAAAAAAAAAAAAA8///AAAAAAAB//////////wAAABIAAMAAEHAAAAAAAAAAAAAAAAAAAAAAAAAE///gAAAAAAB//////////wAAAAMAAEAAADgIAAAAAAAAAAAAAAAAAAAAAAAAf//wAAAAAAAf/////////gAAAAMAADAAMDAAAAAAAAAAAAAAAAAAAAAAAAAA////gAAAAAAP/B///////gAAAAAABDgAeAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAAAAAACAA3//////AAAAAAAAxgA+AAAAAAAAAAAAAAAAAAAAAAAAAAAf///4AAAAAAAAAD/////+AAAAAAAAZgB8BAAAAAAAAAAAAAAAAAAAAAAAAAB////4AAAAAAAAAD/////8AAAAAAAAMwH8AIAAAAAAAAAAAAAAAAAAAAAAAAB////8AAAAAAAAAD/////wAAAAAAAAHQf8AIAAAAAAAAAAAAAAAAAAAAAAAAD////4AAAAAAAAAH/////gAAAAAAAAHgf8cIAAAAAAAAAAAAAAAAAAAAAAAAD/////AAAAAAAAAH/////AAAAAAAAAD4f8ASgAAAAAAAAAAAAAAAAAAAAAAAH////+4AAAAAAAAH/////AAAAAAAAABwP50QwAAAAAAAAAAAAAAAAAAAAAAAH/////+AAAAAAAAD////+AAAAAAAAAB8P5wAL4AgAAAAAAAAAAAAAAAAAAAAD//////4AAAAAAAB////8AAAAAAAAAA8AxQif/AAAAAAAAAAAAAAAAAAAAAAH//////8AAAAAAAA////4AAAAAAAAAAcAAQAD/gAAAAAAAAAAAAAAAAAAAAAH///////gAAAAAAA////4AAAAAAAAAAMABAAI/ywAAAAAAAAAAAAAAAAAAAAD///////gAAAAAAA////4AAAAAAAAAADgAAAIf8BAAAAAAAAAAAAAAAAAAAAD///////gAAAAAAAf///4AAAAAAAAAAB+AABA/4AAAAAAAAAAAAAAAAAAAAAB///////gAAAAAAAf///4AAAAAAAAAAAAfsgAOMAAAAAAAAAAAAAAAAAAAAAA///////AAAAAAAAf///8AAAAAAAAAAAABCAAAGgAAAAAAAAAAAAAAAAAAAAA///////AAAAAAAAP///+AAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAAAAAAAAf/////+AAAAAAAAP///8AAAAAAAAAAAAAACgCAEAAAAAAAAAAAAAAAAAAAAAf/////8AAAAAAAAf///8AQAAAAAAAAAAAAB+CAAAAAAAQAAAAAAAAAAAAAAAP/////4AAAAAAAAf///+AQAAAAAAAAAAAAD8DAAAAAAAAAAAAAAAAAAAAAAAP/////4AAAAAAAA////+AwAAAAAAAAAAAA38DgAAAAAAAAAAAAAAAAAAAAAAH/////4AAAAAAAA////+BwAAAAAAAAAAAD/8HgAAAAAAAAAAAAAAAAAAAAAAB/////4AAAAAAAA////8PwAAAAAAAAAAAH//XgAABABAAAAAgAAAAAAAAAAAAf////4AAAAAAAA////wPgAAAAAAAAAAAP//3wAAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAA////gPgAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAAf//+APgAAAAAAAAAAAf///8AAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAAf//+APgEAAAAAAAAAD////+AAIAAAAAAAAAIAAAAAAAAAAP////gAAAAAAAAP//+AfAAAAAAAAAAAf////+AAEAAAAAAAAAAAAAAAAAAAAP////AAAAAAAAAP///AfAAAAAAAAAAA//////AAAAAAAAAAAAAAAAAAAAAAAP///4AAAAAAAAAP//+APAAAAAAAAAAA//////gAAAAAAAAAAAAAAAAAAAAAAf///gAAAAAAAAAH//+AOAAAAAAAAAAB//////wAAAAAAAAAAAAAAAAAAAAAAf//+AAAAAAAAAAH//4AEAAAAAAAAAAA//////4AAAAAAAAAAAAAAAAAAAAAAf//+AAAAAAAAAAH//4AAAAAAAAAAAAB//////4AAAAAAAAAAAAAAAAAAAAAAf///AAAAAAAAAAH//4AAAAAAAAAAAAA//////8AAAAAAAAAAAAAAAAAAAAAAf//+AAAAAAAAAAD//wAAAAAAAAAAAAAf/////8AAAAAAAAAAAAAAAAAAAAAAf//8AAAAAAAAAAB//gAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAA///8AAAAAAAAAAB//gAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAA///wAAAAAAAAAAA//AAAAAAAAAAAAAAP/////4AAAAAAAAAAAAAAAAAAAAAAf//wAAAAAAAAAAA/+AAAAAAAAAAAAAAP/AP//wAAAAAAAAAAAAAAAAAAAAAA//vgAAAAAAAAAAA/4AAAAAAAAAAAAAAP8AG//gAAAAAAAAAAAAAAAAAAAAAA//3AAAAAAAAAAAAQAAAAAAAAAAAAAAAOAAF//gAAAAAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//AAABAAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAAgAAAAAAAAAAAAAAAAAD//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAAQAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYAAAAcAAAAAAAAAAAAAAAAAB/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAD/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAADQAAAAAAAAAAAAAAAAAD/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAHAAAAAAAAAAAAAAAAAAB/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAOAAAAAAAAAAAAAAAAAAF/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"};
 var RM=W.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var MOBILE=W.matchMedia('(max-width: 760px)').matches;
 var COARSE=W.matchMedia('(hover: none)').matches;
@@ -897,14 +982,17 @@ function mixHex(a,b,t){var A=hex(a),B=hex(b);return '#'+[0,1,2].map(function(i){
 var NS='http://www.w3.org/2000/svg';function el(t,a,p){var e=D.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
 
 /* split headings into words for the rise-in */
-$$('.words').forEach(function(h){var i=0;h.innerHTML=h.textContent.split(' ').map(function(w){return '<span class="w" style="--i:'+(i++)+'">'+w+'</span>'}).join(' ')});
+var GLY='▓▒░█<>/\\*#01ΣΔ';
+function decode(el){if(RM||el.__dec)return;var txt=el.dataset.t||(el.dataset.t=el.textContent),n=txt.length,t0=null,dur=Math.min(1100,280+n*28);el.__dec=1;
+  (function st(ts){if(!t0)t0=ts;var p=clamp((ts-t0)/dur,0,1),k=Math.floor(p*n),o='';for(var i=0;i<n;i++){var c=txt[i];o+=(i<k||c===' ')?c:GLY[Math.floor(Math.random()*GLY.length)]}el.textContent=o;if(p<1)requestAnimationFrame(st);else{el.textContent=txt;el.__dec=0}})(performance.now())}
+$$('.words,.decode').forEach(function(h){h.dataset.t=h.textContent});
 /* liquid glass highlight follows the pointer */
 if(!COARSE)D.addEventListener('pointermove',function(e){var g=e.target.closest&&e.target.closest('.glass');if(!g)return;var r=g.getBoundingClientRect();g.style.setProperty('--gx',(e.clientX-r.left)+'px');g.style.setProperty('--gy',(e.clientY-r.top)+'px')},{passive:true});
 
 /* counters + reveal */
 function countUp(n,to,suf,pre){suf=suf||'';pre=pre||'';if(RM){n.textContent=pre+fmt(to)+suf;return}var t0=null;
   (function st(ts){if(!t0)t0=ts;var p=clamp((ts-t0)/1100,0,1);n.textContent=pre+fmt(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(st)})(performance.now())}
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');if(e.target.classList.contains('words'))decode(e.target);if(!HZ)$$('.decode',e.target).forEach(decode);
   $$('[data-count]',e.target).forEach(function(c){if(c.dataset.done)return;c.dataset.done=1;countUp(c,+c.dataset.count,c.dataset.suf,c.dataset.pre)});
   $$('.lg-row .b i',e.target).forEach(function(b){b.style.width=b.dataset.w+'%'});io.unobserve(e.target)})},{rootMargin:'0px 0px -6% 0px',threshold:.05});
 $$('.rv,.panel').forEach(function(x){io.observe(x)});
@@ -976,7 +1064,7 @@ var anchors=[];
 function buildAnchors(){anchors=[];$$('[data-shape][data-pal]').forEach(function(e){
   if(e.classList.contains('pillar'))return;
   var pi=panels.indexOf(e);
-  anchors.push({el:e,shape:e.dataset.shape,pal:e.dataset.pal,ch:e.dataset.ch,pi:pi,c:function(){
+  anchors.push({el:e,shape:e.dataset.shape,pal:e.dataset.pal,ch:e.dataset.ch,pi:pi,via:e.dataset.via||null,c:function(){
     if(pi>-1&&HZ){var r=hz.getBoundingClientRect(),top=r.top+W.scrollY,span=hz.offsetHeight-W.innerHeight;return top+span*pi/(panels.length-1)+W.innerHeight*.5}
     var rr=e.getBoundingClientRect();return rr.top+W.scrollY+(e.id==='top'?0:W.innerHeight*.2)}})})}
 
@@ -985,18 +1073,23 @@ var cv=$('#swarm'),ctx=cv.getContext('2d'),DPR=Math.min(W.devicePixelRatio||1,MO
 function size(){VW=W.innerWidth;VH=W.innerHeight;cv.width=Math.round(VW*DPR);cv.height=Math.round(VH*DPR);ctx.setTransform(DPR,0,0,DPR,0,0)}
 var cur=new Float32Array(N*3),off=new Float32Array(N*2),vel=new Float32Array(N*2);cur.set(SH.sphere);
 var seeds=new Float32Array(N);for(var s=0;s<N;s++)seeds[s]=Math.random();
-var mouse={x:-1e4,y:-1e4,nx:0,ny:0},override=null,overT=0,state={A:'sphere',B:'sphere',t:0,pal:PAL.hero};
+var mouse={x:-1e4,y:-1e4,nx:0,ny:0},override=null,overT=0,state={A:'sphere',B:'sphere',t:0,via:null,jv:0,jp:0,pal:PAL.hero};
 W.addEventListener('pointermove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;mouse.nx=e.clientX/VW-.5;mouse.ny=e.clientY/VH-.5},{passive:true});
 D.addEventListener('pointerleave',function(){mouse.x=mouse.y=-1e4});
 var time=0,last=performance.now(),cols={d:'#070B1A',m:'#1D2A6E',a:'#6EF2D2'},pillarCol=null;
 function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
-  var A=SH[state.A],B=SH[state.B],t=ease(clamp(state.t,0,1)),O=override?SH[override]:null;overT=clamp(overT+(override?dt*2.2:-dt*2.2),0,1);var ot=ease(overT);
-  var flat=(FLAT[state.A]&&t<.5)||(FLAT[state.B]&&t>=.5)||(O&&ot>.5&&FLAT[override]);
+  var A=SH[state.A],B=SH[state.B],raw=clamp(state.t,0,1),t=ease(raw),O=override?SH[override]:null;overT=clamp(overT+(override?dt*2.2:-dt*2.2),0,1);var ot=ease(overT);
+  var V=state.via&&state.A!==state.B?SH[state.via]:null,mode=0,e1=0,vx=0,vy=0;
+  if(V){if(raw<.3){mode=1;e1=ease(raw/.3);vx=-.8}else if(raw<.7){mode=2;var u=(raw-.3)/.4;vx=lerp(-.8,.8,ease(u));vy=state.via==='plane'?-Math.sin(Math.PI*u)*.22:0}else{mode=3;e1=ease((raw-.7)/.3);vx=.8}}
+  var burst=(!V&&state.A!==state.B)?Math.sin(Math.PI*raw)*.5:0;
+  var flat=V||(FLAT[state.A]&&t<.5)||(FLAT[state.B]&&t>=.5)||(O&&ot>.5&&FLAT[override]);
   var soft=(SOFT[state.A]&&t<.5)||(SOFT[state.B]&&t>=.5);var rotY=flat?Math.sin(time*.4)*.14+mouse.nx*.35:(soft?-.55+Math.sin(time*.3)*.25+mouse.nx*.5:time*.25+mouse.nx*.8),rotX=flat?-mouse.ny*.15:(soft?.42-mouse.ny*.3:-mouse.ny*.4+.15),cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
   var wide=VW>900,CX=wide?VW*.72:VW*.5,CY=VH*.52+(wide?0:VH*.02),SC=wide?Math.min(VW*.27,VH*.4):Math.min(VW*.42,VH*.3);
-  ctx.clearRect(0,0,VW,VH);ctx.globalCompositeOperation='lighter';
+  ctx.clearRect(0,0,VW,VH);if(state.jv>.01)drawMap(state.jv,state.jp);ctx.globalCompositeOperation='lighter';
   var acc=hex(pillarCol&&ot>0?mixHex(cols.a,pillarCol,ot):cols.a),mid=hex(mixHex(cols.m,'#ffffff',.6));
-  for(var k=0;k<N;k++){var i3=k*3,x=lerp(A[i3],B[i3],t),y=lerp(A[i3+1],B[i3+1],t),z=lerp(A[i3+2],B[i3+2],t);
+  for(var k=0;k<N;k++){var i3=k*3,x,y,z;
+    if(mode){var qx=V[i3]*.6+vx,qy=V[i3+1]*.6+vy,qz=V[i3+2];if(mode===1){x=lerp(A[i3],qx,e1);y=lerp(A[i3+1],qy,e1);z=lerp(A[i3+2],qz,e1)}else if(mode===2){x=qx;y=qy;z=qz}else{x=lerp(qx,B[i3],e1);y=lerp(qy,B[i3+1],e1);z=lerp(qz,B[i3+2],e1)}}
+    else{x=lerp(A[i3],B[i3],t);y=lerp(A[i3+1],B[i3+1],t);z=lerp(A[i3+2],B[i3+2],t);if(burst){var sb=seeds[k];x+=Math.cos(sb*91.7)*burst*(.3+sb);y+=Math.sin(sb*53.3)*burst*(.3+sb);z+=Math.sin(sb*17.1)*burst*.4}}
     if(O){x=lerp(x,O[i3],ot);y=lerp(y,O[i3+1],ot);z=lerp(z,O[i3+2],ot)}
     var sd=seeds[k];x+=Math.sin(time*.9+sd*40)*.004;y+=Math.cos(time*.8+sd*30)*.004;
     cur[i3]+=(x-cur[i3])*.12;cur[i3+1]+=(y-cur[i3+1])*.12;cur[i3+2]+=(z-cur[i3+2])*.12;x=cur[i3];y=cur[i3+1];z=cur[i3+2];
@@ -1010,24 +1103,96 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   ctx.globalCompositeOperation='source-over';
   if(!RM)requestAnimationFrame(frame)}
 
+/* ── journey map: a faint dotted world with the route drawn by your scroll ── */
+var MAPPTS=(function(){var bin=atob(MASK.b),o=[],k=0;for(var i=0;i<MASK.h;i++)for(var j=0;j<MASK.w;j++,k++){if(bin.charCodeAt(k>>3)&(128>>(k&7))){var lo=MASK.lon0+(j+.5)*MASK.step,la=MASK.lat1-(i+.5)*MASK.step;if(lo>-105&&lo<60&&la>5&&la<68)o.push(lo,la)}}return o})();
+function mercY(la){return Math.log(Math.tan(Math.PI/4+la*Math.PI/360))}
+var ROUTE=[[2.35,48.86],[3.06,50.63],[-78.64,35.78],[35.5,33.89],[-78.64,35.78],[2.35,48.86]];
+function mp(lo,la){var x=(lo+105)/165*VW,y0=mercY(68),y1=mercY(8);return [x,VH*.08+(y0-mercY(la))/(y0-y1)*VH*.84]}
+function drawMap(v,jp){var acc=hex(cols.a);ctx.fillStyle='rgba(255,255,255,'+(.09*v).toFixed(3)+')';var r=Math.max(1,VW/900);ctx.beginPath();
+  for(var i=0;i<MAPPTS.length;i+=2){var q=mp(MAPPTS[i],MAPPTS[i+1]);ctx.rect(q[0]-r/2,q[1]-r/2,r,r)}ctx.fill();
+  ctx.setLineDash([5,7]);ctx.lineWidth=1.6;var cur=null;
+  for(var L=0;L<ROUTE.length-1;L++){var f=clamp(jp-L,0,1);if(f<=0)break;var a=mp(ROUTE[L][0],ROUTE[L][1]),b=mp(ROUTE[L+1][0],ROUTE[L+1][1]),mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2-Math.hypot(b[0]-a[0],b[1]-a[1])*(L===0?.6:.22)-(L===0?20:0);
+    ctx.strokeStyle='rgba('+acc[0]+','+acc[1]+','+acc[2]+','+(.75*v).toFixed(3)+')';ctx.beginPath();ctx.moveTo(a[0],a[1]);var N2=40,px=a[0],py=a[1];for(var s2=1;s2<=N2*f;s2++){var tt=s2/N2;px=(1-tt)*(1-tt)*a[0]+2*(1-tt)*tt*mx+tt*tt*b[0];py=(1-tt)*(1-tt)*a[1]+2*(1-tt)*tt*my+tt*tt*b[1];ctx.lineTo(px,py)}ctx.stroke();cur=[px,py]}
+  ctx.setLineDash([]);ROUTE.forEach(function(c){var q=mp(c[0],c[1]);ctx.fillStyle='rgba(255,255,255,'+(.5*v)+')';ctx.beginPath();ctx.arc(q[0],q[1],3,0,6.283);ctx.fill()});
+  if(cur){ctx.fillStyle='rgba('+acc[0]+','+acc[1]+','+acc[2]+','+v+')';ctx.beginPath();ctx.arc(cur[0],cur[1],5,0,6.283);ctx.fill()}}
+
 /* ── scroll: blend shapes and worlds ── */
-var links=$$('#links a'),here=$('#here'),bar=$('#bar'),dock=$('#dock'),dots=[];
+var links=$$('#links a'),here=$('#here'),bar=$('#bar'),dock=$('#dock'),dots=[],lastPanel=-1,hzP=0,lastCh='';
+function parallax(){if(!HZ)return;var n1=panels.length-1;panels.forEach(function(pn,i){var local=i-hzP*n1;if(Math.abs(local)>1.3)return;
+  (pn.__fc||(pn.__fc=$$('.fc',pn))).forEach(function(c){var d=+c.dataset.depth||1;c.style.transform='translate3d('+(local*d*90+mouse.nx*d*12)+'px,'+(mouse.ny*d*10)+'px,0) rotateY('+(mouse.nx*d*5)+'deg) rotateX('+(-mouse.ny*d*4)+'deg)'})})}
+W.addEventListener('pointermove',function(){if(HZ&&state.jv>.5)requestAnimationFrame(parallax)},{passive:true});
 function applyCols(c){cols=c;root.style.setProperty('--d',c.d);root.style.setProperty('--m',c.m);root.style.setProperty('--a',pillarCol&&overT>.01?mixHex(c.a,pillarCol,ease(overT)):c.a)}
 function onScroll(){var vh=W.innerHeight,y=W.scrollY,vc=y+vh*.5;
-  if(HZ){var r=hz.getBoundingClientRect(),span=hz.offsetHeight-vh,p=clamp(-r.top/span,0,1);track.style.transform='translate3d('+(-p*(panels.length-1)*W.innerWidth)+'px,0,0)';
-    var ai=Math.round(p*(panels.length-1));dots.forEach(function(d,i){d.classList.toggle('on',i===ai)})}
+  if(HZ){var r=hz.getBoundingClientRect(),span=hz.offsetHeight-vh,p=clamp(-r.top/span,0,1),n1=panels.length-1;track.style.transform='translate3d('+(-p*n1*W.innerWidth)+'px,0,0)';
+    var ai=Math.round(p*n1);dots.forEach(function(d,i){d.classList.toggle('on',i===ai)});
+    if(ai!==lastPanel&&r.top<vh*.3&&r.bottom>vh*.7){lastPanel=ai;$$('.decode',panels[ai]).forEach(decode)}
+    state.jp=p*n1;state.jv=clamp((vh*.5-r.top)/(vh*.5),0,1)*clamp((r.bottom-vh*.5)/(vh*.5),0,1);hzP=p;parallax()}else state.jv=0;
   var cs=anchors.map(function(a){return a.c()}),k=0;for(var i=0;i<cs.length;i++)if(cs[i]<=vc)k=i;
-  var a=anchors[k],b=anchors[Math.min(k+1,anchors.length-1)],win=vh*.6;
+  var a=anchors[k],b=anchors[Math.min(k+1,anchors.length-1)],win=vh*(b.via?.55:.38);
   var tt=b===a?0:clamp((vc-(cs[k+1]-win))/win,0,1);/* hold each world, morph just before the next one arrives */
-  state.A=a.shape;state.B=b.shape;state.t=tt;
+  state.A=a.shape;state.B=b.shape;state.t=tt;state.via=(b.via&&b!==a)?b.via:null;
   var pa=PAL[a.pal],pb=PAL[b.pal];applyCols({d:mixHex(pa[0],pb[0],tt),m:mixHex(pa[1],pb[1],tt),a:mixHex(pa[2],pb[2],tt)});
   var ch=(tt<.5?a:b).ch;if(here.textContent!==ch)here.textContent=ch;
-  var secId=(function(){var e=(tt<.5?a:b).el;return e.closest('#journey')?'journey':(e.closest('#own')?'own':e.id)})();
+  var secId=(function(){var e=(tt<.5?a:b).el;return e.closest('#journey')?'journey':e.id})();
+  if(ch!==lastCh){if(lastCh&&secId===lastSec)wipe(PAL[(tt<.5?a:b).pal][2]);lastCh=ch;if(W.buddyMood)W.buddyMood((tt<.5?a:b).pal)}
+  if(secId!==lastSec){if(lastSec)portal(secId,y>=lastY);lastSec=secId}lastY=y;camera(vh);
   links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+secId)});
   bar.style.transform='scaleX('+clamp(y/(D.documentElement.scrollHeight-vh),0,1)+')';
   var hb=$('#top').getBoundingClientRect().bottom,nt=$('#next').getBoundingClientRect().top;dock.classList.toggle('show',hb<vh*.2&&nt>vh*.5);
   if(RM)frame(performance.now())}
-function layout(){setupHz();size();buildAnchors();onScroll()}
+
+/* ── chapter portals: the screen itself moves between chapters ── */
+var PORTAL={
+  top:   {n:'00',sub:'Back to the start',fx:'down',pal:'hero'},
+  origin:{n:'01',sub:'Where I come from',fx:'down',pal:'origin'},
+  purpose:{n:'02',sub:'Why I do what I do',fx:'right',pal:'purpose'},
+  journey:{n:'03',sub:'Paris, Lille, the USA, Beirut and back',fx:'blinds',pal:'paris1'},
+  hq:    {n:'04',sub:'The brain I am building',fx:'iris',pal:'hq'},
+  lab:   {n:'05',sub:'Things I build to understand',fx:'up',pal:'lab'},
+  toolkit:{n:'06',sub:'What I work with',fx:'diag',pal:'toolkit'},
+  next:  {n:'07',sub:'What comes next',fx:'split',pal:'next'}};
+var portalEl=$('#portal'),pStrips=$$('#portal i'),pText=$('#portal .pt'),pAnims=[],pBusy=0,lastSec='',lastY=W.scrollY;
+function portal(id,down){var P=PORTAL[id];if(!P||RM||!portalEl.animate)return;var now=performance.now();
+  var pal=PAL[P.pal]||PAL.hero;portalEl.style.setProperty('--pd',pal[0]);portalEl.style.setProperty('--pm',pal[1]);portalEl.style.setProperty('--pa',pal[2]);
+  $('.pn',portalEl).textContent=P.n+' / 07';$('.pw',portalEl).textContent=(D.getElementById(id)||{}).dataset?(id==='top'?'Hello':D.getElementById(id).dataset.ch):id;$('.ps',portalEl).textContent=P.sub;
+  if(now-pBusy<700)return;/* already sweeping: just retitle */
+  pBusy=now;pAnims.forEach(function(a){a.cancel()});pAnims=[];portalEl.classList.add('go');
+  var s=down?1:-1,T=1150,E='cubic-bezier(.75,0,.25,1)',vw=W.innerWidth,n=pStrips.length;
+  function reset(el){el.style.cssText=''}
+  pStrips.forEach(reset);
+  function run(el,frames,delay){pAnims.push(el.animate(frames,{duration:T,delay:delay||0,easing:E,fill:'both'}))}
+  function slide(el,ax,from,to,extra){extra=extra||'';run(el,[{transform:'translate'+ax+'('+from+'%)'+extra},{transform:'translate'+ax+'(0)',offset:.42},{transform:'translate'+ax+'(0)',offset:.6},{transform:'translate'+ax+'('+to+'%)'+extra}])}
+  var fx=P.fx;
+  pStrips.forEach(function(el,i){el.style.display=i===0?'block':'none'});
+  if(fx==='right')slide(pStrips[0],'X',-110*s,110*s,' skewX('+(-10*s)+'deg)');
+  else if(fx==='down')slide(pStrips[0],'Y',-110*s,110*s);
+  else if(fx==='up')slide(pStrips[0],'Y',110*s,-110*s);
+  else if(fx==='blinds'){pStrips.forEach(function(el,i){el.style.display='block';el.style.left=(i*100/n)+'%';el.style.right='auto';el.style.width=(100/n+.2)+'%';
+      var j=down?i:n-1-i;pAnims.push(el.animate([{transform:'translateY('+(i%2?110:-110)+'%)'},{transform:'translateY(0)',offset:.45},{transform:'translateY(0)',offset:.58},{transform:'translateY('+(i%2?-110:110)+'%)'}],{duration:T,delay:j*45,easing:E,fill:'both'}))})}
+  else if(fx==='iris'){var cx=mouse.x>0?mouse.x:vw/2,cy=mouse.y>0?mouse.y:W.innerHeight/2;pStrips[0].style.transform='none';
+      run(pStrips[0],[{clipPath:'circle(0px at '+cx+'px '+cy+'px)',transform:'scale(1)'},{clipPath:'circle(150vmax at '+cx+'px '+cy+'px)',offset:.45},{clipPath:'circle(150vmax at 50% 50%)',opacity:1,offset:.6},{clipPath:'circle(150vmax at 50% 50%)',opacity:0,transform:'scale(1.25)'}])}
+  else if(fx==='diag'){var el=pStrips[0];el.style.top='-40vh';el.style.bottom='-40vh';el.style.left='-60vw';el.style.right='-60vw';slide(el,'X',120*s,-120*s,' skewX(-22deg)')}
+  else if(fx==='split'){[0,1].forEach(function(k){var el=pStrips[k];el.style.display='block';el.style[k?'top':'bottom']='50%';
+      run(el,[{transform:'translateY('+(k?101:-101)+'%)'},{transform:'translateY(0)',offset:.42},{transform:'translateY(0)',offset:.6},{transform:'translateY('+(k?101:-101)+'%)'}])})}
+  var off=fx==='right'?['-8vw','0','8vw','X']:fx==='diag'?['8vw','0','-8vw','X']:fx==='up'?['8vh','0','-8vh','Y']:['-8vh','0','8vh','Y'];
+  if(!down){off=[off[2],off[1],off[0],off[3]]}
+  pAnims.push(pText.animate([{opacity:0,transform:'translate'+off[3]+'('+off[0]+') scale(.96)',filter:'blur(8px)'},{opacity:0,offset:.25},{opacity:1,transform:'none',filter:'blur(0)',offset:.42},{opacity:1,transform:'none',offset:.62},{opacity:0,transform:'translate'+off[3]+'('+off[2]+') scale(1.04)',filter:'blur(8px)',offset:.82},{opacity:0}],{duration:T,easing:'ease-in-out',fill:'both'}));
+  pAnims[pAnims.length-1].onfinish=function(){portalEl.classList.remove('go');pAnims.forEach(function(a){a.cancel()});pAnims=[];pStrips.forEach(reset)}}
+/* scroll-scrubbed camera: each chapter's content travels in from the same direction its portal swept */
+var ENTER=$$('.sec').map(function(sec){var P=PORTAL[sec.id];return{w:$(':scope>.wrap',sec),fx:P?P.fx:'up',el:sec}}).filter(function(o){return o.w});
+function camera(vh){if(RM)return;ENTER.forEach(function(o){var r=o.el.getBoundingClientRect();if(r.top>vh*1.2||r.bottom<-vh*.2)return;
+  var p=clamp((vh-r.top)/(vh*.7),0,1),e=1-(1-p)*(1-p)*(1-p),q=1-e,tf;
+  if(p>=1){if(o.w.style.transform){o.w.style.transform='';o.w.style.opacity=''}return}
+  switch(o.fx){case 'right':tf='perspective(1200px) translateX('+(-18*q)+'vw) rotateY('+(14*q)+'deg)';break;
+    case 'down':tf='translateY('+(-14*q)+'vh) scale('+(1-.06*q)+')';break;
+    case 'up':tf='translateY('+(18*q)+'vh) rotateX('+(12*q)+'deg)';break;
+    case 'iris':tf='scale('+(.78+.22*e)+')';break;
+    case 'diag':tf='translate('+(16*q)+'vw,'+(8*q)+'vh) rotate('+(-4*q)+'deg)';break;
+    case 'split':tf='scale('+(1.12-.12*e)+')';break;default:tf='translateY('+(12*q)+'vh)'}
+  o.w.style.transform=tf;o.w.style.opacity=(.25+.75*e).toFixed(3)})}
+var wipeEl=null,lastWipe=0;function wipe(c){if(RM)return;var now=performance.now();if(now-lastWipe<650)return;lastWipe=now;wipeEl=wipeEl||$('#wipe');
+  wipeEl.style.setProperty('--wc',c);wipeEl.classList.remove('go');void wipeEl.offsetWidth;wipeEl.classList.add('go')}
+function layout(){setupHz();size();buildAnchors();if(!HZ)$$('.fc').forEach(function(c){c.style.transform=''});onScroll()}
 /* journey dots */
 (function(){var box=$('#hzDots');panels.forEach(function(p,i){var b=D.createElement('button');b.innerHTML='<i></i>'+p.dataset.ch.split(' · ')[0];b.setAttribute('aria-label','Go to '+p.dataset.ch);
   b.onclick=function(){var span=hz.offsetHeight-W.innerHeight;W.scrollTo({top:hz.getBoundingClientRect().top+W.scrollY+span*i/(panels.length-1),behavior:RM?'auto':'smooth'})};box.appendChild(b);dots.push(b)})})();
@@ -1056,16 +1221,6 @@ function eqSet(c){$$('#eqSeg button').forEach(function(b){b.setAttribute('aria-p
     (c==='lbn'?' Almost every home is connected, but the grid itself collapsed: electricity generated per person fell from <b>3,726 kWh</b> in 2019 to <b>920</b> in 2024.':'')}
 $$('#eqSeg button').forEach(function(b){b.onclick=function(){eqSet(b.dataset.c)}});
 new IntersectionObserver(function(es,o){if(es[0].isIntersecting){eqSet('lbn');o.disconnect()}},{threshold:.3}).observe($('#eq'));
-
-/* own your intelligence: driven by scroll */
-var OWN=[['Decisions',"Priorities follow the provider's roadmap.",'Priorities are set locally, and the options stay open.'],
-  ['AI models',"You call someone else's model and pay per use.",'Models are trained or adapted at home, on your own terms.'],
-  ['Data','Data leaves to be processed elsewhere, under foreign rules.','Data is collected, stored and governed where it was created.'],
-  ['Infrastructure','Servers and power sit abroad. Access can be cut or repriced.','Compute, energy and networks are built and run locally.']];
-$('#layers').innerHTML=OWN.map(function(l){return '<li><b>'+l[0]+'</b><span><em class="r">'+l[1]+'</em><em class="o">'+l[2]+'</em></span></li>'}).join('');
-var ownSec=$('#own'),ownFill=$('#ownFill');
-function ownTick(){var r=ownSec.getBoundingClientRect(),span=ownSec.offsetHeight-W.innerHeight,p=RM?1:clamp(-r.top/Math.max(span,1),0,1);ownFill.style.transform='scaleX('+p+')';ownSec.classList.toggle('owned',p>.5)}
-W.addEventListener('scroll',function(){requestAnimationFrame(ownTick)},{passive:true});ownTick();
 
 /* thesis + programme + automation */
 var TH=['Rebuild institutional capacity','Connect capacity that already exists, but in isolation','Follow through on the gaps its own strategy names'];
@@ -1141,7 +1296,7 @@ new IntersectionObserver(function(es,o){if(es[0].isIntersecting){setTimeout(func
   function build(){truth=[];for(var y=0;y<GH;y++){truth.push([]);for(var x=0;x<GW;x++)truth[y].push(x===0||y===0||x===GW-1||y===GH-1?1:0)}function wall(a,b,c2,d){for(var y=b;y<=d;y++)for(var x=a;x<=c2;x++)truth[y][x]=1}
     wall(11,1,11,18);wall(22,1,22,18);wall(1,8,10,8);wall(1,13,10,13);wall(12,10,21,10);wall(23,7,32,7);wall(23,13,32,13);
     [[11,4],[11,5],[11,15],[22,3],[22,4],[22,16],[5,8],[6,8],[4,13],[16,10],[17,10],[27,7],[28,7],[28,13],[29,13]].forEach(function(d){truth[d[1]][d[0]]=0});wall(15,3,17,4);wall(26,2,28,3);wall(3,15,5,16);wall(29,16,30,17);wall(14,14,15,16)}
-  function reset(){build();known=[];for(var y=0;y<GH;y++)known.push(new Array(GW).fill(-1));robot=[3,3];dir=0;goal=null;steps=0;trail={};path=null;sense();draw();stats()}
+  var userW={};function reset(){build();userW={};known=[];for(var y=0;y<GH;y++)known.push(new Array(GW).fill(-1));robot=[3,3];dir=0;goal=null;steps=0;trail={};path=null;sense();draw();stats()}
   function los(x0,y0,x1,y1){var dx=Math.abs(x1-x0),dy=-Math.abs(y1-y0),sx=x0<x1?1:-1,sy=y0<y1?1:-1,err=dx+dy,x=x0,y=y0;while(true){if(x===x1&&y===y1)return true;if(truth[y][x]===1&&!(x===x0&&y===y0))return false;var e2=2*err;if(e2>=dy){err+=dy;x+=sx}if(e2<=dx){err+=dx;y+=sy}}}
   function sense(){for(var y=robot[1]-5;y<=robot[1]+5;y++)for(var x=robot[0]-5;x<=robot[0]+5;x++){if(x<0||y<0||x>=GW||y>=GH||Math.hypot(x-robot[0],y-robot[1])>5.3)continue;if(los(robot[0],robot[1],x,y))known[y][x]=truth[y][x]}}
   var N4=[[1,0],[0,1],[-1,0],[0,-1]];
@@ -1152,7 +1307,7 @@ new IntersectionObserver(function(es,o){if(es[0].isIntersecting){setTimeout(func
     if(path&&path.length>1){var n=path[1];if(truth[n[1]][n[0]]===1)known[n[1]][n[0]]=1;else{dir=Math.atan2(n[1]-robot[1],n[0]-robot[0]);robot=n;steps++;trail[n[0]+','+n[1]]=1;state=goal?'Driving to the goal':'Exploring'}if(goal&&robot[0]===goal[0]&&robot[1]===goal[1]){goal=null;state='Goal reached'}}
     sense();draw();stats()}
   function draw(){c.fillStyle='#05060d';c.fillRect(0,0,cvt.width,cvt.height);
-    for(var y=0;y<GH;y++)for(var x=0;x<GW;x++){var k=known[y][x],px=x*C,py=y*C;if(k===-1){c.fillStyle='#0b0d1a'}else if(k===1){c.fillStyle='#22E5FF';c.globalAlpha=.85}else c.fillStyle=trail[x+','+y]?'#14304a':'#101a33';c.fillRect(px+1,py+1,C-2,C-2);c.globalAlpha=1}
+    for(var y=0;y<GH;y++)for(var x=0;x<GW;x++){var k=known[y][x],px=x*C,py=y*C;if(k===-1){c.fillStyle='#0b0d1a'}else if(k===1){if(userW[x+','+y]){c.fillStyle='#FFD166';c.shadowColor='#FFD166';c.shadowBlur=10}else{c.fillStyle='#22E5FF';c.globalAlpha=.85}}else c.fillStyle=trail[x+','+y]?'#14304a':'#101a33';c.fillRect(px+1,py+1,C-2,C-2);c.globalAlpha=1;c.shadowBlur=0}
     if(path&&path.length>1){c.fillStyle='#FFD166';path.slice(1).forEach(function(p){c.beginPath();c.arc((p[0]+.5)*C,(p[1]+.5)*C,C*.12,0,6.283);c.fill()})}
     if(goal){c.strokeStyle='#FFD166';c.lineWidth=3;c.beginPath();c.arc((goal[0]+.5)*C,(goal[1]+.5)*C,C*.36,0,6.283);c.stroke()}
     var rx=(robot[0]+.5)*C,ry=(robot[1]+.5)*C,g=c.createRadialGradient(rx,ry,0,rx,ry,C*5);g.addColorStop(0,'rgba(34,229,255,.28)');g.addColorStop(1,'rgba(34,229,255,0)');c.fillStyle=g;c.beginPath();c.moveTo(rx,ry);c.arc(rx,ry,C*5,dir-.6,dir+.6);c.closePath();c.fill();
@@ -1165,7 +1320,7 @@ new IntersectionObserver(function(es,o){if(es[0].isIntersecting){setTimeout(func
   $('#twGoal').onclick=function(){mode='goal';$('#twGoal').setAttribute('aria-pressed',true);$('#twWall').setAttribute('aria-pressed',false)};
   $('#twReset').onclick=function(){reset();state='';playing=!RM;setPlay();loop()};
   cvt.addEventListener('click',function(e){var r=cvt.getBoundingClientRect(),x=Math.floor((e.clientX-r.left)/r.width*GW),y=Math.floor((e.clientY-r.top)/r.height*GH);if(x<=0||y<=0||x>=GW-1||y>=GH-1||(x===robot[0]&&y===robot[1]))return;
-    if(mode==='wall'){truth[y][x]=truth[y][x]?0:1;if(known[y][x]!==-1)known[y][x]=-1;if(state==='Map complete'){state='';playing=true;setPlay();loop()}}else if(truth[y][x]===0){goal=[x,y];state='Driving to the goal';if(!playing){playing=true;setPlay();loop()}}sense();draw();stats()});
+    if(mode==='wall'){truth[y][x]=truth[y][x]?0:1;var key=x+','+y;if(truth[y][x]){userW[key]=1;known[y][x]=1}else{delete userW[key];if(known[y][x]===1)known[y][x]=0}if(state==='Map complete'){state='';playing=true;setPlay();loop()}}else if(truth[y][x]===0){goal=[x,y];state='Driving to the goal';if(!playing){playing=true;setPlay();loop()}}sense();draw();stats()});
   reset();setPlay();new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)loop();else clearTimeout(timer)},{threshold:.2}).observe(cvt)})();
 
 /* energy development profiles */
@@ -1245,9 +1400,56 @@ new IntersectionObserver(function(es,o){if(es[0].isIntersecting){setTimeout(func
 var toast=$('#toast'),tt;function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2400)}
 $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.copy;try{navigator.clipboard.writeText(v).then(function(){say('Copied '+v)},function(){say(v)})}catch(e){say(v)}if(b.dataset.mail)setTimeout(function(){W.location.href='mailto:'+v},150)})});
 
+
+/* ── mini Joseph: a little cartoon of me you can talk to ── */
+(function(){
+  var face=$('#bface'),chat=$('#bchat'),log=$('#blog'),chips=$('#bchips'),hint=$('#bhint'),pl=$('#bpl'),pr=$('#bpr'),bl=$('#bbl'),br=$('#bbr'),mouth=$('#bmouth'),lids=$$('#beyes .lid'),hair=$('#bhair');
+  /* curly hair from a cluster of curls */
+  var h='';[[34,40,8],[40,31,8.5],[49,26,9],[59,24,9.5],[69,25,9],[78,30,8.5],[85,38,8],[38,48,5.5],[83,47,5.5],[45,36,6],[55,32,6.5],[65,32,6.5],[75,36,6],[31,50,4.5],[88,52,4.5],[52,22,6],[66,21,6]].forEach(function(c){h+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>'});
+  [[44,28],[56,24],[70,27],[80,36],[37,38]].forEach(function(c){h+='<path d="M'+(c[0]-3)+' '+c[1]+'q3 -4 6 0" fill="none" stroke="#3a2a22" stroke-width="1.4" stroke-linecap="round"/>'});hair.innerHTML=h;
+  var FACES={
+    smile:{m:'<path d="M51 75q9 7 18 0" fill="none" stroke="#5B2A22" stroke-width="2.4" stroke-linecap="round"/>',bl:'M42 46q7-4 13 0',br:'M65 46q6-4 13 0',e:[1,1]},
+    laugh:{m:'<path d="M50 73q10 14 20 0z" fill="#5B2A22"/><path d="M52 74h16v2.5q-8 2-16 0z" fill="#fff"/>',bl:'M42 44q7-5 13-1',br:'M65 43q6-4 13 1',e:[.18,.18]},
+    wink:{m:'<path d="M51 75q10 6 18-2" fill="none" stroke="#5B2A22" stroke-width="2.4" stroke-linecap="round"/>',bl:'M42 46q7-4 13 0',br:'M65 48q6-2 13 0',e:[1,.12]},
+    wow:{m:'<ellipse cx="60" cy="77" rx="3.6" ry="4.6" fill="#5B2A22"/>',bl:'M42 41q7-5 13-1',br:'M65 40q6-4 13 1',e:[1.15,1.15]},
+    think:{m:'<path d="M53 77q6-1 13-3" fill="none" stroke="#5B2A22" stroke-width="2.4" stroke-linecap="round"/>',bl:'M42 47q7-2 13 0',br:'M65 42q6-4 13 0',e:[1,1],look:[1,-1.6]},
+    proud:{m:'<path d="M51 76q11 5 19-3" fill="none" stroke="#5B2A22" stroke-width="2.6" stroke-linecap="round"/>',bl:'M42 45q7-4 13 1',br:'M65 46q6-5 13-1',e:[.85,.85]}};
+  var cur='smile',look=null,blinking=false;
+  function setFace(n){var f=FACES[n];if(!f)return;cur=n;mouth.innerHTML=f.m;bl.setAttribute('d',f.bl);br.setAttribute('d',f.br);look=f.look||null;
+    lids[0].style.transform='scaleY('+f.e[0]+')';lids[1].style.transform='scaleY('+f.e[1]+')'}
+  function blink(){if(RM)return;if(cur==='laugh'||cur==='wink'){setTimeout(blink,3000);return}blinking=true;lids.forEach(function(l){l.style.transform='scaleY(.1)'});
+    setTimeout(function(){var f=FACES[cur];lids[0].style.transform='scaleY('+f.e[0]+')';lids[1].style.transform='scaleY('+f.e[1]+')';blinking=false},130);setTimeout(blink,2600+Math.random()*3500)}
+  setTimeout(blink,2500);
+  W.addEventListener('pointermove',function(e){var r=face.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=e.clientX-cx,dy=e.clientY-cy,d=Math.hypot(dx,dy)||1,m=Math.min(1.9,d/60);
+    var ox=look?look[0]:dx/d*m,oy=look?look[1]:dy/d*m*.8;pl.setAttribute('cx',ox);pl.setAttribute('cy',oy);pr.setAttribute('cx',ox);pr.setAttribute('cy',oy)},{passive:true});
+  var MOODS={hero:'smile',origin:'proud',purpose:'think',paris1:'smile',lille:'wink',usa:'wow',beirut:'proud',raleigh:'think',paris2:'smile',hq:'wow',lab:'think',toolkit:'smile',next:'laugh'};
+  W.buddyMood=function(pal){if(chat.hidden)setFace(MOODS[pal]||'smile')};
+  var Q=[
+    ['Who are you?','smile',"I'm Joseph. Born in Lebanon, raised in Paris, studied in the USA. Today I'm a digital transformation strategy consultant at Devoteam, working for Safran Aircraft Engines.",[]],
+    ['What are you looking for?','proud',"Graduate and junior roles from 2027, in AI and digital transformation, product or project delivery. I'm open to relocation, and I work in English, French and Arabic.",[['Download my CV','cv']]],
+    ['What is MegaMind?','wow',"My own AI brain, built from scratch without external AI models. It drives a small robot that learns in a digital twin before it touches the real world.",[['Show me','#hq']]],
+    ['Why this portfolio?','think',"Because where you are born still decides too much. I want to help organisations and regions own their intelligence. This page is the story of how I got here.",[['My purpose','#purpose']]],
+    ['Can you code?','proud',"Yes. I programmed the whole platform of International Signature, a luxury concierge service: website, client accounts, back-office and a cross-selling recommendation algorithm. I also build software, robotics and websites for myself and friends.",[['See it','#lab']]],
+    ['A fun fact','laugh',"I teach myself robotics and electronics by building my own prototypes, just for fun. Mini me is the cartoon version, the real one replies by email.",[['Copy my email','mail']]]];
+  function say(txt,actions,mood){var t=D.createElement('div');t.className='bm';t.innerHTML='<span class="typing"><i></i><i></i><i></i></span>';log.appendChild(t);log.scrollTop=log.scrollHeight;setFace('think');
+    setTimeout(function(){t.textContent=txt;(actions||[]).forEach(function(a){var b=D.createElement('button');b.textContent=a[0];b.onclick=function(){act(a[1])};t.appendChild(D.createElement('br'));t.appendChild(b)});setFace(mood||'smile');log.scrollTop=log.scrollHeight},RM?0:700)}
+  function act(a){if(a==='cv'){var l=D.createElement('a');l.href='Joseph-Sbeiti-CV.pdf';l.download='Joseph-Sbeiti-CV.pdf';D.body.appendChild(l);l.click();l.remove()}
+    else if(a==='mail'){try{navigator.clipboard.writeText('josephsbeiti@gmail.com')}catch(e){}var tt=$('#toast');tt.textContent='Copied josephsbeiti@gmail.com';tt.classList.add('show');setTimeout(function(){tt.classList.remove('show')},2200)}
+    else{close();var el=$(a);if(el)el.scrollIntoView({behavior:RM?'auto':'smooth'})}}
+  chips.innerHTML=Q.map(function(q,i){return '<button data-i="'+i+'">'+q[0]+'</button>'}).join('');
+  $$('button',chips).forEach(function(b){b.onclick=function(){var q=Q[+b.dataset.i];var m=D.createElement('div');m.className='bm me';m.textContent=q[0];log.appendChild(m);say(q[2],q[3],q[1])}});
+  var greeted=false;
+  function open(){hint.hidden=true;chat.hidden=false;face.setAttribute('aria-expanded','true');if(!greeted){greeted=true;say("Hi, I'm mini Joseph! Ask me anything below. Well, almost anything.",[],'laugh')}else setFace('smile')}
+  function close(){chat.hidden=true;face.setAttribute('aria-expanded','false');setFace('wink');setTimeout(function(){setFace('smile')},900)}
+  face.onclick=function(){chat.hidden?open():close()};$('#bx').onclick=close;
+  D.addEventListener('keydown',function(e){if(e.key==='Escape'&&!chat.hidden)close()});
+  face.addEventListener('mouseenter',function(){if(chat.hidden)setFace('laugh')});face.addEventListener('mouseleave',function(){if(chat.hidden)setFace('smile')});
+  setTimeout(function(){if(chat.hidden&&!greeted){hint.hidden=false;setFace('wink');setTimeout(function(){hint.hidden=true;setFace('smile')},5200)}},2600);
+})();
+
 /* ── globe ── */
 (function(){var CITY={beirut:{lon:35.50,lat:33.89},paris:{lon:2.35,lat:48.86},lille:{lon:3.06,lat:50.63},usa:{lon:-78.64,lat:35.78}};
-  var MASK={"lon0":-180,"lat1":80,"step":1.0,"w":360,"h":138,"b":"AAAAAAAAAAAAAA///uAf//////+AAAABrvwAAAAAAAAAAH8AAAAAAAAAAAAAAAAAAAAAAAAeHznn/h////////4AAAABXsAAAAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAAAAEcIA5MfAI///////8AAAAAPFAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAABoCGc8X/AH///////4AAAAAAAAAAAAAB4AAAAB9+AAAAAAAAAAAAAAAAAAAAAD/wMzz8AAAP/////2AAAAAAAAAAAAD4AAAA////AAAB/oAAAAAAAAAAAAAACAwACAcAAAAP/////+AAAAAAAAAAAAMAAAAX///6AAAAAAAAAAAAAAAAAAAAP+Ac8+M/gAAD////+8AAAAAAAAAAAA4AAAH///+O+HAAHAAAAAAAAAAAAAAAf/+4/Y/94AAD////+wAAAAAAAAAAABwAHhH///////8AHwAAAAAwAAAAAAAAON/8E4//9AADf////gAAAAAAAAAAABwAPZ+///////4nv/gAAAAAAAH8gAAAAAP+A8f//8AA3///ogAAAAAABtgAAAAAfv/////////////8AAAAAB///+B/2H/+DnDxf8AAz////AAAAAAA//wAAAA8Pv//////////////9H8wAP////////QsDPzwD8AAf///wAAAAAAG///wIBe/3+/////////////////+AD////////+//fz4Y/wA7//4AAAAAAAD///+I////v//////////////////4EP///////////5gD/8A///gAAAAAAAf//5+P///8//////////////////7w/////////////qAD+QAP/wABr8AAAAf8f+D///////////////////////AwAf///////////zwx/AAP/wAAP8AAAB/4/+f//////////////////////4AMAf//////////+DBAbwAH/AAADAAAAN/j/////////////////////////+AAH///////////4AwgHQAD/AAAAAAAAf/H///////////////////////n/6AAP///////////wAA/AAAB+AAAAAAAB/+H//////////////////////jP+AAAH/9z////////gAA/wAAAMAAAAAACB//D7////////////////////+A/YAAAA/xAD///////gAA/wQAAAAAAAAAAB9/Ab///////////////////+ODgAAAAAB0AAX//////4AA/94AAAAAAAAAYA5+C///////////////////4AAHQAAAAABcAAP//////8AAf/+AAAAAAAAB8AA+i///////////////////wAAfgAAAAAMAAAC///////wAf/+AAAAAAAAAYAOeH///////////////////AAA/gAAAABQAAADf//////8Af//AAAAAAAAAcAPQH//////////////////8AAA/AAAAAEAAAAAP///////z///4AAAAAAADuAEDv//////////////////+AAA+AAAAAAAAAABP///////x///8AAAAAAAPHAf/////////////////////4AA8AAAAAAAAAAAn///////x///8AAAAAAAPPx//////////////////////6AA4AAAAAAAAAAAD///////////6AAAAAAAAPH//////////////////////6AAwAAAAAAAAAAAC///////////kAAAAAAAAQP//////////////////////zAAAAAAAAAAAAAABv////////+MMAAAAAAAAC///////////////////////7AAAAAAAAAAAAAAAL////////7wPgAAAAAAAf///////////////////////yAAAAAAAAAAAAAAAP/////////gCgAAAAAAAD///////////////////////iAAAAAAAAAAAAAAAP/////////pAAAAAAAAAD/////vP////////////////BAAAAAAAAAAAAAAAP/////////+AAAAAAAAAB//v//GP///////////////+AAAAAAAAAAAAAAAAP////////8wAAAAAAAAAB//P/+EP///////////////8CAAAAAAAAAAAAAAAP////////wgAAAAAAAADj/jz/+AD///////////////4HgAAAAAAAAAAAAAAP////////gAAAAAAAAAH/4Fw/4AA//////////////+ACAAAAAAAAAAAAAAAP////////gAAAAAAAAAH/wAcP8PA//////////////8AAAAAAAAAAAAAAAAAP///////8AAAAAAAAAAH/gMHfV///////////////v4AMAAAAAAAAAAAAAAAP///////8AAAAAAAAAAH/IMCOH//////////////+ZwAMAAAAAAAAAAAAAAAH///////oAAAAAAAQAAH/AACGP//////////////8BwAMAAAAAAAAAAAAAAAH///////wAAAAAAAAAAH+AAYDH//////////////+g4AYAAAAAAAAAAAAAAAD///////wAAAAAAAAAAAgf+AABs//////////////g4D4AAAAAAAAAAAAAAAB///////wAAAAAAAAAAAh/+AAAA//////////////A4fwAAAAAAAAAAAAAAAB///////gAAAAAAAAAAB//8AAAA//////////////Ah2AAAAAAAAAAAAAAAAAP/////+AAAAAAAAAAAD//+AAAB//////////////gjwAAAAAAAAAAAAAAAAAH/////4AAAAAAAAAAQH///4GAB//////////////gBAAAAAAAAAAAAAAAAAAG/////4AAAAAAAAAAAP///8PwD//////////////gCAAAAAAAAAAAAAAAAAACf////4AAAAAAAAAAAP////v////////////////gAAAAAAAAAAAAAAAAAAABv//xAYAAAAAAAAAAAP//////3//H///////////gAAAAAAAAAAAAAAAAAAAAv//AAYAAAAAAAAAAAf/////////H///////////wAAAAAAAAAAAAAAAAAAAB3/+AAcAAAAAAAAAAB///////8//h///////////gAAAAAAAAAAAAAAAAAAAAZ/+AAMAAAAAAAAAAD///////8//wH//////////AAAAAAAAAAAAAAAAAAAAAJ/+AAEAAAAAAAAAAH///////+f/wB/f////////AAAAAAAAAAAAAAAAAAAAAI/8AAAAAAAAAAAAAH///////+f/44Af///////8QAAAAAAAAAAAAAAAAAAAACf8AAAAAAAAAAAAAP///////+H//+AP///////4gAAAAAAAAAAAAAAAAAAAAAP8AAvAAAAAAAAAAP////////H///AD///////ggAAAAAAAAAAAAAAAAAAAAAH8AQBggAAAAAAAAf////////n//+ADf/4P//YAAAAAAAAAAAAAAAAAAAAAAAH+A4AYAAAAAAAAAP////////j//+AAf/4H/+IAAAAAAAAAAAAAAAgAAAAAAAH/B4ABwAAAAAAAAP////////h//8AAf/gD/8YAAAAAAAAAAAAAAAAAAAAAAAD/lwAD8AAAAAAAAP////////x//4AAf/AD/8QAAAAAAAAAAAAAAAAAAAAAAAAf/wAAAAAAAAAAAP////////4//gAAf+AB/+AAwAAAAAAAAAAAAAAAAAAAAAAH/wAAAAAAAAAAAP////////4f+AAAf8AD//AAwAAAAAAAAAAAAAAAAAAAAAAAH/AAAAAAAAAAAf////////8/8AAAPwAAP/gAgAAAAAAAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAf////////+fgAAAPwAAP/gAwAAAAAAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAf/////////eAAAAHwAAP/gAsAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAf/////////gBAAAHwAAM/gAKAAAAAAAAAAAAAAAAAAAAAAAADABIAAAAAAAAH/////////gIAAADwAAEfgALAAAAAAAAAAAAAAAAAAAAAAAADgPfIAAAAAAAH/////////34AAADwAAIPABIAAAAAAAAAAAAAAAAAAAAAAAAAyPf+AAAAAAAD//////////4AAADoAAIEACBAAAAAAAAAAAAAAAAAAAAAAAAA8///AAAAAAAB//////////wAAABIAAMAAEHAAAAAAAAAAAAAAAAAAAAAAAAAE///gAAAAAAB//////////wAAAAMAAEAAADgIAAAAAAAAAAAAAAAAAAAAAAAAf//wAAAAAAAf/////////gAAAAMAADAAMDAAAAAAAAAAAAAAAAAAAAAAAAAA////gAAAAAAP/B///////gAAAAAABDgAeAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAAAAAACAA3//////AAAAAAAAxgA+AAAAAAAAAAAAAAAAAAAAAAAAAAAf///4AAAAAAAAAD/////+AAAAAAAAZgB8BAAAAAAAAAAAAAAAAAAAAAAAAAB////4AAAAAAAAAD/////8AAAAAAAAMwH8AIAAAAAAAAAAAAAAAAAAAAAAAAB////8AAAAAAAAAD/////wAAAAAAAAHQf8AIAAAAAAAAAAAAAAAAAAAAAAAAD////4AAAAAAAAAH/////gAAAAAAAAHgf8cIAAAAAAAAAAAAAAAAAAAAAAAAD/////AAAAAAAAAH/////AAAAAAAAAD4f8ASgAAAAAAAAAAAAAAAAAAAAAAAH////+4AAAAAAAAH/////AAAAAAAAABwP50QwAAAAAAAAAAAAAAAAAAAAAAAH/////+AAAAAAAAD////+AAAAAAAAAB8P5wAL4AgAAAAAAAAAAAAAAAAAAAAD//////4AAAAAAAB////8AAAAAAAAAA8AxQif/AAAAAAAAAAAAAAAAAAAAAAH//////8AAAAAAAA////4AAAAAAAAAAcAAQAD/gAAAAAAAAAAAAAAAAAAAAAH///////gAAAAAAA////4AAAAAAAAAAMABAAI/ywAAAAAAAAAAAAAAAAAAAAD///////gAAAAAAA////4AAAAAAAAAADgAAAIf8BAAAAAAAAAAAAAAAAAAAAD///////gAAAAAAAf///4AAAAAAAAAAB+AABA/4AAAAAAAAAAAAAAAAAAAAAB///////gAAAAAAAf///4AAAAAAAAAAAAfsgAOMAAAAAAAAAAAAAAAAAAAAAA///////AAAAAAAAf///8AAAAAAAAAAAABCAAAGgAAAAAAAAAAAAAAAAAAAAA///////AAAAAAAAP///+AAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAAAAAAAAf/////+AAAAAAAAP///8AAAAAAAAAAAAAACgCAEAAAAAAAAAAAAAAAAAAAAAf/////8AAAAAAAAf///8AQAAAAAAAAAAAAB+CAAAAAAAQAAAAAAAAAAAAAAAP/////4AAAAAAAAf///+AQAAAAAAAAAAAAD8DAAAAAAAAAAAAAAAAAAAAAAAP/////4AAAAAAAA////+AwAAAAAAAAAAAA38DgAAAAAAAAAAAAAAAAAAAAAAH/////4AAAAAAAA////+BwAAAAAAAAAAAD/8HgAAAAAAAAAAAAAAAAAAAAAAB/////4AAAAAAAA////8PwAAAAAAAAAAAH//XgAABABAAAAAgAAAAAAAAAAAAf////4AAAAAAAA////wPgAAAAAAAAAAAP//3wAAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAA////gPgAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAAf//+APgAAAAAAAAAAAf///8AAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAAf//+APgEAAAAAAAAAD////+AAIAAAAAAAAAIAAAAAAAAAAP////gAAAAAAAAP//+AfAAAAAAAAAAAf////+AAEAAAAAAAAAAAAAAAAAAAAP////AAAAAAAAAP///AfAAAAAAAAAAA//////AAAAAAAAAAAAAAAAAAAAAAAP///4AAAAAAAAAP//+APAAAAAAAAAAA//////gAAAAAAAAAAAAAAAAAAAAAAf///gAAAAAAAAAH//+AOAAAAAAAAAAB//////wAAAAAAAAAAAAAAAAAAAAAAf//+AAAAAAAAAAH//4AEAAAAAAAAAAA//////4AAAAAAAAAAAAAAAAAAAAAAf//+AAAAAAAAAAH//4AAAAAAAAAAAAB//////4AAAAAAAAAAAAAAAAAAAAAAf///AAAAAAAAAAH//4AAAAAAAAAAAAA//////8AAAAAAAAAAAAAAAAAAAAAAf//+AAAAAAAAAAD//wAAAAAAAAAAAAAf/////8AAAAAAAAAAAAAAAAAAAAAAf//8AAAAAAAAAAB//gAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAA///8AAAAAAAAAAB//gAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAA///wAAAAAAAAAAA//AAAAAAAAAAAAAAP/////4AAAAAAAAAAAAAAAAAAAAAAf//wAAAAAAAAAAA/+AAAAAAAAAAAAAAP/AP//wAAAAAAAAAAAAAAAAAAAAAA//vgAAAAAAAAAAA/4AAAAAAAAAAAAAAP8AG//gAAAAAAAAAAAAAAAAAAAAAA//3AAAAAAAAAAAAQAAAAAAAAAAAAAAAOAAF//gAAAAAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//AAABAAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAAgAAAAAAAAAAAAAAAAAD//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAAQAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYAAAAcAAAAAAAAAAAAAAAAAB/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAD/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAADQAAAAAAAAAAAAAAAAAD/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAHAAAAAAAAAAAAAAAAAAB/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAOAAAAAAAAAAAAAAAAAAF/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},bin=atob(MASK.b),pts=[],k=0,i,j;for(i=0;i<MASK.h;i++)for(j=0;j<MASK.w;j++,k++){if(bin.charCodeAt(k>>3)&(128>>(k&7))){var lo=(MASK.lon0+(j+.5)*MASK.step)*Math.PI/180,la=(MASK.lat1-(i+.5)*MASK.step)*Math.PI/180;pts.push(Math.cos(la)*Math.cos(lo),Math.cos(la)*Math.sin(lo),Math.sin(la))}}
+  var bin=atob(MASK.b),pts=[],k=0,i,j;for(i=0;i<MASK.h;i++)for(j=0;j<MASK.w;j++,k++){if(bin.charCodeAt(k>>3)&(128>>(k&7))){var lo=(MASK.lon0+(j+.5)*MASK.step)*Math.PI/180,la=(MASK.lat1-(i+.5)*MASK.step)*Math.PI/180;pts.push(Math.cos(la)*Math.cos(lo),Math.cos(la)*Math.sin(lo),Math.sin(la))}}
   var P=new Float32Array(pts),gl=$('#gl'),btn=$('#globeBtn'),stage=$('#glStage'),cvg=$('#glcv'),card=$('#gcard'),pinsEl=$('#glPins'),view={lon:-20,lat:30,z:1},open=false,anim=0,spin=0,idle=true,routeT=1;
   var ROUTE=['beirut','paris','lille','usa','beirut','usa','paris'];
   var PL={beirut:{t:'Beirut',sub:'Lebanon',items:[['Where it starts','Born in Lebanon','French & Lebanese','#origin'],['May – Aug 2025','Key Account Manager Assistant','SITA, aviation technology','#journey']]},
