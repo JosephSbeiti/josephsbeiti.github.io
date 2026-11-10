@@ -314,7 +314,7 @@ section#purpose{padding-top:clamp(40px,5vw,64px)}
 /* ── HQ ── */
 .room-tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--a)}
 .brainbox{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:center}
-.brainbox>*{min-width:0}.mods-hint{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--a);margin-bottom:4px;grid-column:1/-1}.lg2{flex-direction:column;align-items:flex-start;gap:6px}.lg2 i.dt{width:9px;height:9px;border-radius:50%;background:linear-gradient(90deg,#9FF3E0 50%,#FFB3CF 50%)}.lg-say{font-size:.85rem;color:var(--fg2);margin-top:8px;max-width:250px}
+.brainbox>*{min-width:0}.mods-hint{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--a);margin-bottom:4px;grid-column:1/-1}.lg2{flex-direction:column;align-items:flex-start;gap:6px}.lg2 i.dt{width:9px;height:9px;border-radius:50%;background:linear-gradient(90deg,#9FF3E0 50%,#FFB3CF 50%)}.floor-ax{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--fg2);margin:0 0 4px}.floor-ax.x{margin:4px 0 0;text-align:right;max-width:250px}.lg-say{font-size:.85rem;color:var(--fg2);margin-top:8px;max-width:250px}
 .brain{position:relative;aspect-ratio:1.75;max-width:100%}
 .brain canvas{position:absolute;inset:0;width:100%;height:100%}
 .mods{display:grid;gap:8px}
@@ -373,6 +373,15 @@ section#purpose{padding-top:clamp(40px,5vw,64px)}
 .cov i{display:block;height:100%;background:var(--a);width:0;transition:width .3s}
 .note{font-family:var(--mono);font-size:11px;color:var(--fg3);margin-top:12px;line-height:1.6}
 .note.kid{font-family:var(--body);font-size:.98rem;color:var(--fg2);line-height:1.55;max-width:62ch}.note.kid b{color:var(--fg)}.note.kid span{font-family:var(--mono);font-size:11px;color:var(--fg3)}
+.edp-out{display:grid;grid-template-columns:1.4fr 1fr;gap:16px 28px;margin-top:18px;padding-top:16px;border-top:1px solid var(--edge)}
+.edp-out ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
+.edp-out li{font-size:.95rem;line-height:1.55;color:var(--fg2);padding-left:14px;position:relative}
+.edp-out li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--a)}
+.edp-out li b{color:var(--fg)}
+@media(max-width:820px){.edp-out{grid-template-columns:1fr}}
+.fs,#lab>.wrap>.glass:not(.fs){max-width:none}.fs{max-width:980px}
+.note.kid{max-width:none}
+
 
 /* lab */
 .edp-head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start}
@@ -424,7 +433,7 @@ svg :focus{outline:none}
 .rec-out li i::after{content:"";display:block;height:100%;width:var(--w);border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--a) 50%,transparent),var(--a));animation:recbar .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k)*90ms + .1s)}
 .rec-out .empty{color:var(--fg3);font-size:.9rem;display:block}
 /* International Signature: compact, explained */
-.fs,#lab>.wrap>.glass{max-width:980px}
+.fs{max-width:980px}
 .fs-chips{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .fs-chips li{font-size:.86rem;font-weight:600;padding:6px 12px;border-radius:99px;border:1px solid var(--edge);background:rgba(255,255,255,.05);color:var(--fg2)}
 .fs-chips li.lbl{border:0;background:none;padding-left:0;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
@@ -1234,7 +1243,7 @@ body.gl-open .dock{transform:translateY(150%)}
         </div>
       </div>
       <div class="nnwrap">
-        <div><div class="floor"><canvas id="floor" width="250" height="250" aria-label="The room's floor: what the network believes is free or blocked"></canvas></div>
+        <div><div class="floor-ax"><span>y · along ↓</span></div><div class="floor"><canvas id="floor" width="250" height="250" aria-label="The room's floor: what the network believes is free or blocked"></canvas></div><div class="floor-ax x"><span>x · across →</span></div>
           <div class="legend lg2"><span><i style="background:#1B6E7A"></i>network’s guess: free</span><span><i style="background:#7A3A5C"></i>network’s guess: blocked</span><span><i class="dt"></i>dots: the real answer</span></div><p class="lg-say">Train it and watch the shading come to match the dots.</p></div>
         <div><svg class="nnsvg" id="nnsvg" viewBox="0 0 520 300" role="img" aria-label="Network: 2 inputs, two hidden layers of 6 neurons, 1 output"></svg>
           <p class="nnmsg" id="nnmsg">Press <b>Forward pass</b> to send one point of the floor through the network.</p>
@@ -1289,11 +1298,20 @@ body.gl-open .dock{transform:translateY(150%)}
         <div><b>R² 0.83</b><span>Income explains 83% of the differences in electricity per person. 1% more GDP goes with about 1.25% more.</span></div>
       </div>
       <p class="note kid"><b>In simple words:</b> every dot is a country. I let the computer sort 164 countries into four families, by how much electricity each person gets and how clean it is, to see who is on the same path and whether richer countries really have more power. Find yours. <span>Data: Our World in Data.</span></p>
+      <div class="edp-out">
+        <div><span class="kick">What it shows</span>
+          <ul><li><b>A clean mix is not access.</b> 22 countries, like Kenya, Ethiopia and Nepal, run on mostly low-carbon power but give each person under 300 kWh a year. Their challenge is volume, not the transition.</li>
+          <li><b>Electricity follows wealth.</b> 1% more GDP per person goes with about 1.25% more electricity, and income alone explains 83% of the gaps between countries.</li>
+          <li><b>Outliers tell trade stories.</b> Hydropower exporters like Paraguay and Laos sit far above the line; importers like Luxembourg sit below it.</li></ul></div>
+        <div><span class="kick">Why it matters · what's next</span>
+          <ul><li>For the regions I care about, the priority is more power per person, and owning how it is produced.</li>
+          <li>Next: add access rates, reliability and prices, use consumption instead of generation, and follow each country over time.</li></ul></div>
+      </div>
     </div>
     <div class="glass pad rv side">
       <div><span class="kick">After hours</span><h3 style="margin-top:8px">I build for fun, for myself and for friends.</h3>
-        <p class="muted" style="margin-top:8px;max-width:58ch">Small software projects, robotics and electronics prototypes, and websites for friends' businesses. Building is how I learn, and how I understand what my engineers deal with every day.</p></div>
-      <div class="side-tags"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg>Software</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="7" width="12" height="10" rx="2"/><path d="M9 11h.01M15 11h.01M12 3v4M3 12h3M18 12h3M9 21v-4M15 21v-4"/></svg>Robotics &amp; electronics</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Websites</span></div>
+        <p class="muted" style="margin-top:8px;max-width:58ch">Small businesses, software projects, robotics and electronics prototypes, and websites for friends' businesses. Building is how I learn, and how I understand what my engineers deal with every day.</p></div>
+      <div class="side-tags"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg>Software</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="7" width="12" height="10" rx="2"/><path d="M9 11h.01M15 11h.01M12 3v4M3 12h3M18 12h3M9 21v-4M15 21v-4"/></svg>Robotics &amp; electronics</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Websites</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>AI &amp; agents</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Automation</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Data &amp; dashboards</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>Small businesses</span></div>
     </div>
   </div>
 </section>
@@ -1313,7 +1331,7 @@ body.gl-open .dock{transform:translateY(150%)}
 </section>
 
 <!-- NEXT -->
-<section class="sec next" id="next" data-shape="y2027" data-pal="next" data-ch="Next">
+<section class="sec next" id="next" data-shape="gridy2027" data-pal="next" data-ch="Next">
   <div class="wrap">
     <div class="glass pad next-card rv">
       <span class="kick">Next stop · 2027</span>
@@ -1479,9 +1497,11 @@ function slab(k,i,dx,dy,tilt){var u=Math.random();var x,y,z;if(u<.62){x=Math.ran
 SH.slabs=make3d(function(k){return slab(k,k%4,0,0,0)});
 SH.slabsApart=make3d(function(k){if(k%5===0){var t=Math.random();return [.9+t*.9,(Math.random()-.5)*.9,(Math.random()-.5)*.3]}var i=k%4;return slab(k,i,[.55,-.35,.4,-.15][i],[-.12,.06,-.08,.14][i],[.25,-.2,.3,-.15][i])});
 SH.y2027=sampleCanvas(function(x,S){x.font='700 '+(S*.36)+'px Sora, Arial, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('2027',S*.5,S*.52)});
+/* the toolkit's wave of particles stays, with 2027 rising beneath it */
+SH.gridy2027=(function(){var o=new Float32Array(N*3),G=Math.floor(N*.42),g=Math.floor(Math.sqrt(G*2.2)),r=Math.ceil(G/g);for(var k=0;k<N;k++){if(k<G){var i=k%g,j=Math.floor(k/g);o[k*3]=(i/(g-1)*2-1)*.92;o[k*3+1]=-.92+j/(r-1)*.62+Math.sin(i*.35)*Math.cos(j*.5)*.05;o[k*3+2]=Math.sin(i*.3)*Math.cos(j*.3)*.12}else{o[k*3]=SH.y2027[k*3]*1.05;o[k*3+1]=SH.y2027[k*3+1]*1.05+.38;o[k*3+2]=SH.y2027[k*3+2]}}return o})();
 function word(t){return sampleCanvas(function(x,S){var f=S*.3;x.font='700 '+f+'px Sora, Arial, sans-serif';var m=x.measureText(t).width;if(m>S*.78){f*=S*.78/m;x.font='700 '+f+'px Sora, Arial, sans-serif'}x.textAlign='center';x.textBaseline='middle';x.fillText(t,S*.5,S*.52)})}
 SH.wLille=word('LILLE');SH.wUsa=word('USA');SH.wBeirut=word('BEIRUT');SH.wParis=word('PARIS');
-var SOFT={slabs:1,slabsApart:1};var FLAT={wLille:1,wUsa:1,wBeirut:1,wParis:1,cedar:1,eiffel:1,train:1,plane:1,radar:1,cap:1,engine:1,drop:1,heart:1,bolt:1,pillars:1,y2027:1};
+var SOFT={slabs:1,slabsApart:1};var FLAT={wLille:1,wUsa:1,wBeirut:1,wParis:1,cedar:1,eiffel:1,train:1,plane:1,radar:1,cap:1,engine:1,drop:1,heart:1,bolt:1,pillars:1,y2027:1,gridy2027:1};
 
 /* ── anchors: what the page is at each scroll position ── */
 var hz=$('#journey'),track=$('#track'),panels=$$('.panel',track),HZ=false;
@@ -2128,7 +2148,14 @@ var pst=$$('.pstep');function pg(i){pst.forEach(function(b,k){b.setAttribute('ar
   function drawFloor(){for(var i=0;i<50;i++)for(var j=0;j<50;j++){var o=fwd((j+.5)/50,(i+.5)/50)[3][0],p=(i*50+j)*4;img.data[p]=Math.round(lerp(122,27,o));img.data[p+1]=Math.round(lerp(58,110,o));img.data[p+2]=Math.round(lerp(92,122,o));img.data[p+3]=255}
     oc.putImageData(img,0,0);var w=cvf.width;ctx2.imageSmoothingEnabled=true;ctx2.drawImage(offc,0,0,w,w);
     data.forEach(function(s){ctx2.beginPath();ctx2.arc(s[0]*w,s[1]*w,2.5,0,6.283);ctx2.fillStyle=s[2]?'#9FF3E0':'#FFB3CF';ctx2.fill()});
-    if(sel){ctx2.beginPath();ctx2.arc(sel[0]*w,sel[1]*w,9,0,6.283);ctx2.strokeStyle='#fff';ctx2.lineWidth=2;ctx2.stroke()}}
+    /* the real room: walls, a round table and a sofa are what make the floor blocked */
+    ctx2.save();ctx2.strokeStyle='rgba(255,255,255,.55)';ctx2.lineWidth=1.5;ctx2.setLineDash([5,4]);ctx2.beginPath();ctx2.arc(.3*w,.35*w,.19*w,0,6.283);ctx2.stroke();ctx2.strokeRect(.55*w,.55*w,.33*w,.27*w);ctx2.setLineDash([]);
+    ctx2.font='600 10px "IBM Plex Mono",ui-monospace,monospace';ctx2.fillStyle='rgba(255,255,255,.85)';ctx2.textAlign='center';ctx2.fillText('TABLE',.3*w,.35*w+3);ctx2.fillText('SOFA',.715*w,.685*w+3);
+    ctx2.strokeStyle='rgba(255,255,255,.7)';ctx2.lineWidth=3;ctx2.strokeRect(1.5,1.5,w-3,w-3);ctx2.restore();
+    if(sel){var o2=fwd(sel[0],sel[1])[3][0],px2=sel[0]*w,py2=sel[1]*w;ctx2.save();ctx2.strokeStyle='rgba(255,255,255,.6)';ctx2.setLineDash([3,3]);ctx2.lineWidth=1;ctx2.beginPath();ctx2.moveTo(px2,py2);ctx2.lineTo(px2,w);ctx2.moveTo(px2,py2);ctx2.lineTo(0,py2);ctx2.stroke();ctx2.setLineDash([]);
+      ctx2.beginPath();ctx2.arc(px2,py2,9,0,6.283);ctx2.strokeStyle='#fff';ctx2.lineWidth=2;ctx2.stroke();
+      ctx2.font='600 10px "IBM Plex Mono",ui-monospace,monospace';ctx2.fillStyle='#fff';ctx2.textAlign='center';ctx2.fillText('x '+sel[0].toFixed(2),px2,w-6);ctx2.save();ctx2.translate(10,py2);ctx2.rotate(-Math.PI/2);ctx2.fillText('y '+sel[1].toFixed(2),0,0);ctx2.restore();
+      var lb='free? '+Math.round(o2*100)+'%',tw=ctx2.measureText(lb).width+12,bx=clamp(px2+12,4,w-tw-4),by=clamp(py2-24,4,w-22);ctx2.fillStyle='rgba(10,12,24,.85)';ctx2.fillRect(bx,by,tw,18);ctx2.fillStyle=o2>.5?'#9FF3E0':'#FFB3CF';ctx2.textAlign='left';ctx2.fillText(lb,bx+6,by+12.5);ctx2.restore()}}
   var svg=$('#nnsvg'),NX=[70,210,350,470],pos,lines,circs,fx,pulses=[],nnVis=false,pRun=false;
   function layoutNN(){svg.innerHTML='<defs><filter id="nnglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'+
     '<pattern id="nngrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="rgba(110,242,210,.07)" stroke-width="1"/></pattern>'+
