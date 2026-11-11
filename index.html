@@ -982,12 +982,12 @@ body.gl-open .dock{transform:translateY(150%)}
         <p class="said rv">That contrast is what drives me.</p>
         <div class="tags rv"><span class="chip">French &amp; Lebanese</span><span class="chip">English · French · Arabic, all native</span></div>
       </div></div>
-      <div class="op-r" id="purpose" data-shape="pillars" data-pal="purpose" data-ch="Purpose">
+      <div class="op-r" id="purpose">
         <span class="kick rv">Purpose</span>
         <p class="ask rv">So I made it my purpose, and the subject of my master's thesis.</p>
         <h2 class="words rv" style="margin-top:14px">Every child should start with equal chances.</h2>
         <p class="lead rv" style="margin-top:18px">Today, the chances you get in life still depend on where you were born. We have the tools, the technology and the innovation to change that. I want to help bring a wealthy and sustainable society to the next generations, with better opportunities for everyone. Clean water, education, health, energy, connectivity and finance are some of its pillars.</p>
-    <div class="pillars" id="pillars">
+    <div class="pillars" id="pillars" data-shape="pillars" data-pal="purpose" data-ch="Purpose">
       <div class="glass pillar pw rv" tabindex="0" data-shape="drop" data-col="#58C8FF" data-scene="water" style="--pc:#58C8FF"><canvas class="scene" aria-hidden="true"></canvas>
         <b>Clean water</b><span>Flowing to every home</span></div>
       <div class="glass pillar pe rv" tabindex="0" data-shape="cap" data-col="#A78BFA" data-scene="school" style="--pc:#A78BFA"><canvas class="scene" aria-hidden="true"></canvas>
@@ -1385,7 +1385,7 @@ body.gl-open .dock{transform:translateY(150%)}
 <footer><div class="wrap"><span>© 2026 Joseph Sbeiti · Paris</span><span><a href="https://www.linkedin.com/in/joseph-sbeiti/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/JosephSbeiti" target="_blank" rel="noopener">GitHub</a> · <a href="#top">Back to top ↑</a></span></div></footer>
 
 <div class="dock glass" id="dock" role="navigation" aria-label="Contact">
-  <span class="av">Available in 2027</span>
+  <span class="av">Available from 2027</span>
   <a class="cv" href="Joseph-Sbeiti-CV.pdf" download="Joseph-Sbeiti-CV.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>CV</a>
   <button data-copy="josephsbeiti@gmail.com" data-mail="1" aria-label="Email: copy josephsbeiti@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</button>
   <a href="https://www.linkedin.com/in/joseph-sbeiti/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg>LinkedIn</a>
@@ -1523,9 +1523,8 @@ SH.bolt=sampleCanvas(function(x,S){x.beginPath();x.moveTo(S*.58,S*.04);x.lineTo(
 /* connectivity: a mast sending signal waves */
 SH.signal=sampleCanvas(function(x,S){x.beginPath();x.moveTo(S*.5,S*.42);x.lineTo(S*.36,S*.94);x.lineTo(S*.42,S*.94);x.lineTo(S*.5,S*.6);x.lineTo(S*.58,S*.94);x.lineTo(S*.64,S*.94);x.closePath();x.fill();x.beginPath();x.arc(S*.5,S*.38,S*.05,0,6.283);x.fill();
   x.lineWidth=S*.045;for(var i=1;i<=3;i++){x.beginPath();x.arc(S*.5,S*.38,S*(.1+i*.11),-2.4,-.74);x.stroke();x.beginPath();x.arc(S*.5,S*.38,S*(.1+i*.11),-2.4+Math.PI,-.74+Math.PI,false);x.stroke()}});
-/* finance: capital rising into buildings */
-SH.capital=sampleCanvas(function(x,S){var b=[[.1,.62],[.32,.44],[.54,.28],[.76,.1]];b.forEach(function(q){x.fillRect(S*q[0],S*q[1],S*.16,S*(.92-q[1]))});x.fillRect(S*.06,S*.92,S*.88,S*.03);
-  x.lineWidth=S*.035;x.beginPath();x.moveTo(S*.12,S*.5);x.lineTo(S*.46,S*.22);x.lineTo(S*.58,S*.3);x.lineTo(S*.86,S*.04);x.stroke();x.beginPath();x.moveTo(S*.74,S*.04);x.lineTo(S*.88,S*.02);x.lineTo(S*.86,S*.16);x.stroke()});
+/* finance: a dollar and a euro sign */
+SH.capital=sampleCanvas(function(x,S){x.font='800 '+Math.round(S*.62)+'px Manrope,Arial,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('$',S*.3,S*.53);x.fillText('€',S*.71,S*.53)});
 SH.pillars=(function(){var a=[SH.drop,SH.cap,SH.heart,SH.bolt,SH.signal,SH.capital],o=new Float32Array(N*3),off=[[-.66,-.42],[0,-.42],[.66,-.42],[-.66,.42],[0,.42],[.66,.42]];for(var k=0;k<N;k++){var q=k%6,s=a[q];o[k*3]=s[k*3]*.3+off[q][0];o[k*3+1]=s[k*3+1]*.3+off[q][1];o[k*3+2]=s[k*3+2]}return o})();
 function slab(k,i,dx,dy,tilt){var u=Math.random();var x,y,z;if(u<.62){x=Math.random()*1.6-.8;z=Math.random()*.7-.35;y=0}else if(u<.86){var e=Math.random();x=e<.5?(Math.random()<.5?-.8:.8):Math.random()*1.6-.8;z=e<.5?Math.random()*.7-.35:(Math.random()<.5?-.35:.35);y=0}else{x=Math.random()<.5?-.8:.8;z=Math.random()<.5?-.35:.35;y=Math.random()*.09}
   var yy=.52-i*.35+y;return [x*Math.cos(tilt)-yy*Math.sin(tilt)*.2+dx,yy+dy,z]}
@@ -1570,6 +1569,8 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   var wide=VW>900,CX=wide?VW*.72:VW*.5,CY=VH*.52+(wide?0:VH*.02),SC=wide?Math.min(VW*.27,VH*.4):Math.min(VW*.42,VH*.3);
   /* the Lab's globe slides into the free space right of the cards, so the cards never hide it */
   if(wide){var gw=(state.A==='globe'?1-t:0)+(state.B==='globe'?t:0);if(gw>0){CX=lerp(CX,VW*.9,gw);SC*=lerp(1,.72,gw)}}
+  /* the cedar grows in the free space under the origin text, not behind the purpose column */
+  if(wide){var cw=(state.A==='cedar'?1-t:0)+(state.B==='cedar'?t:0);if(cw>0){CX=lerp(CX,VW*.27,cw);CY=lerp(CY,VH*.72,cw);SC*=lerp(1,.78,cw)}}
   ctx.clearRect(0,0,VW,VH);if(state.jv>.01)drawMap(state.jv,state.jp);ctx.globalCompositeOperation='lighter';
   /* camera dive: fly through the old world, the next one rushes in from the distance */
   var zf=1,za=1,streak=0;if(dive){var dv=clamp((now-dive.t0)/dive.dur,0,1),u;
