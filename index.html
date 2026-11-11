@@ -900,6 +900,24 @@ body.gl-open .dock{transform:translateY(150%)}
 }
 @media(prefers-reduced-transparency:reduce){.glass,.btn,.nav,.dock{-webkit-backdrop-filter:none;backdrop-filter:none;background:color-mix(in srgb,var(--d) 80%,#fff)}}
 @media(prefers-reduced-motion:reduce){#journey .flight.train,#journey .flight.air,#journey .flight.last{height:auto}}
+
+/* ── phone cut: shorter trips, tighter cards, a jump menu ── */
+.here{background:none;border:1px solid color-mix(in srgb,var(--a) 45%,transparent);border-radius:99px;padding:6px 26px 6px 12px;cursor:pointer;position:relative;max-width:46vw}
+.here::after{content:"";position:absolute;right:11px;top:50%;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-70%) rotate(45deg)}
+.jump{position:fixed;z-index:120;background:rgba(10,13,28,.94)!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 20px 50px -10px rgba(0,0,0,.7);top:calc(var(--nav-h) + 6px);right:max(16px,env(safe-area-inset-right,0px));display:grid;min-width:200px;padding:8px;border-radius:18px}
+.jump a{padding:11px 14px;border-radius:12px;color:var(--fg);text-decoration:none;font-weight:600;font-size:.98rem}.jump a:active,.jump a:hover{background:rgba(255,255,255,.08)}
+@media(max-width:700px){
+  #journey .flight.train:not(.last){height:150vh}
+  #journey .flight:not(.last):not(.train){height:200vh}
+  #journey .flight.last{height:190vh}
+  .sec{padding-block:44px}
+  #journey .panel{padding-top:calc(var(--nav-h) + 20px);padding-bottom:28px}
+  .glass.pad{padding:18px}
+  .jgo{margin-top:32px}
+}
+@media(prefers-reduced-motion:reduce){#journey .flight.train,#journey .flight.air,#journey .flight.last,#journey .flight:not(.last):not(.train){height:auto}}
+.fold-btn{display:none}
+@media(max-width:700px){[data-fold]:not(.open){display:none}.fold-btn{display:flex;align-items:center;justify-content:center;width:100%;margin-top:14px;padding:13px 16px;border-radius:14px;border:1px solid color-mix(in srgb,var(--a) 50%,transparent);background:color-mix(in srgb,var(--a) 14%,transparent);color:var(--fg);font:inherit;font-weight:600;cursor:pointer}.fold-btn.open{display:none}}
 </style>
 </head>
 <body>
@@ -917,7 +935,8 @@ body.gl-open .dock{transform:translateY(150%)}
     <div class="links" id="links">
       <a href="#origin">Origin</a><a href="#purpose">Purpose</a><a href="#journey">Journey</a><a href="#hq">MegaMind HQ</a><a href="#lab">Lab</a><a href="#next">Next</a>
     </div>
-    <span class="here" id="here">Hello</span>
+    <button class="here" id="here" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="jump">Hello</button>
+    <div class="jump glass" id="jump" hidden><a href="#top">Hello</a><a href="#origin">Origin</a><a href="#purpose">Purpose</a><a href="#journey">Journey</a><a href="#hq">MegaMind HQ</a><a href="#lab">Lab</a><a href="#next">Contact</a></div>
     <button class="globe-btn" id="globeBtn" aria-label="Open the globe of my journey" aria-expanded="false">
       <svg id="icoGlobe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg>
       <svg id="icoHome" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" hidden><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/></svg>
@@ -1263,7 +1282,8 @@ body.gl-open .dock{transform:translateY(150%)}
           <button class="ctrl" id="nnReset">Reset</button>
         </div>
       </div>
-      <div class="nnwrap">
+      <button class="fold-btn" type="button" data-for="nnFold">Watch the network learn ↓</button>
+      <div class="nnwrap" id="nnFold" data-fold>
         <div><div class="floor-ax"><span>y · along ↓</span></div><div class="floor"><canvas id="floor" width="250" height="250" aria-label="The room's floor: what the network believes is free or blocked"></canvas></div><div class="floor-ax x"><span>x · across →</span></div>
           <div class="legend lg2"><span><i style="background:#1B6E7A"></i>network’s guess: free</span><span><i style="background:#7A3A5C"></i>network’s guess: blocked</span><span><i class="dt"></i>dots: the real answer</span></div><p class="lg-say">The goal: from a few measured spots (the dots), learn a map of the whole floor, so the robot knows where it can drive, even where nothing was measured.</p></div>
         <div><svg class="nnsvg" id="nnsvg" viewBox="0 0 520 300" role="img" aria-label="Network: 2 inputs, two hidden layers of 6 neurons, 1 output"></svg>
@@ -1289,7 +1309,8 @@ body.gl-open .dock{transform:translateY(150%)}
         <h3 style="margin-top:8px">International Signature, the whole platform</h3>
         <p class="muted" style="margin-top:8px;max-width:none">For this luxury concierge service, I programmed every layer of the software myself: the public website, client account creation, the back-office where the team handles requests, and the recommendation algorithm that suggests the right extra services to each client.</p></div></div>
       <ul class="fs-chips" aria-label="What I built"><li class="lbl">What I built</li><li>Website</li><li>Client accounts</li><li>Back-office</li><li class="on">Cross-selling algorithm</li></ul>
-      <div class="rec" id="rec">
+      <button class="fold-btn" type="button" data-for="rec">Try the recommender ↓</button>
+      <div class="rec" id="rec" data-fold>
         <div class="rec-l">
           <span class="kick">1 · The client asks for</span><div class="rec-pick" id="recPick" role="group" aria-label="Client requests"></div>
           <span class="kick" style="margin-top:14px">2 · Who the client is</span><div class="rec-pick seg2" id="recProf" role="group" aria-label="Client profile"></div>
@@ -1450,7 +1471,7 @@ var PAL={hero:['#070B1A','#1D2A6E','#6EF2D2'],origin:['#04170F','#0F5A3E','#F2C1
   toolkit:['#0B0E1E','#2E3566','#C2A5FF'],next:['#070B1A','#1D2A6E','#6EF2D2']};
 
 /* ── shapes for the swarm ── */
-var N=MOBILE?1300:2600;
+var N=MOBILE?900:2600;
 function sampleCanvas(draw){var S=300,c=D.createElement('canvas');c.width=c.height=S;var x=c.getContext('2d');x.fillStyle='#fff';x.strokeStyle='#fff';x.lineCap='round';x.lineJoin='round';draw(x,S);
   var d=x.getImageData(0,0,S,S).data,pts=[],edge=[],on=function(i,y){return i>=0&&y>=0&&i<S&&y<S&&d[(y*S+i)*4+3]>120};
   for(var y=0;y<S;y+=2)for(var i=0;i<S;i+=2)if(on(i,y)){var q=[i/S*2-1,y/S*2-1];pts.push(q);if(!on(i+3,y)||!on(i-3,y)||!on(i,y+3)||!on(i,y-3))edge.push(q)}
@@ -1825,6 +1846,9 @@ function flightsOnScroll(){FLIGHTS.forEach(function(F){drawFlight(F)});var L=FLI
 if('IntersectionObserver' in W){var dio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){decode(en.target);dio.unobserve(en.target)}})},{threshold:.6});$$('#journey .decode').forEach(function(d){dio.observe(d)})}
 
 /* ── scroll: blend shapes and worlds ── */
+(function(){var h=$('#here'),j=$('#jump');function set(o){j.hidden=!o;h.setAttribute('aria-expanded',o)}h.addEventListener('click',function(e){e.stopPropagation();set(j.hidden)});j.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});D.addEventListener('click',function(e){if(!j.hidden&&!e.target.closest('#jump'))set(false)});D.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})})();
+/* phones: the two big demos open on tap */
+$$('.fold-btn').forEach(function(b){b.addEventListener('click',function(){var t=$('#'+b.dataset.for);t.classList.add('open');b.classList.add('open');if(t.id==='nnFold'){var r=$('#nnReset');if(r)r.click()}W.dispatchEvent(new Event('resize'))})});
 var links=$$('#links a'),here=$('#here'),bar=$('#bar'),dock=$('#dock'),dots=[],lastPanel=-1,hzP=0,lastCh='';
 function parallax(){if(!HZ)return;var n1=panels.length-1;panels.forEach(function(pn,i){var local=i-hzP*n1;if(Math.abs(local)>1.3)return;
   (pn.__fc||(pn.__fc=$$('.fc',pn))).forEach(function(c){var d=+c.dataset.depth||1;c.style.transform='translate3d('+(local*d*90+mouse.nx*d*12)+'px,'+(mouse.ny*d*10)+'px,0) rotateY('+(mouse.nx*d*5)+'deg) rotateX('+(-mouse.ny*d*4)+'deg)'})})}
