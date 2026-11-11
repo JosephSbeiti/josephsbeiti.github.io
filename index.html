@@ -89,6 +89,7 @@ p{margin:0}
 .btn.main{background:var(--a);color:var(--ink);border-color:transparent;box-shadow:0 10px 30px -10px var(--a)}
 .btn.main:hover{filter:brightness(1.08)}
 .btn svg{width:16px;height:16px}
+@media(max-width:900px){.dbr{display:none}}
 .chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;padding:7px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#F4F6FB}
 .chip.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);box-shadow:0 0 0 0 var(--a);animation:pulse 1.8s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--a) 60%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
@@ -939,7 +940,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <span class="kick rv">Origin · Lebanon → Paris</span>
         <h2 class="words rv" style="margin-top:16px">Where does my ambition come from?</h2>
         <p class="ask rv">Born in Lebanon. Raised in Paris.</p>
-        <p class="lead rv" style="margin-top:14px">I grew up between two realities. In France, I was privileged, with access to every opportunity I&nbsp;needed. In&nbsp;Lebanon, where I was born, I saw brilliant and talented people with far fewer doors open to them.</p>
+        <p class="lead rv" style="margin-top:14px">I grew up between two realities. In France, I was privileged, with access to every opportunity I&nbsp;needed.<br class="dbr"> In&nbsp;Lebanon, where I was born, I saw brilliant and<br class="dbr"> talented people with far fewer doors open to them.</p>
         <p class="said rv">That contrast is what drives me.</p>
         <div class="tags rv"><span class="chip">French &amp; Lebanese</span><span class="chip">English · French · Arabic, all native</span></div>
       </div></div>
