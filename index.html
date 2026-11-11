@@ -1533,6 +1533,8 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   var flat=V||(FLAT[state.A]&&t<.5)||(FLAT[state.B]&&t>=.5)||(O&&ot>.5&&FLAT[override]);
   var soft=(SOFT[state.A]&&t<.5)||(SOFT[state.B]&&t>=.5);var rotY=flat?Math.sin(time*.4)*.14+mouse.nx*.35:(soft?-.55+Math.sin(time*.3)*.25+mouse.nx*.5:time*.25+mouse.nx*.8),rotX=flat?-mouse.ny*.15:(soft?.42-mouse.ny*.3:-mouse.ny*.4+.15),cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
   var wide=VW>900,CX=wide?VW*.72:VW*.5,CY=VH*.52+(wide?0:VH*.02),SC=wide?Math.min(VW*.27,VH*.4):Math.min(VW*.42,VH*.3);
+  /* the Lab's globe slides into the free space right of the cards, so the cards never hide it */
+  if(wide){var gw=(state.A==='globe'?1-t:0)+(state.B==='globe'?t:0);if(gw>0){CX=lerp(CX,VW*.9,gw);SC*=lerp(1,.72,gw)}}
   ctx.clearRect(0,0,VW,VH);if(state.jv>.01)drawMap(state.jv,state.jp);ctx.globalCompositeOperation='lighter';
   /* camera dive: fly through the old world, the next one rushes in from the distance */
   var zf=1,za=1,streak=0;if(dive){var dv=clamp((now-dive.t0)/dive.dur,0,1),u;
