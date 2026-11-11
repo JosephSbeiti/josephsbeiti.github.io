@@ -629,7 +629,7 @@ main{overflow-x:clip}
 .thesis a{color:var(--a)}
 .bridge{display:grid;grid-template-columns:auto 1fr auto 1fr auto;align-items:center;gap:8px;margin-top:16px}
 .bnode{display:grid;gap:2px;padding:10px 12px;border-radius:14px;border:1px solid var(--edge);background:rgba(0,0,0,.2);text-align:center;max-width:12rem}
-.bnode b{font-size:.9rem;line-height:1.2}.bnode span{font-size:.72rem;color:var(--fg3)}
+.bnode b{font-size:.9rem;line-height:1.2}.bres{margin-top:12px;text-align:center;font-size:.92rem;font-weight:600;color:var(--fg)}.bres i{font-style:normal;color:var(--a);margin-right:6px}.bnode span{font-size:.72rem;color:var(--fg3)}
 .bnode.me{border-color:var(--a);background:color-mix(in srgb,var(--a) 18%,transparent)}
 .blink{height:2px;position:relative;overflow:hidden;background:color-mix(in srgb,var(--a) 25%,transparent);border-radius:2px;min-width:18px}
 .blink i{position:absolute;inset:0;width:40%;background:linear-gradient(90deg,transparent,var(--a),transparent);animation:blink 1.8s linear infinite}
@@ -1023,8 +1023,9 @@ body.gl-open .dock{transform:translateY(150%)}
                 <div class="blink" aria-hidden="true"><i></i></div>
                 <div class="bnode me"><b>Me · SITA</b><span>the link</span></div>
                 <div class="blink" aria-hidden="true"><i></i></div>
-                <div class="bnode"><b>Airports · airlines · governments</b><span>modernising systems and infrastructure</span></div>
+                <div class="bnode"><b>Airports · airlines · governments</b></div>
               </div>
+              <p class="bres"><i aria-hidden="true">↓</i> Their systems and infrastructure, modernised</p>
               <div class="minis"><div><b data-count="5">5</b><span>government entities</span></div><div><b data-count="12" data-suf="+">12+</b><span>airport operators</span></div></div></div>
             <div class="glass pad fc mini sitaf" data-depth="1.5"><span class="kick">About SITA</span>
               <div class="sf"><div><b>1949</b><span>founded by 11 airlines, still owned by the air transport industry</span></div><div><b>200+</b><span>countries and territories</span></div><div><b>80+</b><span>nations using its border technology</span></div></div>
