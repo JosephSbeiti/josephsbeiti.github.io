@@ -1242,7 +1242,7 @@ body.gl-open .dock{transform:translateY(150%)}
       </div>
       <div class="nnwrap">
         <div><div class="floor-ax"><span>y · along ↓</span></div><div class="floor"><canvas id="floor" width="250" height="250" aria-label="The room's floor: what the network believes is free or blocked"></canvas></div><div class="floor-ax x"><span>x · across →</span></div>
-          <div class="legend lg2"><span><i style="background:#1B6E7A"></i>network’s guess: free</span><span><i style="background:#7A3A5C"></i>network’s guess: blocked</span><span><i class="dt"></i>dots: the real answer</span></div><p class="lg-say">It starts as a mess and slowly learns until the colours match the dots.</p></div>
+          <div class="legend lg2"><span><i style="background:#1B6E7A"></i>network’s guess: free</span><span><i style="background:#7A3A5C"></i>network’s guess: blocked</span><span><i class="dt"></i>dots: the real answer</span></div><p class="lg-say">The goal: from a few measured spots (the dots), learn a map of the whole floor, so the robot knows where it can drive, even where nothing was measured.</p></div>
         <div><svg class="nnsvg" id="nnsvg" viewBox="0 0 520 300" role="img" aria-label="Network: 2 inputs, two hidden layers of 6 neurons, 1 output"></svg>
           <p class="nnmsg" id="nnmsg">Press <b>Forward pass</b> to send one point of the floor through the network.</p>
           <div class="nnstats"><div><span>Epochs</span><b id="nnEp">0</b></div><div><span>Loss</span><b id="nnLoss">—</b></div><div><span>Accuracy</span><b id="nnAcc">—</b></div>
