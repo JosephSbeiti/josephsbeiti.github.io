@@ -1059,7 +1059,7 @@ body.gl-open .dock{transform:translateY(150%)}
             <div class="stop"><span class="city decode">Paris</span><span class="when">Since 2026</span></div>
             <div class="glass pad fc bc" data-depth="1"><span class="bk">Digital transformation strategy</span><b class="bn one">Safran Aircraft Engines <span>· IT department</span></b><span class="br">Digital Transformation Strategy Consultant</span><p class="bvia">With <b>Devoteam Digital Impulse</b>, the consulting firm I work for</p>
               <div class="prog" role="group" aria-label="Programme" id="prog">
-                <button class="pstep" aria-pressed="true"><em>Frame</em><b>The 2030 ambition</b></button>
+                <button class="pstep" aria-pressed="true"><em>Design &amp; implement</em><b>The 2030 programme</b></button>
                 <button class="pstep" aria-pressed="false"><em>Deliver</em><b>5+ AI agents</b></button>
                 <button class="pstep" aria-pressed="false"><em>Steer</em><b>Team PMO</b></button>
               </div>
@@ -2103,7 +2103,7 @@ $$('#eqSeg button').forEach(function(b){b.onclick=function(){eqSet(b.dataset.c)}
 if($('#eq'))new IntersectionObserver(function(es,o){if(es[0].isIntersecting){eqSet('lbn');o.disconnect()}},{threshold:.3}).observe($('#eq'));
 
 /* thesis + programme + automation */
-var PG=['Framing the programme’s 2030 ambitions, scope, IT architecture impacts, initiatives, methodology and governance for Safran Aircraft Engines’ IT department, alongside a director.','Designed and led the delivery of 5+ AI agents and agentic workflows with technical engineers, from ideation to implementation, applying responsible AI principles and ethical data use.','As team PMO: tracking progress, coordinating stakeholders across 3+ business teams, running gap analysis and producing management reporting.'];
+var PG=['Designing the programme’s 2030 objectives, scope, methodology and governance for Safran Aircraft Engines’ IT department alongside a director, then helping implement it end to end with their teams: IT architecture impacts, initiatives and roll-out.','Designed and led the delivery of 5+ AI agents and agentic workflows with technical engineers, from ideation to implementation, applying responsible AI principles and ethical data use.','As team PMO: tracking progress, coordinating stakeholders across 3+ business teams, running gap analysis and producing management reporting.'];
 var pst=$$('.pstep');function pg(i){pst.forEach(function(b,k){b.setAttribute('aria-pressed',k===i)});$('#pdetail').textContent=PG[i]}pst.forEach(function(b,i){b.onclick=function(){pg(i)}});pg(0);
 /* time saved: the 15 minutes light up */
 (function(){var sv=$('#saved'),n=$('#svN');new IntersectionObserver(function(es,o){if(!es[0].isIntersecting)return;o.disconnect();setTimeout(function(){sv.classList.add('go');var t0=null;(function st(ts){if(!t0)t0=ts;var p=RM?1:clamp((ts-t0)/1300,0,1);n.textContent=Math.round(15*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(st)})(performance.now())},RM?0:400)},{threshold:.55}).observe(sv)})();
