@@ -863,7 +863,7 @@ body.gl-open .buddy{display:none}
 .dock svg{width:15px;height:15px}
 @media(max-width:600px){.dock{left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));justify-content:space-between}.dock .av{display:none}.dock a,.dock button{flex:1;justify-content:center;padding:11px 6px}}
 .toast{position:fixed;z-index:95;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;pointer-events:none;font-family:var(--mono);font-size:12.5px;background:var(--a);color:var(--ink);padding:10px 16px;border-radius:10px;transition:opacity .3s,transform .3s;max-width:calc(100vw - 32px)}
-.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.show{opacity:1;transform:translate(-50%,0)}.toast.act{pointer-events:auto;display:flex;gap:12px;align-items:center;white-space:nowrap}button.addr{all:unset;cursor:pointer}button.btn{font-family:inherit;line-height:inherit;letter-spacing:inherit;margin:0;vertical-align:top}.toast a{color:inherit;font-weight:600;text-decoration:underline}
 
 /* globe overlay */
 .gl{position:fixed;inset:0;z-index:75;background:color-mix(in srgb,var(--d) 88%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:grid;grid-template-rows:auto 1fr;opacity:0;visibility:hidden;transition:opacity .45s,visibility 0s .45s;padding-top:calc(env(safe-area-inset-top,0px) + var(--nav-h))}
@@ -937,7 +937,7 @@ body.gl-open .dock{transform:translateY(150%)}
     <div class="cta">
       <a class="btn main" href="Joseph-Sbeiti-CV.pdf" download="Joseph-Sbeiti-CV.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV</a>
       <a class="btn" href="https://www.linkedin.com/in/joseph-sbeiti/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="mailto:josephsbeiti@gmail.com">Email</a>
+      <button class="btn" type="button" data-copy="josephsbeiti@gmail.com" data-mail="1">Email</button>
     </div>
   </div>
   <a class="scrollhint" href="#origin"><i></i><span>Scroll · everything moves with you <em class="sh-x">(surprises included)</em></span></a>
@@ -1346,7 +1346,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <a class="btn" href="https://github.com/JosephSbeiti" target="_blank" rel="noopener">GitHub</a>
       </div>
       <div class="contact">
-        <div class="row"><a class="addr" href="mailto:josephsbeiti@gmail.com">josephsbeiti@gmail.com</a><button class="copy" data-copy="josephsbeiti@gmail.com">Copy</button></div>
+        <div class="row"><button class="addr" type="button" data-copy="josephsbeiti@gmail.com" data-mail="1">josephsbeiti@gmail.com</button><button class="copy" data-copy="josephsbeiti@gmail.com">Copy</button></div>
         <div class="row"><a class="addr" href="tel:+33614340347">+33 6 14 34 03 47</a><button class="copy" data-copy="+33 6 14 34 03 47">Copy</button></div>
       </div>
     </div>
@@ -2312,8 +2312,9 @@ var pst=$$('.pstep');function pg(i){pst.forEach(function(b,k){b.setAttribute('ar
 
 
 /* copy + toast */
-var toast=$('#toast'),tt;function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2400)}
-$$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.copy;try{navigator.clipboard.writeText(v).then(function(){say('Copied '+v)},function(){say(v)})}catch(e){say(v)}if(b.dataset.mail)setTimeout(function(){W.location.href='mailto:'+v},150)})});
+var toast=$('#toast'),tt;function say(m,html,ms){if(html)toast.innerHTML=m;else toast.textContent=m;toast.classList.toggle('act',!!html);toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show','act')},ms||2400)}
+/* email never navigates the page away (a blank screen where no mail app is set up): copy it, and offer the mail app as a link */
+$$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.copy,m=b.dataset.mail?['Copied '+v+' <a href="mailto:'+v+'">Open mail app</a>',1,5000]:['Copied '+v];try{navigator.clipboard.writeText(v).then(function(){say.apply(null,m)},function(){say.apply(null,m)})}catch(e){say.apply(null,m)}})});
 
 
 
