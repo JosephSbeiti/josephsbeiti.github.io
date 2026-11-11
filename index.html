@@ -2041,19 +2041,28 @@ setInterval(function(){if(overT>0)applyCols(cols)},50);
     var fx=w*.13,fy=gy-h*.16;x.fillStyle='rgba(10,14,30,.6)';x.strokeStyle=LINE;x.lineWidth=1.5;x.beginPath();x.ellipse(fx,fy,w*.08,h*.05,0,0,6.283);x.fill();x.stroke();
     x.beginPath();x.moveTo(fx-w*.08,fy);x.lineTo(fx-w*.08,gy-2);x.moveTo(fx+w*.08,fy);x.lineTo(fx+w*.08,gy-2);x.stroke();
     for(var s2=0;s2<3;s2++){x.beginPath();x.ellipse(fx,fy+h*.05+s2*h*.045,w*.08,h*.04,0,0,Math.PI);x.stroke()}
-    /* projects: a school, a grid pylon, a water tower, a hospital, each rises once financed */
-    var P=[{x:w*.36,k:'school'},{x:w*.52,k:'pylon'},{x:w*.68,k:'tower'},{x:w*.85,k:'hosp'}];o.b=o.b||[0,0,0,0];o.cool=o.cool||0;
-    P.forEach(function(pr,j){var tgt=o.h>.05?clamp(o.h*3.4-j*.6,0,1):Math.max(0,o.b[j]-dt*.25);o.b[j]+=(tgt-o.b[j])*Math.min(1,dt*(tgt>o.b[j]?2.2:1));var v=o.b[j],X=pr.x,full=h*.5,ht=Math.max(3,full*v),top=gy-ht,hw=Math.min(w*.055,15);
-      x.strokeStyle=v>.05?rgba(c,.6+.4*v):DIM;x.fillStyle=v>.05?rgba(c,.12+.2*v):'rgba(255,255,255,.04)';x.lineWidth=1.5;
-      if(pr.k==='pylon'){x.beginPath();x.moveTo(X-hw*.8,gy);x.lineTo(X,top);x.lineTo(X+hw*.8,gy);x.moveTo(X-hw*.6,top+ht*.3);x.lineTo(X+hw*.6,top+ht*.3);x.stroke()}
-      else if(pr.k==='tower'){x.beginPath();x.moveTo(X-hw*.25,gy);x.lineTo(X-hw*.25,top+ht*.35);x.moveTo(X+hw*.25,gy);x.lineTo(X+hw*.25,top+ht*.35);x.stroke();x.beginPath();x.rect(X-hw*.75,top,hw*1.5,ht*.35);x.fill();x.stroke()}
-      else{x.beginPath();x.rect(X-hw,top,hw*2,ht);x.fill();x.stroke();if(v>.6){x.fillStyle=rgba(c,.9);if(pr.k==='hosp'){x.fillRect(X-1.2,top+ht*.2,2.4,ht*.28);x.fillRect(X-ht*.14,top+ht*.33,ht*.28,2.4)}else{x.beginPath();x.moveTo(X,top-ht*.25);x.lineTo(X,top);x.stroke();x.fillRect(X,top-ht*.25,7,4)}}}
+    /* projects it pays for: a school, a hospital, a water tower; each rises from the ground once financed */
+    var P=[{x:w*.41,k:'school'},{x:w*.65,k:'hosp'},{x:w*.87,k:'water'}];o.b=o.b||[0,0,0];
+    P.forEach(function(pr,j){var tgt=o.h>.05?clamp(o.h*2.6-j*.55,0,1):Math.max(0,o.b[j]-dt*.25);o.b[j]+=(tgt-o.b[j])*Math.min(1,dt*(tgt>o.b[j]?2:1));var v=o.b[j],X=pr.x,S=Math.min(w*.105,h*.3),H=S*2;
+      /* ghost outline of what is planned */
+      function shape(fillA,strokeC){x.lineWidth=1.5;x.strokeStyle=strokeC;x.fillStyle=fillA;x.beginPath();
+        if(pr.k==='school'){x.moveTo(X-S,gy);x.lineTo(X-S,gy-H*.6);x.lineTo(X,gy-H*.95);x.lineTo(X+S,gy-H*.6);x.lineTo(X+S,gy);x.closePath()}
+        else if(pr.k==='hosp'){x.rect(X-S*.9,gy-H*.85,S*1.8,H*.85)}
+        else{x.rect(X-S*.6,gy-H,S*1.2,H*.42)}
+        x.fill();x.stroke();
+        if(pr.k==='water'){x.beginPath();x.moveTo(X-S*.45,gy-H*.58);x.lineTo(X-S*.6,gy);x.moveTo(X+S*.45,gy-H*.58);x.lineTo(X+S*.6,gy);x.moveTo(X-S*.5,gy-H*.3);x.lineTo(X+S*.5,gy-H*.3);x.stroke()}}
+      shape('rgba(255,255,255,.02)','rgba(255,255,255,.16)');
+      if(v>.01){x.save();x.beginPath();x.rect(X-S*1.3,gy-H*1.2*v-2,S*2.6,H*1.2*v+4);x.clip();shape(rgba(c,.14+.12*v),rgba(c,.75+.25*v));
+        x.fillStyle=rgba(c,.95);x.strokeStyle=rgba(c,.95);
+        if(pr.k==='school'){x.fillRect(X-S*.18,gy-H*.32,S*.36,H*.32);x.fillRect(X-S*.72,gy-H*.48,S*.3,S*.26);x.fillRect(X+S*.42,gy-H*.48,S*.3,S*.26);x.beginPath();x.moveTo(X,gy-H*.95);x.lineTo(X,gy-H*1.18);x.stroke();x.fillRect(X,gy-H*1.18,S*.42,S*.24)}
+        else if(pr.k==='hosp'){var cs=S*.22;x.fillRect(X-cs*.35,gy-H*.72,cs*.7,cs*2.1);x.fillRect(X-cs*1.05,gy-H*.72+cs*.7,cs*2.1,cs*.7);for(var r=0;r<3;r++)x.fillRect(X-S*.66+r*S*.5,gy-H*.28,S*.32,S*.24)}
+        else{x.beginPath();var dx=X,dy=gy-H*.79,d=S*.22;x.moveTo(dx,dy-d*1.2);x.quadraticCurveTo(dx+d,dy,dx,dy+d*.8);x.quadraticCurveTo(dx-d,dy,dx,dy-d*1.2);x.fill()}
+        x.restore()}
       /* coins fly from the fund to the project being built */
-      if(o.h>.1&&v<.98&&Math.random()<dt*(5-j))o.p.push({x0:fx,y0:fy-4,x1:X,y1:top,t:0})});
+      if(o.h>.1&&v<.98&&Math.random()<dt*(5-j))o.p.push({x0:fx,y0:fy-4,x1:X,y1:gy-H*.9,t:0})});
     for(var i=o.p.length-1;i>=0;i--){var q=o.p[i];q.t+=dt*1.5;if(q.t>=1){o.p.splice(i,1);continue}var px=lerp(q.x0,q.x1,q.t),py=lerp(q.y0,q.y1,q.t)-Math.sin(q.t*Math.PI)*h*.3;
       x.fillStyle=rgba(c,1);x.beginPath();x.ellipse(px,py,3,2.2,0,0,6.283);x.fill();x.fillStyle='rgba(255,255,255,.6)';x.fillRect(px-.6,py-1.4,1.2,2.8)}
-    /* a small growth line above */
-    x.strokeStyle=rgba(c,.2+.6*o.h);x.lineWidth=1.3;x.beginPath();for(var X2=w*.3;X2<=w-10;X2+=3){var u=(X2-w*.3)/(w*.7-10),yy=h*.2-u*h*.12*(.3+o.h)+Math.sin(u*14+T*2)*1.5;X2===w*.3?x.moveTo(X2,yy):x.lineTo(X2,yy)}x.stroke()},
+  },
   energy:function(x,w,h,o,dt){var c=o.c,gy=h*.92;
     o.st=o.st||Array.from({length:14},function(){return [Math.random(),Math.random()*.45,Math.random()*6]});o.st.forEach(function(s3){x.fillStyle='rgba(255,255,255,'+(.15+.25*Math.sin(T*2+s3[2])*.5+.12)+')';x.fillRect(s3[0]*w,s3[1]*h,1.4,1.4)});
     x.strokeStyle=LINE;x.lineWidth=1.6;x.beginPath();x.moveTo(4,gy);x.lineTo(w-4,gy);x.stroke();
