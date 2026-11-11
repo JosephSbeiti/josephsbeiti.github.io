@@ -2060,6 +2060,11 @@ setInterval(function(){if(overT>0)applyCols(cols)},50);
         x.restore()}
       /* coins fly from the fund to the project being built */
       if(o.h>.1&&v<.98&&Math.random()<dt*(5-j))o.p.push({x0:fx,y0:fy-4,x1:X,y1:gy-H*.9,t:0})});
+    /* up top: how much of the plan is funded, filling as the projects rise */
+    var fp=(o.b[0]+o.b[1]+o.b[2])/3,bx=w*.08,bw2=w*.84,byy=h*.16;x.font='600 9px ui-monospace,monospace';x.textAlign='left';x.fillStyle=o.h>.05?rgba(c,.95):'rgba(255,255,255,.45)';x.fillText('FUNDED',bx,byy-6);
+    x.textAlign='right';x.fillText((fp>.97?100:Math.round(fp*100))+'%',bx+bw2,byy-6);x.fillStyle='rgba(255,255,255,.1)';x.beginPath();x.roundRect?x.roundRect(bx,byy,bw2,5,3):x.rect(bx,byy,bw2,5);x.fill();
+    if(fp>.005){x.shadowColor=rgba(c,1);x.shadowBlur=8;x.fillStyle=rgba(c,.95);x.beginPath();x.roundRect?x.roundRect(bx,byy,bw2*fp,5,3):x.rect(bx,byy,bw2*fp,5);x.fill();x.shadowBlur=0}
+    var nb=o.b.filter(function(v){return v>.95}).length;x.font='500 8.5px ui-monospace,monospace';x.textAlign='left';x.fillStyle=nb?rgba(c,.9):'rgba(255,255,255,.3)';x.fillText(nb+' of 3 projects built',bx,byy+18);
     for(var i=o.p.length-1;i>=0;i--){var q=o.p[i];q.t+=dt*1.5;if(q.t>=1){o.p.splice(i,1);continue}var px=lerp(q.x0,q.x1,q.t),py=lerp(q.y0,q.y1,q.t)-Math.sin(q.t*Math.PI)*h*.3;
       x.fillStyle=rgba(c,1);x.beginPath();x.ellipse(px,py,3,2.2,0,0,6.283);x.fill();x.fillStyle='rgba(255,255,255,.6)';x.fillRect(px-.6,py-1.4,1.2,2.8)}
   },
