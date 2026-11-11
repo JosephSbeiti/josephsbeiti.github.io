@@ -2390,7 +2390,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   W.buddyMood=function(pal){curPal=pal;mood=MOODS[pal]||'smile';if(chat.hidden&&cur!=='sleep'&&cur!=='dizzy')setFace(mood)};
   /* scroll too fast and he gets dizzy; leave him alone and he falls asleep */
   var lastSY=W.scrollY,lastST=performance.now(),dizzyT=0,idleT=0,zz=D.createElement('span');zz.className='bzz';zz.setAttribute('aria-hidden','true');zz.innerHTML='<i>z</i><i>z</i><i>Z</i>';face.appendChild(zz);
-  function wake(){if(cur==='sleep'){face.classList.remove('sleeping');setFace('wow');setTimeout(function(){if(cur==='wow')setFace(mood)},900)}clearTimeout(idleT);idleT=setTimeout(function(){if(chat.hidden&&cur!=='dizzy'){setFace('sleep');face.classList.add('sleeping')}},20000)}
+  function wake(){if(cur==='sleep'){face.classList.remove('sleeping');setFace('wow');setTimeout(function(){if(cur==='wow')setFace(mood)},900)}clearTimeout(idleT);idleT=setTimeout(function(){if(chat.hidden&&cur!=='dizzy'){setFace('sleep');face.classList.add('sleeping')}},30000)}
   ['pointermove','keydown','pointerdown','touchstart'].forEach(function(ev){W.addEventListener(ev,wake,{passive:true})});
   W.addEventListener('scroll',function(){var now=performance.now(),dt=now-lastST,v=Math.abs(W.scrollY-lastSY)/(dt||1)*1000;lastSY=W.scrollY;lastST=now;wake();
     /* only after 3 seconds of non-stop fast scrolling */
@@ -2424,9 +2424,9 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   face.onclick=function(){chat.hidden?open():close()};$('#bx').onclick=close;
   D.addEventListener('keydown',function(e){if(e.key==='Escape'&&!chat.hidden)close()});
   face.addEventListener('mouseenter',function(){if(chat.hidden)setFace('laugh')});face.addEventListener('mouseleave',function(){if(chat.hidden)setFace('smile')});
-  var LINES=['Psst… I’m available in 2027.','Is this enough to hire me?','We’d make a great team, you know.','I post cool things on LinkedIn too.','Hire me please. I bring croissants.','Still here? That’s a good sign.','I speak English, French and Arabic. And a bit of Python.',
+  var LINES=['Psst… I’m available in 2027.','Is this enough to hire me?','We’d make a great team, you know.','I post cool things on LinkedIn too.','Still here? That’s a good sign.',
     'Your team looks like it could use a Joseph.','Three languages, no extra charge.','Not to be pushy, but my CV is one click away.','Imagine this energy in your Monday meetings.','Shall we talk? My email is in the dock.','You scroll like someone who’s hiring.'],
-    CTX={toolkit:'Everything here, ready for your team.',origin:'That’s where it all started.',hq:'Try the digital twin: add a wall!',lab:'Hover a dot, find your country.',paris2:'Next stop: your company?',next:'This is the part where you email me.',purpose:'Hover the pillars, they come alive.'},shown=0,qT=0,said={};
+    CTX={toolkit:'Everything here, ready for your team.',origin:'That’s where it all started.',lab:'Hover a dot, find your country.',paris2:'Next stop: your company?',next:'This is the part where you email me.',purpose:'Hover the pillars, they come alive.'},shown=0,qT=0,said={};
   function quip(txt,force){if(!chat.hidden||cur==='sleep')return;if(!force&&shown>=(COARSE?4:10))return;shown++;hint.textContent=txt;hint.hidden=false;hint.classList.remove('popq');void hint.offsetWidth;hint.classList.add('popq');
     if(!force)setFace(Math.random()<.5?'wink':'laugh');clearTimeout(qT);qT=setTimeout(function(){hint.hidden=true;if(cur!=='sleep'&&cur!=='dizzy')setFace(mood)},4800)}
   hint.style.cursor='pointer';hint.onclick=function(){open()};
