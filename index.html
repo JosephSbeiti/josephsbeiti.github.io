@@ -1041,7 +1041,7 @@ body.gl-open .dock{transform:translateY(150%)}
                 <div class="bnode"><b>Airports · airlines · governments</b></div>
               </div>
               <p class="bres"><i aria-hidden="true">↓</i> Their systems and infrastructure, modernised</p>
-              <div class="minis"><div><b data-count="5">5</b><span>government entities</span></div><div><b data-count="12" data-suf="+">12+</b><span>airport operators</span></div></div></div>
+              <div class="minis"><div><b data-count="20" data-suf="+">20+</b><span>aviation institutions & government entities benchmarked</span></div><div><b data-count="15" data-suf="+">15+</b><span>aviation accounts analysed</span></div></div></div>
             <div class="glass pad fc mini sitaf" data-depth="1.5"><span class="kick">About SITA</span>
               <div class="sf"><div><b>1949</b><span>founded by 11 airlines, still owned by the air transport industry</span></div><div><b>200+</b><span>countries and territories</span></div><div><b>80+</b><span>nations using its border technology</span></div></div>
               </div>
@@ -1074,12 +1074,12 @@ body.gl-open .dock{transform:translateY(150%)}
             <div class="stop"><span class="city decode">Paris</span><span class="when">Since 2026</span></div>
             <div class="glass pad fc bc" data-depth="1"><span class="bk">Digital transformation strategy</span><b class="bn one">Safran Aircraft Engines <span>· IT department</span></b><span class="br">Digital Transformation Strategy Consultant</span><p class="bvia">With <b>Devoteam Digital Impulse</b>, the consulting firm I work for</p>
               <div class="prog" role="group" aria-label="Programme" id="prog">
-                <button class="pstep" aria-pressed="true"><em>Design &amp; implement</em><b>The 2030 programme</b></button>
-                <button class="pstep" aria-pressed="false"><em>Deliver</em><b>5+ AI agents</b></button>
-                <button class="pstep" aria-pressed="false"><em>Steer</em><b>Team PMO</b></button>
+                <button class="pstep" aria-pressed="true"><em>Frame</em><b>The 2030 ambition</b></button>
+                <button class="pstep" aria-pressed="false"><em>Deliver</em><b>3 AI agents</b></button>
+                <button class="pstep" aria-pressed="false"><em>Steer</em><b>PMO lead</b></button>
               </div>
               <p class="pdetail" id="pdetail" aria-live="polite"></p></div>
-            <div class="glass pad fc saved" id="saved" data-depth="1.4"><span class="kick">Automation · Excel VBA &amp; Python</span>
+            <div class="glass pad fc saved" id="saved" data-depth="1.4"><span class="kick">Automation · Excel VBA, Power BI &amp; Python</span>
               <div class="sv-h"><b><span id="svN">15</span> min</b><span>saved on every single item</span></div>
               <div class="sv-bar" aria-hidden="true"><div class="sv-keep"><span>5 min now</span></div><div class="sv-cut"><span>15 min saved</span></div></div>
               <div class="sv-scale" aria-hidden="true"><span>Task time</span><span>Before: 20 min</span></div>
@@ -2113,7 +2113,7 @@ $$('#eqSeg button').forEach(function(b){b.onclick=function(){eqSet(b.dataset.c)}
 if($('#eq'))new IntersectionObserver(function(es,o){if(es[0].isIntersecting){eqSet('lbn');o.disconnect()}},{threshold:.3}).observe($('#eq'));
 
 /* thesis + programme + automation */
-var PG=['Designing the programme’s 2030 objectives, scope, methodology and governance for Safran Aircraft Engines’ IT department alongside a director, then helping implement it end to end with their teams: IT architecture impacts, initiatives and roll-out.','Designed and led the delivery of 5+ AI agents and agentic workflows with technical engineers, from ideation to implementation, applying responsible AI principles and ethical data use.','As team PMO: tracking progress, coordinating stakeholders across 3+ business teams, running gap analysis and producing management reporting.'];
+var PG=['Collaborating with a director to frame the programme’s 2030 ambitions, scope, IT architecture impacts, project initiative details, methodology and governance for Safran Aircraft Engines’ IT department.','Co-designed and co-led the delivery of 3 AI agents and agentic workflows with engineers, from ideation to implementation, applying responsible AI principles and ethical data use.','As PMO lead: monitoring roadmaps and risk logs, tracking progress, coordinating stakeholders, identifying improvements and raising alerts.'];
 var pst=$$('.pstep');function pg(i){pst.forEach(function(b,k){b.setAttribute('aria-pressed',k===i)});$('#pdetail').textContent=PG[i]}pst.forEach(function(b,i){b.onclick=function(){pg(i)}});pg(0);
 /* time saved: the 15 minutes light up */
 (function(){var sv=$('#saved'),n=$('#svN');new IntersectionObserver(function(es,o){if(!es[0].isIntersecting)return;o.disconnect();setTimeout(function(){sv.classList.add('go');var t0=null;(function st(ts){if(!t0)t0=ts;var p=RM?1:clamp((ts-t0)/1300,0,1);n.textContent=Math.round(15*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(st)})(performance.now())},RM?0:400)},{threshold:.55}).observe(sv)})();
