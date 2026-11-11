@@ -760,8 +760,8 @@ main{overflow-x:clip}
 @media(max-width:700px){.flight:not(.last){height:240vh}.flight.train{height:260vh}}
 .sec{padding-block:clamp(56px,7vw,96px)}
 #journey .panel{align-items:flex-start;padding-top:calc(var(--nav-h) + clamp(28px,5vh,56px));padding-bottom:clamp(40px,6vh,72px);min-height:0}
-.flight:not(.last){height:290vh}
-@media(max-width:700px){.flight:not(.last){height:275vh}}
+.flight:not(.last){height:370vh}.flight.train:not(.last){height:290vh}
+@media(max-width:700px){.flight:not(.last){height:340vh}.flight.train:not(.last){height:275vh}}
 @media(prefers-reduced-motion:reduce){.flight:not(.last),.flight.train{height:auto}#journey .panel,#journey .panel+.flight{margin-top:0}}
 
 .op .jgo{margin-top:clamp(40px,5vw,64px)}.jgo-line{margin-top:10px}.jgo-line i{height:40px}
@@ -2395,7 +2395,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   W.addEventListener('scroll',function(){var now=performance.now(),dt=now-lastST,v=Math.abs(W.scrollY-lastSY)/(dt||1)*1000;lastSY=W.scrollY;lastST=now;wake();
     /* only after 3 seconds of non-stop fast scrolling */
     if(v>900&&dt<600){if(!fastStart)fastStart=now;lastFast=now}else if(now-lastFast>600)fastStart=0;
-    if(fastStart&&now-fastStart>3000&&chat.hidden&&!RM&&now-lastSick>15000){lastSick=now;fastStart=0;if(cur==='sleep'){face.classList.remove('sleeping')}setFace('dizzy');face.classList.add('dizzy');
+    if(fastStart&&now-fastStart>4500&&chat.hidden&&!RM&&now-lastSick>15000){lastSick=now;fastStart=0;if(cur==='sleep'){face.classList.remove('sleeping')}setFace('dizzy');face.classList.add('dizzy');
       clearTimeout(dizzyT);dizzyT=setTimeout(function(){face.classList.remove('dizzy');setFace(mood)},2600);quip('Whoa, slow down… I get seasick.',true)}},{passive:true});
   var fastStart=0,lastFast=0,lastSick=-1e9;
   wake();
@@ -2435,7 +2435,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   /* he notices when the window is resized */
   var lastW=W.innerWidth,rzT=0;W.addEventListener('resize',function(){clearTimeout(rzT);rzT=setTimeout(function(){var nw=W.innerWidth,d=nw-lastW;if(Math.abs(d)<120){return}
     face.animate&&face.animate([{transform:d<0?'scaleX(.7) scaleY(1.15)':'scaleX(1.25) scaleY(.85)'},{transform:'none'}],{duration:600,easing:'cubic-bezier(.2,1.6,.4,1)'});
-    quip(nw<520?'Phone size! Everything still works, just cosier.':d<0?'Hey, it’s getting tight in here.':nw>1600?'Wow, a big screen. I feel taller.':'Ah, room to breathe.',true);lastW=nw},250)});
+    if(nw<520)quip('Phone size! Everything still works, just cosier.',true);lastW=nw},250)});
   /* he reads the visitor's clock */
   function clockLine(){var d=new Date(),h=d.getHours(),w=d.getDay();
     if(h<5)return 'Shouldn’t you be asleep? I almost am.';
