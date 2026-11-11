@@ -2451,7 +2451,7 @@ $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var 
   react('a[href$="CV.pdf"]','click','Great choice. Page one is my favourite.');react('a[href*="linkedin.com"]','click','See you on LinkedIn!');
   D.addEventListener('visibilitychange',function(){if(!D.hidden&&shown>0)setTimeout(function(){quip('Welcome back! Thinking about hiring me?',true)},600)});
   var visits=0;try{visits=+(localStorage.getItem('mj-visits')||0)+1;localStorage.setItem('mj-visits',visits)}catch(e){}
-  if(visits>=2){hint.textContent=visits===2?'Oh, you’re back! Second visit, must be serious.':'Visit number '+visits+'. At this point we’re basically colleagues.'}
+  if(visits>=2){hint.textContent=visits===2?'Oh, you’re back! Second visit, must be serious.':(visits===3?'Visit number 3. At this point we’re basically colleagues.':'Visit number '+visits+'. I think you should really take the step and call me.')}
   setTimeout(function(){if(chat.hidden&&!greeted){hint.hidden=false;setFace('wink');setTimeout(function(){hint.hidden=true;setFace('smile')},6000)}},3600);
 })();
 
