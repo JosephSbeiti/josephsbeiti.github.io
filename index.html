@@ -685,13 +685,27 @@ main{overflow-x:clip}
 .pbub::before{width:14px;height:14px;left:4px;bottom:-12px}.pbub::after{width:7px;height:7px;left:-4px;bottom:-22px}
 .pbub.on{opacity:1;transform:none}.pbub.bye{width:max-content;max-width:min(260px,70vw);height:auto;padding:10px 16px;border-radius:18px;left:56%;top:-14%}.pbub.bye b{font-size:.95rem;line-height:1.3;font-family:var(--body);font-weight:600;animation:none;text-align:center}@media(max-width:700px){.pbub.bye{left:-4%;top:-7%;max-width:min(210px,58vw);padding:8px 12px}.pbub.bye b{font-size:.82rem}}
 .pbub b{animation:qbob 1.6s ease-in-out infinite}
-.bpass{position:absolute;right:max(16px,5vw);bottom:12vh;width:min(360px,calc(100vw - 32px));padding:14px 16px;border-radius:18px;background:#F7F8FB!important;color:#15171f!important;border:1px solid rgba(255,255,255,.6);z-index:3;opacity:0;transform:translateY(30px) rotate(3deg);transition:opacity .5s,transform .6s cubic-bezier(.2,1.2,.4,1);pointer-events:none;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.bpass{position:absolute;right:max(16px,5vw);bottom:12vh;width:min(420px,calc(100vw - 32px));display:flex;border-radius:14px;background:#F7F8FB!important;color:#15171f!important;z-index:3;opacity:0;transform:translateY(30px) rotate(3deg);transition:opacity .5s,transform .6s cubic-bezier(.2,1.2,.4,1);pointer-events:none;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);overflow:hidden;
+  -webkit-mask:radial-gradient(circle 9px at calc(100% - 92px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 9px at calc(100% - 92px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+  mask:radial-gradient(circle 9px at calc(100% - 92px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 9px at calc(100% - 92px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
 .bpass.on{opacity:1;transform:none;pointer-events:auto}
-.bp-h{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#3a4050;padding-bottom:10px;border-bottom:1px dashed rgba(0,0,0,.2)}
-.bp-r{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin-top:10px}
-.bp-r em{display:block;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4a5060}
-.bp-r b{font-size:1.05rem;color:#15171f}.bp-r b.q{color:var(--facc,#6EF2D2);font-size:1.4rem;line-height:1;-webkit-text-stroke:.5px #15171f}
-.bp-go{margin-left:auto;padding:9px 16px!important;font-size:.85rem!important;background:#15171f!important;color:#fff!important;border-color:#15171f!important}
+.bp-main{flex:1;min-width:0;padding:0 0 14px}
+.bp-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 16px;background:#15171f;color:#F7F8FB;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.bp-h span{display:flex;align-items:center;gap:7px}.bp-h svg{width:13px;height:13px;transform:rotate(90deg)}
+.bp-route{display:flex;align-items:center;gap:10px;padding:12px 16px 4px}
+.bp-route b{display:block;font-family:var(--display);font-size:1.9rem;font-weight:700;letter-spacing:.02em;line-height:1;color:#15171f}
+.bp-route em{display:block;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5a6070;margin-top:4px}
+.bp-route i{flex:1;height:0;border-top:1.5px dashed #9aa0ad;position:relative}.bp-route i::after{content:"✈";position:absolute;left:50%;top:-11px;transform:translateX(-50%);font-style:normal;font-size:14px;color:#15171f;background:#F7F8FB;padding:0 4px}
+.bp-route .to{text-align:right}
+.bp-r{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;padding:0 16px}
+.bp-r em,.bp-stub em{display:block;font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#5a6070}
+.bp-r b{font-size:.92rem;color:#15171f;font-weight:600}
+.bp-f{display:flex;align-items:center;gap:12px;margin-top:12px;padding:0 16px}
+.bp-bc{flex:1;height:34px;background:repeating-linear-gradient(90deg,#15171f 0 2px,transparent 2px 4px,#15171f 4px 5px,transparent 5px 8px,#15171f 8px 11px,transparent 11px 12px,#15171f 12px 13px,transparent 13px 16px);opacity:.85}
+.bp-stub{width:92px;flex:none;border-left:1.5px dashed #b6bac4;padding:40px 12px 14px;display:flex;flex-direction:column;gap:2px}
+.bp-stub b{font-family:var(--display);font-size:1.15rem;font-weight:700;color:#15171f;margin-bottom:6px}
+.bp-bc.v{flex:1;min-height:30px;height:auto;margin-top:4px}
+.bp-go{padding:9px 16px!important;font-size:.85rem!important;background:#15171f!important;color:#fff!important;border-color:#15171f!important;flex:none}
 @media(max-width:700px){.board{left:max(16px,env(safe-area-inset-left,0px));right:auto;top:clamp(150px,22vh,190px);transition:opacity .4s}.pax{height:min(40vh,320px)}.bpass{bottom:auto;top:clamp(150px,22vh,190px);left:16px;right:16px;width:auto}.flight.air.pass-on .board{opacity:0}}
 /* journey type scale: one label size, one brand size, one body size */
 #journey .chap{font-size:12px;letter-spacing:.18em}
@@ -1194,9 +1208,12 @@ body.gl-open .dock{transform:translateY(150%)}
             </g>
           </svg>
         </div>
-        <div class="bpass" id="bpass"><div class="bp-h"><span>Boarding pass</span><span>2027</span></div>
-          <div class="bp-r"><div><em>Passenger</em><b>Joseph Sbeiti</b></div><div><em>From</em><b>Paris</b></div><div><em>To</em><b class="q">?</b></div></div>
-          <div class="bp-r"><div><em>Gate</em><b>Your team</b></div><div><em>Boarding</em><b>2027</b></div><a class="btn bp-go" href="#next">Let's talk</a></div></div>
+        <div class="bpass" id="bpass"><div class="bp-main">
+          <div class="bp-h"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" fill="currentColor"/></svg>Boarding pass</span><span>Flight JS 2027</span></div>
+          <div class="bp-route"><div><b>PAR</b><em>Paris</em></div><i aria-hidden="true"></i><div class="to"><b>???</b><em>Your city</em></div></div>
+          <div class="bp-r"><div><em>Passenger</em><b>SBEITI / JOSEPH</b></div><div><em>Gate</em><b>Your team</b></div><div><em>Boarding</em><b>2027</b></div></div>
+          <div class="bp-f"><span class="bp-bc" aria-hidden="true"></span><a class="btn bp-go" href="#next">Let's talk</a></div></div>
+          <div class="bp-stub" aria-hidden="true"><em>Seat</em><b>1A</b><em>Class</em><b>Next</b><span class="bp-bc v"></span></div></div>
         <div class="ftxt"><div class="wrap"><div class="route">Paris <i>→</i> <span class="q">?</span></div><div class="fmeta"><b>Departures · 2027</b><br>Where will my next chapter be written?</div></div></div></div></div>
     </div>
     <div class="hz-dots glass" id="hzDots" aria-label="Journey stops"></div><div class="kmc glass" id="kmc" aria-live="off"><b id="kmv">0</b><span>km travelled</span></div>
