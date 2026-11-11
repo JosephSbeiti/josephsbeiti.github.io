@@ -738,7 +738,8 @@ main{overflow-x:clip}
 .op-l{align-self:stretch}
 .op-stick{position:sticky;top:calc(var(--nav-h) + clamp(28px,6vh,64px))}
 .op-r{padding-top:clamp(120px,22vh,240px)}
-.op .pillars{grid-template-columns:1fr 1fr;margin-top:26px}
+.op .pillars{grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px}.op .pillar{padding:14px 14px 13px}.op .pillar b{font-size:.98rem}.op .pillar span{font-size:.8rem;line-height:1.35}
+@media(max-width:860px){.op .pillars{grid-template-columns:1fr 1fr}}
 .op .pillar .scene{height:118px}
 .op .conviction{margin-top:clamp(40px,6vw,64px)}
 .op .jgo{margin-top:clamp(60px,8vw,96px)}
@@ -985,7 +986,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <span class="kick rv">Purpose</span>
         <p class="ask rv">So I made it my purpose, and the subject of my master's thesis.</p>
         <h2 class="words rv" style="margin-top:14px">Every child should start with equal chances.</h2>
-        <p class="lead rv" style="margin-top:18px">Today, the chances you get in life still depend on where you were born. We have the tools, the technology and the innovation to change that. I want to help bring a wealthy and sustainable society to the next generations, with better opportunities for everyone. Clean water, education, health and energy are some of its pillars.</p>
+        <p class="lead rv" style="margin-top:18px">Today, the chances you get in life still depend on where you were born. We have the tools, the technology and the innovation to change that. I want to help bring a wealthy and sustainable society to the next generations, with better opportunities for everyone. Clean water, education, health, energy, connectivity and finance are some of its pillars.</p>
     <div class="pillars" id="pillars">
       <div class="glass pillar pw rv" tabindex="0" data-shape="drop" data-col="#58C8FF" data-scene="water" style="--pc:#58C8FF"><canvas class="scene" aria-hidden="true"></canvas>
         <b>Clean water</b><span>Flowing to every home</span></div>
@@ -995,6 +996,10 @@ body.gl-open .dock{transform:translateY(150%)}
         <b>Healthcare</b><span>A strong, healthy heartbeat</span></div>
       <div class="glass pillar pn rv" tabindex="0" data-shape="bolt" data-col="#FFB347" data-scene="energy" style="--pc:#FFB347"><canvas class="scene" aria-hidden="true"></canvas>
         <b>Energy</b><span>Lights on in every home</span></div>
+      <div class="glass pillar pc rv" tabindex="0" data-shape="signal" data-col="#F472D0" data-scene="connect" style="--pc:#F472D0"><canvas class="scene" aria-hidden="true"></canvas>
+        <b>Connectivity</b><span>Every village, online</span></div>
+      <div class="glass pillar pf rv" tabindex="0" data-shape="capital" data-col="#34D399" data-scene="finance" style="--pc:#34D399"><canvas class="scene" aria-hidden="true"></canvas>
+        <b>Finance</b><span>Capital that builds</span></div>
     </div>
     <p class="note rv">Hover each pillar. The whole world takes its colour.</p>
         <p class="conviction rv">The regions left behind deserve <b>sovereignty over their development</b>: built by them, for them, drawing on the world's knowledge.</p>
@@ -1515,7 +1520,13 @@ SH.engine=sampleCanvas(function(x,S){x.lineWidth=S*.03;x.beginPath();x.arc(S*.5,
 SH.drop=sampleCanvas(function(x,S){x.beginPath();x.moveTo(S*.5,S*.08);x.bezierCurveTo(S*.62,S*.3,S*.82,S*.48,S*.82,S*.64);x.arc(S*.5,S*.64,S*.32,0,Math.PI);x.bezierCurveTo(S*.18,S*.48,S*.38,S*.3,S*.5,S*.08);x.fill()});
 SH.heart=sampleCanvas(function(x,S){x.beginPath();x.moveTo(S*.5,S*.88);x.bezierCurveTo(S*.08,S*.6,S*.02,S*.3,S*.26,S*.18);x.bezierCurveTo(S*.4,S*.12,S*.5,S*.24,S*.5,S*.3);x.bezierCurveTo(S*.5,S*.24,S*.6,S*.12,S*.74,S*.18);x.bezierCurveTo(S*.98,S*.3,S*.92,S*.6,S*.5,S*.88);x.fill()});
 SH.bolt=sampleCanvas(function(x,S){x.beginPath();x.moveTo(S*.58,S*.04);x.lineTo(S*.22,S*.56);x.lineTo(S*.46,S*.56);x.lineTo(S*.36,S*.96);x.lineTo(S*.8,S*.4);x.lineTo(S*.55,S*.4);x.closePath();x.fill()});
-SH.pillars=(function(){var a=[SH.drop,SH.cap,SH.heart,SH.bolt],o=new Float32Array(N*3),off=[[-.5,-.5],[.5,-.5],[-.5,.5],[.5,.5]];for(var k=0;k<N;k++){var q=k%4,s=a[q];o[k*3]=s[k*3]*.42+off[q][0];o[k*3+1]=s[k*3+1]*.42+off[q][1];o[k*3+2]=s[k*3+2]}return o})();
+/* connectivity: a mast sending signal waves */
+SH.signal=sampleCanvas(function(x,S){x.beginPath();x.moveTo(S*.5,S*.42);x.lineTo(S*.36,S*.94);x.lineTo(S*.42,S*.94);x.lineTo(S*.5,S*.6);x.lineTo(S*.58,S*.94);x.lineTo(S*.64,S*.94);x.closePath();x.fill();x.beginPath();x.arc(S*.5,S*.38,S*.05,0,6.283);x.fill();
+  x.lineWidth=S*.045;for(var i=1;i<=3;i++){x.beginPath();x.arc(S*.5,S*.38,S*(.1+i*.11),-2.4,-.74);x.stroke();x.beginPath();x.arc(S*.5,S*.38,S*(.1+i*.11),-2.4+Math.PI,-.74+Math.PI,false);x.stroke()}});
+/* finance: capital rising into buildings */
+SH.capital=sampleCanvas(function(x,S){var b=[[.1,.62],[.32,.44],[.54,.28],[.76,.1]];b.forEach(function(q){x.fillRect(S*q[0],S*q[1],S*.16,S*(.92-q[1]))});x.fillRect(S*.06,S*.92,S*.88,S*.03);
+  x.lineWidth=S*.035;x.beginPath();x.moveTo(S*.12,S*.5);x.lineTo(S*.46,S*.22);x.lineTo(S*.58,S*.3);x.lineTo(S*.86,S*.04);x.stroke();x.beginPath();x.moveTo(S*.74,S*.04);x.lineTo(S*.88,S*.02);x.lineTo(S*.86,S*.16);x.stroke()});
+SH.pillars=(function(){var a=[SH.drop,SH.cap,SH.heart,SH.bolt,SH.signal,SH.capital],o=new Float32Array(N*3),off=[[-.66,-.42],[0,-.42],[.66,-.42],[-.66,.42],[0,.42],[.66,.42]];for(var k=0;k<N;k++){var q=k%6,s=a[q];o[k*3]=s[k*3]*.3+off[q][0];o[k*3+1]=s[k*3+1]*.3+off[q][1];o[k*3+2]=s[k*3+2]}return o})();
 function slab(k,i,dx,dy,tilt){var u=Math.random();var x,y,z;if(u<.62){x=Math.random()*1.6-.8;z=Math.random()*.7-.35;y=0}else if(u<.86){var e=Math.random();x=e<.5?(Math.random()<.5?-.8:.8):Math.random()*1.6-.8;z=e<.5?Math.random()*.7-.35:(Math.random()<.5?-.35:.35);y=0}else{x=Math.random()<.5?-.8:.8;z=Math.random()<.5?-.35:.35;y=Math.random()*.09}
   var yy=.52-i*.35+y;return [x*Math.cos(tilt)-yy*Math.sin(tilt)*.2+dx,yy+dy,z]}
 SH.slabs=make3d(function(k){return slab(k,k%4,0,0,0)});
@@ -1525,7 +1536,7 @@ SH.y2027=sampleCanvas(function(x,S){x.font='700 '+(S*.36)+'px Sora, Arial, sans-
 SH.gridy2027=(function(){var o=new Float32Array(N*3),G=Math.floor(N*.42),g=Math.floor(Math.sqrt(G*2.2)),r=Math.ceil(G/g);for(var k=0;k<N;k++){if(k<G){var i=k%g,j=Math.floor(k/g);o[k*3]=(i/(g-1)*2-1)*.92;o[k*3+1]=-.92+j/(r-1)*.62+Math.sin(i*.35)*Math.cos(j*.5)*.05;o[k*3+2]=Math.sin(i*.3)*Math.cos(j*.3)*.12}else{o[k*3]=SH.y2027[k*3]*1.05;o[k*3+1]=SH.y2027[k*3+1]*1.05+.38;o[k*3+2]=SH.y2027[k*3+2]}}return o})();
 function word(t){return sampleCanvas(function(x,S){var f=S*.3;x.font='700 '+f+'px Sora, Arial, sans-serif';var m=x.measureText(t).width;if(m>S*.78){f*=S*.78/m;x.font='700 '+f+'px Sora, Arial, sans-serif'}x.textAlign='center';x.textBaseline='middle';x.fillText(t,S*.5,S*.52)})}
 SH.wLille=word('LILLE');SH.wUsa=word('USA');SH.wBeirut=word('BEIRUT');SH.wParis=word('PARIS');
-var SOFT={slabs:1,slabsApart:1};var FLAT={wLille:1,wUsa:1,wBeirut:1,wParis:1,cedar:1,eiffel:1,train:1,plane:1,radar:1,cap:1,engine:1,drop:1,heart:1,bolt:1,pillars:1,y2027:1,gridy2027:1};
+var SOFT={slabs:1,slabsApart:1};var FLAT={wLille:1,wUsa:1,wBeirut:1,wParis:1,cedar:1,eiffel:1,train:1,plane:1,radar:1,cap:1,engine:1,drop:1,heart:1,bolt:1,signal:1,capital:1,pillars:1,y2027:1,gridy2027:1};
 
 /* ── anchors: what the page is at each scroll position ── */
 var hz=$('#journey'),track=$('#track'),panels=$$('.panel',track),HZ=false;
@@ -1941,7 +1952,7 @@ $$('.pillar').forEach(function(p){function on(){override=p.dataset.shape;pillarC
 setInterval(function(){if(overT>0)applyCols(cols)},50);
 
 
-/* ── the four pillars: small living scenes. Hover = what access changes ── */
+/* ── the six pillars: small living scenes. Hover = what access changes ── */
 (function(){var ps=$$('.pillar[data-scene]');if(!ps.length)return;var vis=false,run=false,last=performance.now(),T=0;
   function rgb(h){var n=parseInt(h.slice(1),16);return [n>>16&255,n>>8&255,n&255]}
   function rgba(c,a){return 'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')'}
@@ -2007,6 +2018,42 @@ setInterval(function(){if(overT>0)applyCols(cols)},50);
     var by=h*.9,L=w*.12,R2=w*.88;x.strokeStyle=rgba(c,.25+.6*o.h);x.lineWidth=1.3;x.beginPath();
     for(var X=L;X<=R2;X+=2){var u=((X-L)/(R2-L)+o.ph*.5)%1,q=(u*2)%1,v=(Math.exp(-Math.pow((q-.5)/.02,2))-.3*Math.exp(-Math.pow((q-.53)/.02,2)))*(.2+.8*o.h);X===L?x.moveTo(X,by-v*h*.16):x.lineTo(X,by-v*h*.16)}x.stroke();
     x.font='600 10px ui-monospace,monospace';x.textAlign='right';x.fillStyle=o.h>.5?rgba(c,1):'rgba(255,255,255,.4)';x.fillText(o.h>.5?Math.round(rate*60)+' bpm':'-- bpm',w-8,14)},
+  connect:function(x,w,h,o,dt){var c=o.c,gy=h*.92,tx=w*.2,ty=h*.3;
+    /* mast */
+    x.strokeStyle=LINE;x.lineWidth=1.6;x.lineCap='round';x.beginPath();x.moveTo(4,gy);x.lineTo(w-4,gy);x.stroke();
+    x.beginPath();x.moveTo(tx-h*.12,gy);x.lineTo(tx,ty);x.lineTo(tx+h*.12,gy);x.moveTo(tx-h*.07,gy-h*.2);x.lineTo(tx+h*.07,gy-h*.2);x.moveTo(tx-h*.04,gy-h*.38);x.lineTo(tx+h*.04,gy-h*.38);x.stroke();
+    x.fillStyle=o.h>.1?rgba(c,1):'rgba(255,255,255,.6)';x.beginPath();x.arc(tx,ty-3,3,0,6.283);x.fill();
+    /* signal waves, faster and stronger when connected */
+    o.w=(o.w||0)+dt*(.35+1.2*o.h);for(var i=0;i<3;i++){var u=(o.w+i/3)%1,r=8+u*w*.75;x.strokeStyle=rgba(c,(1-u)*(.15+.6*o.h));x.lineWidth=1.4;x.beginPath();x.arc(tx,ty-3,r,-.9,.35);x.stroke()}
+    /* village: each home gets online in turn, a small screen lights and data dots travel */
+    var hx=[w*.46,w*.62,w*.78,w*.92];o.on=o.on||[0,0,0,0];
+    hx.forEach(function(X,j){var hw=Math.min(w*.055,15),hh=h*.2+(j%2)*h*.05,y0=gy-hh,tgt=clamp(o.h*3.2-j*.55,0,1);o.on[j]+=(tgt-o.on[j])*Math.min(1,dt*5);var v=o.on[j];
+      x.strokeStyle=LINE;x.lineWidth=1.4;x.fillStyle='rgba(10,14,30,.6)';x.beginPath();x.moveTo(X-hw,gy);x.lineTo(X-hw,y0);x.lineTo(X,y0-hw*.75);x.lineTo(X+hw,y0);x.lineTo(X+hw,gy);x.closePath();x.fill();x.stroke();
+      var sw=hw*.9,sh=hh*.38,sx=X-sw/2,sy=y0+hh*.25;if(v>.02){x.shadowColor=rgba(c,1);x.shadowBlur=10*v}x.fillStyle=v>.02?rgba(c,.2+.8*v):'rgba(255,255,255,.08)';x.fillRect(sx,sy,sw,sh);x.shadowBlur=0;
+      if(v>.5){x.strokeStyle=rgba(c,.5*v);x.lineWidth=1;for(var b=0;b<3;b++){x.beginPath();x.arc(X,y0-hw*.75-4,3+b*3,-2.4,-.74);x.stroke()}}
+      if(v>.6&&Math.random()<dt*3)o.p.push({x0:tx,y0:ty,x1:X,y1:y0-hw*.75,t:0})});
+    for(var i2=o.p.length-1;i2>=0;i2--){var q=o.p[i2];q.t+=dt*1.4;if(q.t>=1){o.p.splice(i2,1);continue}var px=lerp(q.x0,q.x1,q.t),py=lerp(q.y0,q.y1,q.t)-Math.sin(q.t*Math.PI)*h*.18;x.fillStyle=rgba(c,1-q.t*.4);x.beginPath();x.arc(px,py,1.8,0,6.283);x.fill()}
+    /* signal bars */
+    for(var k=0;k<4;k++){var lit=o.h*4>k+.3;x.fillStyle=lit?rgba(c,1):'rgba(255,255,255,.22)';x.fillRect(w-30+k*6,16-k*3,4,4+k*3)}},
+  finance:function(x,w,h,o,dt){var c=o.c,gy=h*.92;
+    x.strokeStyle=LINE;x.lineWidth=1.6;x.beginPath();x.moveTo(4,gy);x.lineTo(w-4,gy);x.stroke();
+    /* a fund at the left: coins leave it and flow to where they build */
+    var fx=w*.13,fy=gy-h*.16;x.fillStyle='rgba(10,14,30,.6)';x.strokeStyle=LINE;x.lineWidth=1.5;x.beginPath();x.ellipse(fx,fy,w*.08,h*.05,0,0,6.283);x.fill();x.stroke();
+    x.beginPath();x.moveTo(fx-w*.08,fy);x.lineTo(fx-w*.08,gy-2);x.moveTo(fx+w*.08,fy);x.lineTo(fx+w*.08,gy-2);x.stroke();
+    for(var s2=0;s2<3;s2++){x.beginPath();x.ellipse(fx,fy+h*.05+s2*h*.045,w*.08,h*.04,0,0,Math.PI);x.stroke()}
+    /* projects: a school, a grid pylon, a water tower, a hospital, each rises once financed */
+    var P=[{x:w*.36,k:'school'},{x:w*.52,k:'pylon'},{x:w*.68,k:'tower'},{x:w*.85,k:'hosp'}];o.b=o.b||[0,0,0,0];o.cool=o.cool||0;
+    P.forEach(function(pr,j){var tgt=o.h>.05?clamp(o.h*3.4-j*.6,0,1):Math.max(0,o.b[j]-dt*.25);o.b[j]+=(tgt-o.b[j])*Math.min(1,dt*(tgt>o.b[j]?2.2:1));var v=o.b[j],X=pr.x,full=h*.5,ht=Math.max(3,full*v),top=gy-ht,hw=Math.min(w*.055,15);
+      x.strokeStyle=v>.05?rgba(c,.6+.4*v):DIM;x.fillStyle=v>.05?rgba(c,.12+.2*v):'rgba(255,255,255,.04)';x.lineWidth=1.5;
+      if(pr.k==='pylon'){x.beginPath();x.moveTo(X-hw*.8,gy);x.lineTo(X,top);x.lineTo(X+hw*.8,gy);x.moveTo(X-hw*.6,top+ht*.3);x.lineTo(X+hw*.6,top+ht*.3);x.stroke()}
+      else if(pr.k==='tower'){x.beginPath();x.moveTo(X-hw*.25,gy);x.lineTo(X-hw*.25,top+ht*.35);x.moveTo(X+hw*.25,gy);x.lineTo(X+hw*.25,top+ht*.35);x.stroke();x.beginPath();x.rect(X-hw*.75,top,hw*1.5,ht*.35);x.fill();x.stroke()}
+      else{x.beginPath();x.rect(X-hw,top,hw*2,ht);x.fill();x.stroke();if(v>.6){x.fillStyle=rgba(c,.9);if(pr.k==='hosp'){x.fillRect(X-1.2,top+ht*.2,2.4,ht*.28);x.fillRect(X-ht*.14,top+ht*.33,ht*.28,2.4)}else{x.beginPath();x.moveTo(X,top-ht*.25);x.lineTo(X,top);x.stroke();x.fillRect(X,top-ht*.25,7,4)}}}
+      /* coins fly from the fund to the project being built */
+      if(o.h>.1&&v<.98&&Math.random()<dt*(5-j))o.p.push({x0:fx,y0:fy-4,x1:X,y1:top,t:0})});
+    for(var i=o.p.length-1;i>=0;i--){var q=o.p[i];q.t+=dt*1.5;if(q.t>=1){o.p.splice(i,1);continue}var px=lerp(q.x0,q.x1,q.t),py=lerp(q.y0,q.y1,q.t)-Math.sin(q.t*Math.PI)*h*.3;
+      x.fillStyle=rgba(c,1);x.beginPath();x.ellipse(px,py,3,2.2,0,0,6.283);x.fill();x.fillStyle='rgba(255,255,255,.6)';x.fillRect(px-.6,py-1.4,1.2,2.8)}
+    /* a small growth line above */
+    x.strokeStyle=rgba(c,.2+.6*o.h);x.lineWidth=1.3;x.beginPath();for(var X2=w*.3;X2<=w-10;X2+=3){var u=(X2-w*.3)/(w*.7-10),yy=h*.2-u*h*.12*(.3+o.h)+Math.sin(u*14+T*2)*1.5;X2===w*.3?x.moveTo(X2,yy):x.lineTo(X2,yy)}x.stroke()},
   energy:function(x,w,h,o,dt){var c=o.c,gy=h*.92;
     o.st=o.st||Array.from({length:14},function(){return [Math.random(),Math.random()*.45,Math.random()*6]});o.st.forEach(function(s3){x.fillStyle='rgba(255,255,255,'+(.15+.25*Math.sin(T*2+s3[2])*.5+.12)+')';x.fillRect(s3[0]*w,s3[1]*h,1.4,1.4)});
     x.strokeStyle=LINE;x.lineWidth=1.6;x.beginPath();x.moveTo(4,gy);x.lineTo(w-4,gy);x.stroke();
