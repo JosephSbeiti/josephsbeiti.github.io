@@ -644,7 +644,7 @@ main{overflow-x:clip}
 /* time saved */
 .sv-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:10px}
 .sv-h b{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;color:var(--a);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.sv-h span{color:var(--fg2)}
+.sv-h>span{color:var(--fg2)}
 .sv-bar{position:relative;display:flex;height:46px;margin-top:16px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.08)}
 .sv-bar>div{position:relative;display:flex;align-items:center;padding-inline:12px;font-size:.8rem;font-weight:600;white-space:nowrap;overflow:hidden}
 .sv-keep{flex:0 0 25%;background:var(--fg);color:var(--ink);z-index:1}
@@ -1072,7 +1072,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <div class="board glass" aria-hidden="true"><div class="bhd"><span>Departures · Paris</span><span class="bclock" id="bclock">2027</span></div>
           <div class="brow"><span class="fl d" data-w="12">NEXT CHAPTER</span><span class="fl t">2027</span><span class="fl s" data-w="9">SCHEDULED</span></div>
           <div class="brow"><span class="fl d" data-w="12">YOUR TEAM?</span><span class="fl t">2027</span><span class="fl s" data-w="9">ON TIME</span></div>
-          <div class="brow"><span class="fl d" data-w="12">THE WORLD</span><span class="fl t">2027</span><span class="fl s" data-w="9">ON TIME</span></div></div>
+          <div class="brow"><span class="fl d" data-w="12">LET'S CHAT</span><span class="fl t">2027</span><span class="fl s" data-w="9">ON TIME</span></div></div>
         <div class="pax" id="pax" aria-hidden="true">
           <div class="pbub" id="pbub"><b>?</b></div>
           <svg viewBox="-110 -14 270 364">
@@ -1125,8 +1125,8 @@ body.gl-open .dock{transform:translateY(150%)}
                   <path d="M76.5 61q5-2.2 9.4.8q-4.2 1.6-9.4.6z" fill="#21150f"/>
                   <path d="M72.6 66.4q6 1.9 11.6-.8q.8 8.4-5.4 12.4q-5.6-3-6.2-11.6z" fill="#21150f"/>
                   <path id="pxSMouth" d="M77.5 64q3.4 1.7 6.6-.3" fill="none" stroke="#6b2c24" stroke-width="1.8" stroke-linecap="round"/>
-                  <g transform="translate(76 46)"><g class="plid"><path d="M-3.6 0q3.6-3.6 7.6 0q-3.8 3-7.6 0z" fill="#fff"/><circle class="spu" cx="1.4" r="2.2" fill="#4a2c1c"/><path d="M-3.8 -.2q3.8-4 8 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
-                  <path class="pbr" d="M70.5 39.6q6-2.8 11.5.6" fill="none" stroke="#1b1412" stroke-width="3.4" stroke-linecap="round"/>
+                  <g transform="translate(76 46)"><g class="plid"><ellipse cx=".6" rx="3.6" ry="4.2" fill="#fff"/><circle class="spu" cx="1.4" r="2.5" fill="#1b1412"/></g></g>
+                  <path class="pbr" d="M71 38.6q6-3 11.5.4" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
                   <g id="pxSHair" fill="#1b1412"></g><ellipse cx="56" cy="52" rx="4.6" ry="7" fill="#D9A882"/><path d="M55 48q3 3 0 8" fill="none" stroke="#B57D58" stroke-width="1.3"/>
                 </g>
                 <g id="pxSArmF"><rect x="52.5" y="104" width="15" height="62" rx="7.5" fill="url(#pxSuit)"/>
@@ -1167,22 +1167,20 @@ body.gl-open .dock{transform:translateY(150%)}
                 
                 <g id="pxFArmL"><rect x="28.5" y="104" width="15" height="62" rx="7.5" fill="url(#pxSuit)"/>
                   <g id="pxFForeL"><circle cx="36" cy="160" r="6.9" fill="#1e2b50"/><rect x="29" y="156" width="14" height="48" rx="7" fill="#1e2b50"/><rect x="29.5" y="199" width="13" height="5" rx="2" fill="#F5F6F8"/><circle cx="36" cy="210" r="7.5" fill="#E3B590"/></g></g>
-                <g id="pxFHead">
-                  <ellipse cx="35.5" cy="52" rx="4.6" ry="7.4" fill="#D9A882"/><ellipse cx="84.5" cy="52" rx="4.6" ry="7.4" fill="#D9A882"/>
-                  <path d="M35.5 46Q35.5 18 60 18Q84.5 18 84.5 46Q84.5 68 75 78Q67 85 60 85Q53 85 45 78Q35.5 68 35.5 46Z" fill="url(#pxSkin)"/>
-                  <path d="M38 60Q40 76 50 82Q55 85 60 85Q65 85 70 82Q80 76 82 60Q79 74 70 78Q65 80 60 80Q55 80 50 78Q41 74 38 60Z" fill="#3a2a22" opacity=".14"/>
-                  <ellipse cx="44" cy="61" rx="6" ry="4" fill="url(#pxCheek)"/><ellipse cx="76" cy="61" rx="6" ry="4" fill="url(#pxCheek)"/>
-                  <path d="M60 49q-2.6 8-1.2 11.2q2.2 1.6 5-.4" fill="none" stroke="#B57D58" stroke-width="1.7" stroke-linecap="round"/>
-                  <path d="M50.5 65.6q4.6-3.6 9.5-1.3q4.9-2.3 9.5 1.3q-4.7 1.7-9.5.5q-4.8 1.2-9.5-.5z" fill="#21150f"/>
-                  
-                  <path d="M49.5 72.2q10.5 3.8 21 0q1 7.4-4 11.4q-6 3.4-13 0q-5-4-4-11.4z" fill="#21150f"/>
-                  <path id="pxMouth" d="M54 69.5q6 4 12 0" fill="none" stroke="#6b2c24" stroke-width="2" stroke-linecap="round"/>
-                  <g transform="translate(50.5 49)"><g class="plid"><path d="M-5.6 0q5.6-5 11.2 0q-5.6 4.4-11.2 0z" fill="#fff"/><circle class="ppu" r="2.7" fill="#4a2c1c"/><circle cx=".9" cy="-.9" r=".9" fill="#fff"/><path d="M-5.8 -.2q5.8-5.4 11.6 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
-                  <g transform="translate(69.5 49)"><g class="plid"><path d="M-5.6 0q5.6-5 11.2 0q-5.6 4.4-11.2 0z" fill="#fff"/><circle class="ppu" r="2.7" fill="#4a2c1c"/><circle cx=".9" cy="-.9" r=".9" fill="#fff"/><path d="M-5.8 -.2q5.8-5.4 11.6 0" fill="none" stroke="#1b1412" stroke-width="1.3"/></g></g>
-                  <path class="pbr" d="M43.5 41q6-3.6 12.5-.6" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
-                  <path class="pbr" d="M64 40.4q6.5-3 12.5.6" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+                <g id="pxFHead"><g transform="translate(60 52) scale(.9) translate(-60 -58)">
+                  <ellipse cx="33" cy="60" rx="5" ry="7.5" fill="#D9AE88"/><ellipse cx="87" cy="60" rx="5" ry="7.5" fill="#D9AE88"/>
+                  <ellipse cx="60" cy="58" rx="26.5" ry="31" fill="url(#pxSkin)"/>
+                  <path d="M35 63c1 17 12 28 25 28s24-11 25-28c-4 11-12 18-25 18s-21-7-25-18z" fill="#2a1c16" opacity=".22"/>
+                  <ellipse cx="43" cy="67" rx="6" ry="4" fill="url(#pxCheek)"/><ellipse cx="77" cy="67" rx="6" ry="4" fill="url(#pxCheek)"/>
+                  <path transform="translate(60 71.2) scale(1.12 1.25) translate(-60 -65.6)" fill="#241712" d="M50.5 65.6q4.6-3.6 9.5-1.3q4.9-2.3 9.5 1.3q-4.7 1.7-9.5.5q-4.8 1.2-9.5-.5z"/><path transform="translate(60 77) scale(1.05 .8) translate(-60 -69.5)" fill="#241712" d="M49.5 72.2q10.5 3.8 21 0q1 7.4-4 11.4q-6 3.4-13 0q-5-4-4-11.4z"/>
+                  <path d="M60 56q-3 7 0 10q3 0 4.5-2" fill="none" stroke="#B88763" stroke-width="1.6" stroke-linecap="round"/>
+                  <path id="pxMouth" d="M51.5 75q8.5 6.5 17 0" fill="none" stroke="#6b2c24" stroke-width="2.4" stroke-linecap="round"/>
+                  <g transform="translate(49 54)"><g class="plid"><ellipse rx="5.6" ry="4.2" fill="#fff"/><circle class="ppu" r="2.7" fill="#1b1412"/></g></g>
+                  <g transform="translate(71 54)"><g class="plid"><ellipse rx="5.6" ry="4.2" fill="#fff"/><circle class="ppu" r="2.7" fill="#1b1412"/></g></g>
+                  <path class="pbr" d="M42 46q7-4 13 0" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
+                  <path class="pbr" d="M65 46q6-4 13 0" fill="none" stroke="#1b1412" stroke-width="3.6" stroke-linecap="round"/>
                   <g id="pxHair" fill="#1b1412"></g>
-                </g>
+                </g></g>
                 <g id="pxFArmR"><rect x="76.5" y="104" width="15" height="62" rx="7.5" fill="url(#pxSuit)"/>
                   <g id="pxFForeR"><circle cx="84" cy="160" r="6.9" fill="#1e2b50"/><rect x="77" y="156" width="14" height="48" rx="7" fill="#1e2b50"/><rect x="77.5" y="199" width="13" height="5" rx="2" fill="#F5F6F8"/><circle cx="84" cy="210" r="7.5" fill="#E3B590"/>
                     <g id="pxFTicket" opacity="0"><rect x="66" y="196" width="22" height="34" rx="3" fill="#fff"/><rect x="70" y="202" width="14" height="3" fill="#15171f" opacity=".5"/><rect x="70" y="208" width="9" height="2.4" style="fill:var(--facc,#6EF2D2)"/><rect x="70" y="214" width="12" height="10" fill="#15171f" opacity=".25"/></g></g></g>
@@ -1375,8 +1373,7 @@ body.gl-open .dock{transform:translateY(150%)}
         <ellipse cx="33" cy="60" rx="5" ry="7.5" fill="#D9AE88"/><ellipse cx="87" cy="60" rx="5" ry="7.5" fill="#D9AE88"/>
         <ellipse cx="60" cy="58" rx="26.5" ry="31" fill="#E6BD98"/>
         <path d="M35 63c1 17 12 28 25 28s24-11 25-28c-4 11-12 18-25 18s-21-7-25-18z" fill="#2a1c16" opacity=".28"/>
-        <path d="M51 79q9 13 18 0q-9 4-18 0z" fill="#241712"/>
-        <path d="M49 71.5q11-6 22 0q-11-2.5-22 0z" fill="#241712"/>
+        <path transform="translate(60 71.2) scale(1.12 1.25) translate(-60 -65.6)" fill="#241712" d="M50.5 65.6q4.6-3.6 9.5-1.3q4.9-2.3 9.5 1.3q-4.7 1.7-9.5.5q-4.8 1.2-9.5-.5z"/><path transform="translate(60 77) scale(1.05 .8) translate(-60 -69.5)" fill="#241712" d="M49.5 72.2q10.5 3.8 21 0q1 7.4-4 11.4q-6 3.4-13 0q-5-4-4-11.4z"/>
         <path d="M60 56q-3 7 0 10q3 0 4.5-2" fill="none" stroke="#B88763" stroke-width="1.6" stroke-linecap="round"/>
         <g id="bmouth"><path d="M51 75q9 7 18 0" fill="none" stroke="#5B2A22" stroke-width="2.4" stroke-linecap="round"/></g>
         <g id="beyes">
@@ -1691,8 +1688,9 @@ function drawTrain(x,w,h,p,ac,bg,km){
 /* ── the airport: mini Joseph waits for his next flight ── */
 var AIR=(function(){var el=$('.flight.air');if(!el)return null;var pax=$('#pax',el),q=function(s){return $(s,pax)};
   function curls(list){var h='';list.forEach(function(c){h+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>'});return h}
-  q('#pxHair').innerHTML='<path d="M36.5 44Q35 24 46 18Q53 13.5 61 14Q72 14 79 19.5Q85.5 26 83.5 44Q82 33 76 29.5Q68 26.5 60 27.5Q51 26.5 44 29.5Q38 33 36.5 44Z"/><path d="M36.2 44q-1.2 5 .2 9l1.6-.4q-.8-4.6 .6-8.6zM83.8 44q1.2 5-.2 9l-1.6-.4q.8-4.6-.6-8.6z" opacity=".75"/>'+curls([[44,20,4.2],[50.5,16.5,4.6],[57.5,14.6,4.8],[64.5,14.8,4.8],[71,16.8,4.5],[77,21,4],[47.5,24,3.6],[54,21.5,3.8],[61,20.5,3.9],[68,21.8,3.7],[74,25,3.3],[41,26,3.2],[80,27,3]]);
-  q('#pxSHair').innerHTML='<path d="M45.5 71Q39 62 38.6 48Q38.6 30 49 20.5Q57 14.5 67 15Q78 16.5 82.5 25Q84 30 83 34Q78 29 71.5 29.5Q66 31 64.6 37Q63.4 43 62.6 50.5L59 51Q57.5 45.5 54 45Q51 46.5 50.6 51Q50.2 59 52.6 66.5Q49.5 70.5 45.5 71Z"/><path d="M58.2 37.5q3.2 6 2.6 14.6l-2.2.2q-.2-7.6-2.4-12.6z" opacity=".85"/><path d="M45.5 71q-2.4 2-1.4 4.6l2.2-.6q-.4-2 1-3.4z" opacity=".55"/>'+curls([[48,22,4.4],[54.5,17.8,4.7],[61.5,15.6,4.8],[68.5,16,4.6],[75,18.8,4.3],[80,23.5,3.8],[44,28,4.2],[51.5,24.5,3.8],[58.5,22,3.9],[65.5,22.4,3.8],[72,24.5,3.5],[41.2,37,4],[40.6,47,3.8],[42.4,57,3.4],[46,33,3.6]]);
+  var HC=[[34,40,8],[40,31,8.5],[49,26,9],[59,24,9.5],[69,25,9],[78,30,8.5],[85,38,8],[38,48,5.5],[83,47,5.5],[45,36,6],[55,32,6.5],[65,32,6.5],[75,36,6],[31,50,4.5],[88,52,4.5],[52,22,6],[66,21,6]];
+  q('#pxHair').innerHTML=curls(HC)+[[44,28],[56,24],[70,27],[80,36],[37,38]].map(function(c){return '<path d="M'+(c[0]-3)+' '+c[1]+'q3 -4 6 0" fill="none" stroke="#3a2a22" stroke-width="1.4" stroke-linecap="round"/>'}).join('');
+  q('#pxSHair').innerHTML='<path d="M42 64Q36 40 46 25Q56 15 70 16Q81 18 84 30Q77 28 70 31Q63 35 61 46L55 45Q50 46 49.5 53Q49.5 61 51.5 67Q45 69 42 64Z"/>'+curls([[44,30,8],[50,22,8.5],[59,17.5,8.6],[68,17,8.4],[76,21,7.6],[81.5,27.5,6],[40.5,40,7.4],[40,51,6.6],[42.5,60,5.6],[48,33,6],[57,26,6.2],[66,25,6],[73,29,5.2]])+[[47,24],[58,19],[69,20],[42,42]].map(function(c){return '<path d="M'+(c[0]-3)+' '+c[1]+'q3 -4 6 0" fill="none" stroke="#3a2a22" stroke-width="1.4" stroke-linecap="round"/>'}).join('');
   var A={el:el,pax:pax,fig:q('#pxFig'),S:q('#pxS'),F:q('#pxF'),sBody:q('#pxSBody'),sHead:q('#pxSHead'),sArmB:q('#pxSArmB'),sForeB:q('#pxSForeB'),sArmF:q('#pxSArmF'),sForeF:q('#pxSForeF'),sLegB:q('#pxSLegB'),sShinB:q('#pxSShinB'),sFootB:q('#pxSFootB'),sLegF:q('#pxSLegF'),sShinF:q('#pxSShinF'),sFootF:q('#pxSFootF'),sMouth:q('#pxSMouth'),sPu:q('.spu'),sTicket:q('#pxSTicket'),
     fBody:q('#pxFBody'),fHead:q('#pxFHead'),fArmL:q('#pxFArmL'),fForeL:q('#pxFForeL'),fArmR:q('#pxFArmR'),fForeR:q('#pxFForeR'),fThink:q('#pxFThink'),fPass:q('#pxFPass'),fTicket:q('#pxFTicket'),fCase:q('#pxFCase'),
     cas:q('#pxCase'),rods:q('#pxRods'),grip:q('#pxGrip'),wheel:q('#pxWheel'),csh:q('#pxCaseSh'),shadow:q('#pxShadow'),wk:0,
@@ -1702,7 +1700,7 @@ var AIR=(function(){var el=$('.flight.air');if(!el)return null;var pax=$('#pax',
   $$('.fl',el).forEach(function(f){var t=f.textContent,n=+f.dataset.w||t.length;f.textContent='';f._c=[];for(var i=0;i<n;i++){var c=D.createElement('i');c.textContent=t[i]||' ';f.appendChild(c);f._c.push(c)}f._t=t});
   A.setFlap=function(f,t,scr){var n=f._c.length;if(!scr&&f._t===t)return;f._t=t;for(var i=0;i<n;i++){var ch=scr?(Math.random()<.7?'ABCDEFGHIJKLMNOPQRSTUVWXYZ?'[Math.floor(Math.random()*27)]:'?'):(t[i]||' ');if(f._c[i].textContent!==ch){f._c[i].textContent=ch;f._c[i].classList.remove('f');void f._c[i].offsetWidth;f._c[i].classList.add('f')}}};
   return A})();
-var MOUTHS={smile:['M54 69.5q6 4 12 0','none'],big:['M53.5 68.6q6.5 8 13 0z','#6b2c24'],wow:['M57.4 70.6a2.6 3.2 0 1 0 5.2 0a2.6 3.2 0 1 0-5.2 0','#6b2c24'],hmm:['M55 70.6q5-2 10 .8','none']};
+var MOUTHS={smile:['M51.5 75q8.5 6.5 17 0','none'],big:['M50.5 73.5q9.5 11 19 0z','#6b2c24'],wow:['M56.6 76.6a3.4 4.2 0 1 0 6.8 0a3.4 4.2 0 1 0-6.8 0','#6b2c24'],hmm:['M53 77q6-1 13-3','none']};
 function easeIO(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
 function drawAir(F,p,e,now,w,h,x,bg,mid,ac){var t=now/1000,bgc=hex(bg),acs='rgba('+ac+',1)',sm=w<700;
   /* hall */
