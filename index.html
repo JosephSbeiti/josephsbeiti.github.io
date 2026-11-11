@@ -1242,7 +1242,7 @@ body.gl-open .dock{transform:translateY(150%)}
       </div>
       <div class="nnwrap">
         <div><div class="floor-ax"><span>y · along ↓</span></div><div class="floor"><canvas id="floor" width="250" height="250" aria-label="The room's floor: what the network believes is free or blocked"></canvas></div><div class="floor-ax x"><span>x · across →</span></div>
-          <div class="legend lg2"><span><i style="background:#1B6E7A"></i>network’s guess: free</span><span><i style="background:#7A3A5C"></i>network’s guess: blocked</span><span><i class="dt"></i>dots: the real answer</span><span><i style="height:2px;background:#fff"></i>white line: where it is 50 / 50</span></div><p class="lg-say">It starts as a mess and slowly learns until the colours match the dots.</p></div>
+          <div class="legend lg2"><span><i style="background:#1B6E7A"></i>network’s guess: free</span><span><i style="background:#7A3A5C"></i>network’s guess: blocked</span><span><i class="dt"></i>dots: the real answer</span></div><p class="lg-say">It starts as a mess and slowly learns until the colours match the dots.</p></div>
         <div><svg class="nnsvg" id="nnsvg" viewBox="0 0 520 300" role="img" aria-label="Network: 2 inputs, two hidden layers of 6 neurons, 1 output"></svg>
           <p class="nnmsg" id="nnmsg">Press <b>Forward pass</b> to send one point of the floor through the network.</p>
           <div class="nnstats"><div><span>Epochs</span><b id="nnEp">0</b></div><div><span>Loss</span><b id="nnLoss">—</b></div><div><span>Accuracy</span><b id="nnAcc">—</b></div>
@@ -2128,29 +2128,19 @@ var pst=$$('.pstep');function pg(i){pst.forEach(function(b,k){b.setAttribute('ar
 /* ── Room 1: live neural network (real math) ── */
 (function(){var S=[2,6,6,1],Wt,Bs,data=[],ep=0,losses=[],training=false,raf=0,sel=null,acts=null;
   function lab(x,y){var a=Math.hypot(x-.3,y-.35)<.19,b=(x>.55&&x<.88&&y>.55&&y<.82);return (a||b)?0:1}
-  function rnd(){return (Math.random()*2-1)*1.6}
-  function init(){var best=null,bs=-1;for(var t=0;t<24;t++){init1();var fr=0;for(var i=0;i<14;i++)for(var j=0;j<14;j++)if(fwd(j/13,i/13)[3][0]>.5)fr++;fr/=196;var sc=Math.min(fr,1-fr);if(sc>bs){bs=sc;best=[Wt,Bs]}}Wt=best[0];Bs=best[1];
-    /* balanced sample: 130 free and 130 blocked points, so it can't win by always answering "free" */
-    data=[];var nb=0,nf=0;while(data.length<260){var x=Math.random(),y=Math.random(),L=lab(x,y);if(L?nf<130:nb<130){data.push([x,y,L]);if(L)nf++;else nb++}}ep=0;losses=[];sel=null;acts=null}
-  /* of 24 random starts, keep the one that splits the floor most evenly: pure random weights, the most wrong-looking map */
-  function init1(){Wt=[];Bs=[];for(var l=1;l<S.length;l++){var m=[];for(var j=0;j<S[l];j++){var r=[];for(var k=0;k<S[l-1];k++)r.push(rnd());m.push(r)}Wt.push(m);var bb=[];for(var j2=0;j2<S[l];j2++)bb.push(rnd()*.8);Bs.push(bb)}}
+  function rnd(){return (Math.random()*2-1)*.9}
+  function init(){Wt=[];Bs=[];for(var l=1;l<S.length;l++){var m=[];for(var j=0;j<S[l];j++){var r=[];for(var k=0;k<S[l-1];k++)r.push(rnd());m.push(r)}Wt.push(m);Bs.push(new Array(S[l]).fill(0))}
+    data=[];for(var i=0;i<220;i++){var x=Math.random(),y=Math.random();data.push([x,y,lab(x,y)])}ep=0;losses=[];sel=null;acts=null}
   function fwd(x,y){var A=[[x*2-1,y*2-1]];for(var l=0;l<Wt.length;l++){var a=[];for(var j=0;j<Wt[l].length;j++){var z=Bs[l][j];for(var k=0;k<A[l].length;k++)z+=Wt[l][j][k]*A[l][k];a.push(l===Wt.length-1?1/(1+Math.exp(-z)):Math.tanh(z))}A.push(a)}return A}
   function step(s,lr){var A=fwd(s[0],s[1]),d=[A[3][0]-s[2]];for(var l=Wt.length-1;l>=0;l--){var prev=A[l],nd=new Array(prev.length).fill(0);
     for(var j=0;j<Wt[l].length;j++){for(var k=0;k<prev.length;k++){nd[k]+=Wt[l][j][k]*d[j];Wt[l][j][k]-=lr*d[j]*prev[k]}Bs[l][j]-=lr*d[j]}if(l>0)d=nd.map(function(v,k){return v*(1-prev[k]*prev[k])})}}
   function evalAll(){var L=0,c=0;data.forEach(function(s){var o=fwd(s[0],s[1])[3][0];L-=s[2]*Math.log(o+1e-9)+(1-s[2])*Math.log(1-o+1e-9);if((o>.5)===(s[2]===1))c++});return [L/data.length,c/data.length]}
   var cvf=$('#floor'),ctx2=cvf.getContext('2d'),offc=D.createElement('canvas'),GN=97;offc.width=offc.height=GN;var oc=offc.getContext('2d'),img=oc.createImageData(GN,GN),G=new Float32Array(GN*GN);
   function drawFloor(){var i,j;
-    /* every pixel is a real forward pass; colour = the network's probability that the floor is free */
-    for(i=0;i<GN;i++)for(j=0;j<GN;j++){var o=G[i*GN+j]=fwd(j/(GN-1),i/(GN-1))[3][0],t=Math.max(0,Math.min(1,(o-.5)*1.5+.5)),p=(i*GN+j)*4;
-      img.data[p]=Math.round(lerp(122,27,t));img.data[p+1]=Math.round(lerp(58,110,t));img.data[p+2]=Math.round(lerp(92,122,t));img.data[p+3]=255}
-    oc.putImageData(img,0,0);var w=cvf.width,c=w/(GN-1);ctx2.imageSmoothingEnabled=true;ctx2.drawImage(offc,0,0,w,w);
-    /* decision boundary: the p = 0.5 contour, traced with marching squares */
-    ctx2.save();ctx2.strokeStyle='rgba(255,255,255,.6)';ctx2.lineWidth=1.3;ctx2.lineCap='round';ctx2.beginPath();
-    function ip(a,b){return (.5-a)/(b-a)}
-    for(i=0;i<GN-1;i++)for(j=0;j<GN-1;j++){var a=G[i*GN+j],b=G[i*GN+j+1],d=G[(i+1)*GN+j+1],e=G[(i+1)*GN+j],q=[];
-      if((a>.5)!==(b>.5))q.push([(j+ip(a,b))*c,i*c]);if((b>.5)!==(d>.5))q.push([(j+1)*c,(i+ip(b,d))*c]);if((e>.5)!==(d>.5))q.push([(j+ip(e,d))*c,(i+1)*c]);if((a>.5)!==(e>.5))q.push([j*c,(i+ip(a,e))*c]);
-      for(var m=0;m+1<q.length;m+=2){ctx2.moveTo(q[m][0],q[m][1]);ctx2.lineTo(q[m+1][0],q[m+1][1])}}
-    ctx2.stroke();ctx2.restore();
+    /* every pixel is a real forward pass; colour blends smoothly with the network's probability that the floor is free */
+    for(i=0;i<GN;i++)for(j=0;j<GN;j++){var o=fwd(j/(GN-1),i/(GN-1))[3][0],p=(i*GN+j)*4;
+      img.data[p]=Math.round(lerp(122,27,o));img.data[p+1]=Math.round(lerp(58,110,o));img.data[p+2]=Math.round(lerp(92,122,o));img.data[p+3]=255}
+    oc.putImageData(img,0,0);var w=cvf.width;ctx2.imageSmoothingEnabled=true;ctx2.drawImage(offc,0,0,w,w);
     /* dots = the real answer */
     ctx2.lineWidth=1;ctx2.strokeStyle='rgba(10,12,24,.45)';data.forEach(function(s){ctx2.beginPath();ctx2.arc(s[0]*w,s[1]*w,2.3,0,6.283);ctx2.fillStyle=s[2]?'#9FF3E0':'#FFB3CF';ctx2.fill();ctx2.stroke()});
     ctx2.save();ctx2.strokeStyle='rgba(255,255,255,.7)';ctx2.lineWidth=3;ctx2.strokeRect(1.5,1.5,w-3,w-3);ctx2.restore();
@@ -2190,11 +2180,11 @@ var pst=$$('.pstep');function pg(i){pst.forEach(function(b,k){b.setAttribute('ar
   function loop(){data.sort(function(){return Math.random()-.5});data.forEach(function(s){step(s,.05)});ep++;if(ep%2===0){drawFloor();paintW();stats()}if(training)raf=requestAnimationFrame(loop)}
   /* first time in view: it starts from random weights (a mess) and learns slowly on its own, a few samples per frame */
   var auto=false,aRaf=0,aSeen=0;function autoStop(){auto=false;cancelAnimationFrame(aRaf)}
-  var aT=0,aAcc=0,stg=-1,STG=['Random weights, so its map of the floor is a mess: pink and teal swirl anywhere, whatever the dots say.','The colours start to gather where the dots are: pink pulls toward the obstacles, teal toward the open floor.','Now it carves the obstacles out of the free floor, one nudge at a time.','Almost there: the white line hugs the edge between free and blocked.'];
-  function autoLoop(now){if(!auto)return;var dt=aT?Math.min(.1,(now-aT)/1000):.016;aT=now;var rate=ep<6?260:(ep<20?600:(ep<60?1600:3600));aAcc+=rate*dt;var n=Math.min(160,Math.floor(aAcc));aAcc-=n;
-    for(var r=0;r<n;r++){step(data[aSeen%data.length],ep<6?.012:.07/(1+ep/60));aSeen++;if(aSeen%data.length===0){ep++;data.sort(function(){return Math.random()-.5});if(ep%2===0){paintW();stats()}}}
-    drawFloor();var g=ep<5?0:(ep<20?1:(ep<120?2:3));if(g!==stg){stg=g;msg.innerHTML='<b>Learning on its own.</b> '+STG[g]}
-    if(ep>=260||!nnVis){autoStop();if(ep>=260){paintW();stats();msg.innerHTML='Done: from a random mess to a clean map of the floor, with nothing but forward passes and backpropagation. Press <b>Reset</b> to watch it learn again.'}}else aRaf=requestAnimationFrame(autoLoop)}
+  var aT=0,aAcc=0,stg=-1,STG=['Random weights: its map is a vague blend of the two colours, whatever the dots say.','The colours start to gather where the dots are: pink toward the obstacles, teal toward the open floor.','Now it carves the obstacles out of the free floor, one nudge at a time.','Almost there: the pink shapes sharpen around the obstacles.'];
+  function autoLoop(now){if(!auto)return;var dt=aT?Math.min(.1,(now-aT)/1000):.016;aT=now;aAcc+=(ep<20?6:12)*dt;var n=Math.min(3,Math.floor(aAcc));aAcc-=n;
+    for(var r=0;r<n;r++){data.sort(function(){return Math.random()-.5});data.forEach(function(s2){step(s2,.05)});ep++}
+    if(n){drawFloor();paintW();stats()}var g=ep<3?0:(ep<25?1:(ep<120?2:3));if(g!==stg){stg=g;msg.innerHTML='<b>Learning on its own.</b> '+STG[g]}
+    if(ep>=240||!nnVis){autoStop();if(ep>=240){msg.innerHTML='Done: from random guesses to a clean map of the floor, with nothing but forward passes and backpropagation. Press <b>Reset</b> to watch it learn again.'}}else aRaf=requestAnimationFrame(autoLoop)}
   function autoGo(){if(RM||training)return;auto=true;aT=0;aAcc=0;stg=-1;aRaf=requestAnimationFrame(autoLoop)}
   ['#nnFwd','#nnBack','#nnTrain','#nnReset'].forEach(function(q){$(q).addEventListener('click',autoStop,true)});
   function toggle(){training=!training;$('#nnTrain span').textContent=training?'Pause':'Train';if(training){sel=null;paintA(null);msg.innerHTML='Training: thousands of forward and backward passes. Watch the floor sharpen and the loss fall.';raf=requestAnimationFrame(loop)}else cancelAnimationFrame(raf)}
