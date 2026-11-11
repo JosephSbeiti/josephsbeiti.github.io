@@ -1578,8 +1578,8 @@ function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;
   var wide=VW>900,CX=wide?VW*.72:VW*.5,CY=VH*.52+(wide?0:VH*.02),SC=wide?Math.min(VW*.27,VH*.4):Math.min(VW*.42,VH*.3);
   /* the Lab's globe slides into the free space right of the cards, so the cards never hide it */
   if(wide){var gw=(state.A==='globe'?1-t:0)+(state.B==='globe'?t:0);if(gw>0){CX=lerp(CX,VW*.9,gw);SC*=lerp(1,.72,gw)}}
-  /* the cedar grows in the free space under the origin text, not behind the purpose column */
-  if(wide){var cw=(state.A==='cedar'?1-t:0)+(state.B==='cedar'?t:0);if(cw>0){CX=lerp(CX,VW*.27,cw);CY=lerp(CY,VH*.72,cw);SC*=lerp(1,.78,cw)}}
+    /* the cedar, then the pillars (and each pillar's own shape on hover), all live in the free space under the origin text */
+  if(wide){var LEFT={cedar:1,pillars:1,drop:1,cap:1,heart:1,bolt:1,signal:1,capital:1},cw=(LEFT[state.A]?1-t:0)+(LEFT[state.B]?t:0);if(cw>0){var ced=(state.A==='cedar'?1-t:0)+(state.B==='cedar'?t:0);CX=lerp(CX,VW*.27,cw);CY=lerp(CY,VH*(.77+.04*ced),cw);SC*=lerp(1,.78-.1*ced,cw)}}
   ctx.clearRect(0,0,VW,VH);if(state.jv>.01)drawMap(state.jv,state.jp);ctx.globalCompositeOperation='lighter';
   /* camera dive: fly through the old world, the next one rushes in from the distance */
   var zf=1,za=1,streak=0;if(dive){var dv=clamp((now-dive.t0)/dive.dur,0,1),u;
