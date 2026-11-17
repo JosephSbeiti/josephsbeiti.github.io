@@ -16,4 +16,4 @@ Born in Lebanon, raised in Paris, studied in the USA. Digital transformation and
 
 Single self-contained `index.html`, no framework, hosted on GitHub Pages.
 
-[CV (PDF)](Joseph-Sbeiti-CV.pdf) · [LinkedIn](https://www.linkedin.com/in/joseph-sbeiti/) · josephsbeiti@gmail.com
+[CV (PDF)](joseph_amir_sbeiti.pdf) · [LinkedIn](https://www.linkedin.com/in/joseph-sbeiti/) · josephsbeiti@gmail.com
